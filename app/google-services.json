@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "252078349492",
+    "project_id": "homeclick-296f6",
+    "storage_bucket": "homeclick-296f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252078349492:android:c3913462779e9777e48be1",
+        "android_client_info": {
+          "package_name": "csedu.homeclick.androidhomeclick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252078349492-u8n78jjje3rqnjq9ih1tug3k0jt4e9a3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "csedu.homeclick.androidhomeclick",
+            "certificate_hash": "5f9a4d95e26cb7e7b804db73b135079c8b0d4a38"
+          }
+        },
+        {
+          "client_id": "252078349492-bceljlfe71im1bgnah79e1p55pqu7uqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz2WWtV9UcBwl9fLx3FjsCjksudQtIiL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252078349492-bceljlfe71im1bgnah79e1p55pqu7uqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
