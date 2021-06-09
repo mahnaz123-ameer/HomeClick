@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/filter"
+        android:title="filter"
+       app:showAsAction="always"
+        android:icon="@drawable/icon_filter"/>
+
+
+    <item
+        android:id="@+id/about"
+        android:title="About">
+
+        <menu>
+            <item
+                android:id="@+id/subitem1"
+                android:title="Data Policy" />
+            <item
+                android:id="@+id/subitem2"
+                android:title="Terms of Use" />
+        </menu>
+
+
+    </item>
+
+    <item
+        android:id="@+id/logout"
+        android:title="SignIn/Logout"/>
+
+
+</menu>
