@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">AndroidHomeClick</string>
+    <string name="app_name">HomeClick</string>
+
+
+    <string name="app_bar">
+    <font size="100">𝓗𝓸𝓶𝓮𝓒𝓵𝓲𝓬𝓴</font>
+    </string>
+
 </resources>
