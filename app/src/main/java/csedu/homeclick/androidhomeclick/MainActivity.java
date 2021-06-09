@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                                 "1.0"    /* minimumVersion */)
                         .build();
 
-        String email = "mahnazameer123@gmail.com";
+        String email = "nnnawar@gmail.com";
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
