@@ -8,8 +8,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_bar"
         android:id="@+id/bottom_navigation_bar"
+        app:menu="@menu/bottom_nav_bar"
         android:background="@drawable/gradient_drawable"
         />
 

@@ -3,7 +3,13 @@
 
 
     <string name="app_bar">
-    <font size="100">𝓗𝓸𝓶𝓮𝓒𝓵𝓲𝓬𝓴</font>
+    <font size="20">𝓗𝓸𝓶𝓮𝓒𝓵𝓲𝓬𝓴</font>
     </string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_here">I am new here</string>
+    <string name="sign_me_in">Sign me in</string>
+    <string name="info">Information</string>
+    <string name="my_ads">My Ads</string>
+    <string name="saved_ads">Saved Ads</string>
 </resources>

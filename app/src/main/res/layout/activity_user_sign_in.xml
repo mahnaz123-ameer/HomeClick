@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.UserSignIn"
+    android:background="@color/white"
+  >
+
+    <include layout="@layout/app_bar"
+        android:id="@+id/user_sign_in_app_bar"/>
+
+    <include layout="@layout/bottom_nav_bar"
+        android:id="@+id/user_sign_in_bottom_nav_bar"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_sign_in_app_bar"
+        app:tabTextColor="@color/black"
+        app:tabSelectedTextColor="@color/pink"
+        app:tabIndicatorColor="@color/pink"
+        android:id="@+id/signInTabLayout">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_here"
+            android:id="@+id/newSignIn"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_me_in"
+            app:tabIconTint="@color/bottom_nav_bar_selector"
+            android:id="@+id/signIn"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user_sign_in_view_pager"
+        android:layout_below="@id/signInTabLayout"
+        android:layout_above="@id/user_sign_in_bottom_nav_bar"/>
+
+</RelativeLayout>
