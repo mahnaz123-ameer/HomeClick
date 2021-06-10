@@ -61,7 +61,7 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
         switch (item.getItemId()) {
             case R.id.sign_in_sign_out:
                 if(UserAuth.isSignedIn()) {
-                    UserAuth.signOut();
+                    UserAuth.signOut(activity.getApplicationContext());
                 } else {
                     Intent targetIntent = new Intent(activity.getApplicationContext(), UserSignIn.class);
                     Toast.makeText(activity.getApplicationContext(), "sign out button click", Toast.LENGTH_SHORT).show();
@@ -73,7 +73,7 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
                 break;
             case R.id.filter:
                 Toast.makeText(activity.getApplicationContext(), "Filter pressed", Toast.LENGTH_SHORT).show();
-                Intent targetIntent1 = new Intent(activity.getApplicationContext(), Filter.class);
+                Intent targetIntent1 = new Intent(activity.getApplicationContext(), CreatePost.class);
                 Toast.makeText(activity.getApplicationContext(), "sign out button click", Toast.LENGTH_SHORT).show();
                 activity.startActivity(targetIntent1);
 
