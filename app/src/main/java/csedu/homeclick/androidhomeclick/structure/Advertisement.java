@@ -28,21 +28,6 @@ public class Advertisement {
 //    private String propertyCondition;
 
 
-    public Advertisement(String type, int payment, int squareFootArea, String areaName, String fullAddress, int numOfBedrooms, int numOfBathrooms, Boolean gasAvailability, String floor, String advertiserName, String advertiserPhoneNumber, Date postCreationDate) {
-        this.type = type;
-        this.payment = payment;
-        this.squareFootArea = squareFootArea;
-        this.areaName = areaName;
-        this.fullAddress = fullAddress;
-        this.numOfBedrooms = numOfBedrooms;
-        this.numOfBathrooms = numOfBathrooms;
-        this.gasAvailability = gasAvailability;
-        this.floor = floor;
-        this.advertiserName = advertiserName;
-        this.advertiserPhoneNumber = advertiserPhoneNumber;
-        this.postCreationDate = postCreationDate;
-    }
-
     public String getType() {
         return type;
     }
@@ -138,4 +123,20 @@ public class Advertisement {
     public void setPostCreationDate(Date postCreationDate) {
         this.postCreationDate = postCreationDate;
     }
+
+    public Advertisement(String type, int payment, int squareFootArea, String areaName, String fullAddress, int numOfBedrooms, int numOfBathrooms, Boolean gasAvailability, String floor, String advertiserName, String advertiserPhoneNumber, Date postCreationDate) {
+        this.type = type;
+        this.payment = payment;
+        this.squareFootArea = squareFootArea;
+        this.areaName = areaName;
+        this.fullAddress = fullAddress;
+        this.numOfBedrooms = numOfBedrooms;
+        this.numOfBathrooms = numOfBathrooms;
+        this.gasAvailability = gasAvailability;
+        this.floor = floor;
+        this.advertiserName = advertiserName;
+        this.advertiserPhoneNumber = advertiserPhoneNumber;
+        this.postCreationDate = postCreationDate;
+    }
+
 }

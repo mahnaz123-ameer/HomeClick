@@ -33,6 +33,7 @@ public class UserSignIn extends AppCompatActivity {
 
     private void bindWidgets() {
 
+
         tabLayout = findViewById(R.id.signInTabLayout);
         viewPager = findViewById(R.id.user_sign_in_view_pager);
         fm = getSupportFragmentManager();
