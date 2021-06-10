@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.Profile"></activity>
+        <activity android:name=".activities.Filter"></activity>
+        <activity android:name=".activities.CreatePost" />
+        <activity android:name=".activities.Profile" />
         <activity android:name=".activities.UserSignIn" />
         <activity android:name=".activities.AdFeed">
             <intent-filter>

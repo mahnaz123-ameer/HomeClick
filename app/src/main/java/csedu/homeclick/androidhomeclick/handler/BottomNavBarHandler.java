@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.AdFeed;
+import csedu.homeclick.androidhomeclick.activities.CreatePost;
 import csedu.homeclick.androidhomeclick.activities.Profile;
 import csedu.homeclick.androidhomeclick.activities.UserSignIn;
 import csedu.homeclick.androidhomeclick.database.UserAuth;
@@ -52,7 +53,7 @@ public class BottomNavBarHandler {
                         break;
                     case R.id.add:
                         Toast.makeText(context, "add selected", Toast.LENGTH_SHORT).show();
-                        context.startActivity(new Intent(context, UserSignIn.class));
+                       context.startActivity(new Intent(context,CreatePost.class));
                         break;
                     case R.id.account:
                         Toast.makeText(context, "account selected", Toast.LENGTH_SHORT).show();
