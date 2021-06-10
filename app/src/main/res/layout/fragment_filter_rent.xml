@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.filter.FilterRentFragment"
+    android:background="@color/white">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <TextView
+                android:id="@+id/CategoryForTenants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Property For"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/PropertyFor">
+
+                <RadioButton
+
+                    android:id="@+id/Student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Student"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+
+                    android:id="@+id/Family"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Family"
+                    android:textColor="@color/black" />
+
+
+                <RadioButton
+
+                    android:id="@+id/WorkingMen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Working Men"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+
+                    android:id="@+id/WorkingWomen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Working Women"
+                    android:textColor="@color/black" />
+
+
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/CategoryForHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Property Type"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/PropertyType">
+
+
+                <CheckBox
+
+                    android:id="@+id/AllTypes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="All Types"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/StudioApartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Studio Apartment"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/Flat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Flat"
+                    android:textColor="@color/black" />
+
+
+            </RadioGroup>
+
+
+
+            <TextView
+                android:id="@+id/HomeSecurity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Property Security"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+
+
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/PropertySecurity"
+                >
+
+
+                <CheckBox
+
+                    android:id="@+id/SecurityGuard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Security Guard"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/SecurityCameras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="SecurityCameras"
+                    android:textColor="@color/black" />
+
+                <CheckBox
+
+                    android:id="@+id/AlarmSystem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Alarm System"
+                    android:textColor="@color/black" />
+
+
+
+            </RadioGroup>
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/TextViewMaxMinRent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/searchImageButton"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+
+                <RelativeLayout
+                    android:layout_width="169dp"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/TextViewMinRent"
+                        android:layout_width="147dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="140dp"
+                        android:text="Min Rent"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/EditTextMinRent"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextViewMinRent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="27dp"
+                        android:layout_marginRight="100dp"
+                        android:background="@drawable/shape2"
+                        android:textColor="@color/black"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/TextViewMinBedroom"
+                        android:layout_width="147dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/EditTextMinRent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="21dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginRight="140dp"
+                        android:text="Min bedrooms"
+                        android:textColor="@color/black" />
+
+
+                    <EditText
+                        android:id="@+id/EditTextMinBedroom"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextViewMinBedroom"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginRight="100dp"
+                        android:background="@drawable/shape2"
+                        android:textColor="@color/black" />
+
+
+                    <TextView
+                        android:id="@+id/TextViewBathrom"
+                        android:layout_width="147dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/EditTextMinBedroom"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="21dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="140dp"
+                        android:text="Bathrooms"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/EditTextBathroom"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextViewBathrom"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="31dp"
+                        android:layout_marginRight="100dp"
+                        android:background="@drawable/shape2"
+                        android:textColor="@color/black" />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="169dp"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/TextViewMaxRent"
+                        android:layout_width="147dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="35dp"
+                        android:layout_marginRight="140dp"
+                        android:text="Max Rent"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/EditTextMaxRent"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextViewMaxRent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="49dp"
+                        android:layout_marginRight="100dp"
+                        android:background="@drawable/shape2"
+                        android:textColor="@color/black" />
+
+
+                    <TextView
+                        android:id="@+id/TextViewMaxBedroom"
+                        android:layout_width="147dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/EditTextMaxRent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="23dp"
+                        android:layout_marginRight="140dp"
+                        android:text="Max bedrooms"
+                        android:textColor="@color/black" />
+
+
+                    <EditText
+                        android:id="@+id/EditTextMaxBedroom"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextViewMaxBedroom"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="49dp"
+                        android:layout_marginRight="100dp"
+                        android:background="@drawable/shape2"
+                        android:textColor="@color/black" />
+
+
+                    <TextView
+                        android:id="@+id/TextViewCarSpace"
+                        android:layout_width="147dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/EditTextMaxBedroom"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="23dp"
+                        android:layout_marginRight="140dp"
+                        android:text="Bathrooms"
+                        android:textColor="@color/black" />
+
+
+                    <EditText
+                        android:id="@+id/EditTextCarSpace"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextViewCarSpace"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="49dp"
+                        android:layout_marginRight="100dp"
+                        android:background="@drawable/shape2"
+                        android:textColor="@color/black" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/CategoryForOutdoor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Outdoor Features"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/OutdoorFeatures">
+
+
+                <CheckBox
+
+                    android:id="@+id/Balcony"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Balcony"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/Garage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Garage"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/Lift"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Lift"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/OutdoorArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Outdoor Area"
+                    android:textColor="@color/black" />
+
+
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/CategoryForIndoor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Indoor Features"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/IndoorFeatures">
+
+
+                <CheckBox
+
+                    android:id="@+id/GasLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Gas Line"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/Study"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Study"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/Gym"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Gym"
+                    android:textColor="@color/black" />
+
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/ExtraCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Property Requirments"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+
+
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/PropertyRequirments">
+
+
+                <CheckBox
+
+                    android:id="@+id/Furnished"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Furnished"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/PetsAllowed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Pets Allowed"
+                    android:textColor="@color/black" />
+
+
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/EnergyForHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Climate Control and Energy"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:id="@+id/ClimateControl">
+
+
+                <CheckBox
+
+                    android:id="@+id/AirConditioning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Air Conditioning"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/Heating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Heating"
+                    android:textColor="@color/black" />
+
+
+                <CheckBox
+
+                    android:id="@+id/SolarPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/black"
+                    android:ems="5"
+                    android:text="Solar Panels"
+                    android:textColor="@color/black" />
+
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>
