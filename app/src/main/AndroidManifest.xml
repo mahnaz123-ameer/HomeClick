@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.Filter"></activity>
-        <activity android:name=".activities.CreatePost" />
-        <activity android:name=".activities.Profile" />
-        <activity android:name=".activities.UserSignIn" />
-        <activity android:name=".activities.AdFeed">
+        <activity android:name=".activities.Filter" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".activities.CreatePost" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".activities.Profile" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".activities.UserSignIn" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

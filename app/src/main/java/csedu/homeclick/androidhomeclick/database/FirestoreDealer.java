@@ -36,30 +36,10 @@ public class FirestoreDealer {
         return fd;
     }
 
-    public Boolean emailAlreadyExists(String email) {
-        emailExists = false;
-        CollectionReference usersRef = db.collection("Users");
-        Query query = usersRef.whereEqualTo("EmailAddress", email);
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for(QueryDocumentSnapshot snap: task.getResult()) {
-                        User user = snap.toObject(User.class);
-                        emailExists = true;
-                    }
-                } else {
-                    Log.i("failure", "task failed");
-                }
-            }
-        });
-        return emailExists;
-    }
-
     public Boolean addUser(HashMap<String, Object> userMap) {
         addUserSuccess = true;
         if(UserAuth.isSignedIn()) {
-            db.collection("Users").document(UserAuth.getCurrentUserId()).set(userMap)
+            db.collection("Users").document(UserAuth.getCurrentUserUID()).set(userMap)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
