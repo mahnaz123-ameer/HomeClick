@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.sign_in_fragments.SignUpFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="20dp">
 
 
 
@@ -173,14 +174,14 @@
 
 
             <Button
-                android:layout_width="330dp"
+                android:layout_width="200dp"
                 style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
                 android:id="@+id/sendNewSignUpLink"
                 android:layout_centerHorizontal="true"
                 android:layout_height="40dp"
                 android:layout_below="@+id/policies"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/gradient_drawable"
+                android:background="@drawable/button"
                 android:textColor="@color/black"
                 android:text="Send link in email"
                 />

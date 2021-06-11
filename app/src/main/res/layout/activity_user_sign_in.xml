@@ -14,11 +14,49 @@
     <include layout="@layout/bottom_nav_bar"
         android:id="@+id/user_sign_in_bottom_nav_bar"/>
 
-    <com.google.android.material.tabs.TabLayout
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_sign_in_app_bar"
+        android:padding="30dp"
+        android:id="@+id/TextView">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Not Signed in?"
+            android:textSize="17dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/TextView1"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Just do the following"
+            android:textSize="17dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/TextView1"
+            android:id="@+id/TextView2"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:tabTextColor="@color/black"
+        android:layout_below="@+id/TextView"
         app:tabSelectedTextColor="@color/pink"
         app:tabIndicatorColor="@color/pink"
         android:id="@+id/signInTabLayout">
