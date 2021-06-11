@@ -18,22 +18,25 @@ import csedu.homeclick.androidhomeclick.activities.AdFeed;
 import csedu.homeclick.androidhomeclick.activities.CreatePost;
 import csedu.homeclick.androidhomeclick.activities.Profile;
 import csedu.homeclick.androidhomeclick.activities.UserSignIn;
+import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.database.UserAuth;
 
 public class BottomNavBarHandler {
     private static BottomNavBarHandler bottomNavBarHandler;
     private static BottomNavigationView bottomNavigationView;
     private static int selectedItem;
+    private static UserService userService;
 
     public static BottomNavigationView getBottomNavigationView() {
         return bottomNavigationView;
     }
 
     private BottomNavBarHandler(View view, int selectIt) {
-        Log.i("bottom_nav", view.findViewById(R.id.bottom_navigation_bar).toString());
+        Log.i("bottom_nav", (view.findViewById(R.id.bottom_navigation_bar)).toString());
         bottomNavigationView = view.findViewById(R.id.bottom_navigation_bar);
         selectedItem = selectIt;
         bottomNavigationView.setSelectedItemId(selectedItem);
+        userService = new UserService();
     }
 
     public static void setInstance(View view, int selectIt) {
@@ -42,7 +45,7 @@ public class BottomNavBarHandler {
 //        }
     }
 
-    public static void handle(Context context) {
+    public static void handle(final Context context) {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @org.jetbrains.annotations.NotNull MenuItem item) {
@@ -51,16 +54,24 @@ public class BottomNavBarHandler {
                         Toast.makeText(context, "home selected", Toast.LENGTH_SHORT).show();
                         context.startActivity(new Intent(context, AdFeed.class));
                         break;
-                    case R.id.add:
+                    case R.id.create:
                         Toast.makeText(context, "add selected", Toast.LENGTH_SHORT).show();
-                       context.startActivity(new Intent(context,CreatePost.class));
+                        Log.i("create", "ekhane ashchi");
+                        if(userService.isSignedIn()) {
+                            Log.i("create", "if er bhitore dhukena");
+                            context.startActivity(new Intent(context,CreatePost.class));
+                        } else {
+                            context.startActivity(new Intent(context, UserSignIn.class));
+                        }
+
                         break;
                     case R.id.account:
                         Toast.makeText(context, "account selected", Toast.LENGTH_SHORT).show();
-                        UserAuth.setInstance();
-                        if(UserAuth.isSignedIn()) {
+
+                        if(userService.isSignedIn()) {
                             context.startActivity(new Intent(context, Profile.class));
                         } else {
+                            Log.i("signin", "is not signed in");
                             context.startActivity(new Intent(context, UserSignIn.class));
                         }
 

@@ -34,7 +34,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/editemail"
+                android:id="@+id/editEmail"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"

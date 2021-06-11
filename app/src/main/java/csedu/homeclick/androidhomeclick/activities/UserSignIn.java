@@ -1,6 +1,7 @@
 package csedu.homeclick.androidhomeclick.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -10,6 +11,8 @@ import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.sign_in_fragments.SignInFragmentAdapter;
 import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
+import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
+
 import com.google.android.material.tabs.TabLayout;
 
 public class UserSignIn extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class UserSignIn extends AppCompatActivity {
     private SignInFragmentAdapter adapter;
     private FragmentManager fm;
 
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class UserSignIn extends AppCompatActivity {
     }
 
     private void bindWidgets() {
-
+        toolbar = findViewById(R.id.app_toolbaar);
         tabLayout = findViewById(R.id.signInTabLayout);
         viewPager = findViewById(R.id.user_sign_in_view_pager);
         fm = getSupportFragmentManager();
@@ -44,5 +48,7 @@ public class UserSignIn extends AppCompatActivity {
 
         BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar), R.id.account);
         BottomNavBarHandler.handle(this);
+
+        TopAppBarHandler.getInstance(toolbar, this).handle();
     }
 }
