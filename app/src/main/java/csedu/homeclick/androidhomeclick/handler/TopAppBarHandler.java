@@ -17,6 +17,7 @@ import csedu.homeclick.androidhomeclick.activities.CreatePost;
 import csedu.homeclick.androidhomeclick.activities.Filter;
 import csedu.homeclick.androidhomeclick.activities.Profile;
 import csedu.homeclick.androidhomeclick.activities.UserSignIn;
+import csedu.homeclick.androidhomeclick.activities.createpost.AddPhotos;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.database.UserAuth;
 import csedu.homeclick.androidhomeclick.structure.User;
@@ -81,7 +82,7 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
                 Toast.makeText(activity.getApplicationContext(), "Tapped about app", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.filter:
-                Toast.makeText(activity.getApplicationContext(), "Filter pressed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity.getApplicationContext(), "sign out button click", Toast.LENGTH_SHORT).show();
                 Intent targetIntent1 = new Intent(activity.getApplicationContext(), CreatePost.class);
                 activity.startActivity(targetIntent1);
 

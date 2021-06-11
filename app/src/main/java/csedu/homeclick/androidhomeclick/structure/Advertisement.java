@@ -5,17 +5,7 @@ import org.w3c.dom.Text;
 import java.util.Date;
 
 public class Advertisement {
-
-//    private int numberOfBedroom;
-//    private int numberOfBathroom;
-//
-//    private int payment;
-//    private int sqftArea;
-//
-//    private Boolean gasAvailability;
-
-
-    private String type; //rent sale // rent / sale
+    private String type; //rent sale
 
     private int payment;
     private int squareFootArea;
@@ -38,10 +28,9 @@ public class Advertisement {
 //    private String propertyCondition;
 
 
-
     public Advertisement(String type, int payment, int squareFootArea, String areaName, String fullAddress, int numOfBedrooms, int numOfBathrooms, Boolean gasAvailability, String floor, String advertiserName, String advertiserPhoneNumber, Date postCreationDate) {
-        this.type = type; //eta
-        this.payment = payment; //payment
+        this.type = type;
+        this.payment = payment;
         this.squareFootArea = squareFootArea;
         this.areaName = areaName;
         this.fullAddress = fullAddress;
@@ -149,5 +138,4 @@ public class Advertisement {
     public void setPostCreationDate(Date postCreationDate) {
         this.postCreationDate = postCreationDate;
     }
-
 }
