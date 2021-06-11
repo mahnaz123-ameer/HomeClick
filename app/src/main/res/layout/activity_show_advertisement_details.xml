@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable2"
+    tools:context=".activities.Show_Advertisement_details">
+
+
+    <include
+        android:id="@+id/show_add_in_app_bar"
+        layout="@layout/app_bar" />
+
+    <include
+        android:id="@+id/user_sign_in_bottom_nav_bar"
+        layout="@layout/bottom_nav_bar"
+        />
+
+
+    <ScrollView
+        android:layout_width="393dp"
+        android:layout_height="700dp"
+        android:layout_below="@id/show_add_in_app_bar"
+        android:layout_above="@id/user_sign_in_bottom_nav_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/show_details_add_adress"
+                    android:layout_width="330dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/shape2"
+                    android:backgroundTint="@color/white"
+                    android:elevation="100dp"
+                    app:cardCornerRadius="20dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="100dp"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/Show_add_map"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/map" />
+
+                        <TextView
+                            android:id="@+id/show_add_city"
+                            android:layout_width="254dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-328dp"
+                            android:layout_toLeftOf="@id/Show_add_map"
+                            android:text="Uttara"
+                            android:textColor="@color/pink"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/show_add_address"
+                            android:layout_width="254dp"
+                            android:layout_height="47dp"
+                            android:layout_below="@id/show_add_city"
+                            android:layout_marginRight="-328dp"
+                            android:layout_toLeftOf="@id/Show_add_map"
+                            android:text="House 4, Floor 5, Road 12,Section 4"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="54dp"
+                            android:layout_height="27dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="-329dp"
+                            android:layout_toLeftOf="@id/Show_add_map"
+                            android:text="Rent"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="350dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/icon_bookmark" />
+
+                <ImageView
+                    android:id="@+id/show_ad_bedroom"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_details_add_adress"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/icon_bedroom" />
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_bedroom"
+                    android:layout_marginLeft="30dp"
+                    android:text="Bedroom"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_details_add_adress"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_bedroom"
+                    android:text="2"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_bathroom"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_details_add_adress"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/icon_bathroom" />
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_bathroom"
+                    android:layout_marginLeft="230dp"
+                    android:text="Bathroom"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_details_add_adress"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_bathroom"
+                    android:text="2"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_dining"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@id/show_ad_bathroom"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/icon_dining" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_dining"
+                    android:layout_marginLeft="40dp"
+                    android:text="Dining"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_bedroom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_dining"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_balcony"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_bathroom"
+                    android:layout_marginLeft="215dp"
+                    android:layout_marginTop="48dp"
+                    android:src="@drawable/icon_balcony" />
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_balcony"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Balcony"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_bathroom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_balcony"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_gas"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_dining"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/gas_icon" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_gas"
+                    android:layout_marginLeft="30dp"
+                    android:text="Gas Connection"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_dining"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_gas"
+                    android:text="✔"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_water"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_balcony"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="49dp"
+                    android:src="@drawable/icon_water" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_water"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="-1dp"
+                    android:text="Water Issues"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_balcony"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_water"
+                    android:text="✗"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                //4th
+
+                <ImageView
+                    android:id="@+id/show_ad_garage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_gas"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/icon_garage" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_garage"
+                    android:layout_marginLeft="30dp"
+                    android:text=" Garage"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_gas"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_gas"
+                    android:text="✔"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_lift"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_water"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="39dp"
+                    android:src="@drawable/icon_elevator" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_lift"
+                    android:layout_marginLeft="240dp"
+                    android:layout_marginTop="-1dp"
+                    android:text="Elevator"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_water"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_lift"
+                    android:text="✗"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+                //next
+
+                <ImageView
+                    android:id="@+id/show_ad_guard"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_garage"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/icon_guard" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_ad_guard"
+                    android:layout_marginLeft="30dp"
+                    android:text="Security Guard"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_garage"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_ad_guard"
+                    android:text="✔"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_pets"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_lift"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="49dp"
+                    android:src="@drawable/icon_pet" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_pets"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="-1dp"
+                    android:text="Pets Allowed"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_lift"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_toRightOf="@+id/show_pets"
+                    android:text="✗"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/show_ad_money"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/show_ad_guard"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/icon_money"
+                    android:foregroundGravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_ad_guard"
+                    android:layout_marginTop="70dp"
+                    android:layout_toRightOf="@id/show_ad_money"
+                    android:text="20,000 Taka"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/show_ad_money"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/shape2"
+                    android:backgroundTint="@color/white"
+                    android:elevation="100dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_centerHorizontal="true">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/show_ad_post_by"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/pink"
+                            android:text="Post By"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="30dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/show_ad_post_by_name"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:text="Nashmin Nawar"
+                            android:layout_below="@id/show_ad_post_by"
+                            android:layout_marginLeft="30dp"
+                            android:textStyle="bold"
+                            />
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/phone_icon"
+                            android:layout_marginLeft="250dp"
+                            android:layout_marginTop="10dp"/>
+
+
+
+                    </RelativeLayout>
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

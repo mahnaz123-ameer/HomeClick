@@ -3,19 +3,18 @@
     package="csedu.homeclick.androidhomeclick">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/homeclickk"
+        android:icon="@drawable/homeclickicon"
         android:label="@string/app_name"
         android:roundIcon="@drawable/gradient_drawable"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.createpost.AddPhotos"></activity>
+        <activity android:name=".activities.Show_Advertisement_details"></activity>
+        <activity android:name=".activities.createpost.AddPhotos" />
         <activity
             android:name=".activities.Filter"
             android:windowSoftInputMode="adjustPan" />
