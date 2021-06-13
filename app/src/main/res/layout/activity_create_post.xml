@@ -15,48 +15,12 @@
         android:id="@+id/create_post_bottom_nav_bar"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/HomeWallpaper"
-        android:layout_below="@+id/create_post_app_bar">
-
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/AccountToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="@drawable/homewallpaper"
-            android:padding="0dp"
-            app:title=" "
-            app:titleTextColor="@color/white" />
-
-        <TextView
-            android:id="@+id/start"
-            android:layout_width="299dp"
-            android:layout_height="44dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginEnd="72dp"
-            android:background="#40FFDDEE"
-            android:contentDescription="@string/app_name"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:text="Let's Get Started"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
 
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/HomeWallpaper"
+        android:layout_below="@+id/create_post_app_bar"
         app:tabTextColor="@color/black"
         app:tabSelectedTextColor="@color/pink"
         app:tabIndicatorColor="@color/pink"

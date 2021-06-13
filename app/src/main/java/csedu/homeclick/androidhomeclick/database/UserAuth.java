@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 
-//TODO: all issues fixed, never touch this again
+//TODO: all issues fixed, never touch this again or not, fix it with an interface
 
 public class UserAuth {
     private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
@@ -202,6 +202,7 @@ public class UserAuth {
         return null;
     }
 
+
     public static void completeSignIn(Intent intent, final Context context) {
         setInstance();
         Uri link = intent.getData();
@@ -240,7 +241,7 @@ public class UserAuth {
         String name = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("nameForSignUp", "");
         String phoneNumber = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("phoneNumberForSignUp", "");
         User newUserAdd = new User(name, email, phoneNumber, firebaseAuth.getCurrentUser().getUid());
-        FirestoreDealer.getInstance().addUser(newUserAdd.getUserHashMap());
+        FirestoreDealer.getInstance().addUser(newUserAdd);
 
         clearSharedPreferences(context);
     }

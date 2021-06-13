@@ -14,13 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.AdFeed;
 import csedu.homeclick.androidhomeclick.activities.CreatePost;
-import csedu.homeclick.androidhomeclick.activities.Filter;
-import csedu.homeclick.androidhomeclick.activities.Profile;
 import csedu.homeclick.androidhomeclick.activities.UserSignIn;
-import csedu.homeclick.androidhomeclick.activities.createpost.AddPhotos;
+//import csedu.homeclick.androidhomeclick.activities.create_post.AddPhotos;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.database.UserAuth;
-import csedu.homeclick.androidhomeclick.structure.User;
 
 public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemClickListener{
     private Toolbar toolbar;

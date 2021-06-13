@@ -14,20 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".activities.Show_Advertisement_details"></activity>
-        <activity android:name=".activities.createpost.AddPhotos" />
+<!--        <activity android:name=".activities.create_post.AddPhotos" />-->
         <activity
             android:name=".activities.Filter"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activities.CreatePost"
-            android:windowSoftInputMode="adjustPan" />
+<!--        <activity-->
+<!--            android:name=".activities.CreatePost"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
         <activity
             android:name=".activities.Profile"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.UserSignIn"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activities.AdFeed">
+        <activity android:name=".activities.CreatePost">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

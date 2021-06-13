@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activities.create_post.CreateRentPostFragment">
-
+    tools:context=".activities.create_post.CreateSalePostFragment"
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
 
 
         <LinearLayout
@@ -28,17 +28,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="Area Name"
-                    android:inputType="text"
-
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentAreaName"
+                    android:id="@+id/saleAreaName"
                     android:padding="8dp"
                     android:background="@drawable/shape"
                     android:textColor="@color/black"/>
@@ -60,12 +57,10 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="270dp"
                     android:layout_height="100dp"
-                    android:inputType="textMultiLine"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentFullAddress"
+                    android:id="@+id/saleFullAddress"
                     android:padding="8dp"
                     android:background="@drawable/shape"
                     android:textColor="@color/black"
@@ -88,11 +83,10 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentBedrooms"
+                    android:id="@+id/saleBedrooms"
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape"
@@ -115,11 +109,10 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentBathrooms"
+                    android:id="@+id/saleBathrooms"
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape"
@@ -143,11 +136,10 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentBalconies"
+                    android:id="@+id/saleBalconies"
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape"
@@ -171,11 +163,10 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentFloor"
+                    android:id="@+id/saleFloor"
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape"
@@ -201,10 +192,10 @@
                 <CheckBox android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Available"
-                    android:buttonTint="@color/black"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:id="@+id/rentGas"
+                    android:id="@+id/saleGas"
+                    android:buttonTint="@color/black"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     />
@@ -228,7 +219,7 @@
                 <CheckBox android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Available"
-                    android:id="@+id/rentElevator"
+                    android:id="@+id/saleElevator"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     android:textSize="18sp"
@@ -254,9 +245,9 @@
                     android:layout_width="wrap_content"
                     android:text="Available"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
                     android:buttonTint="@color/black"
-                    android:id="@+id/rentGenerator"
+                    android:textSize="18sp"
+                    android:id="@+id/saleGenerator"
                     android:layout_marginLeft="10dp"/>
 
             </LinearLayout>
@@ -277,32 +268,7 @@
                 <CheckBox android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Available"
-                    android:id="@+id/rentGarage"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:buttonTint="@color/black"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Security Guard"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <CheckBox android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Available"
-                    android:id="@+id/rentSecurity"
+                    android:id="@+id/saleGarage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
@@ -310,6 +276,8 @@
                     android:layout_marginLeft="10dp"/>
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -320,50 +288,23 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Rent Rate"
+                    android:text="Asking Amount"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentPayment"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:hint="per month"
-                    android:background="@drawable/shape"
-                    android:textColor="@color/black"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Utility"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:id="@+id/rentUtilityCharge"
+                    android:id="@+id/salePayment"
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape"
                     android:textColor="@color/black"/>
 
             </LinearLayout>
+
+
 
 
             <LinearLayout
@@ -376,21 +317,20 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Tenant Type"
+                    android:text="Property Condition"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
 
-                <RadioGroup
-                    android:id="@+id/rdTenant"
-                    android:layout_width="250dp"
+                <RadioGroup android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginLeft="10dp"
+                    >
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Family"
-                        android:id="@+id/rbFamily"
+                        android:text="New"
+                        android:id="@+id/rbNew"
                         android:textColor="@color/black"
                         android:buttonTint="@color/black"
                         android:textSize="18sp"
@@ -399,52 +339,20 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Student / Working person"
-                        android:id="@+id/rbSinglePerson"
-                        android:buttonTint="@color/black"
+                        android:text="Established"
+                        android:id="@+id/rbEstablished"
                         android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp"
+                        android:buttonTint="@color/black"/>
 
                 </RadioGroup>
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Available From"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-
-                <CalendarView
-                    android:id="@+id/rentAvailableFrom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#454345"
-                    android:clickable="true"
-                    android:background="@drawable/shape"/>
-
-            </LinearLayout>
-
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="100dp"
@@ -455,32 +363,27 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="270dp"
                     android:layout_height="250dp"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/rentDescription"
+                    android:id="@+id/saleDescription"
                     android:padding="8dp"
                     android:background="@drawable/shape"
-                    android:verticalScrollbarPosition="right"
                     android:textColor="@color/black"
                     />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonRentPostAd"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="200dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:inputType="textMultiLine"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="250dp"
                 android:backgroundTint="@color/black"
-                android:text="Post My Ad" />
+                android:id="@+id/buttonSalePostAd"
+                android:text="Post My Ad"/>
 
         </LinearLayout>
     </ScrollView>
-
 
 </FrameLayout>

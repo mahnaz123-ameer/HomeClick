@@ -21,6 +21,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener{
     private CheckBox age, agreement;
     private Button sendLink;
 
+    private UserService userService;
+
 
 
     public SignUpFragment() {

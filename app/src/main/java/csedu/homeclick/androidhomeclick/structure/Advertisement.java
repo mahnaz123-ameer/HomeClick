@@ -1,141 +1,68 @@
 package csedu.homeclick.androidhomeclick.structure;
 
-import org.w3c.dom.Text;
 
-import java.util.Date;
+public class Advertisement extends Leaflet{
+    private int numberOfBalconies;
+    private int floor;
+    private Boolean elevator;
+    private Boolean generator;
+    private Boolean garageSpace;
 
-public class Advertisement {
-    private String type; //rent sale
-
-    private int payment;
-    private int squareFootArea;
-    private String areaName;
-    private String fullAddress;
-    private int numOfBedrooms;
-    private int numOfBathrooms;
-    private Boolean gasAvailability;
-    private String floor;
-
-    private String advertiserName;
-    private String advertiserPhoneNumber;
-
-    private Date postCreationDate;
-
-    //rent
-//    private String tenantType;
-//
-//    //sale
-//    private String propertyCondition;
-
-
-    public Advertisement(String type, int payment, int squareFootArea, String areaName, String fullAddress, int numOfBedrooms, int numOfBathrooms, Boolean gasAvailability, String floor, String advertiserName, String advertiserPhoneNumber, Date postCreationDate) {
-        this.type = type;
-        this.payment = payment;
-        this.squareFootArea = squareFootArea;
-        this.areaName = areaName;
-        this.fullAddress = fullAddress;
-        this.numOfBedrooms = numOfBedrooms;
-        this.numOfBathrooms = numOfBathrooms;
-        this.gasAvailability = gasAvailability;
+    public Advertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser);
+        this.numberOfBalconies = numberOfBalconies;
         this.floor = floor;
-        this.advertiserName = advertiserName;
-        this.advertiserPhoneNumber = advertiserPhoneNumber;
-        this.postCreationDate = postCreationDate;
+        this.elevator = elevator;
+        this.generator = generator;
+        this.garageSpace = garageSpace;
     }
 
-    public String getType() {
-        return type;
+    public Advertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount);
+        this.numberOfBalconies = numberOfBalconies;
+        this.floor = floor;
+        this.elevator = elevator;
+        this.generator = generator;
+        this.garageSpace = garageSpace;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public int getNumberOfBalconies() {
+        return numberOfBalconies;
     }
 
-    public int getPayment() {
-        return payment;
+    public void setNumberOfBalconies(int numberOfBalconies) {
+        this.numberOfBalconies = numberOfBalconies;
     }
 
-    public void setPayment(int payment) {
-        this.payment = payment;
-    }
-
-    public int getSquareFootArea() {
-        return squareFootArea;
-    }
-
-    public void setSquareFootArea(int squareFootArea) {
-        this.squareFootArea = squareFootArea;
-    }
-
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getFullAddress() {
-        return fullAddress;
-    }
-
-    public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
-    }
-
-    public int getNumOfBedrooms() {
-        return numOfBedrooms;
-    }
-
-    public void setNumOfBedrooms(int numOfBedrooms) {
-        this.numOfBedrooms = numOfBedrooms;
-    }
-
-    public int getNumOfBathrooms() {
-        return numOfBathrooms;
-    }
-
-    public void setNumOfBathrooms(int numOfBathrooms) {
-        this.numOfBathrooms = numOfBathrooms;
-    }
-
-    public Boolean getGasAvailability() {
-        return gasAvailability;
-    }
-
-    public void setGasAvailability(Boolean gasAvailability) {
-        this.gasAvailability = gasAvailability;
-    }
-
-    public String getFloor() {
+    public int getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(int floor) {
         this.floor = floor;
     }
 
-    public String getAdvertiserName() {
-        return advertiserName;
+    public Boolean getElevator() {
+        return elevator;
     }
 
-    public void setAdvertiserName(String advertiserName) {
-        this.advertiserName = advertiserName;
+    public void setElevator(Boolean elevator) {
+        this.elevator = elevator;
     }
 
-    public String getAdvertiserPhoneNumber() {
-        return advertiserPhoneNumber;
+    public Boolean getGenerator() {
+        return generator;
     }
 
-    public void setAdvertiserPhoneNumber(String advertiserPhoneNumber) {
-        this.advertiserPhoneNumber = advertiserPhoneNumber;
+    public void setGenerator(Boolean generator) {
+        this.generator = generator;
     }
 
-    public Date getPostCreationDate() {
-        return postCreationDate;
+    public Boolean getGarageSpace() {
+        return garageSpace;
     }
 
-    public void setPostCreationDate(Date postCreationDate) {
-        this.postCreationDate = postCreationDate;
+    public void setGarageSpace(Boolean garageSpace) {
+        this.garageSpace = garageSpace;
     }
 }

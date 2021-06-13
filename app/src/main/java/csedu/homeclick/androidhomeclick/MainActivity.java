@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionCodeSettings actionCodeSettings;
     private Button button;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = "nnnawar@gmail.com";
+                String email = "homeclick52@gmail.com";
                 UserAuth.sendSignInLink(email, getApplicationContext());
             }
         });
@@ -60,33 +61,45 @@ public class MainActivity extends AppCompatActivity {
 
             UserAuth.completeSignIn(getIntent(), getApplicationContext());
 
+            if(UserAuth.isSignedIn()) {
 
-        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = "nnnawar@gmail.com";
-                UserAuth.sendSignInLink(new User("nashmin", email, "01715048076"), getApplicationContext());
+//                        FirestoreDealer.getInstance().getUser(UserAuth.getCurrentUserUID(), this);
+
+
+
             }
-        });
-
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = "nawar.nashmin@gmail.com";
-                UserAuth.sendSignInLink(email, getApplicationContext());
-            }
-        });
-
-        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = "nawar.nashmin@gmail.com";
-                UserAuth.sendSignInLink(new User("etao nashmin", email, "01852967435"), getApplicationContext());
-            }
-        });
 
 
-        UserAuth.completeSignIn(getIntent(), getApplicationContext());
+//        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String email = "nnnawar@gmail.com";
+//                UserAuth.sendSignInLink(new User("nashmin", email, "01715048076"), getApplicationContext());
+//            }
+//        });
+//
+//        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String email = "nawar.nashmin@gmail.com";
+//                UserAuth.sendSignInLink(email, getApplicationContext());
+//            }
+//        });
+//
+//        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String email = "nawar.nashmin@gmail.com";
+//                UserAuth.sendSignInLink(new User("etao nashmin", email, "01852967435"), getApplicationContext());
+//            }
+//        });
+//
+
+//        UserAuth.completeSignIn(getIntent(), getApplicationContext());
+    }
+
+    public void foundUser(User user) {
+        Log.i("from main", user.getName());
     }
 }
 

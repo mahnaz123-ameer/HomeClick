@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.activities.createpost.CreateRentPostFragment;
 
 
 public class FilterRentFragment extends Fragment {
