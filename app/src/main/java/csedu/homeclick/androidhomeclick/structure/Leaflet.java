@@ -59,6 +59,10 @@ public class Leaflet {
         this.advertiserPhoneNumber = advertiserPhoneNumber;
     }
 
+    public Leaflet() {
+
+    }
+
     public Leaflet(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser) {
         this.areaName = areaName;
         this.fullAddress = fullAddress;

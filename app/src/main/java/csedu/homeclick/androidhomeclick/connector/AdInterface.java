@@ -1,5 +1,7 @@
 package csedu.homeclick.androidhomeclick.connector;
 
+import java.util.List;
+
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
@@ -18,5 +20,11 @@ public interface AdInterface {
 
     interface  OnAdPostSuccessListener<T> {
         void OnAdPostSuccessful(Boolean data);
+    }
+
+    void getAdsFromDatabase(OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener);
+
+    interface OnAdsFetchedListener<T> {
+        void OnAdsFetchedListener(T ads);
     }
 }

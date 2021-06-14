@@ -1,12 +1,18 @@
 package csedu.homeclick.androidhomeclick.structure;
 
 
+import csedu.homeclick.androidhomeclick.activities.AdFeed;
+
 public class Advertisement extends Leaflet{
     private int numberOfBalconies;
     private int floor;
     private Boolean elevator;
     private Boolean generator;
     private Boolean garageSpace;
+
+    public Advertisement() {
+        super();
+    }
 
     public Advertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace) {
         super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser);

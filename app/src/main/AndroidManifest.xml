@@ -27,7 +27,7 @@
         <activity
             android:name=".activities.UserSignIn"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activities.CreatePost">
+        <activity android:name=".activities.AdFeed">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

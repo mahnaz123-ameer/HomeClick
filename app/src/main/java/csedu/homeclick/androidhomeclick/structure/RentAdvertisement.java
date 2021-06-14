@@ -12,6 +12,10 @@ public class RentAdvertisement extends Advertisement{
 
     private double latitude, longitude;
 
+    public RentAdvertisement() {
+        super();
+    }
+
 
     public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
         super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, elevator, generator, garageSpace);

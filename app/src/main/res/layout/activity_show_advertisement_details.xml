@@ -434,7 +434,7 @@
                     android:layout_below="@id/show_ad_guard"
                     android:layout_marginLeft="80dp"
                     android:layout_marginTop="32dp"
-                    android:background="@drawable/icon_money"
+                    android:background="@drawable/icon_money_mahnaz"
                     android:foregroundGravity="center" />
 
                 <TextView

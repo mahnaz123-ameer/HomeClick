@@ -2,6 +2,8 @@ package csedu.homeclick.androidhomeclick.connector;
 
 import android.util.Log;
 
+import java.util.List;
+
 import csedu.homeclick.androidhomeclick.database.FirestoreDealer;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
@@ -21,5 +23,9 @@ public class AdvertisementService {
 
     public void addAdvertisement(AdInterface.OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, Advertisement advertisement) {
         adDealer.addAdvertisement(onAdPostSuccessListener, advertisement);
+    }
+
+    public void fetchAdvertisements(AdInterface.OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
+        adDealer.getAdsFromDatabase(onAdsFetchedListener);
     }
 }

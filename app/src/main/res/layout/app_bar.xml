@@ -11,8 +11,7 @@
         android:background="@drawable/gradient_drawable"
         android:id="@+id/app_toolbaar"
         app:title="@string/app_bar"
-        app:titleTextColor="@color/black"
-        />
+        app:titleTextColor="@color/black" />
 
 
 

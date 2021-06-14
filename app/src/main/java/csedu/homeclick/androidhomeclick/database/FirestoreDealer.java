@@ -11,13 +11,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
+import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class FirestoreDealer implements AdInterface {
@@ -93,6 +98,24 @@ public class FirestoreDealer implements AdInterface {
                                         onAdPostSuccessListener.OnAdPostSuccessful(false);
                                     }
                                 });
+                    }
+                });
+    }
+
+    @Override
+    public void getAdsFromDatabase(final OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
+        db.collection("Advertisement")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Advertisement> adList = new ArrayList<>();
+
+                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                            adList.add(singleAd.toObject(RentAdvertisement.class));
+                        }
+
+                        onAdsFetchedListener.OnAdsFetchedListener(adList);
                     }
                 });
     }
