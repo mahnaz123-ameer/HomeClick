@@ -8,11 +8,19 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_drawable"
-        android:id="@+id/app_toolbaar"
-        app:title="@string/app_bar"
-        app:titleTextColor="@color/black"
-        />
+        android:background="@color/darker_lavender"
+        android:id="@+id/app_toolbaar">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/app_name"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/comfortaa_bold"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
 
 

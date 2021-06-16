@@ -1,4 +1,4 @@
-package csedu.homeclick.androidhomeclick.activities.createpost;
+package csedu.homeclick.androidhomeclick.activities.create_post;
 
 import android.os.Bundle;
 
@@ -9,18 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.activities.sign_in_fragments.SignUpFragment;
 
 
-public class CreateSellPostFragment extends Fragment {
+public class CreateSalePostFragment extends Fragment {
 
-    public CreateSellPostFragment() {
+    public CreateSalePostFragment() {
         // Required empty public constructor
     }
 
 
-    public static CreateSellPostFragment newInstance() {
-        CreateSellPostFragment fragment = new CreateSellPostFragment();
+    public static CreateSalePostFragment newInstance() {
+        CreateSalePostFragment fragment = new CreateSalePostFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -36,6 +35,6 @@ public class CreateSellPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_sell_post, container, false);
+        return inflater.inflate(R.layout.fragment_create_sale_post, container, false);
     }
 }

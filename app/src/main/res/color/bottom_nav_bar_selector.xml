@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_checked="true" android:color="@color/pink" />
-    <item android:color="@color/black"  />
+    <item android:state_checked="true" android:color="@color/darker_lavender" />
+    <item android:color="#858383"  />
 
 
 </selector>
+
+<!--    #858383-->

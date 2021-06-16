@@ -23,14 +23,13 @@ import org.jetbrains.annotations.NotNull;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 
-//TODO: all issues fixed, never touch this again
+//TODO: all issues fixed, never touch this again or not, fix it with an interface
 
 public class UserAuth {
     private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
     private static UserAuth auth;
     private static FirebaseAuth firebaseAuth;
     private static ActionCodeSettings actionCodeSettings;
-
 
 
     private UserAuth() {
@@ -45,13 +44,10 @@ public class UserAuth {
             auth = new UserAuth();
     }
 
-    public static ActionCodeSettings getActionCodeSettings() {
+    private static ActionCodeSettings getActionCodeSettings() {
         return actionCodeSettings;
     }
 
-    public static String getPackageName() {
-        return PACKAGE_NAME;
-    }
 
     private static void setActionCodeSettings() {
         actionCodeSettings =
@@ -62,7 +58,7 @@ public class UserAuth {
                         // This must be true
                         .setHandleCodeInApp(true)
                         .setAndroidPackageName(
-                                "csedu.homeclick.androidhomeclick",
+                                PACKAGE_NAME,
                                 true, /* installIfNotAvailable */
                                 "1.0"    /* minimumVersion */)
                         .build();
@@ -90,7 +86,7 @@ public class UserAuth {
 //    }
 
 
-    public static void sendSignInLink(String email, Context context) {
+    public static void sendSignInLink(final String email, final Context context) {
         setInstance();
 //        if (!emailAlreadyExists(email, context)) {
 //            Toast.makeText(context, "Email does not exist. Please register", Toast.LENGTH_LONG).show();
@@ -124,7 +120,7 @@ public class UserAuth {
 
     }
 
-    public static void sendSignInLink(User user, Context context) {
+    public static void sendSignInLink(final User user, final Context context) {
         setInstance();
 
 //        if(emailAlreadyExists(email, context)) {
@@ -148,7 +144,7 @@ public class UserAuth {
                                         public void onSuccess(Void unused) {
                                             Log.i("email link", "link sent to email");
                                             Toast.makeText(context, "Link sent to email. Use it to sign in.", Toast.LENGTH_SHORT).show();
-                                            SharedPreferences sharedPreferences = context.getSharedPreferences(UserAuth.getPackageName(), Context.MODE_PRIVATE);
+                                            SharedPreferences sharedPreferences = context.getSharedPreferences(UserAuth.PACKAGE_NAME, Context.MODE_PRIVATE);
                                             sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
                                             sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
                                             sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
@@ -206,7 +202,8 @@ public class UserAuth {
         return null;
     }
 
-    public static void completeSignIn(Intent intent, Context context) {
+
+    public static void completeSignIn(Intent intent, final Context context) {
         setInstance();
         Uri link = intent.getData();
 
@@ -239,17 +236,17 @@ public class UserAuth {
 
     }
 
-    private static void addUserToDatabase(Context context) {
+    private static void addUserToDatabase(final Context context) {
         String email = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("emailForSignIn", "");
         String name = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("nameForSignUp", "");
         String phoneNumber = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("phoneNumberForSignUp", "");
         User newUserAdd = new User(name, email, phoneNumber, firebaseAuth.getCurrentUser().getUid());
-        FirestoreDealer.getInstance().addUser(newUserAdd.getUserHashMap());
+        FirestoreDealer.getInstance().addUser(newUserAdd);
 
         clearSharedPreferences(context);
     }
 
-    private static void clearSharedPreferences(Context context) {
+    private static void clearSharedPreferences(final Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
         sharedPreferences.edit().clear().commit();
     }

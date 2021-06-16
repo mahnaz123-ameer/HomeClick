@@ -10,8 +10,7 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.activities.createpost.CreatePostFragmentAdapter;
-import csedu.homeclick.androidhomeclick.activities.sign_in_fragments.SignInFragmentAdapter;
+import csedu.homeclick.androidhomeclick.activities.create_post.CreatePostFragmentAdapter;
 import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
 import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
@@ -44,7 +43,7 @@ public class CreatePost extends AppCompatActivity {
         TabLayoutHandler.setInstance(tabLayout, viewPager);
         TabLayoutHandler.handle(this);
 
-        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar),R.id.add);
+        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar),R.id.create);
         BottomNavBarHandler.handle(this);
 
         toolbar = findViewById(R.id.app_toolbaar);

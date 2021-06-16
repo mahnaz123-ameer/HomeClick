@@ -10,8 +10,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation_bar"
         app:menu="@menu/bottom_nav_bar"
-        android:background="@drawable/gradient_drawable"
-        />
+        android:background="@android:color/white"
+        app:itemIconTint="@color/bottom_nav_bar_selector"
+        app:itemTextColor="@color/bottom_nav_bar_selector"
+        android:elevation="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:itemRippleColor="@color/darker_lavender" />
 
 
 

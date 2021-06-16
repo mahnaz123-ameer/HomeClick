@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_drawable2"
-    tools:context=".activities.Show_Advertisement_details">
+    android:background="@color/dark_white"
+    tools:context=".activities.ShowAdvertisementDetails">
 
 
     <include
@@ -60,7 +60,7 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/map" />
+                            android:background="@drawable/icon_location" />
 
                         <TextView
                             android:id="@+id/show_add_city"
@@ -434,7 +434,7 @@
                     android:layout_below="@id/show_ad_guard"
                     android:layout_marginLeft="80dp"
                     android:layout_marginTop="32dp"
-                    android:background="@drawable/icon_money"
+                    android:background="@drawable/icon_money_mahnaz"
                     android:foregroundGravity="center" />
 
                 <TextView
@@ -459,10 +459,15 @@
                     app:cardCornerRadius="15dp"
                     android:layout_centerHorizontal="true">
 
-                    <RelativeLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:id="@+id/call_card">
 
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/show_ad_post_by"
@@ -493,9 +498,9 @@
                             android:layout_marginLeft="250dp"
                             android:layout_marginTop="10dp"/>
 
+                        </RelativeLayout>
 
-
-                    </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
 
 
 

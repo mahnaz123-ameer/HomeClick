@@ -62,10 +62,10 @@
                 android:id="@+id/Pic2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/Pic1"
                 android:layout_gravity="fill_horizontal"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_below="@+id/Pic1"
                 >
 
 
@@ -78,7 +78,7 @@
                     android:gravity="bottom"
                     android:text="Email Adress"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:padding="5dp"/>
 
                 <EditText
@@ -90,7 +90,7 @@
                     android:background="@drawable/shape"
                     android:padding="8dp"
                     android:textColorHint="@color/black"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:id="@+id/sign_up_email"
                     android:textColor="@color/black"
                     android:inputType="text"/>
@@ -120,7 +120,7 @@
                     android:gravity="bottom"
                     android:text="Phone Number"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:padding="5dp"
                     android:inputType="textEmailAddress"
                     />
@@ -137,7 +137,7 @@
                     android:padding="8dp"
                     android:background="@drawable/shape"
                     android:textColorHint="@color/black"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:inputType="phone"
                     android:textColor="@color/black"/>
 

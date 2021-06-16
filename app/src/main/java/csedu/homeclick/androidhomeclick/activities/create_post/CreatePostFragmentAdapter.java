@@ -1,4 +1,4 @@
-package csedu.homeclick.androidhomeclick.activities.createpost;
+package csedu.homeclick.androidhomeclick.activities.create_post;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,7 +22,7 @@ public class CreatePostFragmentAdapter extends FragmentStateAdapter {
             case 0:
                 return new CreateRentPostFragment();
             case 1:
-                return new CreateSellPostFragment();
+                return new CreateSalePostFragment();
         }
         return null;
     }

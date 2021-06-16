@@ -7,8 +7,6 @@ import csedu.homeclick.androidhomeclick.database.UserAuth;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class UserService {
-    private static UserAuth userAuth;
-
 
     public UserService() {
         UserAuth.setInstance();
@@ -31,6 +29,10 @@ public class UserService {
     }
 
     public void completeSignIn(Intent intent, Context context) {
+        UserAuth.completeSignIn(intent, context);
+    }
 
+    public String getUserUID() {
+        return UserAuth.getCurrentUserUID();
     }
 }
