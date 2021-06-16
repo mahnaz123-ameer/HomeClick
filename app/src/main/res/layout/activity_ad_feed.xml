@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background = "@color/dark_white"
     tools:context=".activities.AdFeed">
 
     <include layout="@layout/app_bar" android:id="@+id/app_bar"/>

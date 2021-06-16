@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.create_post.AddPhotos"
-    android:background="@color/white">
+    android:background="@color/dark_white">
 
     <include layout="@layout/app_bar"
         android:id="@+id/create_post_app_bar"/>

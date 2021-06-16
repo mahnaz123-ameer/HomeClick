@@ -1,8 +1,9 @@
 package csedu.homeclick.androidhomeclick.structure;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RentAdvertisement extends Advertisement{
+public class RentAdvertisement extends Advertisement implements Serializable {
     private String tenantType;
 
     private int utilityCharge;

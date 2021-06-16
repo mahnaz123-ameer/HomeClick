@@ -4,10 +4,11 @@ import android.text.style.LeadingMarginSpan;
 
 import com.google.firebase.firestore.ServerTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Leaflet {
+public class Leaflet implements Serializable {
     private String areaName;
     private String fullAddress;
     private String adType;

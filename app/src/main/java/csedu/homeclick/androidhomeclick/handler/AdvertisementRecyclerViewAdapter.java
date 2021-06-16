@@ -20,6 +20,7 @@ import csedu.homeclick.androidhomeclick.structure.Advertisement;
 public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<AdvertisementRecyclerViewAdapter.ViewHolder> {
 
     private List<Advertisement> advertisementArrayList = new ArrayList<>();
+    private OnAdCardClickListener onAdCardClickListener;
 
     public AdvertisementRecyclerViewAdapter() {
     }
@@ -29,7 +30,7 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ad_card, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, onAdCardClickListener);
         return holder;
     }
 
@@ -60,17 +61,25 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public void setAdCardListener(OnAdCardClickListener adCardListener) {
+        this.onAdCardClickListener = adCardListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView areaName, fullAddress, bedroom, bathroom, gasAvailability, paymentAmount, adType;
+        OnAdCardClickListener onAdCardClickListener;
 
-        public ViewHolder(@NonNull @NotNull View itemView) {
+
+        public ViewHolder(@NonNull @NotNull View itemView, OnAdCardClickListener onAdCardClickListener) {
             super(itemView);
 
-            bindWidgets(itemView);
+            bindWidgets(itemView, onAdCardClickListener);
+
+            itemView.setOnClickListener(this);
         }
 
-        private void bindWidgets(View view) {
+        private void bindWidgets(View view, OnAdCardClickListener onAdCardClickListener) {
             areaName = view.findViewById(R.id.card_area_name);
             fullAddress = view.findViewById(R.id.card_full_address);
             bedroom = view.findViewById(R.id.card_bedroom);
@@ -78,6 +87,17 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
             gasAvailability = view.findViewById(R.id.card_gas);
             paymentAmount = view.findViewById(R.id.card_payment);
             adType = view.findViewById(R.id.card_ad_type);
+
+            this.onAdCardClickListener = onAdCardClickListener;
         }
+
+        @Override
+        public void onClick(View v) {
+            onAdCardClickListener.onAdClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnAdCardClickListener{
+        void onAdClick(int position);
     }
 }

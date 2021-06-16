@@ -1,8 +1,9 @@
 package csedu.homeclick.androidhomeclick.structure;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class User {
+public class User implements Serializable {
     private String Name;
     private String EmailAddress;
     private String PhoneNumber;

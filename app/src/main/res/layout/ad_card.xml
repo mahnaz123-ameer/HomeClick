@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:layout_margin="10dp"
     android:backgroundTint="@color/white"
     android:elevation="5dp"
@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/icon_location"
                 android:text="Area Name"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
 
@@ -43,15 +44,16 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/icon_location"
                 android:text="Full address"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/card_ad_type"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_toRightOf="@id/card_area_name"
+                android:layout_alignParentRight="true"
                 android:text="Sale"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -62,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/top_box"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="20dp">
 
             <ImageView
                 android:id="@+id/icon_bedroom"
@@ -77,6 +79,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@id/icon_bedroom"
                 android:text="2"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -98,6 +101,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@id/icon_bathroom"
                 android:text="1"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -107,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/top_box"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="80dp"
             android:layout_toRightOf="@id/left_box">
 
@@ -124,6 +128,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/icon_gas"
                 android:text="Available"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -144,6 +149,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@id/icon_money"
                 android:text="18000 BDT"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 

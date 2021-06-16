@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Profile">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.Profile"
+    android:background="@color/white">
 
     <include layout="@layout/app_bar"
         android:id="@+id/profile_app_bar"/>
@@ -14,6 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile_app_bar"
+        app:tabIconTint="@color/darker_lavender"
+
+        app:tabRippleColor="@color/darker_lavender"
+        app:tabIndicatorColor="@color/darker_lavender"
+        app:tabUnboundedRipple="true"
         android:id="@+id/profile_tab_layout">
 
         <com.google.android.material.tabs.TabItem
@@ -28,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/icon_bookmark"/>
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -36,6 +44,7 @@
         android:background="@color/white"
         android:layout_below="@id/profile_tab_layout"
         android:layout_above="@id/profile_bottom_nav_bar"
+        android:backgroundTint="@color/dark_white"
         android:id="@+id/profile_view_pager"/>
 
 

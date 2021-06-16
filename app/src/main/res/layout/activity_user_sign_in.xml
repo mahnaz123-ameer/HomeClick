@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.UserSignIn"
-    android:background="@color/white"
+    android:background="@color/dark_white"
   >
 
     <include layout="@layout/app_bar"
@@ -57,8 +57,8 @@
         android:layout_height="wrap_content"
         app:tabTextColor="@color/black"
         android:layout_below="@+id/TextView"
-        app:tabSelectedTextColor="@color/pink"
-        app:tabIndicatorColor="@color/pink"
+        app:tabSelectedTextColor="@color/darker_lavender"
+        app:tabIndicatorColor="@color/darker_lavender"
         android:id="@+id/signInTabLayout">
 
         <com.google.android.material.tabs.TabItem

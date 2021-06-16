@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.create_post.CreateSalePostFragment"
-    android:background="@color/white">
+    android:background="@color/dark_white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -379,7 +379,7 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="250dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/darker_lavender"
                 android:id="@+id/buttonSalePostAd"
                 android:text="Post My Ad"/>
 

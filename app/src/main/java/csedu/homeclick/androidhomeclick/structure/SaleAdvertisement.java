@@ -1,8 +1,9 @@
 package csedu.homeclick.androidhomeclick.structure;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SaleAdvertisement extends Advertisement{
+public class SaleAdvertisement extends Advertisement implements Serializable {
     private String propertyCondition;
     private String description;
 

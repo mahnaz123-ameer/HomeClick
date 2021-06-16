@@ -1,9 +1,12 @@
 package csedu.homeclick.androidhomeclick.structure;
 
 
-import csedu.homeclick.androidhomeclick.activities.AdFeed;
 
-public class Advertisement extends Leaflet{
+import java.io.Serializable;
+import java.util.Objects;
+
+
+public class Advertisement extends Leaflet implements Serializable {
     private int numberOfBalconies;
     private int floor;
     private Boolean elevator;
@@ -71,4 +74,5 @@ public class Advertisement extends Leaflet{
     public void setGarageSpace(Boolean garageSpace) {
         this.garageSpace = garageSpace;
     }
+
 }
