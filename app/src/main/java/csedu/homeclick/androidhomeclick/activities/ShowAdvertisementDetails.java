@@ -1,6 +1,7 @@
 package csedu.homeclick.androidhomeclick.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
@@ -13,10 +14,15 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import csedu.homeclick.androidhomeclick.R;
+import csedu.homeclick.androidhomeclick.activities.sign_in_fragments.SignInFragmentAdapter;
+import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
+import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
+import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 
 public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable {
 
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,5 +50,18 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
             });
 
         Log.i("Show Ad Details", getIntent().getExtras().get("Ad").toString());
+
+        bindWidgets();
+
+    }
+
+    private void bindWidgets() {
+
+        toolbar = findViewById(R.id.app_toolbaar);
+
+        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar), R.id.account);
+        BottomNavBarHandler.handle(this);
+
+        TopAppBarHandler.getInstance(toolbar, this).handle();
     }
 }
