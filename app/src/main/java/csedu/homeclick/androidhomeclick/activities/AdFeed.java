@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,29 +16,19 @@ import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.handler.AdvertisementRecyclerViewAdapter;
-import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
-import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.AdvertisementRecyclerViewAdapter;
+import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 
 public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener {
     private RecyclerView adRecView;
     private List<Advertisement> adArrayList = new ArrayList<>();
-    private AdvertisementRecyclerViewAdapter adRecViewAdapter = new AdvertisementRecyclerViewAdapter();
+    private final AdvertisementRecyclerViewAdapter adRecViewAdapter = new AdvertisementRecyclerViewAdapter();
     private AdvertisementService adService;
 
     private Toolbar toolbar;
     private UserService userService;
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(userService.isSignedIn()) {
-            toolbar.getMenu().getItem(2).setTitle("Sign out");
-        } else {
-            toolbar.getMenu().getItem(2).setTitle("Sign in");
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +49,16 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         getAdCards();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(userService.isSignedIn()) {
+            toolbar.getMenu().getItem(2).setTitle("Sign out");
+        } else {
+            toolbar.getMenu().getItem(2).setTitle("Sign in");
+        }
+    }
+
     private void getAdCards() {
 
         adService.fetchAdvertisements(new AdInterface.OnAdsFetchedListener<List<Advertisement>>() {
@@ -75,19 +74,19 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
 
         adRecView.setAdapter(adRecViewAdapter);
         adRecView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private void bindWidgets() {
+        userService = new UserService();
         adService = new AdvertisementService();
         adRecView = findViewById(R.id.adRecView);
 
-        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar), R.id.home);
+        BottomNavBarHandler.setInstance(findViewById(R.id.ad_feed_bottom_bar), R.id.home);
         BottomNavBarHandler.handle(this);
 
         toolbar = findViewById(R.id.app_toolbaar);
         TopAppBarHandler.getInstance(toolbar, this).handle();
-
-        userService = new UserService();
     }
 
     @Override

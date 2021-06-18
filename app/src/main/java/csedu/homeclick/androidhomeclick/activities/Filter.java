@@ -11,9 +11,9 @@ import com.google.android.material.tabs.TabLayout;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.filter.FilterFragmentAdapter;
-import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
-import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
-import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.TabLayoutHandler;
+import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 
 public class Filter extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -42,7 +42,7 @@ public class Filter extends AppCompatActivity {
         TabLayoutHandler.setInstance(tabLayout, viewPager);
         TabLayoutHandler.handle(this);
 
-        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar), R.id.filter);
+        BottomNavBarHandler.setInstance(findViewById(R.id.filter_bottom_nav_bar), R.id.filter);
         BottomNavBarHandler.handle(this);
 
         toolbar = findViewById(R.id.app_toolbaar);

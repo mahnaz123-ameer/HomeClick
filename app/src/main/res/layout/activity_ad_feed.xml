@@ -8,13 +8,13 @@
     tools:context=".activities.AdFeed">
 
     <include layout="@layout/app_bar" android:id="@+id/app_bar"/>
-    <include layout="@layout/bottom_nav_bar" android:id="@+id/bottom_bar"/>
+    <include layout="@layout/bottom_nav_bar" android:id="@+id/ad_feed_bottom_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/app_bar"
-        android:layout_above="@id/bottom_bar"
+        android:layout_above="@id/ad_feed_bottom_bar"
         android:id="@+id/adRecView"/>
 
 

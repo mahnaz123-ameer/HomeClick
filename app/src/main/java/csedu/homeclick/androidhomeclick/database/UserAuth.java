@@ -105,6 +105,7 @@ public class UserAuth {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.i("email link", "link sent to email");
+                                            Toast.makeText(context, "Sign in link sent to email.", Toast.LENGTH_SHORT).show();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
                                             sharedPreferences.edit().putString("emailForSignIn", email).apply();
                                             sharedPreferences.edit().putBoolean("newUser", false).apply();
@@ -143,13 +144,12 @@ public class UserAuth {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.i("email link", "link sent to email");
-                                            Toast.makeText(context, "Link sent to email. Use it to sign in.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Sign in link sent to email. Use it to sign in.", Toast.LENGTH_SHORT).show();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(UserAuth.PACKAGE_NAME, Context.MODE_PRIVATE);
                                             sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
                                             sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
                                             sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
                                             sharedPreferences.edit().putBoolean("newUser", true).apply();
-                                            String signInUrl = UserAuth.getActionCodeSettings().getUrl();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -188,10 +188,7 @@ public class UserAuth {
 
     public static Boolean isSignedIn() {
         setInstance();
-        if (firebaseAuth.getCurrentUser() == null) {
-            return false;
-        }
-        return true;
+        return firebaseAuth.getCurrentUser() != null;
     }
 
     public static String getCurrentUserUID() {

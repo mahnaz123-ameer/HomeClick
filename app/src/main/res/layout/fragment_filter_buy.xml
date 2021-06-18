@@ -236,7 +236,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="25dp"
                         android:layout_marginRight="100dp"
-                        android:background="@drawable/shape2"
+                        android:background="@drawable/shape"
                         android:textColor="@color/black"
 
                         />
@@ -266,7 +266,7 @@
                         android:layout_marginTop="6dp"
                         android:layout_marginEnd="21dp"
                         android:layout_marginRight="100dp"
-                        android:background="@drawable/shape2"
+                        android:background="@drawable/shape"
                         android:textColor="@color/black" />
 
 
@@ -293,7 +293,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="21dp"
                         android:layout_marginRight="100dp"
-                        android:background="@drawable/shape2"
+                        android:background="@drawable/shape"
                         android:textColor="@color/black" />
 
 
@@ -325,7 +325,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="49dp"
                         android:layout_marginRight="100dp"
-                        android:background="@drawable/shape2"
+                        android:background="@drawable/shape"
                         android:textColor="@color/black" />
 
 
@@ -353,7 +353,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="49dp"
                         android:layout_marginRight="100dp"
-                        android:background="@drawable/shape2"
+                        android:background="@drawable/shape"
                         android:textColor="@color/black" />
 
 
@@ -381,7 +381,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="49dp"
                         android:layout_marginRight="100dp"
-                        android:background="@drawable/shape2"
+                        android:background="@drawable/shape"
                         android:textColor="@color/black" />
 
 

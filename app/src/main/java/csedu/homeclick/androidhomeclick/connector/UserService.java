@@ -3,13 +3,16 @@ package csedu.homeclick.androidhomeclick.connector;
 import android.content.Context;
 import android.content.Intent;
 
+import csedu.homeclick.androidhomeclick.database.FirestoreDealer;
 import csedu.homeclick.androidhomeclick.database.UserAuth;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class UserService {
+    private UserInterface userDB;
 
     public UserService() {
         UserAuth.setInstance();
+        userDB = FirestoreDealer.getInstance();
     }
 
     public Boolean isSignedIn() {
@@ -34,5 +37,13 @@ public class UserService {
 
     public String getUserUID() {
         return UserAuth.getCurrentUserUID();
+    }
+
+    public void findUserInfo(UserInterface.OnUserInfoListener<User> onUserInfoListener, String UID) {
+        userDB.findUserInfo(onUserInfoListener, UID);
+    }
+
+    public void updateUserInfo(UserInterface.OnUserInfoUpdateListener<User> onUserInfoUpdateListener, User updatedUser) {
+        userDB.updateUserInfo(onUserInfoUpdateListener, updatedUser);
     }
 }

@@ -1,4 +1,4 @@
-//package csedu.homeclick.androidhomeclick.activities.createpost;
+package csedu.homeclick.androidhomeclick.activities.create_post;
 //
 //import androidx.appcompat.app.AppCompatActivity;
 //import androidx.appcompat.widget.Toolbar;

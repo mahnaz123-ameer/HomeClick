@@ -23,6 +23,7 @@ import java.util.Date;
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
+import csedu.homeclick.androidhomeclick.connector.UserInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
@@ -31,7 +32,7 @@ import csedu.homeclick.androidhomeclick.structure.User;
 
 public class CreateRentPostFragment extends Fragment implements View.OnClickListener, CalendarView.OnDateChangeListener{
     private EditText rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies;
-    private EditText rentFloor, rentPayment, rentUtilityCharge, rentDescription;
+    private EditText rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription;
     private CheckBox rentGas, rentElevator, rentGenerator, rentGarage, rentSecurity;
 
     private CalendarView rentAvailableFrom;
@@ -85,6 +86,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         rentBathrooms = view.findViewById(R.id.rentBathrooms);
         rentBalconies = view.findViewById(R.id.rentBalconies);
         rentFloor = view.findViewById(R.id.rentFloor);
+        rentFloorSpace = view.findViewById(R.id.rentFloorSpace);
         rentGas = view.findViewById(R.id.rentGas);
         rentElevator = view.findViewById(R.id.rentElevator);
         rentGenerator = view.findViewById(R.id.rentGenerator);
@@ -108,7 +110,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         if(checkData()) {
             final RentAdvertisement rentAd = makeAd();
 
-            advertisementService.findUserInfo(new AdInterface.OnUserInfoListener<User>() {
+            userService.findUserInfo(new UserInterface.OnUserInfoListener<User>() {
                 @Override
                 public void OnUserInfoFound(User data) {
                     rentAd.setAdvertiserName(data.getName());
@@ -137,6 +139,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         int numOfBathrooms = Integer.parseInt(rentBathrooms.getText().toString().trim());
         int numOfBalconies = Integer.parseInt(rentBalconies.getText().toString().trim());
         int floor = Integer.parseInt(rentFloor.getText().toString().trim());
+        int floorSpace = Integer.parseInt(rentFloorSpace.getText().toString().trim());
 
         Boolean gasAvail = rentGas.isChecked();
         Boolean elevatorAvail = rentElevator.isChecked();
@@ -158,14 +161,14 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             tenantType = "Student/Working Person";
         }
 
-        RentAdvertisement rent = new RentAdvertisement(areaName, fullAddress, "Rent", numOfBedrooms, numOfBathrooms, gasAvail, payAmount, numOfBalconies, floor, elevatorAvail, generatorAvail, garageAvail, tenantType, utilities, rentDesc, securityAvail, rentAvailFrom[0]);
+        RentAdvertisement rent = new RentAdvertisement(areaName, fullAddress, "Rent", numOfBedrooms, numOfBathrooms, gasAvail, payAmount, numOfBalconies, floor, floorSpace, elevatorAvail, generatorAvail, garageAvail, tenantType, utilities, rentDesc, securityAvail, rentAvailFrom[0]);
         Log.i("date", rent.getAvailableFrom().toString());
         return rent;
     }
 
     private Boolean checkData() {
         Boolean dataOkay = true;
-        EditText[] allEditTexts = {rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies, rentFloor, rentPayment, rentUtilityCharge, rentDescription};
+        EditText[] allEditTexts = {rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies, rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription};
 
         for(EditText e: allEditTexts) {
             if(e.getText().toString().trim().isEmpty()) {

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.structure.User;
 
 
 public class SignInFragment extends Fragment implements View.OnClickListener {
@@ -53,11 +52,9 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(v.getContext(), "Button clicked", Toast.LENGTH_SHORT).show();
-
         if(checkData()) {
             String email = editEmail.getText().toString().trim();
-            userService.signIn(email, v.getContext());
+            userService.signIn(email, v.getContext().getApplicationContext());
         }
     }
 
@@ -65,10 +62,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         String email;
         email = editEmail.getText().toString().trim();
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            return false;
-        }
-
-        return true;
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

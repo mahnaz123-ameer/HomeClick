@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_alignParentBottom="true">
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_alignParentBottom="true">-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_navigation_bar"
-        app:menu="@menu/bottom_nav_bar"
+        android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-        app:itemIconTint="@color/bottom_nav_bar_selector"
-        app:itemTextColor="@color/bottom_nav_bar_selector"
-        android:elevation="16dp"
         android:clickable="true"
+        android:elevation="16dp"
         android:focusable="true"
-        app:itemRippleColor="@color/darker_lavender" />
+        app:itemIconTint="@color/bottom_nav_bar_selector"
+        app:itemRippleColor="@color/darker_lavender"
+        app:itemTextColor="@color/bottom_nav_bar_selector"
+        app:menu="@menu/bottom_nav_bar" />
 
 
-
-
-
-
-</RelativeLayout>
+<!--</RelativeLayout>-->

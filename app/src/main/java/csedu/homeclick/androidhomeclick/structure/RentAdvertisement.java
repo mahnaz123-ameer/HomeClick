@@ -17,9 +17,8 @@ public class RentAdvertisement extends Advertisement implements Serializable {
         super();
     }
 
-
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, elevator, generator, garageSpace);
+    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace);
         this.tenantType = tenantType;
         this.utilityCharge = utilityCharge;
         this.description = description;
@@ -27,8 +26,8 @@ public class RentAdvertisement extends Advertisement implements Serializable {
         this.availableFrom = availableFrom;
     }
 
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, elevator, generator, garageSpace);
+    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace);
         this.tenantType = tenantType;
         this.utilityCharge = utilityCharge;
         this.description = description;
@@ -36,8 +35,8 @@ public class RentAdvertisement extends Advertisement implements Serializable {
         this.availableFrom = availableFrom;
     }
 
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom, double latitude, double longitude) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, elevator, generator, garageSpace);
+    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom, double latitude, double longitude) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace);
         this.tenantType = tenantType;
         this.utilityCharge = utilityCharge;
         this.description = description;

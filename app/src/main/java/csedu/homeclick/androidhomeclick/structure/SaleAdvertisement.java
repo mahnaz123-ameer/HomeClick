@@ -9,18 +9,19 @@ public class SaleAdvertisement extends Advertisement implements Serializable {
 
     private int latitude, longitude;
 
-    public SaleAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String propertyCondition, String description) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, elevator, generator, garageSpace);
+    public SaleAdvertisement() {
+    }
+
+    public SaleAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, String propertyCondition, String description) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace);
         this.propertyCondition = propertyCondition;
         this.description = description;
     }
 
-    public SaleAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String propertyCondition, String description, int latitude, int longitude) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, elevator, generator, garageSpace);
+    public SaleAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, String propertyCondition, String description) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace);
         this.propertyCondition = propertyCondition;
         this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
     public String getPropertyCondition() {

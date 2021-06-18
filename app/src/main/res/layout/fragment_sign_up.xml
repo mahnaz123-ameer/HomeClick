@@ -1,194 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.sign_in_fragments.SignUpFragment"
-    android:background="@color/white"
-    android:padding="20dp">
+    android:background="@color/dark_white"
+    android:padding="20dp"
+    tools:context=".activities.sign_in_fragments.SignUpFragment">
 
-
-
-
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+
+        <LinearLayout
+            android:id="@+id/input_field_1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="60dp"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
 
-            <LinearLayout
-                android:id="@+id/Pic1"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="fill_horizontal"
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
                 android:layout_marginTop="50dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/Name"
-                    android:layout_width="140dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="50dp"
-                    android:gravity="top"
-                    android:padding="5dp"
-                    android:text="Name"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-
-                <EditText
-                    android:id="@+id/sign_up_name"
-                    android:layout_width="160dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/shape"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="15dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Pic2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Pic1"
-                android:layout_gravity="fill_horizontal"
-                android:gravity="center"
-                android:orientation="horizontal"
-                >
-
-
-                <TextView
-                    android:id="@+id/Email"
-                    android:layout_width="140dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="30dp"
-                    android:gravity="bottom"
-                    android:text="Email Adress"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:padding="5dp"/>
-
-                <EditText
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="left"
-                    android:layout_weight="2"
-                    android:background="@drawable/shape"
-                    android:padding="8dp"
-                    android:textColorHint="@color/black"
-                    android:textSize="15sp"
-                    android:id="@+id/sign_up_email"
-                    android:textColor="@color/black"
-                    android:inputType="text"/>
-
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:id="@+id/Pic3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:gravity="center"
-                android:layout_below="@+id/Pic2"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:id="@+id/Phone"
-                    android:layout_width="140dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="50dp"
-                    android:gravity="bottom"
-                    android:text="Phone Number"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:padding="5dp"
-                    android:inputType="textEmailAddress"
-                    />
-
-
-
-                <EditText
-                    android:id="@+id/sign_up_phone_number"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="2"
-                    android:padding="8dp"
-                    android:background="@drawable/shape"
-                    android:textColorHint="@color/black"
-                    android:textSize="15sp"
-                    android:inputType="phone"
-                    android:textColor="@color/black"/>
-
-
-
-
-            </LinearLayout>
-
-
-            <CheckBox
-                android:id="@+id/age_restriction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Pic3"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:buttonTint="@color/black"
-                android:text="I am atleast 18 years old"
-                android:textColor="@color/black" />
-
-            <CheckBox
-                android:id="@+id/policies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/age_restriction"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:buttonTint="@color/black"
-                android:text="I agree to the terms and condition"
-                android:textColor="@color/black" />
-
-
-
-
-
-            <Button
-                android:layout_width="200dp"
-                style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
-                android:id="@+id/sendNewSignUpLink"
-                android:layout_centerHorizontal="true"
-                android:layout_height="40dp"
-                android:layout_below="@+id/policies"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button"
+                android:fontFamily="@font/comfortaa_regular"
+                android:gravity="top"
+                android:padding="5dp"
+                android:text="@string/full_name"
                 android:textColor="@color/black"
-                android:text="Send link in email"
-                />
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/sign_up_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_weight="2"
+                android:autofillHints="@string/full_name"
+                android:background="@drawable/shape"
+                android:fontFamily="@font/comfortaa_regular"
+                android:inputType="text"
+                android:labelFor="@id/sign_up_name"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="15sp" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
-    </ScrollView>
+        <LinearLayout
+            android:id="@+id/input_field_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_field_1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-</FrameLayout>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/comfortaa_regular"
+                android:gravity="bottom"
+                android:padding="5dp"
+                android:text="@string/email"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/sign_up_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_weight="2"
+                android:autofillHints="@string/email"
+                android:background="@drawable/shape"
+                android:fontFamily="@font/comfortaa_regular"
+                android:inputType="textEmailAddress"
+                android:labelFor="@id/sign_up_email"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/input_field_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_field_2"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/comfortaa_regular"
+                android:gravity="bottom"
+                android:padding="5dp"
+                android:text="@string/phone_number"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <EditText
+                android:id="@+id/sign_up_phone_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_weight="2"
+                android:autofillHints="@string/phone_number"
+                android:background="@drawable/shape"
+                android:fontFamily="@font/comfortaa_regular"
+                android:inputType="phone"
+                android:labelFor="@id/sign_up_phone_number"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+
+        <CheckBox
+            android:id="@+id/age_restriction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_field_3"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="@color/black"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/age_18"
+            android:textColor="@color/black" />
+
+        <CheckBox
+            android:id="@+id/policies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/age_restriction"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="@color/black"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/terms"
+            android:textColor="@color/black" />
+
+
+        <Button
+            android:id="@+id/sendNewSignUpLink"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/policies"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/darker_lavender"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/send_link_in_mail"
+            android:textColor="@color/white" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

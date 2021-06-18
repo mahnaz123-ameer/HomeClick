@@ -1,6 +1,7 @@
 package csedu.homeclick.androidhomeclick.database;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -21,11 +22,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
+import csedu.homeclick.androidhomeclick.connector.UserInterface;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
+import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
-public class FirestoreDealer implements AdInterface {
+public class FirestoreDealer implements AdInterface, UserInterface {
     private static FirestoreDealer fd;
     private final FirebaseFirestore db;
 
@@ -75,6 +78,21 @@ public class FirestoreDealer implements AdInterface {
     }
 
     @Override
+    public void updateUserInfo(OnUserInfoUpdateListener<User> onUserInfoUpdateListener, User updatedUser) {
+        DocumentReference docRef = db.collection("Users").document(updatedUser.getUID());
+        docRef.update(updatedUser.getUserHashMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    onUserInfoUpdateListener.OnUserInfoUpdated();
+                } else {
+                    onUserInfoUpdateListener.OnUserInfoUpdateFailed();
+                }
+            }
+        });
+    }
+
+    @Override
     public void addAdvertisement(final OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, final Advertisement advertisement) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("UserUID", UserAuth.getCurrentUserUID());
@@ -99,6 +117,12 @@ public class FirestoreDealer implements AdInterface {
                                     }
                                 });
                     }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        Log.i("createpost", e.getMessage());
+                    }
                 });
     }
 
@@ -112,12 +136,47 @@ public class FirestoreDealer implements AdInterface {
                         List<Advertisement> adList = new ArrayList<>();
 
                         for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                            adList.add(singleAd.toObject(RentAdvertisement.class));
+                            adList.add(singleAd.toObject(Advertisement.class));
                         }
 
                         onAdsFetchedListener.OnAdsFetchedListener(adList);
                     }
                 });
+    }
+
+    @Override
+    public void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, final String UserUID) {
+        db.collection("Advertisement").whereEqualTo("advertiserUID", UserUID).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Advertisement> adList = new ArrayList<>();
+
+                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                            adList.add(singleAd.toObject(Advertisement.class));
+                        }
+
+                        onPersonalAdsFetchedListener.OnPersonalAdsFetchedListener(adList);
+                    }
+                });
+    }
+
+    @Override
+    public void getThisRentAd(final OnParticularAdFetchedListener<RentAdvertisement> onParticularAdFetchedListener, String advertID) {
+        db.collection("Advertisement").document(advertID).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()) {
+                            onParticularAdFetchedListener.OnParticularAdFetched(task.getResult().toObject(RentAdvertisement.class));
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void getThisSaleAd(OnParticularAdFetchedListener<SaleAdvertisement> onParticularAdFetchedListener, String advertID) {
+
     }
 
 
