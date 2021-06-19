@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     android:backgroundTint="@color/white"
     android:elevation="5dp"
-    android:padding="10dp"
+    android:padding="20dp"
     app:cardCornerRadius="10dp">
 
     <RelativeLayout
@@ -22,7 +22,8 @@
             <ImageView
                 android:id="@+id/icon_location"
                 android:layout_width="40dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/icon_location" />
 
             <TextView
@@ -31,9 +32,12 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/icon_location"
                 android:text="Area Name"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
 
             <TextView
@@ -41,9 +45,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_area_name"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="0dp"
                 android:layout_toRightOf="@id/icon_location"
                 android:text="Full address"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black" />
 
@@ -81,7 +86,7 @@
                 android:text="2"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/icon_bathroom"
@@ -103,7 +108,7 @@
                 android:text="1"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
@@ -130,7 +135,7 @@
                 android:text="Available"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/icon_money"
@@ -151,7 +156,7 @@
                 android:text="18000 BDT"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
