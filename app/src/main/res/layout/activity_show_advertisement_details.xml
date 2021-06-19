@@ -310,7 +310,7 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="120dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="165dp"
                             android:layout_marginEnd="10dp"
                             android:backgroundTint="@color/white"
                             android:elevation="10dp"
@@ -343,7 +343,7 @@
                                 android:layout_marginEnd="5dp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:gravity="center"
-                                android:text="@string/not_available"
+                                android:text="@string/available"
                                 android:textColor="@color/black"
                                 android:textSize="20sp" />
 
@@ -351,7 +351,7 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="120dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="165dp"
                             android:layout_marginEnd="10dp"
                             android:backgroundTint="@color/white"
                             android:elevation="10dp"
@@ -391,7 +391,7 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="120dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="165dp"
                             android:layout_marginEnd="10dp"
                             android:backgroundTint="@color/white"
                             android:elevation="10dp"
@@ -431,7 +431,7 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="120dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="165dp"
                             android:layout_marginEnd="10dp"
                             android:backgroundTint="@color/white"
                             android:elevation="10dp"

@@ -94,7 +94,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         final Advertisement clickedAdvert = adArrayList.get(position);
         String adID = clickedAdvert.getAdvertisementID();
 
-        Toast.makeText(this, adID + " clicked ad poster = " + clickedAdvert.getAdvertiserName(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, adID + " clicked ad poster = " + clickedAdvert.getAdvertiserName(), Toast.LENGTH_SHORT).show();
         Intent targetIntent = new Intent(getApplicationContext(), ShowAdvertisementDetails.class);
 
         targetIntent.putExtra("Ad", clickedAdvert);
