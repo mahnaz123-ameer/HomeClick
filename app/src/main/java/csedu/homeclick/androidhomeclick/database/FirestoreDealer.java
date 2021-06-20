@@ -1,11 +1,14 @@
 package csedu.homeclick.androidhomeclick.database;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,6 +18,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +37,7 @@ import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class FirestoreDealer implements AdInterface, UserInterface {
+    public static final String TAG = "FirestoreDealer";
     private static FirestoreDealer fd;
     private final FirebaseFirestore db;
 
@@ -93,36 +101,63 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         });
     }
 
+
     @Override
-    public void addAdvertisement(final OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, final Advertisement advertisement) {
+    public void getAdId(final OnAdIdListener<Advertisement> onAdIdListener) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("UserUID", UserAuth.getCurrentUserUID());
+
         db.collection("AdID").add(map)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        String advertisementID = documentReference.getId();
-                        advertisement.setAdvertisementID(advertisementID);
-
-                        db.collection("Advertisement").document(advertisementID).set(advertisement)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                onAdPostSuccessListener.OnAdPostSuccessful(true);
-                            }
-                        })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull @NotNull Exception e) {
-                                        onAdPostSuccessListener.OnAdPostSuccessful(false);
-                                    }
-                                });
+                        String adID = documentReference.getId();
+                        onAdIdListener.onAdIdObtained(adID);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {
-                        Log.i("createpost", e.getMessage());
+                        Log.i(TAG, e.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void uploadPhoto(Uri uri, String fileExtension, String pathId, OnPhotoUploadListener<String> onPhotoUploadListener) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        String fileName = System.currentTimeMillis() + "." + fileExtension;
+        StorageReference ref = storage.getReference("uploads").child(pathId).child(fileName);
+
+        ref.putFile(uri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        onPhotoUploadListener.onCompleteNotify(ref.getDownloadUrl().toString());
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull @NotNull UploadTask.TaskSnapshot snapshot) {
+                        double percent = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                        onPhotoUploadListener.ongoingProgress((int) percent);
+                    }
+                });
+    }
+
+    @Override
+    public void pushAdIntoDatabase(final Advertisement advert, final OnAdPostSuccessListener<Boolean> onAdPostSuccessListener) {
+        db.collection("Advertisement").document(advert.getAdvertisementID()).set(advert)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        onAdPostSuccessListener.OnAdPostSuccessful(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        onAdPostSuccessListener.OnAdPostFailed(e.getMessage());
                     }
                 });
     }

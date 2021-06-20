@@ -1,6 +1,9 @@
 package csedu.homeclick.androidhomeclick.activities.create_post;
 
+import android.content.ContentResolver;
+import android.content.Intent;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -8,17 +11,19 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -31,34 +36,37 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+
 import csedu.homeclick.androidhomeclick.R;
+import csedu.homeclick.androidhomeclick.activities.AdFeed;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
-import csedu.homeclick.androidhomeclick.connector.UserInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
+import csedu.homeclick.androidhomeclick.navigator.ImageRecyclerViewAdapter;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
-import csedu.homeclick.androidhomeclick.structure.User;
 
 
 public class CreateRentPostFragment extends Fragment implements View.OnClickListener, CalendarView.OnDateChangeListener{
+    public static final String TAG = "CreateRentPostFragment";
     private EditText rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies;
     private EditText rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription;
     private CheckBox rentGas, rentElevator, rentGenerator, rentGarage, rentSecurity;
 
-    private ImageView imageView;
+    private RecyclerView imageRecView;
+    private ImageRecyclerViewAdapter imageRecVA = new ImageRecyclerViewAdapter();
 
     private CalendarView rentAvailableFrom;
 
     private RadioGroup rentTenant;
     private RadioButton family, single;
     private Button postAd, selectPhotos;
-    private ImageButton nextPhoto, previousPhoto;
+
 
     private UserService userService;
-    private AdvertisementService advertisementService;
+    private final AdvertisementService advertisementService = new AdvertisementService();
 
-    ArrayList<Uri> imageUri = new ArrayList<>();
+    List<Uri> imageUri = new ArrayList<>();
     final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
         @Override
         public void onActivityResult(List<Uri> result) {
@@ -67,8 +75,16 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
             CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
 
-            if (!CreateRentPostFragment.this.imageUri.isEmpty())
-                Glide.with(CreateRentPostFragment.this).load(imageUri .get(CreateRentPostFragment.this.imagePosition)).into((ImageView) imageView);
+            CreateRentPostFragment.this.imageRecVA = new ImageRecyclerViewAdapter(CreateRentPostFragment.this.getContext(), CreateRentPostFragment.this.imageUri);
+            CreateRentPostFragment.this.imageRecView.setAdapter(CreateRentPostFragment.this.imageRecVA);
+            CreateRentPostFragment.this.imageRecVA.notifyDataSetChanged();
+            LinearLayoutManager llM = new LinearLayoutManager(CreateRentPostFragment.this.getContext());
+            llM.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+            CreateRentPostFragment.this.imageRecView.setLayoutManager(llM);
+
+//            if (!CreateRentPostFragment.this.imageUri.isEmpty())
+//                Glide.with(CreateRentPostFragment.this).load(imageUri .get(CreateRentPostFragment.this.imagePosition)).into((ImageView) imageView);
         }
     });
     private int imagePosition;
@@ -96,16 +112,16 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     }
 
     private void setClickListeners() {
+        Log.i(TAG, "in set click listeners");
         rentAvailableFrom.setOnDateChangeListener(this::onSelectedDayChange);
         postAd.setOnClickListener(this);
-        previousPhoto.setOnClickListener(this);
-        nextPhoto.setOnClickListener(this);
+
         selectPhotos.setOnClickListener(this);
     }
 
     private void bindWidgets(View view) {
+        Log.i(TAG, "in bind widgets");
         userService = new UserService();
-        advertisementService = new AdvertisementService();
 
 
         rentAreaName = view.findViewById(R.id.rentAreaName);
@@ -128,12 +144,8 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         family = view.findViewById(R.id.rbFamily);
         single = view.findViewById(R.id.rbSinglePerson);
         postAd = view.findViewById(R.id.buttonRentPostAd);
-        imageView = view.findViewById(R.id.rent_photos);
-
+        imageRecView = view.findViewById(R.id.imageRecView);
         selectPhotos = view.findViewById(R.id.select_rent);
-        nextPhoto = view.findViewById(R.id.rent_next);
-        previousPhoto = view.findViewById(R.id.rent_previous);
-
     }
 
     @Override
@@ -142,24 +154,11 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             case R.id.select_rent:
                 imageSelectorLauncher.launch("image/*");
                 break;
-            case R.id.rent_previous:
-                if (imagePosition > 0) {
-                    // decrease the position by 1
-                    imagePosition--;
-                    Glide.with(CreateRentPostFragment.this).load(imageUri.get(imagePosition)).into((ImageView) imageView);
-                }
-                break;
-            case R.id.rent_next:
-                if (imagePosition < imageUri.size() - 1) {
-                    // increase the position by 1
-                    imagePosition++;
-                    Glide.with(CreateRentPostFragment.this).load(imageUri.get(imagePosition)).into((ImageView) imageView);
-                } else {
-                    Toast.makeText( CreateRentPostFragment.this.getContext(), "Last Image Already Shown", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.create_rent_post:
+
+            case R.id.buttonRentPostAd:
+                Toast.makeText(getContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
                 createPost(v);
+
                 break;
             default:
                 break;
@@ -168,23 +167,83 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     }
 
     private void createPost(View v) {
+        Log.i(TAG, "in create post");
         if(checkData()) {
+            postAd.setEnabled(false);
+            Log.i(TAG, "cleared check data?");
             final RentAdvertisement rentAd = makeAd();
 
             rentAd.setAdvertiserUID(userService.getUserUID());
 
-                    advertisementService.addAdvertisement(new AdInterface.OnAdPostSuccessListener<Advertisement>() {
+            final List<String> fileExtensions = getFileExtensions(imageUri);
+            Log.i(TAG, fileExtensions.toString());
+
+            processUploads(fileExtensions, imageUri, rentAd);
+        }
+    }
+
+    private void processUploads(final List<String> fileExtensions, final List<Uri> uriList, final RentAdvertisement rentAd) {
+        Log.i(TAG, "in process uploads");
+        advertisementService.getAdId(new AdInterface.OnAdIdListener<Advertisement>() {
+            @Override
+            public void onAdIdObtained(String adId) {
+                rentAd.setAdvertisementID(adId);
+                final int[] uploadCount = new int[1];
+                uploadCount[0] = 0;
+                final List<String> downloadLinks = new ArrayList<>();
+
+                for(int imageCount = 0; imageCount < uriList.size(); imageCount++) {
+                    final int total = uriList.size();
+                    advertisementService.uploadPhoto(uriList.get(imageCount), fileExtensions.get(imageCount), adId, new AdInterface.OnPhotoUploadListener<String>() {
                         @Override
-                        public void OnAdPostSuccessful(Boolean data) {
-                            if(data) {
-                                Toast.makeText(v.getContext().getApplicationContext(), "Ad posted successfully", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(v.getContext().getApplicationContext(), "Error occurred. Please try again later.", Toast.LENGTH_SHORT).show();
+                        public void ongoingProgress(int percentage) {
+
+                        }
+
+                        @Override
+                        public void onCompleteNotify(String downloadUrl) {
+                            uploadCount[0]++;
+                            downloadLinks.add(downloadUrl);
+                            if(uploadCount[0] == total) {
+                                rentAd.setUrlToImages(downloadLinks);
+                                CreateRentPostFragment.this.completeAdPost(rentAd);
                             }
                         }
-                    }, rentAd);
+                    });
+                }
 
+            }
+        });
+    }
+
+    void completeAdPost(final RentAdvertisement rentAd) {
+        advertisementService.completeAdPost(rentAd, new AdInterface.OnAdPostSuccessListener<Boolean>() {
+            @Override
+            public void OnAdPostSuccessful(Boolean data) {
+                Toast.makeText(getContext().getApplicationContext(), "Ad posted successfully.", Toast.LENGTH_SHORT).show();
+                CreateRentPostFragment.this.postAd.setEnabled(true);
+                CreateRentPostFragment.this.startActivity(new Intent(getContext().getApplicationContext(), AdFeed.class));
+            }
+
+            @Override
+            public void OnAdPostFailed(String error) {
+                Toast.makeText(getContext().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                CreateRentPostFragment.this.postAd.setEnabled(true);
+                CreateRentPostFragment.this.startActivity(new Intent(getContext().getApplicationContext(), AdFeed.class));
+            }
+        });
+    }
+
+    private List<String> getFileExtensions(List<Uri> listUri) {
+        List<String> extensions = new ArrayList<>();
+        ContentResolver cr = this.getActivity().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+
+        for(Uri uri: listUri) {
+            extensions.add(mime.getExtensionFromMimeType(cr.getType(uri)));
         }
+
+        return extensions;
     }
 
     public RentAdvertisement makeAd() {
@@ -226,8 +285,10 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     }
 
     private Boolean checkData() {
+        Log.i(TAG, "in check data");
         Boolean dataOkay = true;
-        EditText[] allEditTexts = {rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies, rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription};
+        EditText[] allEditTexts = {rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies,
+                rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription};
 
         for(EditText e: allEditTexts) {
             if(e.getText().toString().trim().isEmpty()) {

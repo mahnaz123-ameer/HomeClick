@@ -48,7 +48,8 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
         else gasString = "Not Available";
 
         holder.gasAvailability.setText(gasString);
-        holder.paymentAmount.setText(String.format(Locale.getDefault(), "%d", advertisementArrayList.get(position).getPaymentAmount()) + " BDT");
+        String payAmount = String.format(Locale.getDefault(), "%d", advertisementArrayList.get(position).getPaymentAmount()) + " BDT";
+        holder.paymentAmount.setText(payAmount);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
         this.onAdCardClickListener = adCardListener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView areaName, fullAddress, bedroom, bathroom, gasAvailability, paymentAmount, adType;
         OnAdCardClickListener onAdCardClickListener;

@@ -504,37 +504,15 @@
                 android:layout_marginTop="20dp"
                 android:text="Add photos to post" />
 
-            <ImageView
-                android:id="@+id/rent_photos"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imageRecView"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:layout_below="@id/select_rent"
-                android:layout_marginStart="30dp"
+
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
-                android:src="@drawable/icon_create" />
+                />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rent_photos"
-                android:gravity="center_horizontal">
-
-                <ImageButton
-                    android:id="@+id/rent_previous"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_previous" />
-
-                <ImageButton
-                    android:id="@+id/rent_next"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_toEndOf="@id/rent_previous"
-                    android:src="@drawable/icon_next" />
-
-
-            </RelativeLayout>
 
 
         </RelativeLayout>
@@ -546,6 +524,7 @@
             android:layout_marginStart="200dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
+            android:layout_marginBottom="30dp"
             android:backgroundTint="@color/black"
             android:text="Post My Ad" />
 

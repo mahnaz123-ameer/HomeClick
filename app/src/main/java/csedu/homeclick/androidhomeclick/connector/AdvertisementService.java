@@ -1,14 +1,12 @@
 package csedu.homeclick.androidhomeclick.connector;
 
-import android.util.Log;
+import android.net.Uri;
 
 import java.util.List;
 
-import csedu.homeclick.androidhomeclick.activities.ShowAdvertisementDetails;
 import csedu.homeclick.androidhomeclick.database.FirestoreDealer;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
-import csedu.homeclick.androidhomeclick.structure.User;
 
 public class AdvertisementService {
     private UserService userService;
@@ -19,9 +17,21 @@ public class AdvertisementService {
         adDealer = FirestoreDealer.getInstance();
     }
 
-    public void addAdvertisement(AdInterface.OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, Advertisement advertisement) {
-        adDealer.addAdvertisement(onAdPostSuccessListener, advertisement);
+    public void getAdId(AdInterface.OnAdIdListener<Advertisement> onAdIdListener) {
+        adDealer.getAdId(onAdIdListener);
     }
+
+    public void uploadPhoto(Uri uri, String fileExtension, String pathID, AdInterface.OnPhotoUploadListener<String> onPhotoUploadListener) {
+        adDealer.uploadPhoto(uri, fileExtension, pathID, onPhotoUploadListener);
+    }
+
+    public void completeAdPost(Advertisement advert, AdInterface.OnAdPostSuccessListener<Boolean> onAdPostSuccessListener) {
+        adDealer.pushAdIntoDatabase(advert, onAdPostSuccessListener);
+    }
+
+//    public void addAdvertisement(AdInterface.OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, AdInterface.OnPhotoUploadProgressListener<List<Uri>> onPhotoUploadProgressListener, Advertisement advertisement, List<Uri> toUpload, List<String> fileExtensions) {
+//        adDealer.getAdIdAndUploadPhotos(onAdPostSuccessListener, onPhotoUploadProgressListener, advertisement, toUpload, fileExtensions);
+//    }
 
     public void fetchAdvertisements(AdInterface.OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
         adDealer.getAdsFromDatabase(onAdsFetchedListener);
