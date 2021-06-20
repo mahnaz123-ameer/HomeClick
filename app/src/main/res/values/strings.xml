@@ -40,4 +40,10 @@
     <string name="monetary_dealings">Monetary Dealings</string>
     <string name="move_in">Ready To Move In From</string>
     <string name="post_by">Post By</string>
+    <string name="area_name">Area Name</string>
+    <string name="full_address">Full Address</string>
+    <string name="gas_availability">Gas Availability</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="balconies">Balconies</string>
 </resources>

@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.database;
 
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 

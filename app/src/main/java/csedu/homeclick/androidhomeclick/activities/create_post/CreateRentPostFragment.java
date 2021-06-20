@@ -1,7 +1,11 @@
 package csedu.homeclick.androidhomeclick.activities.create_post;
 
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -13,12 +17,19 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
@@ -35,28 +46,36 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private EditText rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription;
     private CheckBox rentGas, rentElevator, rentGenerator, rentGarage, rentSecurity;
 
+    private ImageView imageView;
+
     private CalendarView rentAvailableFrom;
 
     private RadioGroup rentTenant;
     private RadioButton family, single;
-    private Button postAd;
+    private Button postAd, selectPhotos;
+    private ImageButton nextPhoto, previousPhoto;
 
     private UserService userService;
     private AdvertisementService advertisementService;
 
+    ArrayList<Uri> imageUri = new ArrayList<>();
+    final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
+        @Override
+        public void onActivityResult(List<Uri> result) {
+            CreateRentPostFragment.this.imagePosition = 0;
+            CreateRentPostFragment.this.imageUri.addAll(result);
+            LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
+            CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
+
+            if (!CreateRentPostFragment.this.imageUri.isEmpty())
+                Glide.with(CreateRentPostFragment.this).load(imageUri .get(CreateRentPostFragment.this.imagePosition)).into((ImageView) imageView);
+        }
+    });
+    private int imagePosition;
     private final Date[] rentAvailFrom = new Date[1];
 
     public CreateRentPostFragment() {
         // Required empty public constructor
-    }
-
-
-    public static CreateRentPostFragment newInstance() {
-        CreateRentPostFragment fragment = new CreateRentPostFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -71,15 +90,24 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_create_rent_post, container, false);
 
         bindWidgets(view);
-
-        rentAvailableFrom.setOnDateChangeListener(this::onSelectedDayChange);
-        postAd.setOnClickListener(this);
+        setClickListeners();
 
         return view;
     }
 
+    private void setClickListeners() {
+        rentAvailableFrom.setOnDateChangeListener(this::onSelectedDayChange);
+        postAd.setOnClickListener(this);
+        previousPhoto.setOnClickListener(this);
+        nextPhoto.setOnClickListener(this);
+        selectPhotos.setOnClickListener(this);
+    }
+
     private void bindWidgets(View view) {
         userService = new UserService();
+        advertisementService = new AdvertisementService();
+
+
         rentAreaName = view.findViewById(R.id.rentAreaName);
         rentFullAddress = view.findViewById(R.id.rentFullAddress);
         rentBedrooms = view.findViewById(R.id.rentBedrooms);
@@ -100,22 +128,50 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         family = view.findViewById(R.id.rbFamily);
         single = view.findViewById(R.id.rbSinglePerson);
         postAd = view.findViewById(R.id.buttonRentPostAd);
+        imageView = view.findViewById(R.id.rent_photos);
 
+        selectPhotos = view.findViewById(R.id.select_rent);
+        nextPhoto = view.findViewById(R.id.rent_next);
+        previousPhoto = view.findViewById(R.id.rent_previous);
 
-        advertisementService = new AdvertisementService();
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.select_rent:
+                imageSelectorLauncher.launch("image/*");
+                break;
+            case R.id.rent_previous:
+                if (imagePosition > 0) {
+                    // decrease the position by 1
+                    imagePosition--;
+                    Glide.with(CreateRentPostFragment.this).load(imageUri.get(imagePosition)).into((ImageView) imageView);
+                }
+                break;
+            case R.id.rent_next:
+                if (imagePosition < imageUri.size() - 1) {
+                    // increase the position by 1
+                    imagePosition++;
+                    Glide.with(CreateRentPostFragment.this).load(imageUri.get(imagePosition)).into((ImageView) imageView);
+                } else {
+                    Toast.makeText( CreateRentPostFragment.this.getContext(), "Last Image Already Shown", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.create_rent_post:
+                createPost(v);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void createPost(View v) {
         if(checkData()) {
             final RentAdvertisement rentAd = makeAd();
 
-            userService.findUserInfo(new UserInterface.OnUserInfoListener<User>() {
-                @Override
-                public void OnUserInfoFound(User data) {
-                    rentAd.setAdvertiserName(data.getName());
-                    rentAd.setAdvertiserPhoneNumber(data.getPhoneNumber());
-                    rentAd.setAdvertiserUID(userService.getUserUID());
+            rentAd.setAdvertiserUID(userService.getUserUID());
 
                     advertisementService.addAdvertisement(new AdInterface.OnAdPostSuccessListener<Advertisement>() {
                         @Override
@@ -127,8 +183,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                             }
                         }
                     }, rentAd);
-                }
-            }, userService.getUserUID());
+
         }
     }
 
@@ -161,7 +216,11 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             tenantType = "Student/Working Person";
         }
 
-        RentAdvertisement rent = new RentAdvertisement(areaName, fullAddress, "Rent", numOfBedrooms, numOfBathrooms, gasAvail, payAmount, numOfBalconies, floor, floorSpace, elevatorAvail, generatorAvail, garageAvail, tenantType, utilities, rentDesc, securityAvail, rentAvailFrom[0]);
+        RentAdvertisement rent = new RentAdvertisement(areaName, fullAddress, "Rent",
+                numOfBedrooms, numOfBathrooms, gasAvail, payAmount,
+                numOfBalconies, floor, floorSpace, elevatorAvail, generatorAvail,
+                garageAvail,  imageUri.size(), tenantType, utilities, rentDesc, securityAvail, rentAvailFrom[0]);
+
         Log.i("date", rent.getAvailableFrom().toString());
         return rent;
     }
@@ -182,6 +241,11 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         if(picked != R.id.rbFamily && picked != R.id.rbSinglePerson) {
             dataOkay = false;
         }
+
+        if(this.imageUri.isEmpty()) {
+            dataOkay = false;
+        }
+
         return dataOkay;
     }
 
