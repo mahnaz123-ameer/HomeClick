@@ -17,34 +17,19 @@ public class RentAdvertisement extends Advertisement implements Serializable {
         super();
     }
 
+    //user shoho
 
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, elevator, generator, garageSpace);
+
+    //user chara
+    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms,
+                             Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace,
+                             Boolean elevator, Boolean generator, Boolean garageSpace, int numberOfImages, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
+        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace, numberOfImages);
         this.tenantType = tenantType;
         this.utilityCharge = utilityCharge;
         this.description = description;
         this.securityGuard = securityGuard;
         this.availableFrom = availableFrom;
-    }
-
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, elevator, generator, garageSpace);
-        this.tenantType = tenantType;
-        this.utilityCharge = utilityCharge;
-        this.description = description;
-        this.securityGuard = securityGuard;
-        this.availableFrom = availableFrom;
-    }
-
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, Boolean elevator, Boolean generator, Boolean garageSpace, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom, double latitude, double longitude) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, elevator, generator, garageSpace);
-        this.tenantType = tenantType;
-        this.utilityCharge = utilityCharge;
-        this.description = description;
-        this.securityGuard = securityGuard;
-        this.availableFrom = availableFrom;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
     public String getTenantType() {

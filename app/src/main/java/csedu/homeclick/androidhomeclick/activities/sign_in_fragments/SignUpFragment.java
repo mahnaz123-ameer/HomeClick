@@ -30,14 +30,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener{
     }
 
 
-    public static SignUpFragment newInstance() {
-        SignUpFragment fragment = new SignUpFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +65,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         if(checkData()) {
             User user = getUser();
-            userService.signInNewUser(user, v.getContext());
+            userService.signInNewUser(user, v.getContext().getApplicationContext());
         }
     }
 

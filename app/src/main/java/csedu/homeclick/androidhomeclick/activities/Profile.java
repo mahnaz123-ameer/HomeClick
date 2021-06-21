@@ -8,9 +8,9 @@ import android.os.Bundle;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.profile_fragments.ProfileFragmentAdapter;
-import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
-import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
-import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.TabLayoutHandler;
+import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -30,7 +30,7 @@ public class Profile extends AppCompatActivity {
     }
 
     private void bindWidgets() {
-        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar), R.id.account);
+        BottomNavBarHandler.setInstance(findViewById(R.id.profile_bottom_nav_bar), R.id.account);
         BottomNavBarHandler.handle(this);
 
         TopAppBarHandler.getInstance(findViewById(R.id.app_toolbaar), this).handle();

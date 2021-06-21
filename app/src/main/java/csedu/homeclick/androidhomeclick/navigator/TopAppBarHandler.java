@@ -1,4 +1,4 @@
-package csedu.homeclick.androidhomeclick.handler;
+package csedu.homeclick.androidhomeclick.navigator;
 
 import android.app.Activity;
 import android.content.Intent;

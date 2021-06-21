@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/option_rent"
+        android:title="@string/rent_out_my_place"/>
+
+    <item android:id="@+id/option_sale"
+        android:title="@string/sell_my_place"/>
+</menu>

@@ -9,9 +9,9 @@ import android.os.Bundle;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.sign_in_fragments.SignInFragmentAdapter;
-import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
-import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
-import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.TabLayoutHandler;
+import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -32,11 +32,11 @@ public class UserSignIn extends AppCompatActivity {
         bindWidgets();
 
 
-
     }
 
     private void bindWidgets() {
         toolbar = findViewById(R.id.app_toolbaar);
+
         tabLayout = findViewById(R.id.signInTabLayout);
         viewPager = findViewById(R.id.user_sign_in_view_pager);
         fm = getSupportFragmentManager();
@@ -46,7 +46,7 @@ public class UserSignIn extends AppCompatActivity {
         TabLayoutHandler.setInstance(tabLayout, viewPager);
         TabLayoutHandler.handle(this);
 
-        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar), R.id.account);
+        BottomNavBarHandler.setInstance(findViewById(R.id.user_sign_in_bottom_nav_bar), R.id.account);
         BottomNavBarHandler.handle(this);
 
         TopAppBarHandler.getInstance(toolbar, this).handle();

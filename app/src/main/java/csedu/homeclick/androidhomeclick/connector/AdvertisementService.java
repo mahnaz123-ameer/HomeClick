@@ -1,12 +1,12 @@
 package csedu.homeclick.androidhomeclick.connector;
 
-import android.util.Log;
+import android.net.Uri;
 
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.database.FirestoreDealer;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
-import csedu.homeclick.androidhomeclick.structure.User;
+import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 
 public class AdvertisementService {
     private UserService userService;
@@ -17,15 +17,39 @@ public class AdvertisementService {
         adDealer = FirestoreDealer.getInstance();
     }
 
-    public void findUserInfo(AdInterface.OnUserInfoListener<User> onUserInfoListener, String UID) {
-        adDealer.findUserInfo(onUserInfoListener, UID);
+    public void getAdId(AdInterface.OnAdIdListener<Advertisement> onAdIdListener) {
+        adDealer.getAdId(onAdIdListener);
     }
 
-    public void addAdvertisement(AdInterface.OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, Advertisement advertisement) {
-        adDealer.addAdvertisement(onAdPostSuccessListener, advertisement);
+    public void uploadPhoto(Uri uri, String fileExtension, String pathID, AdInterface.OnPhotoUploadListener<String> onPhotoUploadListener) {
+        adDealer.uploadPhoto(uri, fileExtension, pathID, onPhotoUploadListener);
     }
+
+    public void completeAdPost(Advertisement advert, AdInterface.OnAdPostSuccessListener<Boolean> onAdPostSuccessListener) {
+        adDealer.pushAdIntoDatabase(advert, onAdPostSuccessListener);
+    }
+
+//    public void addAdvertisement(AdInterface.OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, AdInterface.OnPhotoUploadProgressListener<List<Uri>> onPhotoUploadProgressListener, Advertisement advertisement, List<Uri> toUpload, List<String> fileExtensions) {
+//        adDealer.getAdIdAndUploadPhotos(onAdPostSuccessListener, onPhotoUploadProgressListener, advertisement, toUpload, fileExtensions);
+//    }
 
     public void fetchAdvertisements(AdInterface.OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
         adDealer.getAdsFromDatabase(onAdsFetchedListener);
+    }
+
+    public void fetchMyAds(AdInterface.OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener) {
+        adDealer.getMyAds(onPersonalAdsFetchedListener, userService.getUserUID());
+    }
+
+    public void getRentAd(AdInterface.OnParticularAdFetchedListener<RentAdvertisement> onParticularAdFetchedListener, String adID) {
+        adDealer.getThisRentAd(onParticularAdFetchedListener, adID);
+    }
+
+    public void deletePhotoFolder(String folder, int toDelete, AdInterface.OnPhotoFolderDeletedListener<Boolean> onPhotoFolderDeletedListener) {
+        adDealer.deletePhotoFolder(folder, toDelete, onPhotoFolderDeletedListener);
+    }
+
+    public void deleteAd(String id, AdInterface.OnAdDeletedListener<Boolean> onAdDeletedListener) {
+        adDealer.deleteParticularAd(id, onAdDeletedListener);
     }
 }

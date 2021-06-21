@@ -11,7 +11,7 @@
         android:id="@+id/create_post_app_bar"/>
 
     <include layout="@layout/bottom_nav_bar"
-        android:id="@+id/create_post_bottom_nav_bar"/>
+        android:id="@+id/add_photos_bottom_nav_bar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,14 +26,15 @@
             android:layout_height="30dp"
             android:layout_marginTop="18dp"
             android:text="Select Multiple Images"
-            android:background="@drawable/gradient_drawable"/>
+            android:background="@color/darker_lavender"/>
 
         <ImageSwitcher
             android:id="@+id/image"
             android:layout_width="350dp"
             android:layout_height="320dp"
            android:layout_gravity="center"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:animateFirstView="true"/>
 
         <!--click here to view previous image-->
 
@@ -51,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/icon_previuos"
+                android:background="@drawable/icon_previous"
                 android:backgroundTint="@color/black" />
 
             <Button
@@ -61,9 +62,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="70dp"
                 android:background="@drawable/icon_next"
-                android:backgroundTint="@color/black"
-
-                />
+                android:backgroundTint="@color/black" />
 
 
         </RelativeLayout>
@@ -83,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="Go Back"
-            android:background="@drawable/gradient_drawable"/>
+            android:background="@color/darker_lavender"/>
 
 
     </LinearLayout>

@@ -6,14 +6,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.create_post.CreatePostFragmentAdapter;
-import csedu.homeclick.androidhomeclick.handler.BottomNavBarHandler;
-import csedu.homeclick.androidhomeclick.handler.TabLayoutHandler;
-import csedu.homeclick.androidhomeclick.handler.TopAppBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
+import csedu.homeclick.androidhomeclick.navigator.TabLayoutHandler;
+import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 
 public class CreatePost extends AppCompatActivity {
 
@@ -43,7 +45,7 @@ public class CreatePost extends AppCompatActivity {
         TabLayoutHandler.setInstance(tabLayout, viewPager);
         TabLayoutHandler.handle(this);
 
-        BottomNavBarHandler.setInstance(findViewById(R.id.bottom_navigation_bar),R.id.create);
+        BottomNavBarHandler.setInstance(findViewById(R.id.create_post_bottom_nav_bar),R.id.create);
         BottomNavBarHandler.handle(this);
 
         toolbar = findViewById(R.id.app_toolbaar);

@@ -12,4 +12,41 @@
     <string name="info">Information</string>
     <string name="my_ads">My Ads</string>
     <string name="saved_ads">Saved Ads</string>
+    <string name="send_link_in_mail">Send Link In Email</string>
+    <string name="age_18">I am 18 years old</string>
+    <string name="terms">I agree to the terms and conditions</string>
+    <string name="not_signed_in">Not signed in?</string>
+    <string name="do_following">Just do the following</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email Address</string>
+    <string name="phone_number">Phone Number</string>
+
+    <string name="rent">Rent</string>
+    <string name="sale">Sale</string>
+
+    <string name="available">Available</string>
+    <string name="not_available">Not available</string>
+
+    <string name="floor">Floor</string>
+    <string name="floor_space">Floor Space</string>
+    <string name="facilities">Facilities</string>
+    <string name="gas">Gas</string>
+    <string name="elevator">Elevator</string>
+    <string name="generator">Generator</string>
+    <string name="garage_space">Garage Space</string>
+    <string name="security">Security Guard</string>
+    <string name="tenant_type">Tenant Type</string>
+    <string name="utility">Utility Charge</string>
+    <string name="monetary_dealings">Monetary Dealings</string>
+    <string name="move_in">Ready To Move In From</string>
+    <string name="post_by">Post By</string>
+    <string name="area_name">Area Name</string>
+    <string name="full_address">Full Address</string>
+    <string name="gas_availability">Gas Availability</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="balconies">Balconies</string>
+    <string name="rent_out_my_place">Rent Out My Place</string>
+    <string name="sell_my_place">Sell My Place</string>
+    <string name="remove">Remove</string>
 </resources>

@@ -1,7 +1,6 @@
-package csedu.homeclick.androidhomeclick.handler;
+package csedu.homeclick.androidhomeclick.navigator;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.viewpager2.widget.ViewPager2;
 

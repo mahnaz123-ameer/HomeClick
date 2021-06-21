@@ -4,83 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UserSignIn"
     android:background="@color/dark_white"
-  >
+    tools:context=".activities.UserSignIn">
 
-    <include layout="@layout/app_bar"
-        android:id="@+id/user_sign_in_app_bar"/>
+    <include
+        android:id="@+id/user_sign_in_app_bar"
+        layout="@layout/app_bar" />
 
-    <include layout="@layout/bottom_nav_bar"
-        android:id="@+id/user_sign_in_bottom_nav_bar"/>
-
+    <include
+        android:id="@+id/user_sign_in_bottom_nav_bar"
+        layout="@layout/bottom_nav_bar" />
 
 
     <RelativeLayout
+        android:id="@+id/TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_sign_in_app_bar"
-        android:padding="10dp"
-        android:id="@+id/TextView">
+        android:background="@color/dark_white"
+        android:padding="10dp">
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="Not Signed in?"
-            android:textSize="17dp"
-            android:layout_centerHorizontal="true"
             android:id="@+id/TextView1"
-            android:textStyle="bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/not_signed_in"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:fontFamily="@font/comfortaa_bold" />
 
 
         <TextView
+            android:id="@+id/TextView2"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="Just do the following"
-            android:textSize="17dp"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/TextView1"
-            android:id="@+id/TextView2"
-            android:textStyle="bold"/>
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/do_following"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:fontFamily="@font/comfortaa_bold" />
 
 
     </RelativeLayout>
 
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/signInTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/black"
         android:layout_below="@+id/TextView"
-        app:tabSelectedTextColor="@color/darker_lavender"
+        android:background="@color/white"
         app:tabIndicatorColor="@color/darker_lavender"
-        android:id="@+id/signInTabLayout">
+        app:tabRippleColor="@color/darker_lavender"
+        app:tabSelectedTextColor="@color/darker_lavender"
+        app:tabTextColor="@color/black"
+        app:tabUnboundedRipple="true">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/newSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_here"
-            android:id="@+id/newSignIn"/>
+            android:text="@string/new_here" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_me_in"
-            app:tabIconTint="@color/bottom_nav_bar_selector"
-            android:id="@+id/signIn"/>
+            app:tabIconTint="@color/bottom_nav_bar_selector" />
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/user_sign_in_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/user_sign_in_view_pager"
-        android:layout_below="@id/signInTabLayout"
-        android:layout_above="@id/user_sign_in_bottom_nav_bar"/>
+        android:layout_above="@id/user_sign_in_bottom_nav_bar"
+        android:layout_below="@id/signInTabLayout" />
 
 </RelativeLayout>
