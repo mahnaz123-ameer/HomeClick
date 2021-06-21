@@ -86,7 +86,6 @@ public class MyAdsFragment extends Fragment implements AdvertisementRecyclerView
         final Advertisement clickedAdvert = adArrayList.get(position);
         String adID = clickedAdvert.getAdvertisementID();
 
-        Toast.makeText(this.getContext().getApplicationContext(), adID + " clicked ad poster = " + clickedAdvert.getAdvertiserName(), Toast.LENGTH_SHORT).show();
         Intent targetIntent = new Intent(this.getContext().getApplicationContext(), ShowAdvertisementDetails.class);
 
         targetIntent.putExtra("Ad", clickedAdvert);

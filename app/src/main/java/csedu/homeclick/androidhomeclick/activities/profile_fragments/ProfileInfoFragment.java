@@ -77,6 +77,8 @@ public class ProfileInfoFragment extends Fragment implements View.OnClickListene
         profile_email = view.findViewById(R.id.profile_email);
         profile_phone = view.findViewById(R.id.profile_phone);
 
+        setInformation();
+
         name_edit = view.findViewById(R.id.profile_name_edit);
         phone_edit = view.findViewById(R.id.profile_phone_edit);
 
@@ -88,6 +90,7 @@ public class ProfileInfoFragment extends Fragment implements View.OnClickListene
 
         save.setVisibility(View.GONE);
         save.setEnabled(false);
+
     }
 
 

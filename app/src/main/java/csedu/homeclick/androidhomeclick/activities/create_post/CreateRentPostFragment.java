@@ -3,19 +3,22 @@ package csedu.homeclick.androidhomeclick.activities.create_post;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.Tag;
+
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
@@ -28,7 +31,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,14 +51,11 @@ import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 
 
-public class CreateRentPostFragment extends Fragment implements View.OnClickListener, CalendarView.OnDateChangeListener{
+public class CreateRentPostFragment extends Fragment implements View.OnClickListener, CalendarView.OnDateChangeListener, ImageRecyclerViewAdapter.OnPhotoClickListener{
     public static final String TAG = "CreateRentPostFragment";
     private EditText rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies;
     private EditText rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription;
     private CheckBox rentGas, rentElevator, rentGenerator, rentGarage, rentSecurity;
-
-    private RecyclerView imageRecView;
-    private ImageRecyclerViewAdapter imageRecVA = new ImageRecyclerViewAdapter();
 
     private CalendarView rentAvailableFrom;
 
@@ -62,34 +63,36 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private RadioButton family, single;
     private Button postAd, selectPhotos;
 
+    private int adapterPosition;
+
+    private RecyclerView imageRecView;
+    private ImageRecyclerViewAdapter imageRecVA = new ImageRecyclerViewAdapter();
+
+
+
 
     private UserService userService;
     private final AdvertisementService advertisementService = new AdvertisementService();
 
     List<Uri> imageUri = new ArrayList<>();
+
     final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
         @Override
         public void onActivityResult(List<Uri> result) {
-            CreateRentPostFragment.this.imagePosition = 0;
             CreateRentPostFragment.this.imageUri.addAll(result);
 
             //making sure a photo hasn't been added twice to the list
             LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
             CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
 
-            CreateRentPostFragment.this.imageRecVA = new ImageRecyclerViewAdapter(CreateRentPostFragment.this.getContext(), CreateRentPostFragment.this.imageUri);
-            CreateRentPostFragment.this.imageRecView.setAdapter(CreateRentPostFragment.this.imageRecVA);
+
+            CreateRentPostFragment.this.imageRecVA.setOnPhotoClickListener(CreateRentPostFragment.this::onPhotoClick);
+            CreateRentPostFragment.this.imageRecVA.setUrlArrayList(CreateRentPostFragment.this.imageUri);
             CreateRentPostFragment.this.imageRecVA.notifyDataSetChanged();
-            LinearLayoutManager llM = new LinearLayoutManager(CreateRentPostFragment.this.getContext());
-            llM.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-            CreateRentPostFragment.this.imageRecView.setLayoutManager(llM);
-
-//            if (!CreateRentPostFragment.this.imageUri.isEmpty())
-//                Glide.with(CreateRentPostFragment.this).load(imageUri .get(CreateRentPostFragment.this.imagePosition)).into((ImageView) imageView);
         }
     });
-    private int imagePosition;
+
     private final Date[] rentAvailFrom = new Date[1];
 
     public CreateRentPostFragment() {
@@ -122,9 +125,18 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     }
 
     private void bindWidgets(View view) {
+
         Log.i(TAG, "in bind widgets");
         userService = new UserService();
 
+        imageRecView = view.findViewById(R.id.imageRecView);
+        CreateRentPostFragment.this.imageRecVA.setContext(CreateRentPostFragment.this.getContext());
+        imageRecView.setAdapter(imageRecVA);
+        LinearLayoutManager llM = new LinearLayoutManager(CreateRentPostFragment.this.getContext());
+        llM.setOrientation(LinearLayoutManager.VERTICAL);
+        CreateRentPostFragment.this.imageRecView.setLayoutManager(llM);
+
+        registerForContextMenu(imageRecView);
 
         rentAreaName = view.findViewById(R.id.rentAreaName);
         rentFullAddress = view.findViewById(R.id.rentFullAddress);
@@ -146,7 +158,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         family = view.findViewById(R.id.rbFamily);
         single = view.findViewById(R.id.rbSinglePerson);
         postAd = view.findViewById(R.id.buttonRentPostAd);
-        imageRecView = view.findViewById(R.id.imageRecView);
+
         selectPhotos = view.findViewById(R.id.select_rent);
     }
 
@@ -181,6 +193,8 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             Log.i(TAG, fileExtensions.toString());
 
             processUploads(fileExtensions, imageUri, rentAd);
+        } else {
+            Log.i(TAG, "data checking failed");
         }
     }
 
@@ -322,5 +336,43 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         cal.set(year, month, dayOfMonth);
         rentAvailFrom[0] = new Date(cal.getTimeInMillis());
         Log.i("date", rentAvailFrom[0].toString());
+    }
+
+//    @Override
+//    public void onPhotoClick(int position) {
+//
+//    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getActivity().getMenuInflater().inflate(R.menu.remove_photo, menu);
+    }
+
+    @Override
+    public void onPhotoClick(int position) {
+        setAdapterPosition(position);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
+        switch ( item.getItemId() ) {
+            case R.id.remove_photo:
+                imageUri.remove( getAdapterPosition() );
+                imageRecVA.setUrlArrayList(imageUri);
+                imageRecVA.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    public int getAdapterPosition() {
+        return adapterPosition;
+    }
+
+    public void setAdapterPosition(int adapterPosition) {
+        this.adapterPosition = adapterPosition;
     }
 }

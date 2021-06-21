@@ -35,6 +35,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     private RentAdvertisement ad;
     final RentAdvertisement[] advertisement = new RentAdvertisement[1];
+    private final User advertiser = new User();
 
 
     private TextView areaNameTV, fullAddressTV, adTypeTV, bedroomTV, bathroomTV, balconyTV;
@@ -116,20 +117,20 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         securityTV.setText(security);
 
         floorTV.setText(Integer.toString(ad.getFloor()));
-        floorSpaceTV.setText(Integer.toString(ad.getFloorSpace()) + " SQFT");
+        floorSpaceTV.setText(ad.getFloorSpace() + " SQFT");
 
-        paymentTV.setText(Integer.toString(ad.getPaymentAmount()) + " BDT");
-        utilityTV.setText(Integer.toString(ad.getUtilityCharge()) + " BDT");
+        paymentTV.setText(ad.getPaymentAmount() + " BDT");
+        utilityTV.setText(ad.getUtilityCharge()+ " BDT");
 
         moveInTV.setText(ad.getAvailableFrom().toString());
         tenantTypeTV.setText(ad.getTenantType());
 
-        advertNameTV.setText(ad.getAdvertiserName());
+        advertNameTV.setText(advertiser.getName());
     }
 
     private void updateInfo(final RentAdvertisement advert) {
         ad = advert;
-        userService.findUserInfo(this, ((Advertisement)getIntent().getExtras().get("Ad")).getAdvertiserUID());
+        userService.findUserInfo(this::OnUserInfoFound, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
     }
 
     private void bindWidgets() {
@@ -206,7 +207,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                                         @Override
                                         public void OnAdDeleted(Boolean deleted, String error) {
                                             if (deleted) {
-
+                                                Log.i(TAG, "Ad deleted successfully");
                                             } else {
                                                 Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
                                                 Log.i(TAG, error);
@@ -227,7 +228,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                 break;
 
             case R.id.call_card:
-                final String phone_number = ad.getAdvertiserPhoneNumber();
+                final String phone_number = advertiser.getPhoneNumber();
 
                 if(phone_number == null) return;
                     Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -248,10 +249,11 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     @Override
     public void OnUserInfoFound(Object data) {
-        User newInfo = (User) data;
-        ad.setAdvertiserName(newInfo.getName());
-        Log.i("aaaaaaaaaaaaa", ad.getAdvertiserName());
-        ad.setAdvertiserPhoneNumber(newInfo.getPhoneNumber());
+        User data1 = (User) data;
+        advertiser.setName(data1.getName());
+        advertiser.setPhoneNumber(data1.getPhoneNumber());
+        advertiser.setEmailAddress(data1.getEmailAddress());
+        advertiser.setUID(data1.getUID());
         attachValues();
     }
 }

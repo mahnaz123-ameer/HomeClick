@@ -26,14 +26,34 @@ import csedu.homeclick.androidhomeclick.R;
 public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecyclerViewAdapter.ViewHolder>{
     private Context context;
     List<?> imageURL = new ArrayList<>();
+    private OnPhotoClickListener onPhotoClickListener;
 
     public ImageRecyclerViewAdapter() {
 
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     public ImageRecyclerViewAdapter(Context context, List<?> imageURL) {
         this.context = context;
         this.imageURL = imageURL;
+    }
+
+    public ImageRecyclerViewAdapter(Context context, List<?> imageURL, OnPhotoClickListener onPhotoClickListener) {
+        this.context = context;
+        this.imageURL = imageURL;
+        this.onPhotoClickListener = onPhotoClickListener;
+    }
+
+    public void setUrlArrayList(List<?> imageURL) {
+        this.imageURL = imageURL;
+        notifyDataSetChanged();
+    }
+
+    public void setOnPhotoClickListener(OnPhotoClickListener onPhotoClickListener) {
+        this.onPhotoClickListener = onPhotoClickListener;
     }
 
 
@@ -43,7 +63,7 @@ public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecycle
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_space, parent, false);
-        ImageRecyclerViewAdapter.ViewHolder holder = new ImageRecyclerViewAdapter.ViewHolder(view);
+        ImageRecyclerViewAdapter.ViewHolder holder = new ImageRecyclerViewAdapter.ViewHolder(view, onPhotoClickListener);
         return holder;
     }
 
@@ -67,12 +87,30 @@ public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecycle
         return imageURL.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
 
-        public ViewHolder(@NonNull @NotNull View itemView) {
+    /*
+    * Holder inner class starts from here
+    *
+    * */
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
+        private ImageView imageView;
+        private OnPhotoClickListener onPhotoClickListener;
+
+        public ViewHolder(@NonNull @NotNull View itemView, OnPhotoClickListener onPhotoClickListener) {
             super(itemView);
             this.imageView = itemView.findViewById(R.id.ad_photos);
+            this.onPhotoClickListener = onPhotoClickListener;
+            itemView.setOnLongClickListener(this::onLongClick);
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onPhotoClickListener.onPhotoClick(getAdapterPosition());
+            return false;
+        }
+    }
+
+    public interface OnPhotoClickListener{
+        void onPhotoClick(int position);
     }
 }

@@ -33,6 +33,7 @@
                 android:layout_marginStart="10dp"
                 android:gravity="center"
                 android:text="@string/full_name"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="visible" />
 
@@ -44,6 +45,7 @@
                 android:enabled="false"
                 android:gravity="center"
                 android:text="@string/full_name"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="gone" />
 
@@ -68,6 +70,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
+            android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="@string/email"
             android:textColor="@color/black" />
@@ -98,6 +101,7 @@
                 android:gravity="center"
                 android:text="@string/phone_number"
                 android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textSize="15sp"
                 android:visibility="visible" />
 
@@ -109,6 +113,7 @@
                 android:enabled="false"
                 android:gravity="center"
                 android:text="@string/phone_number"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="gone" />
 
