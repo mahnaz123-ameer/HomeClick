@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +28,8 @@ import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener, AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener {
+    public static final String TAG = "ShowAdDetails";
+
     private UserService userService;
     private AdvertisementService adService;
 
@@ -187,7 +189,37 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                 break;
 
             case R.id.delete_ad:
-                Toast.makeText(this.getApplicationContext(), "Delete options not programmed yet.", Toast.LENGTH_SHORT).show();
+                if(userService.isSignedIn() && userService.getUserUID().equals( ad.getAdvertiserUID() )) {
+                    final String adId = ad.getAdvertisementID();
+                    final int totalToDelete = ad.getNumberOfImages();
+                    final int[] alreadyDeleted = new int[1];
+                    alreadyDeleted[0] = 0;
+                    adService.deletePhotoFolder(adId, totalToDelete, new AdInterface.OnPhotoFolderDeletedListener<Boolean>() {
+                        @Override
+                        public void OnPhotoFolderDeleted(Boolean deleted, String error) {
+                            startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
+                            if(deleted) {
+                                alreadyDeleted[0]++;
+                                Log.i(TAG, "number of the photo deleted = " + error);
+                                if(alreadyDeleted[0] == totalToDelete) {
+                                    adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
+                                        @Override
+                                        public void OnAdDeleted(Boolean deleted, String error) {
+                                            if (deleted) {
+
+                                            } else {
+                                                Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
+                                                Log.i(TAG, error);
+                                            }
+                                        }
+                                    });
+                                }
+                            } else {
+                                Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
                 break;
 
             case R.id.bookmark_ad:

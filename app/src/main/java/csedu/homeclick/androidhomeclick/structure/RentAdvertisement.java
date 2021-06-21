@@ -18,14 +18,7 @@ public class RentAdvertisement extends Advertisement implements Serializable {
     }
 
     //user shoho
-    public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, User advertiser, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, int numberOfImages, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
-        super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, advertiser, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace, numberOfImages);
-        this.tenantType = tenantType;
-        this.utilityCharge = utilityCharge;
-        this.description = description;
-        this.securityGuard = securityGuard;
-        this.availableFrom = availableFrom;
-    }
+
 
     //user chara
     public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms,

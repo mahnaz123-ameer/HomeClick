@@ -72,6 +72,8 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         public void onActivityResult(List<Uri> result) {
             CreateRentPostFragment.this.imagePosition = 0;
             CreateRentPostFragment.this.imageUri.addAll(result);
+
+            //making sure a photo hasn't been added twice to the list
             LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
             CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
 
@@ -280,6 +282,8 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 numOfBalconies, floor, floorSpace, elevatorAvail, generatorAvail,
                 garageAvail,  imageUri.size(), tenantType, utilities, rentDesc, securityAvail, rentAvailFrom[0]);
 
+        rent.setAdvertiserUID(userService.getUserUID());
+
         Log.i("date", rent.getAvailableFrom().toString());
         return rent;
     }
@@ -300,11 +304,13 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         int picked = rentTenant.getCheckedRadioButtonId();
 
         if(picked != R.id.rbFamily && picked != R.id.rbSinglePerson) {
+            Toast.makeText(this.getContext().getApplicationContext(), "You must pick a tenant type.", Toast.LENGTH_SHORT).show();
             dataOkay = false;
         }
 
         if(this.imageUri.isEmpty()) {
             dataOkay = false;
+            Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
         }
 
         return dataOkay;

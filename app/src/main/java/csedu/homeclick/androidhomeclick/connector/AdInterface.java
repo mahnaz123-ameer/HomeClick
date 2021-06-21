@@ -59,4 +59,20 @@ public interface AdInterface {
     interface OnParticularAdFetchedListener<T> {
         void OnParticularAdFetched(T advert);
     }
+
+
+    //delete folder containing photos of a particular ad
+    void deletePhotoFolder(String folderName, int toDelete, OnPhotoFolderDeletedListener<Boolean> onPhotoFolderDeletedListener);
+
+    interface OnPhotoFolderDeletedListener<T> {
+        void OnPhotoFolderDeleted(T deleted, String error);
+    }
+
+
+    //delete a particular ad from the database
+    void deleteParticularAd(String id,  OnAdDeletedListener<Boolean> onAdDeletedListener);
+
+    interface  OnAdDeletedListener<T> {
+        void OnAdDeleted(T deleted, String error);
+    }
 }
