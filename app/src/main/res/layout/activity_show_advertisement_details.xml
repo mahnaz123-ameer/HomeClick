@@ -65,7 +65,7 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/full_name"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darker_lavender"
                         android:textSize="20sp" />
 
                     <TextView
@@ -82,11 +82,11 @@
 
                     <TextView
                         android:id="@+id/home_ad_type"
-                        android:layout_width="wrap_content"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="200dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/comfortaa_bold"
                         android:text="@string/rent"
                         android:textColor="@color/black"
@@ -95,42 +95,40 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/button_portion"
+            <LinearLayout
+                android:id="@+id/button_portion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/address_portion">
+
+                <ImageButton
+                    android:id="@+id/bookmark_ad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="20dp"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/address_portion">
+                    android:src="@drawable/icon_bookmark" />
 
-                    <ImageButton
-                        android:id="@+id/bookmark_ad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_bookmark" />
+                <ImageButton
+                    android:id="@+id/edit_ad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone" />
 
-                    <ImageButton
-                        android:id="@+id/edit_ad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:src="@drawable/icon_edit"
-                        android:visibility="gone" />
+                <ImageButton
+                    android:id="@+id/delete_ad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/icon_delete"
+                    android:visibility="gone" />
 
-                    <ImageButton
-                        android:id="@+id/delete_ad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:src="@drawable/icon_delete"
-                        android:visibility="gone" />
-
-                </LinearLayout>
-
-
+            </LinearLayout>
 
 
             <RelativeLayout
@@ -139,161 +137,183 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_portion"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="17dp"
                 android:layout_marginEnd="20dp">
 
-                <ImageView
-                    android:id="@+id/icon_bedroom"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_bedroom" />
 
-                <TextView
-                    android:id="@+id/num_of_bedrooms"
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/icon_bedroom"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="2"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/rooms"
+                    >
 
-                <ImageView
-                    android:id="@+id/icon_bathroom"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@id/icon_bedroom"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/icon_bathroom" />
+                    <ImageView
+                        android:id="@+id/icon_bedroom"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/icon_bedroom" />
 
-                <TextView
-                    android:id="@+id/num_of_bathrooms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/num_of_bedrooms"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_toEndOf="@id/icon_bathroom"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="2"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/num_of_bedrooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/icon_bedroom"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-                <ImageView
-                    android:id="@+id/icon_balcony"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@id/icon_bathroom"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/icon_balcony" />
 
-                <TextView
-                    android:id="@+id/num_of_balconies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/num_of_bathrooms"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_toEndOf="@id/icon_bathroom"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="2"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <ImageView
+                        android:id="@+id/icon_bathroom"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="190dp"
+                        android:src="@drawable/icon_bathroom" />
 
-                <TextView
-                    android:id="@+id/text_floor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/num_of_bedrooms"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/floor"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/num_of_bathrooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/num_of_bedrooms"
+                        android:layout_marginStart="195dp"
+                        android:layout_marginTop="-31dp"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/home_floor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toEndOf="@id/text_floor"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="5th"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <ImageView
+                        android:id="@+id/icon_balcony"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="240dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="51dp"
+                        android:src="@drawable/icon_balcony" />
 
-                <TextView
-                    android:id="@+id/text_floor_space"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/text_floor"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@id/num_of_bedrooms"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/floor_space"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/num_of_balconies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/num_of_bathrooms"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="305dp"
 
-                <TextView
-                    android:id="@+id/home_floor_space"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/home_floor"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toEndOf="@id/text_floor"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="1400sqft"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                        android:layout_marginTop="-26dp"
+                        android:layout_marginEnd="21dp"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/text_tenant_type"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/text_floor_space"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@id/num_of_bedrooms"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/tenant_type"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/home_tenant_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/home_floor_space"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toEndOf="@id/text_floor"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="Family"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/text_floor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="@string/floor"
+                        android:textColor="@color/darker_lavender"
+                        android:textSize="17sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/home_floor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toEndOf="@id/text_floor"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text=" 5th "
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_floor_space"
+                        android:layout_width="136dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginLeft="160dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_toEndOf="@+id/home_floor"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="@string/floor_space"
+                        android:textColor="@color/darker_lavender"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/home_floor_space"
+                        android:layout_width="113dp"
+                        android:layout_height="39dp"
+                        android:layout_marginStart="218dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginEnd="23dp"
+                        android:layout_toEndOf="@id/text_floor"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text=" 1400sqft "
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_tenant_type"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text_floor_space"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="@string/tenant_type"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:visibility="gone" />
+
+
+                    <TextView
+                        android:id="@+id/home_tenant_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/home_floor_space"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toEndOf="@id/text_floor"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="Family"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:visibility="gone" />
+
+
+
+                </RelativeLayout>
+
+
+
 
 
                 <TextView
                     android:id="@+id/text_facilities"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/icon_balcony"
+                    android:layout_below="@id/rooms"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/facilities"
                     android:textColor="@color/black"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <HorizontalScrollView
                     android:id="@+id/facilities_scrollview"
@@ -321,7 +341,7 @@
                             <ImageView
                                 android:id="@+id/icon_gas"
                                 android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="30dp"
                                 android:src="@drawable/gas_icon" />
 
@@ -332,8 +352,9 @@
                                 android:layout_marginTop="70dp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:text="@string/gas"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@color/darker_lavender"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/home_gas_availability"
@@ -346,7 +367,8 @@
                                 android:gravity="center"
                                 android:text="@string/available"
                                 android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                         </androidx.cardview.widget.CardView>
 
@@ -361,7 +383,7 @@
 
                             <ImageView
                                 android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="30dp"
                                 android:src="@drawable/icon_elevator" />
 
@@ -372,8 +394,9 @@
                                 android:layout_marginTop="70dp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:text="@string/elevator"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@color/darker_lavender"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/home_elevator"
@@ -386,7 +409,8 @@
                                 android:gravity="center"
                                 android:text="@string/not_available"
                                 android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                         </androidx.cardview.widget.CardView>
 
@@ -401,7 +425,7 @@
 
                             <ImageView
                                 android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="30dp"
                                 android:src="@drawable/icon_gear" />
 
@@ -412,8 +436,9 @@
                                 android:layout_marginTop="70dp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:text="@string/generator"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@color/darker_lavender"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/home_generator"
@@ -426,6 +451,7 @@
                                 android:gravity="center"
                                 android:text="@string/not_available"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="20sp" />
 
                         </androidx.cardview.widget.CardView>
@@ -441,7 +467,7 @@
 
                             <ImageView
                                 android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="30dp"
                                 android:src="@drawable/icon_garage" />
 
@@ -453,7 +479,8 @@
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:gravity="center"
                                 android:text="@string/garage_space"
-                                android:textColor="@color/black"
+                                android:textColor="@color/darker_lavender"
+                                android:textStyle="bold"
                                 android:textSize="17sp" />
 
                             <TextView
@@ -467,7 +494,8 @@
                                 android:gravity="center"
                                 android:text="@string/not_available"
                                 android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textSize="20sp" android:textStyle="bold"
+                                />
 
                         </androidx.cardview.widget.CardView>
 
@@ -528,7 +556,8 @@
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/monetary_dealings"
                     android:textColor="@color/black"
-                    android:textSize="25sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <ImageView
                     android:id="@+id/icon_money"
@@ -593,18 +622,60 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_date"
                     android:layout_marginStart="18dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="18-07-2021"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:padding="5dp"
+                    android:background="@drawable/shape"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/darker_lavender"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Description"
+                    android:layout_below="@id/move_in_date"
+                    android:id="@+id/Des"/>
+
+                <com.ms.square.android.expandabletextview.ExpandableTextView
+                    android:id="@+id/Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/Des"
+                    android:layout_marginTop="20dp"
+                    >
+
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"/>
+
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|bottom"
+                        android:background="@android:color/transparent"
+                        android:padding="16dp" />
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
 
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/call_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/move_in_date"
+                    android:layout_below="@id/Description"
                     android:layout_marginTop="20dp"
                     android:backgroundTint="@color/white"
                     android:elevation="10dp"
@@ -629,7 +700,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/full_name"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darker_lavender"
                         android:textSize="18sp" />
 
                     <ImageView
