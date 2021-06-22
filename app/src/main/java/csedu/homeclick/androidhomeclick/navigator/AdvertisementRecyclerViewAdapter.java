@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.navigator;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,9 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
         holder.bathroom.setText(String.format(Locale.getDefault(), "%d", advertisementArrayList.get(position).getNumberOfBathrooms()));
 
         Boolean gasAvail = advertisementArrayList.get(position).getGasAvailability();
+        if(advertisementArrayList.get(position).getGasAvailability() == null) {
+            Log.i("adapter","something is wrong");
+        }
         String gasString;
         if(gasAvail) gasString = "Available";
         else gasString = "Not Available";

@@ -200,7 +200,7 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                             adList.add(singleAd.toObject(Advertisement.class));
                         }
 
-                        onPersonalAdsFetchedListener.OnPersonalAdsFetchedListener(adList);
+                        onPersonalAdsFetchedListener.OnPersonalAdsFetched(adList);
                     }
                 });
     }
