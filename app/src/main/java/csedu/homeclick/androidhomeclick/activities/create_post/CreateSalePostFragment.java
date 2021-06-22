@@ -18,6 +18,7 @@ public class CreateSalePostFragment extends Fragment {
     }
 
 
+
     public static CreateSalePostFragment newInstance() {
         CreateSalePostFragment fragment = new CreateSalePostFragment();
         Bundle args = new Bundle();

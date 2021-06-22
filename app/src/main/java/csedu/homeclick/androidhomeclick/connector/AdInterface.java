@@ -50,7 +50,7 @@ public interface AdInterface {
     void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, String userUID);
 
     interface OnPersonalAdsFetchedListener<T> {
-        void OnPersonalAdsFetchedListener(T ads);
+        void OnPersonalAdsFetched(T ads);
     }
 
     void getThisRentAd(OnParticularAdFetchedListener<RentAdvertisement> onParticularAdFetchedListener, String advertID);

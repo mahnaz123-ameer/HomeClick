@@ -68,7 +68,7 @@ public class MyAdsFragment extends Fragment implements AdvertisementRecyclerView
 
         adService.fetchMyAds(new AdInterface.OnPersonalAdsFetchedListener<List<Advertisement>>() {
             @Override
-            public void OnPersonalAdsFetchedListener(List<Advertisement> ads) {
+            public void OnPersonalAdsFetched(List<Advertisement> ads) {
                 adArrayList = ads;
 
                 adRecViewAdapter.setAdvertisementArrayList(adArrayList);

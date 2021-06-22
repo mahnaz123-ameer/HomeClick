@@ -21,6 +21,8 @@ import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 
+//TODO: pagination implementation
+
 public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener {
     private RecyclerView adRecView;
     private List<Advertisement> adArrayList = new ArrayList<>();
