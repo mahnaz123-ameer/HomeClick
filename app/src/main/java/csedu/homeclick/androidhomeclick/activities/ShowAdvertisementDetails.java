@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ms.square.android.expandabletextview.ExpandableTextView;
+
 import java.io.Serializable;
 
 import csedu.homeclick.androidhomeclick.R;
@@ -47,6 +49,10 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     private CardView callCard;
 
     private ImageButton edit, delete, bookmark;
+
+    private  ExpandableTextView description;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +95,13 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         areaNameTV.setText(ad.getAreaName());
         fullAddressTV.setText(ad.getFullAddress());
         adTypeTV.setText(ad.getAdType());
+        description.setText(ad.getDescription());
 
         bedroomTV.setText(Integer.toString(ad.getNumberOfBedrooms()));
         bathroomTV.setText(Integer.toString(ad.getNumberOfBathrooms()));
         balconyTV.setText(Integer.toString(ad.getNumberOfBalconies()));
+
+
 
         String gas, elevator, generator, garage, security;
         if(ad.getGasAvailability()) gas = getString( R.string.available );
@@ -126,6 +135,8 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         tenantTypeTV.setText(ad.getTenantType());
 
         advertNameTV.setText(advertiser.getName());
+
+        description.setText(description.getText());
     }
 
     private void updateInfo(final RentAdvertisement advert) {
@@ -141,6 +152,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         areaNameTV = findViewById(R.id.home_area_name);
         fullAddressTV = findViewById(R.id.home_full_address);
         adTypeTV = findViewById(R.id.home_ad_type);
+        description = findViewById(R.id.Description);
 
         bedroomTV = findViewById(R.id.num_of_bedrooms);
         bathroomTV = findViewById(R.id.num_of_bathrooms);

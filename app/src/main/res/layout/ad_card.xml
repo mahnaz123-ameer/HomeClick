@@ -34,7 +34,7 @@
                 android:text="Area Name"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/comfortaa_regular"
-                android:textColor="@color/black"
+                android:textColor="@color/darker_lavender"
                 android:layout_marginTop="15dp"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
