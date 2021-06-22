@@ -58,13 +58,13 @@ public class User implements Serializable {
         this.UID = UID;
     }
 
-    public HashMap<String, Object> getUserHashMap() {
-        HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("Name", getName());
-        userMap.put("EmailAddress", getEmailAddress());
-        userMap.put("PhoneNumber", getPhoneNumber());
-        userMap.put("UID", getUID());
-        return userMap;
-    }
+//    public HashMap<String, Object> getUserHashMap() {
+//        HashMap<String, Object> userMap = new HashMap<>();
+//        userMap.put("Name", getName());
+//        userMap.put("EmailAddress", getEmailAddress());
+//        userMap.put("PhoneNumber", getPhoneNumber());
+//        userMap.put("UID", getUID());
+//        return userMap;
+//    }
 
 }

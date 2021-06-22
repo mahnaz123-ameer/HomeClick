@@ -9,6 +9,10 @@ public class SaleAdvertisement extends Advertisement implements Serializable {
 
     private int latitude, longitude;
 
+    public SaleAdvertisement(){
+
+    }
+
     public SaleAdvertisement(String areaName, String fullAddress, String sale, int numOfBedrooms, int numOfBathrooms, int numOfBalconies, int floor, int floorSpace, Boolean gasAvail, Boolean elevatorAvail, Boolean generatorAvail, Boolean garageAvail, Boolean securityAvail, int payAmount, String saleDesc, String situation) {
     }
 
