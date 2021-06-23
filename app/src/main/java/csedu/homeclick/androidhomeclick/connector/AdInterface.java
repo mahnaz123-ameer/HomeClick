@@ -75,4 +75,10 @@ public interface AdInterface {
     interface  OnAdDeletedListener<T> {
         void OnAdDeleted(T deleted, String error);
     }
+
+
+    void editParticularAd(String id, Advertisement advertisement, OnAdEditListener<Boolean> onAdEditListener);
+    interface OnAdEditListener<E> {
+        void OnAdEdited(E edited, String error);
+    }
 }

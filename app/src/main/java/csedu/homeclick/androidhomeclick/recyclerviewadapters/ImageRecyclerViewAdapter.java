@@ -1,8 +1,7 @@
-package csedu.homeclick.androidhomeclick.navigator;
+package csedu.homeclick.androidhomeclick.recyclerviewadapters;
 
 import android.content.Context;
-import android.media.Image;
-import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,14 @@ import com.bumptech.glide.request.RequestOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import csedu.homeclick.androidhomeclick.R;
 
 public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecyclerViewAdapter.ViewHolder>{
     private Context context;
+    private static final String TAG = "ImagesRecVA";
     List<?> imageURL = new ArrayList<>();
     private OnPhotoClickListener onPhotoClickListener;
 
@@ -71,6 +69,8 @@ public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecycle
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
 
         if(imageURL.get(position).getClass().equals(String.class)) {
+            Log.i(TAG, "in on bind view holder, glide not working?");
+            Log.i(TAG, imageURL.get(position).toString());
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.mipmap.ic_launcher_round)

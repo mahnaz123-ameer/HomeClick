@@ -7,6 +7,7 @@ import java.util.List;
 import csedu.homeclick.androidhomeclick.database.FirestoreDealer;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
+import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 
 public class AdvertisementService {
     private UserService userService;
@@ -41,8 +42,13 @@ public class AdvertisementService {
         adDealer.getMyAds(onPersonalAdsFetchedListener, userService.getUserUID());
     }
 
+
+    //get ads for ad details showing
     public void getRentAd(AdInterface.OnParticularAdFetchedListener<RentAdvertisement> onParticularAdFetchedListener, String adID) {
         adDealer.getThisRentAd(onParticularAdFetchedListener, adID);
+    }
+    public void getSaleAd(AdInterface.OnParticularAdFetchedListener<SaleAdvertisement> onParticularAdFetchedListener, String advertisementID) {
+        adDealer.getThisSaleAd(onParticularAdFetchedListener, advertisementID);
     }
 
     public void deletePhotoFolder(String folder, int toDelete, AdInterface.OnPhotoFolderDeletedListener<Boolean> onPhotoFolderDeletedListener) {
@@ -51,5 +57,9 @@ public class AdvertisementService {
 
     public void deleteAd(String id, AdInterface.OnAdDeletedListener<Boolean> onAdDeletedListener) {
         adDealer.deleteParticularAd(id, onAdDeletedListener);
+    }
+
+    public void editAd(String id, Advertisement advertisement, AdInterface.OnAdEditListener<Boolean> onAdEditListener) {
+        adDealer.editParticularAd(id, advertisement, onAdEditListener);
     }
 }
