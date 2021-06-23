@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +49,9 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
 
     public static final String TAG = "CreateSalePostFragment";
+
+
+    private Boolean EDIT_MODE = false;
     private EditText saleAreaName, saleFullAddress, saleBedrooms, saleBathrooms, saleBalconies;
     private EditText saleFloor,saleFloorSpace,salePayment,saleDescription;
     private CheckBox saleGas, saleElevator, saleGenerator, saleGarage,saleSecurity;
@@ -58,12 +62,15 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     private Button postAd, selectPhotos;
 
     private int adapterPosition;
+    private int prevPhotoAdapterPosition;
 
-    private RecyclerView imageRecView;
+    private RecyclerView imageRecView,prevPhotoRecView;
+    private TextView prevPhoto;
     private ImageRecyclerViewAdapter imageRecVA = new ImageRecyclerViewAdapter();
+    private ImageRecyclerViewAdapter prevPhotoRecVA = new ImageRecyclerViewAdapter();
 
 
-
+    private SaleAdvertisement saleAd = null;
 
     private UserService userService;
     private final AdvertisementService advertisementService = new AdvertisementService();
@@ -111,6 +118,18 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_sale_post, container, false);
         bindWidgets(view);
+
+        if( getActivity().getIntent().getExtras() != null) {
+            Advertisement received = (Advertisement) getActivity().getIntent().getExtras().get("Ad");
+            if(received.getAdType().equals("Sale")) {
+                saleAd = (SaleAdvertisement) received;
+                EDIT_MODE = true;
+            }
+        }
+
+        if(EDIT_MODE) {
+            setWidgets();
+        }
         setClickListeners();
 
         return view;
@@ -121,18 +140,71 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         selectPhotos.setOnClickListener(this);
     }
 
+    private void setWidgets() {
+        prevPhotoRecView.setVisibility(View.VISIBLE);
+        prevPhoto.setVisibility(View.VISIBLE);
+
+        prevPhotoRecVA.setContext(this.getContext());
+        prevPhotoRecVA.setUrlArrayList(saleAd.getUrlToImages());
+        prevPhotoRecVA.notifyDataSetChanged();
+        prevPhotoRecVA.setOnPhotoClickListener(new ImageRecyclerViewAdapter.OnPhotoClickListener() {
+            @Override
+            public void onPhotoClick(int position) {
+                CreateSalePostFragment.this.prevPhotoAdapterPosition = position;
+            }
+        });
+
+        registerForContextMenu(prevPhotoRecView);
+
+        saleAreaName.setText(saleAd.getAreaName());
+        saleFullAddress.setText(saleAd.getFullAddress());
+        saleBedrooms.setText(Integer.toString(saleAd.getNumberOfBedrooms()));
+        saleBathrooms.setText(Integer.toString(saleAd.getNumberOfBathrooms()));
+        saleBalconies.setText(Integer.toString(saleAd.getNumberOfBalconies()));
+        saleFloor.setText(Integer.toString(saleAd.getFloor()));
+        saleFloorSpace.setText(Integer.toString( saleAd.getFloorSpace()));
+        saleGas.setChecked(saleAd.getGasAvailability());
+        saleElevator.setChecked(saleAd.getElevator());
+        saleGenerator.setChecked(saleAd.getGenerator());
+        saleGarage.setChecked(saleAd.getGarageSpace());
+
+        salePayment.setText(Integer.toString( saleAd.getPaymentAmount() ));
+
+
+        saleDescription.setText(saleAd.getDescription());
+        if( saleAd.getPropertyCondition().equals("New") ) {
+            New.setChecked(true);
+        } else {
+            established.setChecked(true);
+        }
+
+    }
+
     private void bindWidgets(View view) {
+        prevPhotoAdapterPosition = -1;
+
         Log.i(TAG, "in bind widgets");
         userService = new UserService();
 
         imageRecView = view.findViewById(R.id.imageRecView);
-        CreateSalePostFragment.this.imageRecVA.setContext(CreateSalePostFragment.this.getContext());
+        imageRecVA.setContext(CreateSalePostFragment.this.getContext());
         imageRecView.setAdapter(imageRecVA);
-        LinearLayoutManager llM = new LinearLayoutManager(CreateSalePostFragment.this.getContext());
+        LinearLayoutManager llM = new LinearLayoutManager(this.getContext());
         llM.setOrientation(LinearLayoutManager.VERTICAL);
-        CreateSalePostFragment.this.imageRecView.setLayoutManager(llM);
+        imageRecView.setLayoutManager(llM);
 
         registerForContextMenu(imageRecView);
+
+
+
+        prevPhotoRecView = view.findViewById(R.id.previouslyAddedImageRecView);
+        prevPhoto = view.findViewById(R.id.prevPhotoTextView);
+        prevPhotoRecVA.setContext(this.getContext());
+        prevPhotoRecView.setAdapter(prevPhotoRecVA);
+
+        LinearLayoutManager llM2 = new LinearLayoutManager(this.getContext());
+        llM2.setOrientation(LinearLayoutManager.VERTICAL);
+        prevPhotoRecView.setLayoutManager(llM2);
 
         saleAreaName = view.findViewById(R.id.saleAreaName);
         saleFullAddress = view.findViewById(R.id.saleFullAddress);
@@ -145,17 +217,16 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         saleElevator = view.findViewById(R.id.saleElevator);
         saleGenerator = view.findViewById(R.id.saleGenerator);
         saleGarage = view.findViewById(R.id.saleGarage);
+        saleSecurity = view.findViewById(R.id.saleSecurity);
         salePayment = view.findViewById(R.id.salePayment);
-        saleSecurity =view.findViewById(R.id.saleSecurity);
         saleDescription = view.findViewById(R.id.saleDescription);
-        saleSituation = view.findViewById(R.id.saleSituation);
+        saleSituation = view.findViewById(R.id.rdTenant);
         New = view.findViewById(R.id.rbNew);
         established = view.findViewById(R.id.rbEstablished);
         postAd = view.findViewById(R.id.buttonSalePostAd);
 
         selectPhotos = view.findViewById(R.id.select_sale);
     }
-
     @Override
     public void onClick(View v) {
 
@@ -166,11 +237,82 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
             case R.id.buttonSalePostAd:PostAd:
             Toast.makeText(getContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
-                createPost(v);
+                if(EDIT_MODE) {
+                    editPost(v);
+                } else {
+                    createPost(v);
+                }
 
                 break;
             default:
                 break;
+        }
+
+    }
+
+    private void editPost(View v) {
+        Log.i(TAG, "in edit post");
+        if(checkData()) {
+            postAd.setEnabled(false);
+
+            final List<String> fileExtensions;
+
+            SaleAdvertisement adWithNewInfo = makeAd();
+            adWithNewInfo.setAdvertisementID(saleAd.getAdvertisementID());
+            adWithNewInfo.setAdvertiserUID(saleAd.getAdvertiserUID());
+            saleAd = adWithNewInfo;
+
+            if(!imageUri.isEmpty()) {
+                fileExtensions = getFileExtensions(imageUri);
+                processUploads(fileExtensions, imageUri);
+            } else {
+
+            }
+
+        } else {
+            Log.i(TAG, "check data failed for editing");
+        }
+    }
+
+    private void processUploads(List<String> fileExtensions, List<Uri> imageUri) {
+        final int newTotal = saleAd.getNumberOfImages() + imageUri.size();
+        final String adId = saleAd.getAdvertisementID();
+        final SaleAdvertisement toEdit = saleAd;
+        final List<String> downloadLinks = new ArrayList<>();
+        final int[] uploadCount = new int[1];
+        uploadCount[0] = 0;
+        for(int imageCount = 0; imageCount < imageUri.size(); imageCount++) {
+            final int total = imageUri.size();
+            advertisementService.uploadPhoto(imageUri.get(imageCount), fileExtensions.get(imageCount), adId, new AdInterface.OnPhotoUploadListener<String>() {
+                @Override
+                public void ongoingProgress(int percentage) {
+
+                }
+
+                @Override
+                public void onCompleteNotify(String downloadUrl) {
+                    uploadCount[0]++;
+                    downloadLinks.add(downloadUrl);
+                    if(uploadCount[0] == total) {
+                        List<String> finalUrls = toEdit.getUrlToImages();
+                        finalUrls.addAll(downloadLinks);
+                        toEdit.setUrlToImages( finalUrls );
+                        toEdit.setNumberOfImages( finalUrls.size() );
+
+                        advertisementService.editAd(adId, toEdit, new AdInterface.OnAdEditListener<Boolean>() {
+                            @Override
+                            public void OnAdEdited(Boolean edited, String error) {
+                                if(!edited) {
+                                    Log.i(TAG, error);
+                                } else {
+                                    Log.i(TAG, "Ad edited successfully");
+                                    startActivity(new Intent(CreateSalePostFragment.this.getContext().getApplicationContext(), AdFeed.class));
+                                }
+                            }
+                        });
+                    }
+                }
+            });
         }
 
     }
@@ -340,9 +482,19 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
         switch ( item.getItemId() ) {
             case R.id.remove_photo:
-                imageUri.remove( getAdapterPosition() );
-                imageRecVA.setUrlArrayList(imageUri);
-                imageRecVA.notifyDataSetChanged();
+                if(prevPhotoAdapterPosition == -1) {
+                    Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition());
+                    imageUri.remove(getAdapterPosition());
+                    imageRecVA.setUrlArrayList(imageUri);
+                    imageRecVA.notifyDataSetChanged();
+                }else {
+                    Log.i(TAG, "prev photo adapter postition = "+ prevPhotoAdapterPosition);
+                    saleAd.getUrlToImages().remove(prevPhotoAdapterPosition);
+                    saleAd.setNumberOfImages(saleAd.getNumberOfImages() - 1);
+                    prevPhotoRecVA.setUrlArrayList(saleAd.getUrlToImages());
+                    prevPhotoRecVA.notifyDataSetChanged();
+                    prevPhotoAdapterPosition = -1;
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);

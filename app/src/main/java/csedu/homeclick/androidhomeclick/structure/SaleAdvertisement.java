@@ -1,7 +1,6 @@
 package csedu.homeclick.androidhomeclick.structure;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class SaleAdvertisement extends Advertisement implements Serializable {
     private String propertyCondition;
@@ -28,9 +27,7 @@ public class SaleAdvertisement extends Advertisement implements Serializable {
         this.description = description;
     }
 
-    public String getPropertyCondition() {
-        return propertyCondition;
-    }
+    public String getPropertyCondition() { return propertyCondition; }
 
     public void setPropertyCondition(String propertyCondition) {
         this.propertyCondition = propertyCondition;
