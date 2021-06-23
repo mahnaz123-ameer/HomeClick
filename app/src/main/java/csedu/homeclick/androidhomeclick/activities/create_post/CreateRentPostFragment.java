@@ -129,7 +129,6 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         if(EDIT_MODE) {
             setWidgets();
         }
-
         setClickListeners();
 
 
@@ -189,6 +188,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
         Log.i(TAG, "in bind widgets");
         userService = new UserService();
+
 
         imageRecView = view.findViewById(R.id.imageRecView);
         imageRecVA.setContext(CreateRentPostFragment.this.getContext());
