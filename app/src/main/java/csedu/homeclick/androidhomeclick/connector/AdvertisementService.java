@@ -59,5 +59,7 @@ public class AdvertisementService {
         adDealer.deleteParticularAd(id, onAdDeletedListener);
     }
 
-
+    public void editAd(String id, Advertisement advertisement, AdInterface.OnAdEditListener<Boolean> onAdEditListener) {
+        adDealer.editParticularAd(id, advertisement, onAdEditListener);
+    }
 }

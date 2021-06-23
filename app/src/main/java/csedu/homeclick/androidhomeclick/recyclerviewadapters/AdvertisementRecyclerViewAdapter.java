@@ -1,4 +1,4 @@
-package csedu.homeclick.androidhomeclick.navigator;
+package csedu.homeclick.androidhomeclick.recyclerviewadapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;

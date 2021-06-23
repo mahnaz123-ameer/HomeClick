@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.navigator.AdvertisementRecyclerViewAdapter;
+import csedu.homeclick.androidhomeclick.recyclerviewadapters.AdvertisementRecyclerViewAdapter;
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;

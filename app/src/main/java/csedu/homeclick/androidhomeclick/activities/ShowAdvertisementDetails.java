@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,22 +19,22 @@ import android.widget.Toast;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.activities.create_post.CreateRentPostFragment;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
-import csedu.homeclick.androidhomeclick.navigator.ImageRecyclerViewAdapter;
+import csedu.homeclick.androidhomeclick.recyclerviewadapters.ImageRecyclerViewAdapter;
 import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
-public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener, AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener {
+public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener, AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener, ImageRecyclerViewAdapter.OnPhotoClickListener {
     public static final String TAG = "ShowAdDetails";
 
     private UserService userService;
@@ -78,6 +77,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         delete.setOnClickListener(this::onClick);
         bookmark.setOnClickListener(this::onClick);
         callCard.setOnClickListener(this::onClick);
+        adImagesVA.setOnPhotoClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -174,6 +174,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         adTypeTV.setText(rentAd.getAdType());
         description.setText(rentAd.getDescription());
 
+        
         bedroomTV.setText(Integer.toString(rentAd.getNumberOfBedrooms()));
         bathroomTV.setText(Integer.toString(rentAd.getNumberOfBathrooms()));
         balconyTV.setText(Integer.toString(rentAd.getNumberOfBalconies()));
@@ -294,12 +295,21 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         switch (v.getId()) {
             case R.id.edit_ad:
                 Toast.makeText(this.getApplicationContext(), "Edit options not programmed yet.", Toast.LENGTH_SHORT).show();
+                Intent destination = new Intent(this, CreatePost.class);
+                if(rentAd != null) {
+                    destination.putExtra("Ad", rentAd);
+                } else {
+                    destination.putExtra("Ad", saleAd);
+                }
+                startActivity(destination);
+                
                 break;
 
             case R.id.delete_ad:
-                if(userService.isSignedIn() && userService.getUserUID().equals( rentAd.getAdvertiserUID() )) {
-                    final String adId = rentAd.getAdvertisementID();
-                    final int totalToDelete = rentAd.getNumberOfImages();
+                final Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+                if(userService.isSignedIn() && userService.getUserUID().equals( received.getAdvertiserUID() )) {
+                    final String adId = received.getAdvertisementID();
+                    final int totalToDelete = received.getNumberOfImages();
                     final int[] alreadyDeleted = new int[1];
                     alreadyDeleted[0] = 0;
                     adService.deletePhotoFolder(adId, totalToDelete, new AdInterface.OnPhotoFolderDeletedListener<Boolean>() {
@@ -370,5 +380,16 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         advertiser.setEmailAddress(data1.getEmailAddress());
         advertiser.setUID(data1.getUID());
         attachValues();
+    }
+
+    @Override
+    public void onPhotoClick(int position) {
+        int total = 0;
+        if(rentAd != null) {
+            total = rentAd.getNumberOfImages();
+        } else {
+            total = saleAd.getNumberOfImages();
+        }
+        Toast.makeText(this, "Image " + position + 1 + " out of " + total, Toast.LENGTH_SHORT).show();
     }
 }

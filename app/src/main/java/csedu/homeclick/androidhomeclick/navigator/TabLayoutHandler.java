@@ -20,6 +20,17 @@ public class TabLayoutHandler {
         tabLayoutHandler = new TabLayoutHandler(tabL, viewPager2);
     }
 
+    private static void selectPage(int pageIndex){
+        tabLayout.setScrollPosition(pageIndex,0f,true);
+        viewPager.setCurrentItem(pageIndex);
+    }
+
+    public static void setInstance(TabLayout tabL, ViewPager2 viewPager2, int pageIndex) {
+        tabLayoutHandler = new TabLayoutHandler(tabL, viewPager2);
+        TabLayout.Tab tab = tabLayout.getTabAt(pageIndex);
+        selectPage(pageIndex);
+    }
+
     public static void handle(Context context) {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

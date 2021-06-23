@@ -281,18 +281,50 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     @Override
     public void deleteParticularAd(String id, OnAdDeletedListener<Boolean> onAdDeletedListener) {
         DocumentReference docRef = db.collection(AD_TABLE).document(id);
-
+        final DocumentReference adIdRef = db.collection("AdID").document(id);
         docRef.delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        onAdDeletedListener.OnAdDeleted(true, "");
+                        adIdRef.delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        onAdDeletedListener.OnAdDeleted(true, "");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull @NotNull Exception e) {
+                                        onAdDeletedListener.OnAdDeleted(false, e.getMessage());
+                                    }
+                                });
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {
                         onAdDeletedListener.OnAdDeleted(false, e.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void editParticularAd(final String id, final Advertisement advertisement, final OnAdEditListener<Boolean> onAdEditListener) {
+        DocumentReference docRef = db.collection(AD_TABLE).document(id);
+
+        docRef.set(advertisement)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        onAdEditListener.OnAdEdited(true, "");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        onAdEditListener.OnAdEdited(false, e.getMessage());
                     }
                 });
     }

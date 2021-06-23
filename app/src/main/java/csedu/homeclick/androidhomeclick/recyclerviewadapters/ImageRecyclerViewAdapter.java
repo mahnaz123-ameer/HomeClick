@@ -1,8 +1,6 @@
-package csedu.homeclick.androidhomeclick.navigator;
+package csedu.homeclick.androidhomeclick.recyclerviewadapters;
 
 import android.content.Context;
-import android.media.Image;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import csedu.homeclick.androidhomeclick.R;
 

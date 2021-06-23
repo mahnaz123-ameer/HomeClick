@@ -29,6 +29,7 @@ import android.widget.EditText;
 
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -46,13 +47,15 @@ import csedu.homeclick.androidhomeclick.activities.AdFeed;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.navigator.ImageRecyclerViewAdapter;
+import csedu.homeclick.androidhomeclick.recyclerviewadapters.ImageRecyclerViewAdapter;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 
 
 public class CreateRentPostFragment extends Fragment implements View.OnClickListener, CalendarView.OnDateChangeListener, ImageRecyclerViewAdapter.OnPhotoClickListener{
     public static final String TAG = "CreateRentPostFragment";
+
+    private Boolean EDIT_MODE = false;
     private EditText rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies;
     private EditText rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription;
     private CheckBox rentGas, rentElevator, rentGenerator, rentGarage, rentSecurity;
@@ -64,11 +67,14 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private Button postAd, selectPhotos;
 
     private int adapterPosition;
+    private int prevPhotoAdapterPosition;
 
-    private RecyclerView imageRecView;
+    private RecyclerView imageRecView, prevPhotoRecView;
+    private TextView prevPhoto;
     private ImageRecyclerViewAdapter imageRecVA = new ImageRecyclerViewAdapter();
+    private ImageRecyclerViewAdapter prevPhotoRecVA = new ImageRecyclerViewAdapter();
 
-
+    private RentAdvertisement rentAd = null;
 
 
     private UserService userService;
@@ -111,7 +117,21 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_create_rent_post, container, false);
 
         bindWidgets(view);
+
+        if( getActivity().getIntent().getExtras() != null) {
+            Advertisement received = (Advertisement) getActivity().getIntent().getExtras().get("Ad");
+            if(received.getAdType().equals("Rent")) {
+                rentAd = (RentAdvertisement) received;
+                EDIT_MODE = true;
+            }
+        }
+
+        if(EDIT_MODE) {
+            setWidgets();
+        }
+
         setClickListeners();
+
 
         return view;
     }
@@ -124,19 +144,71 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         selectPhotos.setOnClickListener(this);
     }
 
+    private void setWidgets() {
+        prevPhotoRecView.setVisibility(View.VISIBLE);
+        prevPhoto.setVisibility(View.VISIBLE);
+
+        prevPhotoRecVA.setContext(this.getContext());
+        prevPhotoRecVA.setUrlArrayList(rentAd.getUrlToImages());
+        prevPhotoRecVA.notifyDataSetChanged();
+        prevPhotoRecVA.setOnPhotoClickListener(new ImageRecyclerViewAdapter.OnPhotoClickListener() {
+            @Override
+            public void onPhotoClick(int position) {
+                CreateRentPostFragment.this.prevPhotoAdapterPosition = position;
+            }
+        });
+        registerForContextMenu(prevPhotoRecView);
+
+        rentAreaName.setText(rentAd.getAreaName());
+        rentFullAddress.setText(rentAd.getFullAddress());
+        rentBedrooms.setText(Integer.toString( rentAd.getNumberOfBedrooms() ));
+        rentBathrooms.setText(Integer.toString(rentAd.getNumberOfBathrooms()));
+        rentBalconies.setText(Integer.toString(rentAd.getNumberOfBalconies()));
+        rentFloor.setText(Integer.toString( rentAd.getFloor() ));
+        rentFloorSpace.setText(Integer.toString( rentAd.getFloorSpace() ));
+        rentGas.setChecked(rentAd.getGasAvailability());
+        rentElevator.setChecked(rentAd.getElevator());
+        rentGenerator.setChecked(rentAd.getGenerator());
+        rentGarage.setChecked(rentAd.getGarageSpace());
+        rentSecurity.setChecked(rentAd.getSecurityGuard());
+        rentPayment.setText(Integer.toString( rentAd.getPaymentAmount() ));
+        rentUtilityCharge.setText(Integer.toString(rentAd.getUtilityCharge()));
+
+        rentDescription.setText(rentAd.getDescription());
+        if( rentAd.getTenantType().equals("Family") ) {
+            family.setChecked(true);
+        } else {
+            single.setChecked(true);
+        }
+
+        rentAvailableFrom.setDate(rentAd.getAvailableFrom().getTime());
+    }
+
     private void bindWidgets(View view) {
+        prevPhotoAdapterPosition = -1;
 
         Log.i(TAG, "in bind widgets");
         userService = new UserService();
 
         imageRecView = view.findViewById(R.id.imageRecView);
-        CreateRentPostFragment.this.imageRecVA.setContext(CreateRentPostFragment.this.getContext());
+        imageRecVA.setContext(CreateRentPostFragment.this.getContext());
         imageRecView.setAdapter(imageRecVA);
-        LinearLayoutManager llM = new LinearLayoutManager(CreateRentPostFragment.this.getContext());
+        LinearLayoutManager llM = new LinearLayoutManager(this.getContext());
         llM.setOrientation(LinearLayoutManager.VERTICAL);
-        CreateRentPostFragment.this.imageRecView.setLayoutManager(llM);
+        imageRecView.setLayoutManager(llM);
 
         registerForContextMenu(imageRecView);
+
+
+
+        prevPhotoRecView = view.findViewById(R.id.previouslyAddedImageRecView);
+        prevPhoto = view.findViewById(R.id.prevPhotoTextView);
+        prevPhotoRecVA.setContext(this.getContext());
+        prevPhotoRecView.setAdapter(prevPhotoRecVA);
+
+        LinearLayoutManager llM2 = new LinearLayoutManager(this.getContext());
+        llM2.setOrientation(LinearLayoutManager.VERTICAL);
+        prevPhotoRecView.setLayoutManager(llM2);
 
         rentAreaName = view.findViewById(R.id.rentAreaName);
         rentFullAddress = view.findViewById(R.id.rentFullAddress);
@@ -171,11 +243,82 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
             case R.id.buttonRentPostAd:
                 Toast.makeText(getContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
-                createPost(v);
+                if(EDIT_MODE) {
+                    editPost(v);
+                } else {
+                    createPost(v);
+                }
 
                 break;
             default:
                 break;
+        }
+
+    }
+
+    private void editPost(View v) {
+        Log.i(TAG, "in edit post");
+        if(checkData()) {
+            postAd.setEnabled(false);
+
+            final List<String> fileExtensions;
+
+            RentAdvertisement adWithNewInfo = makeAd();
+            adWithNewInfo.setAdvertisementID(rentAd.getAdvertisementID());
+            adWithNewInfo.setAdvertiserUID(rentAd.getAdvertiserUID());
+            rentAd = adWithNewInfo;
+
+            if(!imageUri.isEmpty()) {
+                fileExtensions = getFileExtensions(imageUri);
+                processUploads(fileExtensions, imageUri);
+            } else {
+
+            }
+
+        } else {
+            Log.i(TAG, "check data failed for editing");
+        }
+    }
+
+    private void processUploads(List<String> fileExtensions, List<Uri> imageUri) {
+        final int newTotal = rentAd.getNumberOfImages() + imageUri.size();
+        final String adId = rentAd.getAdvertisementID();
+        final RentAdvertisement toEdit = rentAd;
+        final List<String> downloadLinks = new ArrayList<>();
+        final int[] uploadCount = new int[1];
+        uploadCount[0] = 0;
+        for(int imageCount = 0; imageCount < imageUri.size(); imageCount++) {
+            final int total = imageUri.size();
+            advertisementService.uploadPhoto(imageUri.get(imageCount), fileExtensions.get(imageCount), adId, new AdInterface.OnPhotoUploadListener<String>() {
+                @Override
+                public void ongoingProgress(int percentage) {
+
+                }
+
+                @Override
+                public void onCompleteNotify(String downloadUrl) {
+                    uploadCount[0]++;
+                    downloadLinks.add(downloadUrl);
+                    if(uploadCount[0] == total) {
+                        List<String> finalUrls = toEdit.getUrlToImages();
+                        finalUrls.addAll(downloadLinks);
+                        toEdit.setUrlToImages( finalUrls );
+                        toEdit.setNumberOfImages( finalUrls.size() );
+
+                        advertisementService.editAd(adId, toEdit, new AdInterface.OnAdEditListener<Boolean>() {
+                            @Override
+                            public void OnAdEdited(Boolean edited, String error) {
+                                if(!edited) {
+                                    Log.i(TAG, error);
+                                } else {
+                                    Log.i(TAG, "Ad edited successfully");
+                                    startActivity(new Intent(CreateRentPostFragment.this.getContext().getApplicationContext(), AdFeed.class));
+                                }
+                            }
+                        });
+                    }
+                }
+            });
         }
 
     }
@@ -291,6 +434,10 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             tenantType = "Student/Working Person";
         }
 
+        if(rentAvailFrom[0] == null) {
+            rentAvailFrom[0] = new Date(System.currentTimeMillis());
+        }
+
         RentAdvertisement rent = new RentAdvertisement(areaName, fullAddress, "Rent",
                 numOfBedrooms, numOfBathrooms, gasAvail, payAmount,
                 numOfBalconies, floor, floorSpace, elevatorAvail, generatorAvail,
@@ -322,7 +469,12 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             dataOkay = false;
         }
 
-        if(this.imageUri.isEmpty()) {
+        if(this.imageUri.isEmpty() && !EDIT_MODE) {
+            dataOkay = false;
+            Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
+        }
+
+        if(EDIT_MODE && this.imageUri.isEmpty() && rentAd.getUrlToImages().isEmpty()) {
             dataOkay = false;
             Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
         }
@@ -338,10 +490,6 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         Log.i("date", rentAvailFrom[0].toString());
     }
 
-//    @Override
-//    public void onPhotoClick(int position) {
-//
-//    }
 
     @Override
     public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
@@ -359,9 +507,19 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
         switch ( item.getItemId() ) {
             case R.id.remove_photo:
-                imageUri.remove( getAdapterPosition() );
-                imageRecVA.setUrlArrayList(imageUri);
-                imageRecVA.notifyDataSetChanged();
+                if(prevPhotoAdapterPosition == -1) {
+                    Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition());
+                    imageUri.remove(getAdapterPosition());
+                    imageRecVA.setUrlArrayList(imageUri);
+                    imageRecVA.notifyDataSetChanged();
+                } else {
+                    Log.i(TAG, "prev photo adapter postition = "+ prevPhotoAdapterPosition);
+                    rentAd.getUrlToImages().remove(prevPhotoAdapterPosition);
+                    rentAd.setNumberOfImages(rentAd.getNumberOfImages() - 1);
+                    prevPhotoRecVA.setUrlArrayList(rentAd.getUrlToImages());
+                    prevPhotoRecVA.notifyDataSetChanged();
+                    prevPhotoAdapterPosition = -1;
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);

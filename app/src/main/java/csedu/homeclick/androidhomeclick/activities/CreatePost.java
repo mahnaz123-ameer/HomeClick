@@ -16,6 +16,7 @@ import csedu.homeclick.androidhomeclick.activities.create_post.CreatePostFragmen
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.navigator.TabLayoutHandler;
 import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
+import csedu.homeclick.androidhomeclick.structure.Advertisement;
 
 public class CreatePost extends AppCompatActivity {
 
@@ -34,6 +35,8 @@ public class CreatePost extends AppCompatActivity {
         bindWidgets();
     }
 
+
+
     private void bindWidgets() {
 
         tabLayout = findViewById(R.id.create_post_TabLayout);
@@ -42,7 +45,21 @@ public class CreatePost extends AppCompatActivity {
         adapter = new CreatePostFragmentAdapter(fm, getLifecycle());
         viewPager.setAdapter(adapter);
 
-        TabLayoutHandler.setInstance(tabLayout, viewPager);
+
+        Advertisement received = null;
+        if(getIntent().getExtras() != null) {
+            received = (Advertisement) getIntent().getExtras().get("Ad");
+        }
+
+        int pageIndex = 0;
+
+        if(received != null) {
+            if (received.getAdType().equals("Sale")) {
+                pageIndex = 1;
+            }
+        }
+
+        TabLayoutHandler.setInstance(tabLayout, viewPager, pageIndex);
         TabLayoutHandler.handle(this);
 
         BottomNavBarHandler.setInstance(findViewById(R.id.create_post_bottom_nav_bar),R.id.create);

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import csedu.homeclick.androidhomeclick.activities.ShowAdvertisementDetails;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.navigator.AdvertisementRecyclerViewAdapter;
+import csedu.homeclick.androidhomeclick.recyclerviewadapters.AdvertisementRecyclerViewAdapter;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 
 public class MyAdsFragment extends Fragment implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener{

@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -40,10 +39,8 @@ import csedu.homeclick.androidhomeclick.activities.AdFeed;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.navigator.ImageRecyclerViewAdapter;
+import csedu.homeclick.androidhomeclick.recyclerviewadapters.ImageRecyclerViewAdapter;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
-import csedu.homeclick.androidhomeclick.structure.Leaflet;
-import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 
 
