@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.filter.FilterRentFragment"
-    android:background="@color/white">
+    android:background="@color/dark_white">
+
+<!--    rent, area name, bed room, bathroom, gas-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,20 +18,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
-
-
-            <TextView
-                android:id="@+id/CategoryForTenants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:text="Property For"
-                android:textColor="@color/black"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-
-
 
 
             <RadioGroup
