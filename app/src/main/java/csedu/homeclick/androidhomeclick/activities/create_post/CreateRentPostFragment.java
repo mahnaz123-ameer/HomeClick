@@ -266,13 +266,24 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             RentAdvertisement adWithNewInfo = makeAd();
             adWithNewInfo.setAdvertisementID(rentAd.getAdvertisementID());
             adWithNewInfo.setAdvertiserUID(rentAd.getAdvertiserUID());
+            adWithNewInfo.setUrlToImages(rentAd.getUrlToImages());
+            adWithNewInfo.setNumberOfImages(rentAd.getUrlToImages().size());
             rentAd = adWithNewInfo;
 
             if(!imageUri.isEmpty()) {
                 fileExtensions = getFileExtensions(imageUri);
                 processUploads(fileExtensions, imageUri);
             } else {
-
+                advertisementService.editAd(rentAd.getAdvertisementID(), rentAd, new AdInterface.OnAdEditListener<Boolean>() {
+                    @Override
+                    public void OnAdEdited(Boolean edited, String error) {
+                        if(edited) {
+                            Log.i(TAG, "edited successfully");
+                        } else {
+                            Log.i(TAG, error);
+                        }
+                    }
+                });
             }
 
         } else {
@@ -284,6 +295,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         final int newTotal = rentAd.getNumberOfImages() + imageUri.size();
         final String adId = rentAd.getAdvertisementID();
         final RentAdvertisement toEdit = rentAd;
+        Log.i(TAG, "rentAd size = " + rentAd.getUrlToImages().size());
         final List<String> downloadLinks = new ArrayList<>();
         final int[] uploadCount = new int[1];
         uploadCount[0] = 0;
@@ -301,7 +313,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                     downloadLinks.add(downloadUrl);
                     if(uploadCount[0] == total) {
                         List<String> finalUrls = toEdit.getUrlToImages();
+                        Log.i(TAG, "before adding = " + finalUrls.size());
                         finalUrls.addAll(downloadLinks);
+                        Log.i(TAG, "after adding = " + finalUrls.size());
                         toEdit.setUrlToImages( finalUrls );
                         toEdit.setNumberOfImages( finalUrls.size() );
 
@@ -311,7 +325,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                                 if(!edited) {
                                     Log.i(TAG, error);
                                 } else {
-                                    Log.i(TAG, "Ad edited successfully");
+                                    Log.i(TAG, "Ad edited successfully uri wasn't empty");
                                     startActivity(new Intent(CreateRentPostFragment.this.getContext().getApplicationContext(), AdFeed.class));
                                 }
                             }

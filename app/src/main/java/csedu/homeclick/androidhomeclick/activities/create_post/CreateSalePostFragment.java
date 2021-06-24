@@ -260,13 +260,24 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             SaleAdvertisement adWithNewInfo = makeAd();
             adWithNewInfo.setAdvertisementID(saleAd.getAdvertisementID());
             adWithNewInfo.setAdvertiserUID(saleAd.getAdvertiserUID());
+            adWithNewInfo.setUrlToImages(saleAd.getUrlToImages());
+            adWithNewInfo.setNumberOfImages(saleAd.getUrlToImages().size());
             saleAd = adWithNewInfo;
 
             if(!imageUri.isEmpty()) {
                 fileExtensions = getFileExtensions(imageUri);
                 processUploads(fileExtensions, imageUri);
             } else {
-
+                advertisementService.editAd(saleAd.getAdvertisementID(), saleAd, new AdInterface.OnAdEditListener<Boolean>() {
+                    @Override
+                    public void OnAdEdited(Boolean edited, String error) {
+                        if(edited) {
+                            Log.i(TAG, "edited successfully");
+                        } else {
+                            Log.i(TAG, error);
+                        }
+                    }
+                });
             }
 
         } else {
