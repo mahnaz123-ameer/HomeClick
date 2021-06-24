@@ -1,14 +1,14 @@
 package csedu.homeclick.androidhomeclick.structure;
 
-import android.text.style.LeadingMarginSpan;
-
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashMap;
 
 public class Leaflet implements Serializable {
+    @ServerTimestamp
+    private Date postDate;
+
     private String areaName;
     private String fullAddress;
     private String adType;
@@ -29,9 +29,6 @@ public class Leaflet implements Serializable {
     public void setAdvertisementID(String advertisementID) {
         this.advertisementID = advertisementID;
     }
-
-    @ServerTimestamp
-    private Date postDate;
 
 
     public String getAdvertiserUID() {
@@ -133,7 +130,6 @@ public class Leaflet implements Serializable {
     public void setPostDate(java.util.Date postDate) {
         this.postDate = postDate;
     }
-
 
 
 //    public HashMap<String, Object> getLeafletHashMap() {

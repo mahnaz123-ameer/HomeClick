@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,10 +28,22 @@ import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
 
-//TODO: pagination implementation
+//TODO: progressbar er kaaj ekhane
 
 public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener {
     public static final String TAG = "AdFeed";
+
+
+    private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+
+            if(!recyclerView.canScrollVertically(1)) {
+                getAdCards();
+            }
+        }
+    };
 
     private RecyclerView adRecView;
     private final List<Advertisement> adArrayList = new ArrayList<>();
@@ -46,6 +59,8 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         setContentView(R.layout.activity_ad_feed);
 
         bindWidgets();
+
+        adRecView.addOnScrollListener(onScrollListener);
 
         if(getIntent().getData() != null) {
             userService.completeSignIn(getIntent(), getApplicationContext());
@@ -71,35 +86,28 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
     }
 
     private void handleAdLoading() {
+        adArrayList.clear();
         adService.refreshAds();
 
+
         getAdCards();
-
-        adRecView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if(!recyclerView.canScrollVertically(1)) {
-                    getAdCards();
-                }
-            }
-        });
     }
 
     private void getAdCards() {
+        adRecView.removeOnScrollListener(onScrollListener);
         int prevSize = adArrayList.size();
+
+        //TODO: progressbar ekhane active hobe
 
         adService.fetchAdvertisements(new AdInterface.OnAdsFetchedListener<List<Advertisement>>() {
             @Override
             public void OnAdsFetchedListener(List<Advertisement> ads) {
-                adArrayList.addAll(ads);
+                if(!ads.isEmpty())
+                    adArrayList.addAll(ads);
 
-                Log.i(TAG, "ad array list size = " + adArrayList.size());
+                //TODO: progressbar ekhane stop hobe
 
-                LinkedHashSet<Advertisement> hashSet = new LinkedHashSet<>(adArrayList);
-                adArrayList.clear();
-                adArrayList.addAll(hashSet);
+                Log.i(TAG, "ad array list size without hashset = " + adArrayList.size());
 
                 int newSize = adArrayList.size();
 
@@ -109,6 +117,8 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
                     adRecViewAdapter.notifyDataSetChanged();
 
                 }
+
+                AdFeed.this.adRecView.addOnScrollListener(onScrollListener);
             }
 
             @Override

@@ -49,14 +49,12 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     private static FirestoreDealer fd;
     private final FirebaseFirestore db;
 
-
-
-    private QueryDocumentSnapshot lastSnapshot;
+    private QueryDocumentSnapshot lastLoadedAdSnapshot;
 
 
     private FirestoreDealer() {
         db = FirebaseFirestore.getInstance();
-        lastSnapshot = null;
+        lastLoadedAdSnapshot = null;
     }
 
     public static FirestoreDealer getInstance() {
@@ -144,7 +142,7 @@ public class FirestoreDealer implements AdInterface, UserInterface {
 
     @Override
     public void setLastFetchedQuerySnapshot(QueryDocumentSnapshot querySnapshot) {
-        this.lastSnapshot = querySnapshot;
+        this.lastLoadedAdSnapshot = querySnapshot;
     }
 
     @Override
@@ -196,10 +194,8 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     public void getAdsFromDatabase(final OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
         Task<QuerySnapshot> getTenAds;
 
-        if(this.lastSnapshot == null) {
-            getTenAds = db.collection(AD_TABLE)
-                    .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING)
-                    .limit(10)
+        if(this.lastLoadedAdSnapshot == null) {
+            getTenAds = db.collection(AD_TABLE).orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).limit(10)
                     .get();
 
             getTenAds
@@ -213,7 +209,7 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                         count++;
                         adList.add(singleAd.toObject(Advertisement.class));
                         if(count == total) {
-                            lastSnapshot = singleAd;
+                            FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
                             Log.i(TAG, "snapshot change detected, size = " + count);
                         }
                     }
@@ -229,9 +225,7 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                     });
         } else {
             getTenAds = db.collection(AD_TABLE)
-                    .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING)
-                    .startAfter(lastSnapshot)
-                    .limit(10)
+                    .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).startAfter(lastLoadedAdSnapshot).limit(10)
                     .get();
 
             getTenAds
@@ -248,7 +242,7 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                         adList.add(singleAd.toObject(Advertisement.class));
                         if(count == total) {
                             Log.i(TAG, "snapshot change detected, size = " + count);
-                            lastSnapshot = singleAd;
+                            FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
                         }
                     }
 
@@ -267,7 +261,9 @@ public class FirestoreDealer implements AdInterface, UserInterface {
 
     @Override
     public void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, final String UserUID) {
-        db.collection(AD_TABLE).whereEqualTo("advertiserUID", UserUID).get()
+        Task<QuerySnapshot> fetchingPersonalAds = db.collection(AD_TABLE).orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).whereEqualTo("advertiserUID", UserUID).get();
+
+        fetchingPersonalAds
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -278,6 +274,12 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                         }
 
                         onPersonalAdsFetchedListener.OnPersonalAdsFetched(adList);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        Log.i(TAG, e.getMessage());
                     }
                 });
     }

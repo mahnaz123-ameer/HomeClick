@@ -199,8 +199,6 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
         registerForContextMenu(imageRecView);
 
-
-
         prevPhotoRecView = view.findViewById(R.id.previouslyAddedImageRecView);
         prevPhoto = view.findViewById(R.id.prevPhotoTextView);
         prevPhotoRecVA.setContext(this.getContext());
@@ -279,6 +277,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                     public void OnAdEdited(Boolean edited, String error) {
                         if(edited) {
                             Log.i(TAG, "edited successfully");
+                            startActivity(new Intent(CreateRentPostFragment.this.getContext().getApplicationContext(), AdFeed.class));
                         } else {
                             Log.i(TAG, error);
                         }
