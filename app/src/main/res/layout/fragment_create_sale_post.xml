@@ -453,7 +453,7 @@
                 android:layout_below="@id/select_sale">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/imageRecView"
+                    android:id="@+id/saleImageRecView"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
 
@@ -464,7 +464,7 @@
                     android:id="@+id/prevPhotoTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageRecView"
+                    android:layout_below="@id/saleImageRecView"
                     android:text="Previously Added Photos"
                     android:textColor = "@color/black"
                     android:textSize="18sp"
@@ -474,7 +474,7 @@
                     android:layout_centerHorizontal="true"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/previouslyAddedImageRecView"
+                    android:id="@+id/previouslyAddedSaleImageRecView"
 
                     android:layout_width="match_parent"
                     android:layout_height="350dp"

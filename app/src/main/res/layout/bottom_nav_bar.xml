@@ -16,6 +16,7 @@
         android:clickable="true"
         android:elevation="16dp"
         android:focusable="true"
+        app:labelVisibilityMode="unlabeled"
         app:itemIconTint="@color/bottom_nav_bar_selector"
         app:itemRippleColor="@color/darker_lavender"
         app:itemTextColor="@color/bottom_nav_bar_selector"
