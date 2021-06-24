@@ -186,7 +186,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         Log.i(TAG, "in bind widgets");
         userService = new UserService();
 
-        imageRecView = view.findViewById(R.id.imageRecView);
+        imageRecView = view.findViewById(R.id.saleImageRecView);
         imageRecVA.setContext(CreateSalePostFragment.this.getContext());
         imageRecView.setAdapter(imageRecVA);
         LinearLayoutManager llM = new LinearLayoutManager(this.getContext());
@@ -197,7 +197,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
 
 
-        prevPhotoRecView = view.findViewById(R.id.previouslyAddedImageRecView);
+        prevPhotoRecView = view.findViewById(R.id.previouslyAddedSaleImageRecView);
         prevPhoto = view.findViewById(R.id.prevPhotoTextView);
         prevPhotoRecVA.setContext(this.getContext());
         prevPhotoRecView.setAdapter(prevPhotoRecVA);
@@ -220,7 +220,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         saleSecurity = view.findViewById(R.id.saleSecurity);
         salePayment = view.findViewById(R.id.salePayment);
         saleDescription = view.findViewById(R.id.saleDescription);
-        saleSituation = view.findViewById(R.id.rdTenant);
+        saleSituation = view.findViewById(R.id.saleSituation);
         New = view.findViewById(R.id.rbNew);
         established = view.findViewById(R.id.rbEstablished);
         postAd = view.findViewById(R.id.buttonSalePostAd);
@@ -458,7 +458,12 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             dataOkay = false;
         }
 
-        if(this.imageUri.isEmpty()) {
+        if(this.imageUri.isEmpty() && !EDIT_MODE) {
+            dataOkay = false;
+            Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
+        }
+
+        if(EDIT_MODE && this.imageUri.isEmpty() && saleAd.getUrlToImages().isEmpty()) {
             dataOkay = false;
             Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
         }
@@ -470,7 +475,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        getActivity().getMenuInflater().inflate(R.menu.remove_photo, menu);
+        getActivity().getMenuInflater().inflate(R.menu.remove_photo_2, menu);
     }
 
     @Override
@@ -481,13 +486,13 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     @Override
     public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
         switch ( item.getItemId() ) {
-            case R.id.remove_photo:
+            case R.id.remove_photo_2:
                 if(prevPhotoAdapterPosition == -1) {
-                    Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition());
+                    Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition() + "image uri size = " + imageUri.size());
                     imageUri.remove(getAdapterPosition());
                     imageRecVA.setUrlArrayList(imageUri);
                     imageRecVA.notifyDataSetChanged();
-                }else {
+                } else {
                     Log.i(TAG, "prev photo adapter postition = "+ prevPhotoAdapterPosition);
                     saleAd.getUrlToImages().remove(prevPhotoAdapterPosition);
                     saleAd.setNumberOfImages(saleAd.getNumberOfImages() - 1);
