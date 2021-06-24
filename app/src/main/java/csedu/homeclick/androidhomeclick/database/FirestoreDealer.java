@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -23,7 +25,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Document;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,14 +44,19 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     public static final String AD_TABLE = "Advertisement";
     public static final String USER_TABLE = "Users";
     public static final String UPLOADS_FOLDER = "uploads";
+    public static final String SERVER_ENTRY_TIME = "postDate";
 
     private static FirestoreDealer fd;
     private final FirebaseFirestore db;
-    private DocumentReference lastFetchedDocument;
+
+
+
+    private QueryDocumentSnapshot lastSnapshot;
 
 
     private FirestoreDealer() {
         db = FirebaseFirestore.getInstance();
+        lastSnapshot = null;
     }
 
     public static FirestoreDealer getInstance() {
@@ -90,7 +97,8 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                         Log.i(TAG, e.getMessage());
                     }
                 } else {
-                        Log.i(TAG, task.getException().getMessage());
+                    if(task.getException() != null)
+                        Log.i(TAG,  task.getException().getMessage());
                 }
 
             }
@@ -132,6 +140,11 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                         Log.i(TAG, e.getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void setLastFetchedQuerySnapshot(QueryDocumentSnapshot querySnapshot) {
+        this.lastSnapshot = querySnapshot;
     }
 
     @Override
@@ -181,20 +194,75 @@ public class FirestoreDealer implements AdInterface, UserInterface {
 
     @Override
     public void getAdsFromDatabase(final OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
-        db.collection(AD_TABLE)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<Advertisement> adList = new ArrayList<>();
+        Task<QuerySnapshot> getTenAds;
 
-                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                            adList.add(singleAd.toObject(Advertisement.class));
+        if(this.lastSnapshot == null) {
+            getTenAds = db.collection(AD_TABLE)
+                    .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING)
+                    .limit(10)
+                    .get();
+
+            getTenAds
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    List<Advertisement> adList = new ArrayList<>();
+                    int total = queryDocumentSnapshots.size();
+                    int count = 0;
+                    for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                        count++;
+                        adList.add(singleAd.toObject(Advertisement.class));
+                        if(count == total) {
+                            lastSnapshot = singleAd;
+                            Log.i(TAG, "snapshot change detected, size = " + count);
                         }
-
-                        onAdsFetchedListener.OnAdsFetchedListener(adList);
                     }
-                });
+
+                    onAdsFetchedListener.OnAdsFetchedListener(adList);
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            onAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
+                        }
+                    });
+        } else {
+            getTenAds = db.collection(AD_TABLE)
+                    .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING)
+                    .startAfter(lastSnapshot)
+                    .limit(10)
+                    .get();
+
+            getTenAds
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    List<Advertisement> adList = new ArrayList<>();
+
+                    int total = queryDocumentSnapshots.size();
+                    int count = 0;
+
+                    for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                        count++;
+                        adList.add(singleAd.toObject(Advertisement.class));
+                        if(count == total) {
+                            Log.i(TAG, "snapshot change detected, size = " + count);
+                            lastSnapshot = singleAd;
+                        }
+                    }
+
+                    onAdsFetchedListener.OnAdsFetchedListener(adList);
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            onAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
+                        }
+                    });
+
+        }
     }
 
     @Override
