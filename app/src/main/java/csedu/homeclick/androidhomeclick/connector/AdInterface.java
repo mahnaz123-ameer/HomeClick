@@ -2,6 +2,9 @@ package csedu.homeclick.androidhomeclick.connector;
 
 import android.net.Uri;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
@@ -18,7 +21,7 @@ public interface AdInterface {
     }
 
 
-
+    void setLastFetchedQuerySnapshot(QueryDocumentSnapshot querySnapshot);
 
     //uploading a single photo
     void uploadPhoto(Uri uri, String fileExtension, String pathId, OnPhotoUploadListener<String> onPhotoUploadListener);
@@ -45,6 +48,7 @@ public interface AdInterface {
 
     interface OnAdsFetchedListener<T> {
         void OnAdsFetchedListener(T ads);
+        void OnAdFetchingFailedListener(String error);
     }
 
     void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, String userUID);

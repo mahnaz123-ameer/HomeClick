@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 
-//TODO: all issues fixed, never touch this again or not, fix it with an interface
+
 
 public class UserAuth {
     private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";

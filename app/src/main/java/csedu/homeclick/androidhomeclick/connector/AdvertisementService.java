@@ -18,6 +18,10 @@ public class AdvertisementService {
         adDealer = FirestoreDealer.getInstance();
     }
 
+    public void refreshAds() {
+        adDealer.setLastFetchedQuerySnapshot(null);
+    }
+
     public void getAdId(AdInterface.OnAdIdListener<Advertisement> onAdIdListener) {
         adDealer.getAdId(onAdIdListener);
     }

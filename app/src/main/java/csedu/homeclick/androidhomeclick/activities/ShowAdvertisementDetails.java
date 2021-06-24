@@ -1,11 +1,13 @@
 package csedu.homeclick.androidhomeclick.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -308,35 +310,28 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
             case R.id.delete_ad:
                 final Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
                 if(userService.isSignedIn() && userService.getUserUID().equals( received.getAdvertiserUID() )) {
-                    final String adId = received.getAdvertisementID();
-                    final int totalToDelete = received.getNumberOfImages();
-                    final int[] alreadyDeleted = new int[1];
-                    alreadyDeleted[0] = 0;
-                    adService.deletePhotoFolder(adId, totalToDelete, new AdInterface.OnPhotoFolderDeletedListener<Boolean>() {
-                        @Override
-                        public void OnPhotoFolderDeleted(Boolean deleted, String error) {
-                            startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
-                            if(deleted) {
-                                alreadyDeleted[0]++;
-                                Log.i(TAG, "number of the photo deleted = " + error);
-                                if(alreadyDeleted[0] == totalToDelete) {
-                                    adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
-                                        @Override
-                                        public void OnAdDeleted(Boolean deleted, String error) {
-                                            if (deleted) {
-                                                Log.i(TAG, "Ad deleted successfully");
-                                            } else {
-                                                Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
-                                                Log.i(TAG, error);
-                                            }
-                                        }
-                                    });
+
+                    AlertDialog.Builder confirmDeletion = new AlertDialog.Builder(this);
+
+                    confirmDeletion
+                            .setMessage("Are you sure you want to delete this post?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    proceedToDeletePost();
                                 }
-                            } else {
-                                Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                    AlertDialog confirmDeletionAlert = confirmDeletion.create();
+                    confirmDeletionAlert.show();
+
+
                 }
                 break;
 
@@ -357,6 +352,40 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
             default:
                 break;
         }
+    }
+
+    private void proceedToDeletePost() {
+        final Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+
+        final String adId = received.getAdvertisementID();
+        final int totalToDelete = received.getNumberOfImages();
+        final int[] alreadyDeleted = new int[1];
+        alreadyDeleted[0] = 0;
+        adService.deletePhotoFolder(adId, totalToDelete, new AdInterface.OnPhotoFolderDeletedListener<Boolean>() {
+            @Override
+            public void OnPhotoFolderDeleted(Boolean deleted, String error) {
+                startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
+                if(deleted) {
+                    alreadyDeleted[0]++;
+                    Log.i(TAG, "number of the photo deleted = " + error);
+                    if(alreadyDeleted[0] == totalToDelete) {
+                        adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
+                            @Override
+                            public void OnAdDeleted(Boolean deleted, String error) {
+                                if (deleted) {
+                                    Log.i(TAG, "Ad deleted successfully");
+                                } else {
+                                    Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
+                                    Log.i(TAG, error);
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
