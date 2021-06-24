@@ -82,16 +82,16 @@
 
                     <TextView
                         android:id="@+id/home_ad_type"
-                        android:layout_width="75dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="200dp"
+                        android:layout_marginStart="300dp"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/comfortaa_bold"
-                        android:text="@string/rent"
+                        android:text="Rent"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -151,6 +151,7 @@
                         android:id="@+id/icon_bedroom"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/icon_bedroom" />
 
                     <TextView
@@ -158,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="6dp"
                         android:layout_toEndOf="@id/icon_bedroom"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="2"
@@ -195,7 +196,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="240dp"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="1dp"
                         android:layout_marginEnd="51dp"
                         android:src="@drawable/icon_balcony" />
 
@@ -312,8 +313,9 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/facilities"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textColor="@color/darker_lavender"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <HorizontalScrollView
                     android:id="@+id/facilities_scrollview"
@@ -555,17 +557,25 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/monetary_dealings"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darker_lavender"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
 
-                <ImageView
+                <TextView
                     android:id="@+id/icon_money"
-                    android:layout_width="40dp"
+                    android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_below="@id/text_money"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/icon_money_mahnaz" />
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:text="Payment  💶"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
+
+
+<!--                    android:src="@drawable/icon_money_mahnaz" />-->
 
                 <TextView
                     android:id="@+id/home_payment"
@@ -578,18 +588,19 @@
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="10000 BDT"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/text_utility"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/icon_money"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="@string/utility"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/home_utility"
@@ -613,7 +624,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/move_in"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darker_lavender"
                     android:textSize="20sp" />
 
                 <TextView
@@ -621,14 +632,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_date"
-                    android:layout_marginStart="18dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/shape2"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/comfortaa_regular"
+                    android:padding="10dp"
                     android:text="18-07-2021"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:padding="5dp"
-                    android:background="@drawable/shape"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -638,6 +651,7 @@
                     android:textSize="20dp"
                     android:layout_marginTop="30dp"
                     android:text="Description"
+                    android:fontFamily="@font/comfortaa_regular"
                     android:layout_below="@id/move_in_date"
                     android:id="@+id/Des"/>
 
@@ -647,25 +661,36 @@
                     android:layout_height="100dp"
                     android:layout_below="@id/Des"
                     app:maxCollapsedLines="3"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape2"
+                    android:backgroundTint="@color/white"
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@id/expandable_text"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/comfortaa_regular"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:text="Description"
                         android:textColor="@color/black"
-                        android:textSize="18dp"/>
+                        android:textSize="18dp"
+                        />
 
-                    <ImageButton
-                        android:id="@id/expand_collapse"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|bottom"
-                        android:background="@android:color/transparent"
-                        android:padding="16dp" />
+
+                        <ImageButton
+                            android:id="@id/expand_collapse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|bottom"
+                            android:background="@color/white"
+                            android:padding="5dp"
+                            android:hapticFeedbackEnabled="true"
+                            android:backgroundTint="@color/black"/>
+
+
+
                 </com.ms.square.android.expandabletextview.ExpandableTextView>
 
 
@@ -712,7 +737,7 @@
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:layout_width="40dp"
+                        android:layout_width="97dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="250dp"
                         android:layout_marginTop="15dp"
