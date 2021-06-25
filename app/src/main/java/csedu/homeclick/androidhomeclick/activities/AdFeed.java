@@ -11,6 +11,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -53,6 +56,8 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
     private Toolbar toolbar;
     private UserService userService;
 
+    private LinearProgressIndicator loadAds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +71,6 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
             userService.completeSignIn(getIntent(), getApplicationContext());
         }
 
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
     }
 
     @Override
@@ -97,15 +97,13 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         adRecView.removeOnScrollListener(onScrollListener);
         int prevSize = adArrayList.size();
 
-        //TODO: progressbar ekhane active hobe
+        loadAds.setVisibility(View.VISIBLE);
 
         adService.fetchAdvertisements(new AdInterface.OnAdsFetchedListener<List<Advertisement>>() {
             @Override
             public void OnAdsFetchedListener(List<Advertisement> ads) {
                 if(!ads.isEmpty())
                     adArrayList.addAll(ads);
-
-                //TODO: progressbar ekhane stop hobe
 
                 Log.i(TAG, "ad array list size without hashset = " + adArrayList.size());
 
@@ -116,9 +114,12 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
                     adRecViewAdapter.setAdCardListener(AdFeed.this);
                     adRecViewAdapter.notifyDataSetChanged();
 
+                } else {
+                    Toast.makeText(AdFeed.this, "No more ads to load.", Toast.LENGTH_SHORT).show();
                 }
 
                 AdFeed.this.adRecView.addOnScrollListener(onScrollListener);
+                AdFeed.this.loadAds.setVisibility(View.GONE);
             }
 
             @Override
@@ -133,6 +134,8 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         userService = new UserService();
         adService = new AdvertisementService();
         adRecView = findViewById(R.id.adRecView);
+        loadAds = findViewById(R.id.loading_ads);
+        loadAds.setVisibility(View.GONE);
 
         adRecView.setLayoutManager(new LinearLayoutManager(this));
         adRecView.setAdapter(adRecViewAdapter);
