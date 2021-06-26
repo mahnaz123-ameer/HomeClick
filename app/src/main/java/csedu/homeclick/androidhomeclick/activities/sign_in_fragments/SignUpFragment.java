@@ -11,13 +11,15 @@ import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 
 public class SignUpFragment extends Fragment implements View.OnClickListener{
-    private EditText name, email, phoneNumber;
+    private TextInputEditText name, email, phoneNumber;
     private CheckBox age, agreement;
     private Button sendLink;
 
@@ -73,7 +75,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener{
         String emailStr = email.getText().toString().trim();
         String nameStr = name.getText().toString().trim();
         String phoneNum = phoneNumber.getText().toString().trim();
-
         User newUser = new User(nameStr, emailStr, phoneNum);
         return newUser;
     }
