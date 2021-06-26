@@ -88,6 +88,7 @@
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="10dp"
                         android:text="Rent"
+                        android:fontFamily="@font/comfortaa_bold"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -575,7 +576,6 @@
                     />
 
 
-<!--                    android:src="@drawable/icon_money_mahnaz" />-->
 
                 <TextView
                     android:id="@+id/home_payment"

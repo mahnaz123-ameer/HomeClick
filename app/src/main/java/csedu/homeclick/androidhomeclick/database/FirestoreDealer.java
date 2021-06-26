@@ -260,6 +260,72 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     }
 
     @Override
+    public void getFilteredAdsFromDatabase(OnAdsFetchedListener<List<Advertisement>> onFilteredAdsFetchedListener, Query filterQuery) {
+        Task<QuerySnapshot> getTenAds;
+
+        if(this.lastLoadedAdSnapshot == null) {
+            getTenAds = filterQuery.orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).limit(10).get();
+
+            getTenAds
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            List<Advertisement> adList = new ArrayList<>();
+                            int total = queryDocumentSnapshots.size();
+                            int count = 0;
+                            for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                                count++;
+                                adList.add(singleAd.toObject(Advertisement.class));
+                                if(count == total) {
+                                    FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
+                                    Log.i(TAG, "snapshot change detected, size = " + count);
+                                }
+                            }
+
+                            onFilteredAdsFetchedListener.OnAdsFetchedListener(adList);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            onFilteredAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
+                        }
+                    });
+        } else {
+            getTenAds = filterQuery.orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).limit(10).startAfter(lastLoadedAdSnapshot).get();
+
+            getTenAds
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            List<Advertisement> adList = new ArrayList<>();
+
+                            int total = queryDocumentSnapshots.size();
+                            int count = 0;
+
+                            for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                                count++;
+                                adList.add(singleAd.toObject(Advertisement.class));
+                                if(count == total) {
+                                    Log.i(TAG, "snapshot change detected, size = " + count);
+                                    FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
+                                }
+                            }
+
+                            onFilteredAdsFetchedListener.OnAdsFetchedListener(adList);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            onFilteredAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
+                        }
+                    });
+
+        }
+    }
+
+    @Override
     public void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, final String UserUID) {
         Task<QuerySnapshot> fetchingPersonalAds = db.collection(AD_TABLE).orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).whereEqualTo("advertiserUID", UserUID).get();
 

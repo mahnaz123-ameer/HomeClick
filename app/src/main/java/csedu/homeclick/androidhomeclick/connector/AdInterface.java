@@ -3,6 +3,7 @@ package csedu.homeclick.androidhomeclick.connector;
 import android.net.Uri;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.List;
@@ -50,6 +51,9 @@ public interface AdInterface {
         void OnAdsFetchedListener(T ads);
         void OnAdFetchingFailedListener(String error);
     }
+
+    void getFilteredAdsFromDatabase(OnAdsFetchedListener<List<Advertisement>> onFilteredAdsFetchedListener, Query filterQuery);
+
 
     void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, String userUID);
 

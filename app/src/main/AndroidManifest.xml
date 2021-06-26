@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".activities.ShowAdvertisementDetails"></activity>
-<!--        <activity android:name=".activities.create_post.AddPhotos" />-->
+
         <activity
             android:name=".activities.Filter"
             android:windowSoftInputMode="adjustPan" />

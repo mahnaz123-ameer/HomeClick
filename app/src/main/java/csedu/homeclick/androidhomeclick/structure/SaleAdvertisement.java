@@ -21,7 +21,7 @@ public class SaleAdvertisement extends Advertisement implements Serializable {
         this.description = description;
     }
 
-    public SaleAdvertisement(String name, String address, String sale, String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, int numberOfImages, String propertyCondition, String description, Boolean securityAvail) {
+    public SaleAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms, Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace, Boolean elevator, Boolean generator, Boolean garageSpace, int numberOfImages, String propertyCondition, String description, Boolean securityAvail) {
         super(areaName, fullAddress, adType, numberOfBedrooms, numberOfBathrooms, gasAvailability, paymentAmount, numberOfBalconies, floor, floorSpace, elevator, generator, garageSpace, numberOfImages);
         this.propertyCondition = propertyCondition;
         this.description = description;

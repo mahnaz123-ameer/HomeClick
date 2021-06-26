@@ -5,7 +5,9 @@ import android.net.Uri;
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.database.FirestoreDealer;
+import csedu.homeclick.androidhomeclick.database.QueryBuilder;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
+import csedu.homeclick.androidhomeclick.structure.FilterCriteria;
 import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 
@@ -65,5 +67,10 @@ public class AdvertisementService {
 
     public void editAd(String id, Advertisement advertisement, AdInterface.OnAdEditListener<Boolean> onAdEditListener) {
         adDealer.editParticularAd(id, advertisement, onAdEditListener);
+    }
+
+    public void fetchFilteredAds(AdInterface.OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener, FilterCriteria filterCriteria) {
+        QueryBuilder filterQueryBuilder = new QueryBuilder(filterCriteria);
+        adDealer.getFilteredAdsFromDatabase(onAdsFetchedListener, filterQueryBuilder.buildQuery());
     }
 }

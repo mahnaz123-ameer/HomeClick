@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,11 +17,10 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
+
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.activities.create_post.CreateRentPostFragment;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
@@ -30,20 +28,24 @@ import csedu.homeclick.androidhomeclick.recyclerviewadapters.AdvertisementRecycl
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.navigator.TopAppBarHandler;
 import csedu.homeclick.androidhomeclick.structure.Advertisement;
+import csedu.homeclick.androidhomeclick.structure.FilterCriteria;
 
-//TODO: progressbar er kaaj ekhane
 
 public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener {
     public static final String TAG = "AdFeed";
 
 
-    private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+    private final RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
 
             if(!recyclerView.canScrollVertically(1)) {
-                getAdCards();
+                if(receivedCriteria == null) {
+                    getAdCards();
+                } else {
+                    getFilteredAdCards();
+                }
             }
         }
     };
@@ -57,6 +59,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
     private UserService userService;
 
     private LinearProgressIndicator loadAds;
+    private FilterCriteria receivedCriteria = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
             userService.completeSignIn(getIntent(), getApplicationContext());
         }
 
+
     }
 
     @Override
@@ -82,10 +86,67 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
             toolbar.getMenu().getItem(2).setTitle("Sign in");
         }
 
-        handleAdLoading();
+        if(getIntent().getExtras() != null) {
+            receivedCriteria = (FilterCriteria) getIntent().getExtras().get("FilterCriteria");
+        } else {
+            receivedCriteria = null;
+        }
+
+        if(receivedCriteria == null) {
+            handleRegularAdLoading();
+        } else {
+            handleFilteredAdLoading();
+        }
     }
 
-    private void handleAdLoading() {
+    private void handleFilteredAdLoading() {
+        Log.i(TAG, "in handle filter ad loading");
+        adArrayList.clear();
+        adService.refreshAds();
+
+        getFilteredAdCards();
+    }
+
+    private void getFilteredAdCards() {
+        Log.i(TAG, "in get filtered ad cards");
+        adRecView.removeOnScrollListener(onScrollListener);
+
+        loadAds.setVisibility(View.VISIBLE);
+
+        int prevSize = adArrayList.size();
+        adService.fetchFilteredAds(new AdInterface.OnAdsFetchedListener<List<Advertisement>>() {
+            @Override
+            public void OnAdsFetchedListener(List<Advertisement> ads) {
+                if(!ads.isEmpty())
+                    adArrayList.addAll(ads);
+
+                Log.i(TAG, "ad array list size without hashset = " + adArrayList.size());
+
+                int newSize = adArrayList.size();
+
+                if(prevSize != newSize) {
+                    adRecViewAdapter.setAdvertisementArrayList(adArrayList);
+                    adRecViewAdapter.setAdCardListener(AdFeed.this);
+                    adRecViewAdapter.notifyDataSetChanged();
+
+                } else {
+                    Toast.makeText(AdFeed.this, "No more ads to load.", Toast.LENGTH_SHORT).show();
+                }
+
+                AdFeed.this.adRecView.addOnScrollListener(onScrollListener);
+                AdFeed.this.loadAds.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void OnAdFetchingFailedListener(String error) {
+                Log.i(TAG, error);
+            }
+        }, receivedCriteria);
+
+    }
+
+    private void handleRegularAdLoading() {
+        Log.i(TAG, "in handle regular ad loading");
         adArrayList.clear();
         adService.refreshAds();
 
@@ -150,9 +211,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
     @Override
     public void onAdClick(int position) {
         final Advertisement clickedAdvert = adArrayList.get(position);
-//        String adID = clickedAdvert.getAdvertisementID();
 
-//        Toast.makeText(this, adID + " clicked ad poster = " + clickedAdvert.getAdvertiserName(), Toast.LENGTH_SHORT).show();
         Intent targetIntent = new Intent(getApplicationContext(), ShowAdvertisementDetails.class);
 
         targetIntent.putExtra("Ad", clickedAdvert);
