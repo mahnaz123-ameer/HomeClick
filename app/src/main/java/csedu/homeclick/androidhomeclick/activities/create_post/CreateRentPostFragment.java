@@ -155,59 +155,17 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         Log.i(TAG, "in set click listeners");
         rentAvailableFrom.setOnDateChangeListener(this::onSelectedDayChange);
         postAd.setOnClickListener(this);
-
         selectPhotos.setOnClickListener(this);
-        increase_bedrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_bedrooms++;
-                rentBedrooms.setText("  "+count_bedrooms+"");
-            }
-        });
+        increase_bedrooms.setOnClickListener(this);
+        decrease_bedrooms.setOnClickListener(this);
+        increase_bathrooms.setOnClickListener(this);
+        decrease_bathrooms.setOnClickListener(this);
+        increase_balconies.setOnClickListener(this);
+        decrease_balconies.setOnClickListener(this);
 
-        decrease_bedrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_bedrooms--;
-                rentBedrooms.setText("  "+count_bedrooms +"");
-
-            }
-        });
-
-        increase_bathrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_bathrooms++;
-                rentBathrooms.setText("  "+count_bathrooms+"");
-            }
-        });
-
-        decrease_bathrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_bathrooms--;
-                rentBathrooms.setText("  "+count_bathrooms +"");
-
-            }
-        });
-
-        increase_balconies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_balconies++;
-                rentBalconies.setText("  "+count_balconies+"");
-            }
-        });
-
-        decrease_balconies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_balconies--;
-                rentBalconies.setText("  "+count_balconies +"");
-
-            }
-        });
     }
+
+
 
     private void setWidgets() {
         prevPhotoRecView.setVisibility(View.VISIBLE);
@@ -328,6 +286,33 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 }
 
                 break;
+
+            case R.id.increase_bedrooms:
+                count_bedrooms++;
+                rentBedrooms.setText("  "+count_bedrooms+"");
+                break;
+
+            case R.id.decrease_bedrooms:
+                count_bedrooms--;
+                rentBedrooms.setText("  "+count_bedrooms+"");
+                break;
+            case R.id.increase_bathrooms:
+                count_bathrooms++;
+                rentBathrooms.setText("  "+count_bathrooms+"");
+                break;
+            case R.id.decrease_bathrooms:
+                count_bathrooms--;
+                rentBathrooms.setText("  "+count_bathrooms+"");
+                break;
+            case R.id.increase_balconies:
+                count_balconies++;
+                rentBalconies.setText("  "+count_balconies+"");
+                break;
+            case R.id.decrease_balconies:
+                count_balconies--;
+                rentBalconies.setText("  "+count_balconies+"");
+                break;
+
             default:
                 break;
         }

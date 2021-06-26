@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
-                        android:layout_marginStart="270dp"
+                        android:layout_marginStart="250dp"
                         android:orientation="horizontal"
                         android:layout_below="@id/address_portion">
 
@@ -116,9 +116,22 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:padding="10dp"
-                            android:src="@drawable/icon_bookmark"
+                            android:src="@drawable/unsaved"
                             android:backgroundTint="@color/darker_lavender"
                             android:background="@drawable/shape3"/>
+
+
+                        <ImageButton
+                            android:id="@+id/remove_ad"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:src="@drawable/icon_bookmark"
+                            android:padding="10dp"
+                            android:background="@drawable/shape3"
+                            android:visibility="gone"
+                            android:backgroundTint="@color/darker_lavender"/>
 
                         <ImageButton
                             android:id="@+id/edit_ad"
