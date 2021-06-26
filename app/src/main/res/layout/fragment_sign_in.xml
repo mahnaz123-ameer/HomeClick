@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_white"
+    android:background="#D5FFFFFF"
     android:padding="20dp"
     tools:context=".activities.sign_in_fragments.SignInFragment">
 
@@ -40,7 +40,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="2"
             android:autofillHints="@string/email"
-            android:background="@drawable/shape"
+            android:background="@drawable/shape3"
             android:fontFamily="@font/comfortaa_regular"
             android:inputType="textEmailAddress"
             android:labelFor="@id/editEmail"
@@ -62,6 +62,7 @@
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/darker_lavender"
         android:fontFamily="@font/comfortaa_regular"
+        android:background="@drawable/shape3"
         android:gravity="center"
         android:text="@string/send_link_in_mail"
         android:textColor="@color/white" />
