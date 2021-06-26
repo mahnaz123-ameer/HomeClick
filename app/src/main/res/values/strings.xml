@@ -49,4 +49,10 @@
     <string name="rent_out_my_place">Rent Out My Place</string>
     <string name="sell_my_place">Sell My Place</string>
     <string name="remove">Remove</string>
+    <string name="any">Any</string>
+    <string name="choose_ad_type">CHOOSE AD TYPE</string>
+    <string name="enter_maximum_payment_amount">Enter maximum payment amount</string>
+    <string name="enter_number_of_bathrooms">Enter number of bathrooms</string>
+    <string name="enter_number_of_bedrooms">Enter number of bedrooms</string>
+    <string name="apply_filter">APPLY FILTER</string>
 </resources>

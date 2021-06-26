@@ -90,11 +90,11 @@
                         android:id="@+id/home_ad_type"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/comfortaa_regular"
                         android:layout_marginStart="280dp"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="15dp"
                         android:text="Rent"
+                        android:fontFamily="@font/comfortaa_bold"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -636,7 +636,6 @@
                     />
 
 
-<!--                    android:src="@drawable/icon_money_mahnaz" />-->
 
                 <TextView
                     android:id="@+id/home_payment"

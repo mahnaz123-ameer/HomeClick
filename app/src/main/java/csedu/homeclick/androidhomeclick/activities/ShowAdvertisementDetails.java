@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Locale;
 
 import csedu.homeclick.androidhomeclick.R;
@@ -106,6 +107,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                 delete.setEnabled(false);
                 delete.setVisibility(View.GONE);
             }
+        } else {
+            bookmark.setVisibility(View.GONE);
+            bookmark.setEnabled(false);
         }
 
         if(((Advertisement)this.getIntent().getExtras().get("Ad")).getAdType().equals("Rent")) {
@@ -296,7 +300,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         Log.i(TAG, "in on click");
         switch (v.getId()) {
             case R.id.edit_ad:
-                Toast.makeText(this.getApplicationContext(), "Edit options not programmed yet.", Toast.LENGTH_SHORT).show();
+
                 Intent destination = new Intent(this, CreatePost.class);
                 if(rentAd != null) {
                     destination.putExtra("Ad", rentAd);
@@ -308,7 +312,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                 break;
 
             case R.id.delete_ad:
-                final Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+                Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
                 if(userService.isSignedIn() && userService.getUserUID().equals( received.getAdvertiserUID() )) {
 
                     AlertDialog.Builder confirmDeletion = new AlertDialog.Builder(this);
@@ -324,19 +328,31 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    //do nothing
                                 }
                             });
 
                     AlertDialog confirmDeletionAlert = confirmDeletion.create();
                     confirmDeletionAlert.show();
-
-
                 }
                 break;
 
             case R.id.bookmark_ad:
-                Toast.makeText(this.getApplicationContext(), "Bookmarks not programmed yet.", Toast.LENGTH_SHORT).show();
+                received = (Advertisement) getIntent().getExtras().get("Ad");
+                List<String> bookmarkList = received.getBookmarkedBy();
+
+                bookmarkList.add(userService.getUserUID());
+                received.setBookmarkedBy(bookmarkList);
+                adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
+                    @Override
+                    public void OnAdEdited(Boolean edited, String error) {
+                        if(edited) {
+                            Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.i(TAG, error);
+                        }
+                    }
+                });
                 break;
 
             case R.id.call_card:
@@ -373,16 +389,15 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                             @Override
                             public void OnAdDeleted(Boolean deleted, String error) {
                                 if (deleted) {
-                                    Log.i(TAG, "Ad deleted successfully");
+                                    Log.i(TAG, "Ad " + adId + " deleted successfully");
                                 } else {
-                                    Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
                                     Log.i(TAG, error);
                                 }
                             }
                         });
                     }
                 } else {
-                    Toast.makeText(ShowAdvertisementDetails.this, error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowAdvertisementDetails.this.getApplicationContext(), error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

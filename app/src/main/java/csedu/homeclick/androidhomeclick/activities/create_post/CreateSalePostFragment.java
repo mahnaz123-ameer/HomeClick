@@ -510,7 +510,6 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         }
 
         SaleAdvertisement sale = new SaleAdvertisement(areaName, fullAddress, "Sale",
-                areaName, fullAddress, "Sale",
                 numOfBedrooms, numOfBathrooms, gasAvail, payAmount,
                 numOfBalconies, floor, floorSpace, elevatorAvail, generatorAvail,
                 garageAvail,  imageUri.size(),situation, saleDesc, securityAvail);
@@ -596,9 +595,4 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         this.adapterPosition = adapterPosition;
     }
 
-
-//    @Override
-//    public void onPhotoClick(int position) {
-//
-//    }
 }

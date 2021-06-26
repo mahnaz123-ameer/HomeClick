@@ -44,7 +44,6 @@ public class MyAdsFragment extends Fragment implements AdvertisementRecyclerView
 
         bindWidgets(view);
 
-
         return view;
     }
 

@@ -1,86 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Filter"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".activities.Filter">
 
-    <include layout="@layout/app_bar"
-        android:id="@+id/filter_app_bar"/>
+    <include
+        android:id="@+id/filter_app_bar"
+        layout="@layout/app_bar" />
 
-    <include layout="@layout/bottom_nav_bar"
-        android:id="@+id/filter_bottom_nav_bar"/>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/HomeWallpaper"
-        android:layout_below="@+id/filter_app_bar">
+    <include
+        android:id="@+id/filter_bottom_nav_bar"
+        layout="@layout/bottom_nav_bar" />
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/AccountToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="@drawable/homewallpaper"
-            android:padding="0dp"
-            app:title=" "
-            app:titleTextColor="@color/white" />
-
-        <TextView
-            android:id="@+id/start"
-            android:layout_width="299dp"
-            android:layout_height="44dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginEnd="72dp"
-            android:background="#40FFDDEE"
-            android:contentDescription="@string/app_name"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:text="Let's Get Started"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
-
-
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/HomeWallpaper"
-        app:tabTextColor="@color/black"
-        app:tabSelectedTextColor="@color/pink"
-        app:tabIndicatorColor="@color/pink"
-        android:id="@+id/filter_TabLayout">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rent"
-            android:id="@+id/NewFilter"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buy"
-            app:tabIconTint="@color/bottom_nav_bar_selector"
-            android:id="@+id/Filter"/>
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/filter_view_pager"
-        android:layout_below="@id/filter_TabLayout"
-        android:layout_above="@id/filter_bottom_nav_bar"/>
+        android:layout_above="@id/filter_bottom_nav_bar"
+        android:layout_below="@id/filter_app_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/choose_ad_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_regular"
+                android:text="@string/choose_ad_type"
+                android:textColor="@color/black" />
+
+
+            <RadioGroup
+                android:id="@+id/choose_ad_type_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/choose_ad_type_tv"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/choose_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:text="@string/rent"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/choose_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:text="@string/sale"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/choose_any"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:text="@string/any"
+                    android:textColor="@color/black" />
+
+            </RadioGroup>
+
+
+            <EditText
+                android:id="@+id/filter_max_pay_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/choose_ad_type_radio_group"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/comfortaa_regular"
+                android:hint="@string/enter_maximum_payment_amount"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textColorHint="#8C8383" />
+
+            <EditText
+                android:id="@+id/filter_num_of_bedrooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/filter_max_pay_amount"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/comfortaa_regular"
+                android:hint="@string/enter_number_of_bedrooms"
+                android:textColor="@color/black"
+                android:inputType="number"
+                android:textColorHint="#8C8383" />
+
+            <EditText
+                android:id="@+id/filter_num_of_bathrooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/filter_num_of_bedrooms"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa_regular"
+                android:hint="@string/enter_number_of_bathrooms"
+                android:inputType="number"
+                android:textColorHint="#8C8383" />
+
+            <CheckBox
+                android:id="@+id/filter_gas_availability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/filter_num_of_bathrooms"
+                android:layout_marginTop="20dp"
+                android:buttonTint="@color/black"
+                android:fontFamily="@font/comfortaa_regular"
+                android:text="@string/gas_availability"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/apply_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/filter_gas_availability"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/darker_lavender"
+                android:text="@string/apply_filter"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

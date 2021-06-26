@@ -637,39 +637,36 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/select_rent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/imageRecView"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/imageRecView"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
 
-                android:layout_marginTop="20dp"
-                />
+                    android:layout_marginTop="20dp" />
 
                 <TextView
                     android:id="@+id/prevPhotoTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageRecView"
-                    android:text="Previously Added Photos"
-                    android:textColor = "@color/black"
-                    android:textSize="18sp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:visibility="gone"
-                    android:layout_centerHorizontal="true"/>
+                    android:text="Previously Added Photos"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/previouslyAddedImageRecView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/previouslyAddedImageRecView"
 
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_below="@id/prevPhotoTextView"
-                android:visibility="gone"
-                android:layout_marginTop="20dp"
-                />
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_below="@id/prevPhotoTextView"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
-
 
 
         </RelativeLayout>

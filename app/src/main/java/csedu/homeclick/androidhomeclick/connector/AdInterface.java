@@ -3,6 +3,7 @@ package csedu.homeclick.androidhomeclick.connector;
 import android.net.Uri;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.List;
@@ -51,6 +52,9 @@ public interface AdInterface {
         void OnAdFetchingFailedListener(String error);
     }
 
+    void getFilteredAdsFromDatabase(OnAdsFetchedListener<List<Advertisement>> onFilteredAdsFetchedListener, Query filterQuery);
+
+
     void getMyAds(OnPersonalAdsFetchedListener<List<Advertisement>> onPersonalAdsFetchedListener, String userUID);
 
     interface OnPersonalAdsFetchedListener<T> {
@@ -85,4 +89,11 @@ public interface AdInterface {
     interface OnAdEditListener<E> {
         void OnAdEdited(E edited, String error);
     }
+
+
+    void getBookmarkedAds(String id, OnBookmarkedAdsFetchListener<List<Advertisement>> onBookmarkedAdsFetchListener);
+    interface OnBookmarkedAdsFetchListener<E> {
+        void OnBookmarkedAdsFetched(E ads, String error);
+    }
+
 }
