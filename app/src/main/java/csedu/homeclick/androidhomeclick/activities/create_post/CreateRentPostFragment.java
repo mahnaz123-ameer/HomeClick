@@ -70,7 +70,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private  Button increase_bedrooms,decrease_bedrooms;
     int count_bedrooms;
 
-    private  Button increase_bathooms,decrease_bathrooms;
+    private  Button increase_bathrooms,decrease_bathrooms;
     int count_bathrooms;
 
 
@@ -174,7 +174,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             }
         });
 
-        increase_bathooms.setOnClickListener(new View.OnClickListener() {
+        increase_bathrooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count_bathrooms++;
@@ -300,7 +300,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
         increase_bedrooms = view.findViewById(R.id.increase_bedrooms);
         decrease_bedrooms = view.findViewById(R.id.decrease_bedrooms);
-        increase_bathooms = view.findViewById(R.id.increase_bathrooms);
+        increase_bathrooms = view.findViewById(R.id.increase_bathrooms);
         decrease_bathrooms = view.findViewById(R.id.decrease_bathrooms);
         increase_balconies = view.findViewById(R.id.increase_balconies);
         decrease_balconies = view.findViewById(R.id.decrease_balconies);
