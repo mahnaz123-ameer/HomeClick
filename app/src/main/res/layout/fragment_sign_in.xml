@@ -3,54 +3,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#D5FFFFFF"
     android:padding="20dp"
     tools:context=".activities.sign_in_fragments.SignInFragment">
 
 
-    <LinearLayout
-        android:id="@+id/input_field_sign_in"
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+        android:id="@+id/input_field_sign_in"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:hint="Email Address"
+        app:hintTextColor="@color/black"
+        android:textColorHint="@color/black"
+        app:helperTextTextColor="#F4364C"
+        app:helperText="Required">
 
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/comfortaa_regular"
-            android:gravity="bottom"
-            android:padding="5dp"
-            android:text="@string/email"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
             android:id="@+id/editEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="2"
-            android:autofillHints="@string/email"
-            android:background="@drawable/shape3"
-            android:fontFamily="@font/comfortaa_regular"
-            android:inputType="textEmailAddress"
-            android:labelFor="@id/editEmail"
-            android:padding="8dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="15sp" />
+            android:background="@drawable/shape3"/>
 
 
-    </LinearLayout>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/input_field_sign_in"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="fill_horizontal"-->
+<!--        android:layout_marginTop="150dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/email"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:fontFamily="@font/comfortaa_regular"-->
+<!--            android:gravity="bottom"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="@string/email"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/editEmail"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:autofillHints="@string/email"-->
+<!--            android:background="@drawable/shape3"-->
+<!--            android:fontFamily="@font/comfortaa_regular"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:labelFor="@id/editEmail"-->
+<!--            android:padding="8dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            android:textSize="15sp" />-->
+
+
+<!--    </LinearLayout>-->
 
 
     <Button
@@ -59,6 +89,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_below="@+id/input_field_sign_in"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/darker_lavender"
         android:fontFamily="@font/comfortaa_regular"
