@@ -38,5 +38,16 @@
 
     </RelativeLayout>
 
+<!--    <ProgressBar-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/progress"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:max="100"-->
+<!--        android:progress="45"-->
+<!--        android:layout_above="@id/ad_feed_bottom_bar"/>-->
+
 
 </RelativeLayout>

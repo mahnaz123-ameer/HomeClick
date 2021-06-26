@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_white"
-    tools:context=".activities.create_post.CreateRentPostFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".activities.create_post.CreateRentPostFragment"
+    android:padding="30dp">
 
 
     <LinearLayout
@@ -13,18 +15,22 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="13dp"
+            android:orientation="vertical">
+
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:text="@string/area_name"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
 
             <EditText
                 android:id="@+id/rentAreaName"
@@ -32,382 +38,58 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/shape"
+                android:background="@drawable/shape3"
                 android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/full_address"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentFullAddress"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape"
-                android:inputType="textMultiLine"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/bedrooms"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentBedrooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/bathrooms"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentBathrooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/balconies"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentBalconies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Floor"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentFloor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/shape"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Floor Space"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentFloorSpace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/shape"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/gas_availability"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/rentGas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:buttonTint="@color/black"
-                android:text="@string/available"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Elevator"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/rentElevator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:buttonTint="@color/black"
-                android:text="Available"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Generator"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/rentGenerator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:buttonTint="@color/black"
-                android:text="Available"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Garage Space"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/rentGarage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:buttonTint="@color/black"
-                android:text="Available"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="67dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Security Guard"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/rentSecurity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:buttonTint="@color/black"
-                android:text="Available"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Rent Rate"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentPayment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/shape"
-                android:hint="per month"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHint="#807A7A" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/utility"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/rentUtilityCharge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape"
-                android:inputType="number"
-                android:padding="8dp"
                 android:textColor="@color/black" />
 
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/full_address"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"/>
+
+                        <EditText
+                            android:id="@+id/rentFullAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/shape3"
+                            android:inputType="textMultiLine"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
         </LinearLayout>
+
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="13dp"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
                 android:text="@string/tenant_type"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textColor="@color/darker_lavender"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <RadioGroup
                 android:id="@+id/rdTenant"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp">
 
                 <RadioButton
@@ -432,6 +114,442 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Bedrooms"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"/>
+
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="42dp"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:backgroundTint="@color/darker_lavender"
+                android:text="+"
+                android:background="@drawable/circle"
+                android:id="@+id/increase_bedrooms"
+                />
+
+            <EditText
+                android:id="@+id/rentBedrooms"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/shape3"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/darker_lavender"
+                android:id="@+id/decrease_bedrooms"
+                />
+
+
+        </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent">
+
+         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Bathrooms"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"/>
+
+            <Button
+                android:id="@+id/increase_bathrooms"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/darker_lavender"
+                android:text="+"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/rentBathrooms"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape3"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:text="-"
+                android:textSize="20dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/darker_lavender"
+                android:id="@+id/decrease_bathrooms"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/balconies"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/increase_balconies"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/darker_lavender"
+                android:text="+"
+                android:textSize="20dp" />
+
+
+
+
+            <EditText
+                android:id="@+id/rentBalconies"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape3"
+                android:layout_marginTop="8dp"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:text="-"
+                android:textSize="20dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/darker_lavender"
+                android:id="@+id/decrease_balconies"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Floor"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Floor No"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/rentFloor"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Floor"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape3"
+                android:hint="Floor No"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/FloorSpace"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="81dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/Floor"
+                android:text="Floor Space"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/rentFloorSpace"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Floor"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/rentFloor"
+                android:background="@drawable/shape3"
+                android:hint="Floor Space"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Indoor Features"
+            android:textColor="@color/darker_lavender"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/rentGas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/gas_availability"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+            <CheckBox
+                android:id="@+id/rentGenerator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Generator"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Outdoor Features"
+            android:textColor="@color/darker_lavender"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+
+            <CheckBox
+                android:id="@+id/rentElevator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Elevator"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+
+
+            <CheckBox
+                android:id="@+id/rentGarage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Garage Space"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/rentSecurity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Security Guard"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Rent Rate"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/rentPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape3"
+                android:hint="per month"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="#807A7A" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/utility"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/rentUtilityCharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape3"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -440,12 +558,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
                 android:text="Available From"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textColor="@color/darker_lavender"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <CalendarView
                 android:id="@+id/rentAvailableFrom"
@@ -454,7 +573,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/shape"
+                android:background="@drawable/shape3"
                 android:backgroundTint="#454345"
                 android:clickable="true" />
 
@@ -470,7 +589,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:text="Description"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -481,7 +600,8 @@
                 android:layout_height="250dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/shape"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape3"
                 android:padding="8dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:textAlignment="viewStart"
@@ -498,7 +618,10 @@
 
             <Button
                 android:id="@+id/select_rent"
+                android:background="@drawable/shape3"
+                android:backgroundTint="@color/darker_lavender"
                 android:layout_width="wrap_content"
+                android:padding="5dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -548,13 +671,15 @@
 
         <Button
             android:id="@+id/buttonRentPostAd"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="200dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/darker_lavender"
+            android:background="@drawable/shape3"
+            android:padding="5dp"
             android:text="Post My Ad" />
 
     </LinearLayout>
