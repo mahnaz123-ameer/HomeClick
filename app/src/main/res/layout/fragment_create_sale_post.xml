@@ -141,9 +141,15 @@
                     android:id="@+id/saleBedrooms"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="2dp"
                     android:background="@drawable/shape3"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="13dp"/>
+
+
+
 
 
                 <Button
@@ -151,7 +157,7 @@
                     android:layout_height="25dp"
                     android:text="+"
                     android:textAlignment="center"
-                    android:textSize="20dp"
+                    android:textSize="13dp"
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
@@ -187,11 +193,14 @@
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
                     android:id="@+id/saleBathrooms"
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape3"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="2dp"
+                    android:textSize="13dp"
                     android:textColor="@color/black"/>
                 <Button
                     android:layout_width="25dp"
@@ -240,14 +249,17 @@
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@drawable/shape3"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/black"/>
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"/>
 
                 <Button
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:text="+"
-                    android:textSize="20dp"
+                    android:textSize="13dp"
                     android:background="@drawable/circle"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
@@ -274,7 +286,7 @@
                     android:id="@+id/floor_no"/>
 
                 <EditText
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:id="@+id/saleFloor"
@@ -290,7 +302,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="71dp"
+                    android:layout_marginLeft="46dp"
                     android:layout_toRightOf="@id/floor_no"
                     android:text="Floor Space"
                     android:textColor="@color/black"
@@ -298,7 +310,7 @@
 
                 <EditText
                     android:id="@+id/saleFloorSpace"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/floor_no"
                     android:layout_marginLeft="21dp"

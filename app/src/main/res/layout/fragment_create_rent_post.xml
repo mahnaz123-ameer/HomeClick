@@ -160,7 +160,7 @@
                 android:text="+"
                 android:layout_marginLeft="10dp"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
                 android:id="@+id/increase_bedrooms"
@@ -223,7 +223,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
                 android:text="+"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
@@ -282,7 +282,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
                 android:text="+"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
@@ -311,7 +311,7 @@
 
             <EditText
                 android:id="@+id/rentFloor"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Floor"
                 android:layout_marginLeft="15dp"
@@ -329,7 +329,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginLeft="81dp"
+                android:layout_marginLeft="57dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/Floor"
                 android:text="Floor Space"
@@ -338,7 +338,7 @@
 
             <EditText
                 android:id="@+id/rentFloorSpace"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Floor"
                 android:layout_marginLeft="21dp"

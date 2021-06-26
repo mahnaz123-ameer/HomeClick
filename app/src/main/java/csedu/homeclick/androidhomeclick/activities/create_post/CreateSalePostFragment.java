@@ -149,58 +149,13 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         Log.i(TAG, "in set click listeners");
         postAd.setOnClickListener(this);
         selectPhotos.setOnClickListener(this);
+        increase_sale_bedrooms.setOnClickListener(this);
+        decrease_sale_bedrooms.setOnClickListener(this);
+        increase_sale_bathrooms.setOnClickListener(this);
+        decrease_sale_bathrooms.setOnClickListener(this);
+        increase_sale_balconies.setOnClickListener(this);
+        decrease_sale_balconies.setOnClickListener(this);
 
-
-        increase_sale_bedrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_sale_bedrooms++;
-                saleBedrooms.setText("  "+count_sale_bedrooms+"");
-            }
-        });
-
-        decrease_sale_bedrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_sale_bedrooms--;
-                saleBedrooms.setText("  "+count_sale_bedrooms +"");
-
-            }
-        });
-
-        increase_sale_bathrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_sale_bathrooms++;
-                saleBathrooms.setText("  "+count_sale_bathrooms+"");
-            }
-        });
-
-        decrease_sale_bathrooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_sale_bathrooms--;
-                saleBathrooms.setText("  "+count_sale_bathrooms +"");
-
-            }
-        });
-
-        increase_sale_balconies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_sale_balconies++;
-                saleBalconies.setText("  "+count_sale_balconies+"");
-            }
-        });
-
-        decrease_sale_balconies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count_sale_balconies--;
-                saleBalconies.setText("  "+count_sale_balconies +"");
-
-            }
-        });
     }
 
     private void setWidgets() {
@@ -313,7 +268,29 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                 } else {
                     createPost(v);
                 }
-
+            case R.id.increase_bedrooms:
+                count_sale_bedrooms++;
+                saleBedrooms.setText("  "+count_sale_bedrooms+"");
+                break;
+            case R.id.decrease_bedrooms:
+                count_sale_bedrooms--;
+                saleBedrooms.setText("  "+count_sale_bedrooms +"");
+                break;
+            case R.id.increase_bathrooms:
+                count_sale_bathrooms++;
+                saleBathrooms.setText("  "+count_sale_bathrooms+"");
+                break;
+            case R.id.decrease_bathrooms:
+                count_sale_bathrooms--;
+                saleBathrooms.setText("  "+count_sale_bathrooms +"");
+                break;
+            case R.id.increase_balconies:
+                count_sale_balconies++;
+                saleBalconies.setText("  "+count_sale_balconies+"");
+                break;
+            case R.id.decrease_balconies:
+                count_sale_balconies--;
+                saleBalconies.setText("  "+count_sale_balconies +"");
                 break;
             default:
                 break;
