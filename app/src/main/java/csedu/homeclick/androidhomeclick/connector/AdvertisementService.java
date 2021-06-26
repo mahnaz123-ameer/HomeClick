@@ -73,4 +73,8 @@ public class AdvertisementService {
         QueryBuilder filterQueryBuilder = new QueryBuilder(filterCriteria);
         adDealer.getFilteredAdsFromDatabase(onAdsFetchedListener, filterQueryBuilder.buildQuery());
     }
+
+    public void fetchBookmarkedAds(AdInterface.OnBookmarkedAdsFetchListener<List<Advertisement>> onBookmarkedAdsFetchListener) {
+        adDealer.getBookmarkedAds(userService.getUserUID(), onBookmarkedAdsFetchListener);
+    }
 }

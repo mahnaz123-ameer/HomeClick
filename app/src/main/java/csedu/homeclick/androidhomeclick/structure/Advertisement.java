@@ -5,7 +5,6 @@ package csedu.homeclick.androidhomeclick.structure;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Advertisement extends Leaflet implements Serializable {
@@ -18,6 +17,7 @@ public class Advertisement extends Leaflet implements Serializable {
 
     private int numberOfImages;
     private List<String> urlToImages = new ArrayList<>();
+    private List<String> bookmarkedBy = new ArrayList<>();
 
     public Advertisement() {
         super();
@@ -114,5 +114,13 @@ public class Advertisement extends Leaflet implements Serializable {
 
     public void addToUrlList(String url) {
         this.getUrlToImages().add(url);
+    }
+
+    public List<String> getBookmarkedBy() {
+        return bookmarkedBy;
+    }
+
+    public void setBookmarkedBy(List<String> bookmarkedBy) {
+        this.bookmarkedBy = bookmarkedBy;
     }
 }

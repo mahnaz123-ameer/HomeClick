@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -461,6 +462,32 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {
                         onAdEditListener.OnAdEdited(false, e.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void getBookmarkedAds(final String id, final OnBookmarkedAdsFetchListener<List<Advertisement>> onBookmarkedAdsFetchListener) {
+        CollectionReference adCollectionRef = db.collection(AD_TABLE);
+        Query fetchingBookmarkedAds = adCollectionRef.whereArrayContains("bookmarkedBy", id);
+
+        fetchingBookmarkedAds.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Advertisement> bookmarkList = new ArrayList<>();
+
+                        for(QueryDocumentSnapshot snap: queryDocumentSnapshots) {
+                            bookmarkList.add(snap.toObject(Advertisement.class));
+                        }
+
+                        onBookmarkedAdsFetchListener.OnBookmarkedAdsFetched(bookmarkList, null);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        onBookmarkedAdsFetchListener.OnBookmarkedAdsFetched(null, e.getMessage());
                     }
                 });
     }

@@ -89,4 +89,11 @@ public interface AdInterface {
     interface OnAdEditListener<E> {
         void OnAdEdited(E edited, String error);
     }
+
+
+    void getBookmarkedAds(String id, OnBookmarkedAdsFetchListener<List<Advertisement>> onBookmarkedAdsFetchListener);
+    interface OnBookmarkedAdsFetchListener<E> {
+        void OnBookmarkedAdsFetched(E ads, String error);
+    }
+
 }
