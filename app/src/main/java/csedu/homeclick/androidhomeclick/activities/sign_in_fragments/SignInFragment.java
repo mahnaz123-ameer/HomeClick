@@ -11,13 +11,17 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.UserService;
+import csedu.homeclick.androidhomeclick.structure.User;
 
 
 public class SignInFragment extends Fragment implements View.OnClickListener {
     private Button sendLink;
-    private EditText editEmail;
+    private TextInputEditText editEmail;
     private UserService userService;
 
     public SignInFragment() {
@@ -46,9 +50,9 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
     private void bindWidgets(View view) {
         editEmail = view.findViewById(R.id.editEmail);
         sendLink = view.findViewById(R.id.sendSignInLink);
-
         userService = new UserService();
     }
+
 
     @Override
     public void onClick(View v) {
@@ -58,10 +62,19 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private Boolean checkData() {
-        String email;
-        email = editEmail.getText().toString().trim();
 
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    private Boolean checkData() {
+        Boolean allOkay = true;
+        String  email = editEmail.getText().toString().trim();
+
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editEmail.setError("Enter valid email");
+            allOkay = false;
+        }
+        return allOkay;
+
+
+
     }
 }
