@@ -61,6 +61,17 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     private RadioButton New,established;
     private Button postAd, selectPhotos;
 
+
+    private  Button increase_sale_bedrooms,decrease_sale_bedrooms;
+    int count_sale_bedrooms;
+
+    private  Button increase_sale_bathrooms,decrease_sale_bathrooms;
+    int count_sale_bathrooms;
+
+
+    private  Button increase_sale_balconies,decrease_sale_balconies;
+    int count_sale_balconies;
+
     private int adapterPosition;
     private int prevPhotoAdapterPosition;
 
@@ -138,6 +149,58 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         Log.i(TAG, "in set click listeners");
         postAd.setOnClickListener(this);
         selectPhotos.setOnClickListener(this);
+
+
+        increase_sale_bedrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_sale_bedrooms++;
+                saleBedrooms.setText("  "+count_sale_bedrooms+"");
+            }
+        });
+
+        decrease_sale_bedrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_sale_bedrooms--;
+                saleBedrooms.setText("  "+count_sale_bedrooms +"");
+
+            }
+        });
+
+        increase_sale_bathrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_sale_bathrooms++;
+                saleBathrooms.setText("  "+count_sale_bathrooms+"");
+            }
+        });
+
+        decrease_sale_bathrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_sale_bathrooms--;
+                saleBathrooms.setText("  "+count_sale_bathrooms +"");
+
+            }
+        });
+
+        increase_sale_balconies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_sale_balconies++;
+                saleBalconies.setText("  "+count_sale_balconies+"");
+            }
+        });
+
+        decrease_sale_balconies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_sale_balconies--;
+                saleBalconies.setText("  "+count_sale_balconies +"");
+
+            }
+        });
     }
 
     private void setWidgets() {
@@ -226,6 +289,14 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         postAd = view.findViewById(R.id.buttonSalePostAd);
 
         selectPhotos = view.findViewById(R.id.select_sale);
+
+
+        increase_sale_bedrooms = view.findViewById(R.id.increase_bedrooms);
+        decrease_sale_bedrooms = view.findViewById(R.id.decrease_bedrooms);
+        increase_sale_bathrooms = view.findViewById(R.id.increase_bathrooms);
+        decrease_sale_bathrooms = view.findViewById(R.id.decrease_bathrooms);
+        increase_sale_balconies = view.findViewById(R.id.increase_balconies);
+        decrease_sale_balconies = view.findViewById(R.id.decrease_balconies);
     }
     @Override
     public void onClick(View v) {

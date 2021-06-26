@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_white"
+    android:background="#D5FFFFFF"
     android:id="@+id/my_ads_rec_view"
     tools:context=".activities.profile_fragments.MyAdsFragment"/>
