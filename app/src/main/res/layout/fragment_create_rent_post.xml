@@ -135,9 +135,9 @@
                 android:textSize="15dp"
                 android:textAlignment="center"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="+"
+                android:text="-"
                 android:background="@drawable/circle"
-                android:id="@+id/increase_bedrooms"
+                android:id="@+id/decrease_bedrooms"
                 />
 
             <EditText
@@ -157,13 +157,13 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="0dp"
-                android:text="-"
+                android:text="+"
                 android:layout_marginLeft="10dp"
                 android:textAlignment="center"
                 android:textSize="20dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:id="@+id/decrease_bedrooms"
+                android:id="@+id/increase_bedrooms"
                 />
 
 
@@ -195,14 +195,14 @@
                 android:layout_marginTop="5dp"/>
 
             <Button
-                android:id="@+id/increase_bathrooms"
+                android:id="@+id/decrease_bathrooms"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="37dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="+"
+                android:text="-"
                 android:textSize="20dp" />
 
             <EditText
@@ -222,12 +222,12 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:text="-"
+                android:text="+"
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:id="@+id/decrease_bathrooms"
+                android:id="@+id/increase_bathrooms"
                 />
 
         </LinearLayout>
@@ -250,14 +250,14 @@
                 android:textSize="13sp" />
 
             <Button
-                android:id="@+id/increase_balconies"
+                android:id="@+id/decrease_balconies"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="+"
+                android:text="-"
                 android:textSize="20dp" />
 
 
@@ -281,12 +281,12 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:text="-"
+                android:text="+"
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:id="@+id/decrease_balconies"
+                android:id="@+id/increase_balconies"
                 />
 
 
