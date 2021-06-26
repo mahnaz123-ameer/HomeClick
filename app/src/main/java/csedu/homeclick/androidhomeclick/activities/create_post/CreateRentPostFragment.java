@@ -56,7 +56,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     public static final String TAG = "CreateRentPostFragment";
 
     private Boolean EDIT_MODE = false;
-    private EditText rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies;
+    private EditText rentAreaName, rentFullAddress,rentBedrooms, rentBathrooms, rentBalconies;
     private EditText rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription;
     private CheckBox rentGas, rentElevator, rentGenerator, rentGarage, rentSecurity;
 
@@ -65,6 +65,18 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private RadioGroup rentTenant;
     private RadioButton family, single;
     private Button postAd, selectPhotos;
+
+
+    private  Button increase_bedrooms,decrease_bedrooms;
+    int count_bedrooms;
+
+    private  Button increase_bathooms,decrease_bathrooms;
+    int count_bathrooms;
+
+
+    private  Button increase_balconies,decrease_balconies;
+    int count_balconies;
+
 
     private int adapterPosition;
     private int prevPhotoAdapterPosition;
@@ -81,6 +93,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private final AdvertisementService advertisementService = new AdvertisementService();
 
     List<Uri> imageUri = new ArrayList<>();
+
 
     final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
         @Override
@@ -133,6 +146,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
 
         return view;
+
+
+
     }
 
     private void setClickListeners() {
@@ -141,6 +157,56 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         postAd.setOnClickListener(this);
 
         selectPhotos.setOnClickListener(this);
+        increase_bedrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_bedrooms++;
+                rentBedrooms.setText("  "+count_bedrooms+"");
+            }
+        });
+
+        decrease_bedrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_bedrooms--;
+                rentBedrooms.setText("  "+count_bedrooms +"");
+
+            }
+        });
+
+        increase_bathooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_bathrooms++;
+                rentBathrooms.setText("  "+count_bathrooms+"");
+            }
+        });
+
+        decrease_bathrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_bathrooms--;
+                rentBathrooms.setText("  "+count_bathrooms +"");
+
+            }
+        });
+
+        increase_balconies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_balconies++;
+                rentBalconies.setText("  "+count_balconies+"");
+            }
+        });
+
+        decrease_balconies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_balconies--;
+                rentBalconies.setText("  "+count_balconies +"");
+
+            }
+        });
     }
 
     private void setWidgets() {
@@ -230,7 +296,21 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         postAd = view.findViewById(R.id.buttonRentPostAd);
 
         selectPhotos = view.findViewById(R.id.select_rent);
+
+
+        increase_bedrooms = view.findViewById(R.id.increase_bedrooms);
+        decrease_bedrooms = view.findViewById(R.id.decrease_bedrooms);
+        increase_bathooms = view.findViewById(R.id.increase_bathrooms);
+        decrease_bathrooms = view.findViewById(R.id.decrease_bathrooms);
+        increase_balconies = view.findViewById(R.id.increase_balconies);
+        decrease_balconies = view.findViewById(R.id.decrease_balconies);
+
+
+
     }
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -465,8 +545,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     private Boolean checkData() {
         Log.i(TAG, "in check data");
         Boolean dataOkay = true;
-        EditText[] allEditTexts = {rentAreaName, rentFullAddress, rentBedrooms, rentBathrooms, rentBalconies,
+        EditText[] allEditTexts = {rentAreaName,rentBedrooms, rentFullAddress, rentBathrooms, rentBalconies,
                 rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription};
+
 
         for(EditText e: allEditTexts) {
             if(e.getText().toString().trim().isEmpty()) {
@@ -474,6 +555,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 dataOkay = false;
             }
         }
+
 
         int picked = rentTenant.getCheckedRadioButtonId();
 

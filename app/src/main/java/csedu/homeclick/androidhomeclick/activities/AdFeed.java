@@ -159,4 +159,3 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         startActivity(targetIntent);
     }
 }
-
