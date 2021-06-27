@@ -28,7 +28,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:id="@+id/address_portion"
@@ -106,7 +107,7 @@
                         android:id="@+id/button_portion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="100dp"
+                        android:layout_marginTop="80dp"
                         android:layout_marginStart="250dp"
                         android:orientation="horizontal"
                         android:layout_below="@id/address_portion">
@@ -125,6 +126,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:padding="10dp"
+                            android:visibility="gone"
                             android:src="@drawable/icon_bookmark"
                             android:backgroundTint="@color/darker_lavender"
                             android:background="@drawable/shape3"/>
@@ -411,19 +413,27 @@
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
 
-                            <TextView
-                                android:id="@+id/home_gas_availability"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="110dp"
-                                android:layout_marginEnd="5dp"
-                                android:fontFamily="@font/comfortaa_regular"
-                                android:gravity="center"
-                                android:text="@string/available"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/home_gas_availability"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="110dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:fontFamily="@font/comfortaa_regular"
+                                    android:gravity="center"
+                                    android:text="Available"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                            </RelativeLayout>
+
 
                         </androidx.cardview.widget.CardView>
 
@@ -444,30 +454,49 @@
                                 android:padding="5dp"
                                 android:layout_marginTop="15dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="70dp"
-                                android:fontFamily="@font/comfortaa_regular"
-                                android:text="@string/elevator"
-                                android:textColor="@color/darker_lavender"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                            <TextView
-                                android:id="@+id/home_elevator"
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="70dp"
+                                    android:fontFamily="@font/comfortaa_regular"
+                                    android:text="Elevator"
+                                    android:layout_centerHorizontal="true"
+                                    android:textColor="@color/darker_lavender"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                            </RelativeLayout>
+
+
+
+
+                            <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="110dp"
-                                android:layout_marginEnd="5dp"
-                                android:fontFamily="@font/comfortaa_regular"
-                                android:gravity="center"
-                                android:text="@string/not_available"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                android:layout_height="match_parent">
+
+
+                                <TextView
+                                    android:id="@+id/home_elevator"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="110dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:fontFamily="@font/comfortaa_regular"
+                                    android:gravity="center"
+                                    android:text="Not available"
+                                    android:layout_centerHorizontal="true"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"/>
+
+                            </RelativeLayout>
+
 
                         </androidx.cardview.widget.CardView>
 
@@ -492,26 +521,37 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:layout_marginTop="70dp"
+                                android:layout_marginTop="1dp"
                                 android:fontFamily="@font/comfortaa_regular"
-                                android:text="@string/generator"
+                                android:text="Generator"
+                                android:layout_gravity="center"
                                 android:textColor="@color/darker_lavender"
                                 android:textSize="15sp"
                                 android:textStyle="bold"/>
 
-                            <TextView
-                                android:id="@+id/home_generator"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="110dp"
-                                android:layout_marginEnd="5dp"
-                                android:fontFamily="@font/comfortaa_regular"
-                                android:gravity="center"
-                                android:text="@string/not_available"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:textSize="15sp" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <TextView
+                                    android:id="@+id/home_generator"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="110dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:fontFamily="@font/comfortaa_regular"
+                                    android:gravity="center"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="Not available"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:textSize="15sp" />
+
+                            </RelativeLayout>
+
+
 
                         </androidx.cardview.widget.CardView>
 
@@ -536,7 +576,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:layout_marginTop="70dp"
+                                android:layout_marginTop="72dp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:gravity="center"
                                 android:text="@string/garage_space"
@@ -544,19 +584,30 @@
                                 android:textStyle="bold"
                                 android:textSize="15sp" />
 
-                            <TextView
-                                android:id="@+id/home_garage_space"
+
+                            <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="110dp"
-                                android:layout_marginEnd="5dp"
-                                android:fontFamily="@font/comfortaa_regular"
-                                android:gravity="center"
-                                android:text="@string/not_available"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" android:textStyle="bold"
-                                />
+                                android:layout_height="match_parent">
+
+
+                                <TextView
+                                    android:id="@+id/home_garage_space"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="110dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:fontFamily="@font/comfortaa_regular"
+                                    android:gravity="center"
+                                    android:text="Not available"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+
+                            </RelativeLayout>
+
 
                         </androidx.cardview.widget.CardView>
 

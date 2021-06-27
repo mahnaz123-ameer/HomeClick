@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".activities.Filter">
 
@@ -19,117 +20,299 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/filter_bottom_nav_bar"
-        android:layout_below="@id/filter_app_bar">
+        android:layout_below="@id/filter_app_bar"
+        android:layout_marginTop="53dp"
+        android:layout_marginBottom="-53dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/choose_ad_type_tv"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comfortaa_regular"
                 android:text="@string/choose_ad_type"
-                android:textColor="@color/black" />
+                android:textColor="@color/darker_lavender"
+                android:textStyle="bold"/>
 
-
-            <RadioGroup
-                android:id="@+id/choose_ad_type_radio_group"
+            <LinearLayout
+                android:id="@+id/ad_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/choose_ad_type_tv"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <RadioGroup
+                    android:id="@+id/choose_ad_type_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/choose_ad_type_tv"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/shape3">
+
+                    <RadioButton
+                        android:id="@+id/choose_rent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="@string/rent"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/choose_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="@string/sale"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/choose_any"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:text="@string/any"
+                        android:textColor="@color/black" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/bedrooms"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ad_type"
+                android:layout_marginTop="25dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Bedrooms"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/decrease_bedrooms"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/darker_lavender"
+                    android:text="-"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/filter_num_of_bedrooms"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape3"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/increase_bedrooms"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/darker_lavender"
+                    android:text="+"
+                    android:textAlignment="center"
+                    android:textSize="13dp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/bathrooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bedrooms"
                 android:layout_marginTop="10dp">
 
-                <RadioButton
-                    android:id="@+id/choose_rent"
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/black"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/rent"
-                    android:textColor="@color/black" />
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Bathrooms"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
 
-                <RadioButton
-                    android:id="@+id/choose_sale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/black"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/sale"
-                    android:textColor="@color/black" />
+                <Button
+                    android:id="@id/decrease_bathrooms"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/darker_lavender"
+                    android:text="-"
+                    android:textSize="20dp" />
 
-                <RadioButton
-                    android:id="@+id/choose_any"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/black"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/any"
-                    android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/filter_num_of_bathrooms"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape3"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
 
-            </RadioGroup>
+                <Button
+                    android:id="@+id/increase_bathrooms"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/darker_lavender"
+                    android:text="+"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
 
 
-            <EditText
-                android:id="@+id/filter_max_pay_amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/choose_ad_type_radio_group"
+            <!--            <EditText-->
+            <!--                android:id="@+id/filter_num_of_bedrooms"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_below="@id/filter_max_pay_amount"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:fontFamily="@font/comfortaa_regular"-->
+            <!--                android:hint="@string/enter_number_of_bedrooms"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:inputType="number"-->
+            <!--                android:textColorHint="#8C8383" />-->
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/filter_num_of_bathrooms"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_below="@id/filter_num_of_bedrooms"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:fontFamily="@font/comfortaa_regular"-->
+            <!--                android:hint="@string/enter_number_of_bathrooms"-->
+            <!--                android:inputType="number"-->
+            <!--                android:textColorHint="#8C8383" />-->
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Indoor Properties"
+                android:layout_below="@+id/bathrooms"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/darker_lavender"
+                android:id="@+id/indoor_features"
                 android:fontFamily="@font/comfortaa_regular"
-                android:hint="@string/enter_maximum_payment_amount"
-                android:inputType="number"
-                android:textColor="@color/black"
-                android:textColorHint="#8C8383" />
-
-            <EditText
-                android:id="@+id/filter_num_of_bedrooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/filter_max_pay_amount"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/comfortaa_regular"
-                android:hint="@string/enter_number_of_bedrooms"
-                android:textColor="@color/black"
-                android:inputType="number"
-                android:textColorHint="#8C8383" />
-
-            <EditText
-                android:id="@+id/filter_num_of_bathrooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/filter_num_of_bedrooms"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/comfortaa_regular"
-                android:hint="@string/enter_number_of_bathrooms"
-                android:inputType="number"
-                android:textColorHint="#8C8383" />
+                android:textStyle="bold"
+                android:textSize="15dp"/>
 
             <CheckBox
                 android:id="@+id/filter_gas_availability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/filter_num_of_bathrooms"
+                android:layout_below="@id/indoor_features"
                 android:layout_marginTop="20dp"
                 android:buttonTint="@color/black"
                 android:fontFamily="@font/comfortaa_regular"
                 android:text="@string/gas_availability"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="13sp"
+                android:background="@drawable/shape3"
+                android:padding="10dp"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:id="@+id/input_field_payment"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="32dp"
+                android:hint="Enter Maximum Payment Amount"
+                app:hintTextColor="@color/black"
+                android:textColorHint="@color/black"
+                app:helperTextTextColor="#F4364C"
+                app:helperText="Required"
+                android:layout_below="@id/filter_gas_availability">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="10dp"
+                    android:id="@+id/filter_max_pay_amount"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:background="@drawable/shape3"
+                    />
+
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/filter_max_pay_amount"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_below="@id/ad_type"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:fontFamily="@font/comfortaa_regular"-->
+            <!--                android:hint="@string/enter_maximum_payment_amount"-->
+            <!--                android:inputType="number"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textColorHint="#8C8383" />-->
+
 
             <Button
                 android:id="@+id/apply_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/filter_gas_availability"
+                android:layout_below="@id/input_field_payment"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/darker_lavender"
                 android:text="@string/apply_filter"
                 android:textColor="@color/white" />
+
+
 
 
         </RelativeLayout>
