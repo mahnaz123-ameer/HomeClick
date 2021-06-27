@@ -58,7 +58,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     private CardView callCard;
 
-    private ImageButton edit, delete, bookmark;
+    private ImageButton edit, delete, bookmark, bookmarked;
 
     private  ExpandableTextView description;
 
@@ -75,20 +75,30 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         Log.i(TAG, "in on create");
         
         bindWidgets();
+        setClickListeners();
+    }
 
+    private void setClickListeners() {
         edit.setOnClickListener(this::onClick);
         delete.setOnClickListener(this::onClick);
         bookmark.setOnClickListener(this::onClick);
         callCard.setOnClickListener(this::onClick);
         adImagesVA.setOnPhotoClickListener(this);
+        bookmarked.setOnClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
     private void attachValues() {
         Log.i(TAG, "in attach values");
 
+        Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+
         if(userService.isSignedIn()) {
-            if(userService.getUserUID().equals(((Advertisement)getIntent().getExtras().get("Ad")).getAdvertiserUID())) {
+            if(userService.getUserUID().equals(received.getAdvertiserUID())) {
+                Log.i(TAG, "my ad");
+                bookmarked.setEnabled(false);
+                bookmarked.setVisibility(View.GONE);
+
                 bookmark.setEnabled(false);
                 bookmark.setVisibility(View.GONE);
 
@@ -97,9 +107,27 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
                 delete.setEnabled(true);
                 delete.setVisibility(View.VISIBLE);
+
+            } else if(adIsBookmarkedByUser(received)){
+                Log.i(TAG, "ad i bookmarked");
+                bookmarked.setEnabled(true);
+                bookmarked.setVisibility(View.VISIBLE);
+
+                bookmark.setEnabled(false);
+                bookmark.setVisibility(View.GONE);
+
+                edit.setVisibility(View.GONE);
+                edit.setEnabled(false);
+
+                delete.setEnabled(false);
+                delete.setVisibility(View.GONE);
             } else {
+                Log.i(TAG, "i haven't done anything with this yet");
                 bookmark.setEnabled(true);
                 bookmark.setVisibility(View.VISIBLE);
+
+                bookmarked.setEnabled(false);
+                bookmarked.setVisibility(View.GONE);
 
                 edit.setVisibility(View.GONE);
                 edit.setEnabled(false);
@@ -110,6 +138,15 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         } else {
             bookmark.setVisibility(View.GONE);
             bookmark.setEnabled(false);
+
+            bookmarked.setVisibility(View.GONE);
+            bookmarked.setEnabled(false);
+
+            edit.setVisibility(View.GONE);
+            edit.setEnabled(false);
+
+            delete.setVisibility(View.GONE);
+            delete.setEnabled(false);
         }
 
         if(((Advertisement)this.getIntent().getExtras().get("Ad")).getAdType().equals("Rent")) {
@@ -119,6 +156,15 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         }
 
 
+    }
+
+    private boolean adIsBookmarkedByUser(Advertisement received) {
+        for(String bookmakersId: received.getBookmarkedBy()) {
+            if(userService.getUserUID().equals(bookmakersId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void setSaleAdDetails() {
@@ -271,6 +317,17 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         edit = findViewById(R.id.edit_ad);
         delete = findViewById(R.id.delete_ad);
         bookmark = findViewById(R.id.bookmark_ad);
+        bookmarked = findViewById(R.id.remove_ad);
+
+        edit.setVisibility(View.GONE);
+        delete.setVisibility(View.GONE);
+        bookmark.setVisibility(View.GONE);
+        bookmarked.setVisibility(View.GONE);
+
+        edit.setEnabled(false);
+        delete.setEnabled(false);
+        bookmarked.setEnabled(false);
+        bookmark.setEnabled(false);
 
         imageRecView = findViewById(R.id.show_ad_images);
 
@@ -312,47 +369,18 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                 break;
 
             case R.id.delete_ad:
-                Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
-                if(userService.isSignedIn() && userService.getUserUID().equals( received.getAdvertiserUID() )) {
+                confirmAndCompleteDeletion();
 
-                    AlertDialog.Builder confirmDeletion = new AlertDialog.Builder(this);
-
-                    confirmDeletion
-                            .setMessage("Are you sure you want to delete this post?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    proceedToDeletePost();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //do nothing
-                                }
-                            });
-
-                    AlertDialog confirmDeletionAlert = confirmDeletion.create();
-                    confirmDeletionAlert.show();
-                }
                 break;
 
             case R.id.bookmark_ad:
-                received = (Advertisement) getIntent().getExtras().get("Ad");
-                List<String> bookmarkList = received.getBookmarkedBy();
+                addToBookmarks();
 
-                bookmarkList.add(userService.getUserUID());
-                received.setBookmarkedBy(bookmarkList);
-                adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
-                    @Override
-                    public void OnAdEdited(Boolean edited, String error) {
-                        if(edited) {
-                            Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Log.i(TAG, error);
-                        }
-                    }
-                });
+                break;
+
+            case R.id.remove_ad:
+                removeFromBookmarks();
+
                 break;
 
             case R.id.call_card:
@@ -368,6 +396,77 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
             default:
                 break;
         }
+    }
+
+    private void confirmAndCompleteDeletion() {
+        Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+        if(userService.isSignedIn() && userService.getUserUID().equals( received.getAdvertiserUID() )) {
+
+            AlertDialog.Builder confirmDeletion = new AlertDialog.Builder(this);
+
+            confirmDeletion
+                    .setMessage("Are you sure you want to delete this post?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            proceedToDeletePost();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //do nothing
+                        }
+                    });
+
+            AlertDialog confirmDeletionAlert = confirmDeletion.create();
+            confirmDeletionAlert.show();
+        }
+    }
+
+    private void removeFromBookmarks() {
+        Log.i(TAG, "pressed remove from bookmark");
+        Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+        List<String> bookmarkList = received.getBookmarkedBy();
+
+        if(userService.isSignedIn()) {
+            bookmarkList.remove(userService.getUserUID());
+            received.setBookmarkedBy(bookmarkList);
+            adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
+                @Override
+                public void OnAdEdited(Boolean edited, String error) {
+                    Toast.makeText(ShowAdvertisementDetails.this, "Removed from bookmarks", Toast.LENGTH_SHORT).show();
+                    bookmark.setEnabled(true);
+                    bookmark.setVisibility(View.VISIBLE);
+
+                    bookmarked.setEnabled(false);
+                    bookmarked.setVisibility(View.GONE);
+                }
+            });
+        }
+    }
+
+    private void addToBookmarks() {
+        Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
+        List<String> bookmarkList = received.getBookmarkedBy();
+
+        bookmarkList.add(userService.getUserUID());
+        received.setBookmarkedBy(bookmarkList);
+        adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
+            @Override
+            public void OnAdEdited(Boolean edited, String error) {
+                if(edited) {
+                    Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
+                    bookmarked.setEnabled(true);
+                    bookmarked.setVisibility(View.VISIBLE);
+
+                    bookmark.setEnabled(false);
+                    bookmark.setVisibility(View.GONE);
+                } else {
+                    Log.i(TAG, error);
+                }
+            }
+        });
     }
 
     private void proceedToDeletePost() {
