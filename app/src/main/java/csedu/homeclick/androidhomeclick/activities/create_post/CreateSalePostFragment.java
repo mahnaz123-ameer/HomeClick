@@ -270,27 +270,27 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                 }
             case R.id.increase_bedrooms:
                 count_sale_bedrooms++;
-                saleBedrooms.setText("  "+count_sale_bedrooms+"");
+                saleBedrooms.setText(Integer.toString(count_sale_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
                 count_sale_bedrooms--;
-                saleBedrooms.setText("  "+count_sale_bedrooms +"");
+                saleBedrooms.setText(Integer.toString(count_sale_bedrooms));
                 break;
             case R.id.increase_bathrooms:
                 count_sale_bathrooms++;
-                saleBathrooms.setText("  "+count_sale_bathrooms+"");
+                saleBathrooms.setText(Integer.toString(count_sale_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
                 count_sale_bathrooms--;
-                saleBathrooms.setText("  "+count_sale_bathrooms +"");
+                saleBathrooms.setText(Integer.toString(count_sale_bathrooms));
                 break;
             case R.id.increase_balconies:
                 count_sale_balconies++;
-                saleBalconies.setText("  "+count_sale_balconies+"");
+                saleBalconies.setText(Integer.toString(count_sale_balconies));
                 break;
             case R.id.decrease_balconies:
                 count_sale_balconies--;
-                saleBalconies.setText("  "+count_sale_balconies +"");
+                saleBalconies.setText(Integer.toString(count_sale_balconies));
                 break;
             default:
                 break;

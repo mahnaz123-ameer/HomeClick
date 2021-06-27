@@ -104,7 +104,6 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
             CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
 
-
             CreateRentPostFragment.this.imageRecVA.setOnPhotoClickListener(CreateRentPostFragment.this::onPhotoClick);
             CreateRentPostFragment.this.imageRecVA.setUrlArrayList(CreateRentPostFragment.this.imageUri);
             CreateRentPostFragment.this.imageRecVA.notifyDataSetChanged();
@@ -287,27 +286,27 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
             case R.id.increase_bedrooms:
                 count_bedrooms++;
-                rentBedrooms.setText("  "+count_bedrooms+"");
+                rentBedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
                 count_bedrooms--;
-                rentBedrooms.setText("  "+count_bedrooms +"");
+                rentBedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.increase_bathrooms:
                 count_bathrooms++;
-                rentBathrooms.setText("  "+count_bathrooms+"");
+                rentBathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
                 count_bathrooms--;
-                rentBathrooms.setText("  "+count_bathrooms +"");
+                rentBathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.increase_balconies:
                 count_balconies++;
-                rentBalconies.setText("  "+count_balconies+"");
+                rentBalconies.setText(Integer.toString(count_balconies));
                 break;
             case R.id.decrease_balconies:
                 count_balconies--;
-                rentBalconies.setText("  "+count_balconies +"");
+                rentBalconies.setText(Integer.toString(count_balconies));
                 break;
             default:
                 break;

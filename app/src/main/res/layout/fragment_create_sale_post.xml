@@ -570,12 +570,13 @@
                 android:id="@+id/buttonSalePostAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
+                android:layout_marginStart="190dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/shape3"
                 android:backgroundTint="@color/darker_lavender"
                 android:padding="5dp"
-                android:text="Post My Ad" />
+                android:text="Post" />
 
         </LinearLayout>
     </ScrollView>

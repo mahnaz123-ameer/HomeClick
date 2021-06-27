@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,11 @@
     android:padding="30dp">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
 
 
 
@@ -674,19 +679,24 @@
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/buttonRentPostAd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:backgroundTint="@color/darker_lavender"
-            android:background="@drawable/shape3"
-            android:padding="2dp"
-            android:textSize="15dp"
-            android:text="Post My Ad" />
+
+
+            <Button
+                android:id="@+id/buttonRentPostAd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="190dp"
+                android:backgroundTint="@color/darker_lavender"
+                android:background="@drawable/shape3"
+                android:padding="2dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="15dp"
+                android:text="Post" />
+
+
 
     </LinearLayout>
 
+    </ScrollView>
 
-
-</ScrollView>
+</FrameLayout>
