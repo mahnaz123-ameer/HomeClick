@@ -186,7 +186,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
         String gas, elevator, generator, garage, security;
         if(saleAd.getGasAvailability()) gas = getString( R.string.available );
-        else gas = getString( R.string.not_available );
+        else gas = getString(R.string.not_available);
 
         if(saleAd.getElevator()) elevator = getString( R.string.available );
         else elevator = getString( R.string.not_available );
