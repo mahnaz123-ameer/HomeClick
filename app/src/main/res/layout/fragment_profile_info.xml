@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#D5FFFFFF"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="20sp"
     tools:context=".activities.profile_fragments.ProfileInfoFragment">
 
 
@@ -16,10 +16,10 @@
 
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
             android:src="@drawable/personal_info"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20sp"
             android:background="@drawable/circle"
             android:padding="10dp"/>
 
@@ -36,17 +36,17 @@
             android:id="@+id/personal_info"
             android:fontFamily="@font/comfortaa_regular"
             android:textColor="@color/black"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="20sp"
+            android:textSize="17dp"
             android:textStyle="bold"/>
 
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="20sp"
             android:text="This information can only be seen by members."
             android:layout_below="@+id/personal_info"
             />
@@ -61,14 +61,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20sp"
         android:orientation="horizontal"
         android:background="@drawable/shape3"
         android:backgroundTint="@color/white">
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="55sp"
+            android:layout_height="55sp"
             android:padding="10dp"
             android:src="@drawable/icon_profile"
             />
@@ -76,27 +76,29 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp">
+            android:layout_marginEnd="5sp">
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="320dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="10dp"
+                android:layout_height="55sp"
+                android:layout_marginStart="10sp"
                 android:gravity="center"
                 android:text="@string/full_name"
+                android:textSize="15sp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="visible" />
 
             <EditText
                 android:id="@+id/profile_name_edit"
-                android:layout_width="320dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="320sp"
+                android:layout_height="55sp"
+                android:layout_marginStart="10sp"
                 android:enabled="false"
                 android:gravity="center"
                 android:text="@string/full_name"
+                android:textSize="15sp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="gone" />
@@ -107,24 +109,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20sp"
         android:orientation="horizontal"
         android:background="@drawable/shape3"
         android:backgroundTint="@color/white">
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:padding="10dp"
+            android:layout_width="55sp"
+            android:layout_height="55sp"
+            android:padding="10sp"
             android:src="@drawable/icon_email"
             />
 
         <TextView
             android:id="@+id/profile_email"
-            android:layout_width="320dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_width="320sp"
+            android:layout_height="55sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="5sp"
+            android:textSize="15sp"
             android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="@string/email"
@@ -134,27 +137,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20sp"
         android:orientation="horizontal"
         android:background="@drawable/shape3"
         android:backgroundTint="@color/white">
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="55sp"
+            android:layout_height="55sp"
             android:padding="10dp"
             android:src="@drawable/icon_phone" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp">
+            android:layout_marginEnd="5sp">
 
             <TextView
                 android:id="@+id/profile_phone"
-                android:layout_width="320dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="320sp"
+                android:layout_height="55sp"
+                android:layout_marginStart="10sp"
                 android:gravity="center"
                 android:text="@string/phone_number"
                 android:textColor="@color/black"
@@ -164,9 +167,10 @@
 
             <EditText
                 android:id="@+id/profile_phone_edit"
-                android:layout_width="320dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="320sp"
+                android:layout_height="55sp"
+                android:layout_marginStart="10sp"
+                android:textSize="15sp"
                 android:enabled="false"
                 android:gravity="center"
                 android:text="@string/phone_number"
@@ -182,31 +186,29 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="290dp">
+        android:layout_marginStart="260sp">
 
-    <ImageButton
-        android:id="@+id/edit_info"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/icon_edit"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/circle"
-        android:layout_alignParentStart="true"
-        android:backgroundTint="@color/darker_lavender"
-        android:visibility="visible"
-        android:focusable="true"
-        android:clickable="true"
-        />
+        <ImageButton
+            android:id="@+id/edit_info"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_marginTop="25sp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/darker_lavender"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/icon_edit"
+            android:visibility="visible" />
 
     <ImageButton
         android:id="@+id/save_info"
-        android:layout_width="60dp"
+        android:layout_width="60sp"
         android:layout_alignParentStart="true"
         android:layout_height="60dp"
         android:src="@drawable/icon_save"
         android:background="@drawable/circle"
         android:backgroundTint="@color/darker_lavender"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20sp"
         android:visibility="gone"
         android:focusable="false"
         android:clickable="false"/>

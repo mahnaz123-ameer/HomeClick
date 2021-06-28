@@ -289,7 +289,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 rentBedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
-                count_bedrooms--;
+                if(count_bedrooms !=0){
+                    count_bedrooms--;
+                }
                 rentBedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.increase_bathrooms:
@@ -297,7 +299,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 rentBathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
-                count_bathrooms--;
+                if(count_bathrooms != 0){
+                    count_bathrooms--;
+                }
                 rentBathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.increase_balconies:
@@ -305,7 +309,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 rentBalconies.setText(Integer.toString(count_balconies));
                 break;
             case R.id.decrease_balconies:
-                count_balconies--;
+                if(count_balconies!=0){
+                    count_balconies--;
+                }
                 rentBalconies.setText(Integer.toString(count_balconies));
                 break;
             default:
