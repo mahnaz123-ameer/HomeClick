@@ -1,240 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#D5FFFFFF"
-    android:padding="20dp"
+    android:padding="10dp"
     tools:context=".activities.sign_in_fragments.SignUpFragment">
 
     <RelativeLayout
+        android:id="@+id/fields"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fields">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             android:id="@+id/input_field_sign_u"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
             android:hint="Full Name"
-            app:hintTextColor="@color/black"
             android:textColorHint="@color/black"
+            app:helperText="Required"
             app:helperTextTextColor="#F4364C"
-            app:helperText="Required">
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:padding="10dp"
                 android:id="@+id/sign_up_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/shape3"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:background="@drawable/shape3"/>
-
-
+                android:textSize="15dp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             android:id="@+id/input_field_sign_up"
-            android:layout_below="@id/input_field_sign_u"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/input_field_sign_u"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="32sp"
             android:hint="Email Address"
-            app:hintTextColor="@color/black"
             android:textColorHint="@color/black"
+            app:helperText="Required"
             app:helperTextTextColor="#F4364C"
-            app:helperText="Required">
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:padding="10dp"
                 android:id="@+id/sign_up_email"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:background="@drawable/shape3"
+                android:padding="10sp"
                 android:textColor="@color/black"
-                android:background="@drawable/shape3"/>
-
-
+                android:textSize="15sp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             android:id="@+id/phone_number"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="10dp"
-            android:hint="Phone no"
             android:layout_below="@id/input_field_sign_up"
-            app:hintTextColor="@color/black"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="32sp"
+            android:hint="Phone no"
             android:textColorHint="@color/black"
+            app:helperText="Required"
             app:helperTextTextColor="#F4364C"
-            app:helperText="Required">
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:padding="10dp"
                 android:id="@+id/sign_up_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:background="@drawable/shape3"
+                android:padding="10sp"
                 android:textColor="@color/black"
-                android:background="@drawable/shape3"/>
-
-
+                android:textSize="15sp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/input_field_1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:layout_gravity="fill_horizontal"-->
-<!--            android:layout_marginTop="500dp"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/name"-->
-<!--                android:layout_width="140dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_gravity="start"-->
-<!--                android:layout_marginTop="50dp"-->
-<!--                android:fontFamily="@font/comfortaa_regular"-->
-<!--                android:gravity="top"-->
-<!--                android:padding="5dp"-->
-<!--                android:text="@string/full_name"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="15sp" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/sign_up_name"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="start"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_weight="2"-->
-<!--                android:autofillHints="@string/full_name"-->
-<!--                android:background="@drawable/shape3"-->
-<!--                android:fontFamily="@font/comfortaa_regular"-->
-<!--                android:inputType="text"-->
-<!--                android:labelFor="@id/sign_up_name"-->
-<!--                android:padding="8dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textColorHint="@color/black"-->
-<!--                android:textSize="15sp" />-->
-
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/input_field_2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/input_field_1"-->
-<!--            android:layout_gravity="fill_horizontal"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/email"-->
-<!--                android:layout_width="140dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_gravity="start"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:fontFamily="@font/comfortaa_regular"-->
-<!--                android:gravity="bottom"-->
-<!--                android:padding="5dp"-->
-<!--                android:text="@string/email"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="15sp" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/sign_up_email"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="start"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_weight="2"-->
-<!--                android:autofillHints="@string/email"-->
-<!--                android:background="@drawable/shape3"-->
-<!--                android:fontFamily="@font/comfortaa_regular"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:labelFor="@id/sign_up_email"-->
-<!--                android:padding="8dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textColorHint="@color/black"-->
-<!--                android:textSize="15sp" />-->
-
-
-<!--        </LinearLayout>-->
-
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/input_field_3"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/input_field_2"-->
-<!--            android:layout_gravity="fill_horizontal"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/phone"-->
-<!--                android:layout_width="140dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_gravity="start"-->
-<!--                android:layout_marginTop="50dp"-->
-<!--                android:fontFamily="@font/comfortaa_regular"-->
-<!--                android:gravity="bottom"-->
-<!--                android:padding="5dp"-->
-<!--                android:text="@string/phone_number"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="15sp" />-->
-
-
-<!--            <EditText-->
-<!--                android:id="@+id/sign_up_phone_number"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="start"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_weight="2"-->
-<!--                android:autofillHints="@string/phone_number"-->
-<!--                android:background="@drawable/shape3"-->
-<!--                android:fontFamily="@font/comfortaa_regular"-->
-<!--                android:inputType="phone"-->
-<!--                android:labelFor="@id/sign_up_phone_number"-->
-<!--                android:padding="8dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textColorHint="@color/black"-->
-<!--                android:textSize="15sp" />-->
-
-
-<!--        </LinearLayout>-->
 
 
         <CheckBox
             android:id="@+id/age_restriction"
-            android:layout_width="200dp"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/phone_number"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="140dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="140sp"
             android:buttonTint="@color/black"
             android:fontFamily="@font/comfortaa_regular"
             android:text="@string/age_18"
@@ -243,13 +110,13 @@
 
         <CheckBox
             android:id="@+id/policies"
-            android:layout_width="300dp"
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/age_restriction"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="7sp"
+            android:layout_marginEnd="40sp"
             android:buttonTint="@color/black"
             android:fontFamily="@font/comfortaa_regular"
             android:text="@string/terms"
@@ -258,11 +125,11 @@
         <Button
             android:id="@+id/sendNewSignUpLink"
             style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="200sp"
+            android:layout_height="50sp"
             android:layout_below="@+id/policies"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="20sp"
             android:background="@drawable/shape3"
             android:backgroundTint="@color/darker_lavender"
             android:fontFamily="@font/comfortaa_regular"

@@ -42,29 +42,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="10sp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="100dp"
+                    android:layout_marginEnd="100sp"
                     android:backgroundTint="@color/white"
-                    android:elevation="10dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="10dp">
+                    android:elevation="10sp"
+                    app:cardCornerRadius="20sp"
+                    app:cardElevation="10sp">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="30sp"
+                        android:layout_height="30sp"
+                        android:layout_marginStart="10sp"
+                        android:layout_marginTop="15sp"
                         android:src="@drawable/icon_location"
                         android:background="@drawable/circle"
-                        android:padding="5dp"/>
+                        android:padding="5sp"/>
 
                     <TextView
                         android:id="@+id/home_area_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="70sp"
+                        android:layout_marginTop="15sp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/full_name"
                         android:textStyle="bold"
@@ -73,12 +73,12 @@
 
                     <TextView
                         android:id="@+id/home_full_address"
-                        android:layout_width="260dp"
-                        android:layout_height="40dp"
+                        android:layout_width="260sp"
+                        android:layout_height="40sp"
                         android:textAlignment="textStart"
-                        android:layout_marginStart="70dp"
-                        android:layout_marginTop="45dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="70sp"
+                        android:layout_marginTop="45sp"
+                        android:layout_marginBottom="20sp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="Full Address"
                         android:textColor="@color/black"
@@ -89,11 +89,11 @@
 
                     <TextView
                         android:id="@+id/home_ad_type"
-                        android:layout_width="150dp"
+                        android:layout_width="150sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="280dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="280sp"
+                        android:layout_marginLeft="40sp"
+                        android:layout_marginTop="15sp"
                         android:text="Rent"
                         android:fontFamily="@font/comfortaa_bold"
                         android:textColor="@color/black"
@@ -107,49 +107,49 @@
                         android:id="@+id/button_portion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="100dp"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="100sp"
+                        android:layout_marginStart="30sp"
                         android:orientation="horizontal"
                         android:layout_below="@id/address_portion">
 
                         <ImageButton
                             android:id="@+id/bookmark_ad"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="10dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:padding="10sp"
+                            android:layout_marginBottom="10sp"
                             android:src="@drawable/unsave"
                             android:backgroundTint="@color/darker_lavender"
                             android:background="@drawable/shape3"/>
 
                         <ImageButton
                             android:id="@+id/remove_ad"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="10dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:padding="10sp"
                             android:src="@drawable/icon_bookmark"
                             android:backgroundTint="@color/darker_lavender"
                             android:background="@drawable/shape3"/>
 
                         <ImageButton
                             android:id="@+id/edit_ad"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
                             android:clickable="false"
                             android:focusable="false"
                             android:src="@drawable/icon_edit"
-                            android:padding="10dp"
+                            android:padding="10sp"
                             android:background="@drawable/shape3"
                             android:visibility="gone"
                             android:backgroundTint="@color/darker_lavender"/>
 
                         <ImageButton
                             android:id="@+id/delete_ad"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
                             android:clickable="false"
-                            android:padding="10dp"
-                            android:layout_marginLeft="5dp"
+                            android:padding="10sp"
+                            android:layout_marginLeft="5sp"
                             android:background="@drawable/shape3"
                             android:focusable="false"
                             android:src="@drawable/icon_delete"
@@ -168,9 +168,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="160dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="160sp"
+                android:layout_marginEnd="10sp">
 
 
                 <RelativeLayout
@@ -179,85 +179,85 @@
                     android:id="@+id/rooms"
                     android:background="@drawable/shape2"
                     android:backgroundTint="@color/white"
-                    android:padding="10dp"
+                    android:padding="10sp"
                     >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="2dp">
+                        android:padding="2sp">
 
                         <ImageView
                             android:id="@+id/icon_bedroom"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="15dp"
-                            android:padding="2dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="25sp"
+                            android:layout_marginTop="15sp"
+                            android:padding="2sp"
                             android:src="@drawable/icon_bedroom"
                             />
 
                         <TextView
                             android:id="@+id/num_of_bedrooms"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="13dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginTop="13sp"
                             android:gravity="center"
                             android:layout_toEndOf="@id/icon_bedroom"
                             android:fontFamily="@font/comfortaa_regular"
                             android:text="2"
                             android:background="@drawable/shape3"
 
-                            android:padding="5dp"
+                            android:padding="5sp"
                             android:textColor="@color/black"
                             android:textSize="13sp" />
 
 
                         <ImageView
                             android:id="@+id/icon_bathroom"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginLeft="18dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:layout_marginTop="15sp"
+                            android:layout_marginLeft="18sp"
                             android:src="@drawable/icon_bathroom"
-                            android:padding="3dp"
+                            android:padding="3sp"
                             />
 
                         <TextView
                             android:id="@+id/num_of_bathrooms"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
                             android:layout_below="@id/num_of_bedrooms"
                             android:background="@drawable/shape3"
                             android:fontFamily="@font/comfortaa_regular"
                             android:gravity="center"
                             android:text="2"
-                            android:layout_marginStart="21dp"
-                            android:layout_marginTop="13dp"
+                            android:layout_marginStart="21sp"
+                            android:layout_marginTop="13sp"
                             android:textColor="@color/black"
                             android:textSize="13sp" />
 
                         <ImageView
                             android:id="@+id/icon_balcony"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="15dp"
-                            android:padding="3dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:layout_marginLeft="18sp"
+                            android:layout_marginTop="15sp"
+                            android:padding="3sp"
                             android:src="@drawable/icon_balcony" />
 
 
                         <TextView
                             android:id="@+id/num_of_balconies"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
                             android:background="@drawable/shape3"
                             android:fontFamily="@font/comfortaa_regular"
                             android:gravity="center"
-                            android:layout_marginLeft="13dp"
-                            android:padding="5dp"
-                            android:layout_marginTop="13dp"
+                            android:layout_marginLeft="13sp"
+                            android:padding="5sp"
+                            android:layout_marginTop="13sp"
                             android:text="2"
                             android:textColor="@color/black"
                             android:textSize="13sp" />
@@ -269,9 +269,10 @@
                         android:id="@+id/text_floor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="87dp"
+                        android:layout_marginTop="87sp"
+                        android:layout_marginStart="15sp"
                         android:fontFamily="@font/comfortaa_regular"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginLeft="3sp"
                         android:text="Floor No"
                         android:textColor="@color/darker_lavender"
                         android:textSize="12sp"
@@ -279,15 +280,15 @@
 
                     <TextView
                         android:id="@+id/home_floor"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="80dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_width="30sp"
+                        android:layout_height="30sp"
+                        android:layout_marginStart="10sp"
+                        android:layout_marginTop="80sp"
+                        android:layout_marginEnd="20sp"
                         android:layout_toEndOf="@id/text_floor"
                         android:background="@drawable/shape3"
                         android:fontFamily="@font/comfortaa_regular"
-                        android:padding="5dp"
+                        android:padding="5sp"
                         android:text=" 5 "
                         android:textColor="@color/black"
                         android:textSize="12sp" />
@@ -295,9 +296,9 @@
                     <TextView
                         android:id="@+id/text_floor_space"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginTop="87dp"
+                        android:layout_height="36sp"
+                        android:layout_marginStart="2sp"
+                        android:layout_marginTop="87sp"
                         android:layout_toEndOf="@+id/home_floor"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/floor_space"
@@ -309,24 +310,24 @@
                         android:id="@+id/home_floor_space"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="160dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="80dp"
+                        android:layout_marginStart="160sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginTop="80sp"
                         android:layout_toEndOf="@id/text_floor"
                         android:background="@drawable/shape3"
                         android:fontFamily="@font/comfortaa_regular"
-                        android:padding="5dp"
+                        android:padding="5sp"
                         android:text=" 1400sqft "
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/text_tenant_type"
-                        android:layout_width="90dp"
+                        android:layout_width="90sp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text_floor_space"
-                        android:layout_marginStart="100dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="100sp"
+                        android:layout_marginTop="20sp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/tenant_type"
                         android:textColor="@color/black"
@@ -339,9 +340,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/home_floor_space"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="30sp"
+                        android:layout_marginTop="35sp"
+                        android:layout_marginEnd="20sp"
                         android:layout_toEndOf="@id/text_floor"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="Family"
@@ -360,8 +361,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rooms"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginStart="10sp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/facilities"
                     android:textColor="@color/darker_lavender"
@@ -373,9 +374,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_facilities"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
+                    android:layout_marginTop="10sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -384,28 +385,28 @@
                         >
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="120dp"
-                            android:layout_height="165dp"
-                            android:layout_marginEnd="10dp"
+                            android:layout_width="120sp"
+                            android:layout_height="165sp"
+                            android:layout_marginEnd="10sp"
                             android:backgroundTint="@color/white"
-                            android:elevation="10dp"
-                            android:padding="40dp"
-                            app:cardCornerRadius="15dp">
+                            android:elevation="10sp"
+                            android:padding="40sp"
+                            app:cardCornerRadius="15sp">
 
                             <ImageView
                                 android:id="@+id/icon_gas"
-                                android:layout_width="60dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginTop="15dp"
-                                android:padding="5dp"
+                                android:layout_width="60sp"
+                                android:layout_height="50sp"
+                                android:layout_marginStart="30sp"
+                                android:layout_marginTop="15sp"
+                                android:padding="5sp"
                                 android:src="@drawable/gas_icon" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginTop="80dp"
+                                android:layout_marginStart="40sp"
+                                android:layout_marginTop="80sp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:text="@string/gas"
 
@@ -421,10 +422,10 @@
                                     android:id="@+id/home_gas_availability"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="18dp"
-                                    android:layout_marginTop="110dp"
+                                    android:layout_marginStart="18sp"
+                                    android:layout_marginTop="110sp"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginEnd="5dp"
+                                    android:layout_marginEnd="5sp"
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
                                     android:text="@string/available"
@@ -439,26 +440,26 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="120dp"
-                            android:layout_height="165dp"
-                            android:layout_marginEnd="10dp"
+                            android:layout_width="120sp"
+                            android:layout_height="165sp"
+                            android:layout_marginEnd="10sp"
                             android:backgroundTint="@color/white"
-                            android:elevation="10dp"
-                            android:padding="20dp"
-                            app:cardCornerRadius="15dp">
+                            android:elevation="10sp"
+                            android:padding="20sp"
+                            app:cardCornerRadius="15sp">
 
                             <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="30dp"
+                                android:layout_width="60sp"
+                                android:layout_height="50sp"
+                                android:layout_marginStart="30sp"
                                 android:src="@drawable/icon_elevator"
-                                android:padding="5dp"
-                                android:layout_marginTop="15dp"/>
+                                android:padding="5sp"
+                                android:layout_marginTop="15sp"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="10sp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:text="Elevator"
                                 android:textColor="@color/darker_lavender"
@@ -474,7 +475,7 @@
                                     android:id="@+id/home_elevator"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="110dp"
+                                    android:layout_marginTop="110sp"
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
                                     android:layout_centerHorizontal="true"
@@ -491,27 +492,27 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="120dp"
-                            android:layout_height="165dp"
-                            android:layout_marginEnd="10dp"
+                            android:layout_width="120sp"
+                            android:layout_height="165sp"
+                            android:layout_marginEnd="10sp"
                             android:backgroundTint="@color/white"
-                            android:elevation="10dp"
-                            android:padding="20dp"
-                            app:cardCornerRadius="15dp">
+                            android:elevation="10sp"
+                            android:padding="20sp"
+                            app:cardCornerRadius="15sp">
 
                             <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="30dp"
+                                android:layout_width="60sp"
+                                android:layout_height="50sp"
+                                android:layout_marginStart="30sp"
                                 android:src="@drawable/icon_gear"
-                                android:padding="5dp"
-                                android:layout_marginTop="15dp"/>
+                                android:padding="5sp"
+                                android:layout_marginTop="15sp"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="5sp"
+                                android:layout_marginTop="10sp"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:text="@string/generator"
@@ -527,7 +528,7 @@
                                     android:id="@+id/home_generator"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="110dp"
+                                    android:layout_marginTop="110sp"
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
                                     android:layout_centerHorizontal="true"
@@ -543,32 +544,32 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="120dp"
-                            android:layout_height="165dp"
-                            android:layout_marginEnd="10dp"
+                            android:layout_width="120sp"
+                            android:layout_height="165sp"
+                            android:layout_marginEnd="10sp"
                             android:backgroundTint="@color/white"
-                            android:elevation="10dp"
-                            android:padding="20dp"
-                            app:cardCornerRadius="15dp">
+                            android:elevation="10sp"
+                            android:padding="20sp"
+                            app:cardCornerRadius="15sp">
 
                             <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="30dp"
+                                android:layout_width="60sp"
+                                android:layout_height="50sp"
+                                android:layout_marginStart="30sp"
                                 android:src="@drawable/icon_garage"
-                                android:padding="5dp"
-                                android:layout_marginTop="15dp"/>
+                                android:padding="5sp"
+                                android:layout_marginTop="15sp"/>
 
 
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="70dp"
+                                android:layout_marginStart="10sp"
+                                android:layout_marginTop="70sp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:gravity="center"
-                                android:layout_marginBottom="60dp"
+                                android:layout_marginBottom="60sp"
                                 android:layout_gravity="center"
                                 android:text="@string/garage_space"
                                 android:textColor="@color/darker_lavender"
@@ -583,7 +584,7 @@
                                     android:id="@+id/home_garage_space"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="110dp"
+                                    android:layout_marginTop="110sp"
                                     android:layout_centerHorizontal="true"
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
@@ -600,26 +601,26 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/card_security"
-                            android:layout_width="120dp"
+                            android:layout_width="120sp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
+                            android:layout_marginEnd="10sp"
                             android:backgroundTint="@color/white"
-                            android:elevation="10dp"
-                            android:padding="20dp"
+                            android:elevation="10sp"
+                            android:padding="20sp"
                             android:visibility="gone"
-                            app:cardCornerRadius="15dp">
+                            app:cardCornerRadius="15sp">
 
                             <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="30dp"
+                                android:layout_width="60sp"
+                                android:layout_height="60sp"
+                                android:layout_marginStart="30sp"
                                 android:src="@drawable/icon_security" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="70dp"
+                                android:layout_marginStart="5sp"
+                                android:layout_marginTop="70sp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:gravity="center"
                                 android:text="@string/security"
@@ -630,9 +631,9 @@
                                 android:id="@+id/home_security_guard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="110dp"
-                                android:layout_marginEnd="5dp"
+                                android:layout_marginStart="5sp"
+                                android:layout_marginTop="110sp"
+                                android:layout_marginEnd="5sp"
                                 android:fontFamily="@font/comfortaa_regular"
                                 android:gravity="center"
                                 android:text="@string/not_available"
@@ -651,10 +652,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/facilities_scrollview"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="20sp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/monetary_dealings"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="10sp"
                     android:textColor="@color/darker_lavender"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
@@ -670,14 +671,14 @@
 
                 <TextView
                     android:id="@+id/icon_money"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_money"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginStart="10sp"
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="Payment  💶"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     />
@@ -689,8 +690,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_money"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="13sp"
                     android:layout_toEndOf="@id/icon_money"
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="10000 BDT"
@@ -699,11 +700,11 @@
 
                 <TextView
                     android:id="@+id/text_utility"
-                    android:layout_width="150dp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/icon_money"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginStart="10sp"
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="@string/utility"
                     android:textColor="@color/black"
@@ -715,8 +716,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/home_payment"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="18sp"
+                    android:layout_marginTop="5sp"
                     android:layout_toEndOf="@id/text_utility"
                     android:fontFamily="@font/comfortaa_regular"
                     android:text="5000 BDT"
@@ -729,8 +730,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_utility"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginStart="10sp"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="@string/move_in"
                     android:textColor="@color/darker_lavender"
@@ -742,12 +743,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_date"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginTop="10sp"
                     android:background="@drawable/shape2"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/comfortaa_regular"
-                    android:padding="10dp"
+                    android:padding="10sp"
                     android:text="18-07-2021"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
@@ -757,9 +758,9 @@
                     android:layout_height="match_parent"
                     android:textColor="@color/darker_lavender"
                     android:textStyle="bold"
-                    android:textSize="13dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="30dp"
+                    android:textSize="13sp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginTop="30sp"
                     android:text="Description"
                     android:fontFamily="@font/comfortaa_regular"
                     android:layout_below="@id/move_in_date"
@@ -768,26 +769,26 @@
                 <com.ms.square.android.expandabletextview.ExpandableTextView
                     android:id="@+id/Description"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="100sp"
                     android:layout_below="@id/Des"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="10sp"
                     app:maxCollapsedLines="3"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="20sp"
                     android:background="@drawable/shape2"
                     android:backgroundTint="@color/white"
-                    android:padding="5dp">
+                    android:padding="5sp">
 
                     <TextView
                         android:id="@id/expandable_text"
                         android:layout_width="match_parent"
                         android:fontFamily="@font/comfortaa_regular"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="10sp"
                         android:textAlignment="textStart"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="10sp"
                         android:text="Description"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="13sp"
                         />
 
 
@@ -797,7 +798,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|bottom"
                         android:background="@color/white"
-                        android:padding="5dp"
+                        android:padding="5sp"
                         android:hapticFeedbackEnabled="true"
                         android:backgroundTint="@color/black"/>
 
@@ -809,25 +810,25 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="350sp"
                     android:id="@+id/show_ad_images"
                     android:layout_below="@id/Description"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginTop="20sp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginBottom="20sp"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/call_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/show_ad_images"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_margin="5sp"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginStart="20sp"
                     android:backgroundTint="@color/white"
-                    android:elevation="10dp"
-                    app:cardCornerRadius="10dp"
-                    android:padding="30dp">
+                    android:elevation="10sp"
+                    app:cardCornerRadius="10sp"
+                    android:padding="30sp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -852,9 +853,9 @@
                         android:textSize="13sp" />
 
                     <ImageView
-                        android:layout_width="40sp"
-                        android:layout_height="40sp"
-                        android:layout_marginStart="250sp"
+                        android:layout_width="50sp"
+                        android:layout_height="50sp"
+                        android:layout_marginStart="240sp"
                         android:layout_marginTop="15sp"
                         android:layout_marginEnd="20sp"
                         android:padding="10sp"
