@@ -14,7 +14,7 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:clickable="true"
-        android:elevation="16dp"
+        android:elevation="16sp"
         android:focusable="true"
         app:labelVisibilityMode="unlabeled"
         app:itemIconTint="@color/bottom_nav_bar_selector"

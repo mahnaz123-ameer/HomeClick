@@ -29,7 +29,7 @@
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/loading_ads"
             android:layout_width="match_parent"
-            android:layout_height="8dp"
+            android:layout_height="8sp"
             android:layout_alignParentBottom="true"
             android:indeterminate="true"
             android:visibility="gone"
