@@ -42,7 +42,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Objects;
 
 
 import csedu.homeclick.androidhomeclick.R;
@@ -145,19 +144,16 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
     });
 
 
-    final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
-        @Override
-        public void onActivityResult(List<Uri> result) {
-            CreateRentPostFragment.this.imageUri.addAll(result);
+    final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), result -> {
+        CreateRentPostFragment.this.imageUri.addAll(result);
 
-            //making sure a photo hasn't been added twice to the list
-            LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
-            CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
+        //making sure a photo hasn't been added twice to the list
+        LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateRentPostFragment.this.imageUri);
+        CreateRentPostFragment.this.imageUri = new ArrayList<>(hashSet);
 
-            CreateRentPostFragment.this.imageRecVA.setOnPhotoClickListener(CreateRentPostFragment.this);
-            CreateRentPostFragment.this.imageRecVA.setUrlArrayList(CreateRentPostFragment.this.imageUri);
-            CreateRentPostFragment.this.imageRecVA.notifyDataSetChanged();
-        }
+        CreateRentPostFragment.this.imageRecVA.setOnPhotoClickListener(CreateRentPostFragment.this);
+        CreateRentPostFragment.this.imageRecVA.setUrlArrayList(CreateRentPostFragment.this.imageUri);
+        CreateRentPostFragment.this.imageRecVA.notifyDataSetChanged();
     });
 
     private final Date[] rentAvailFrom = new Date[1];
@@ -287,6 +283,10 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         rentGenerator = view.findViewById(R.id.rentGenerator);
         rentGarage = view.findViewById(R.id.rentGarage);
         rentSecurity = view.findViewById(R.id.rentSecurity);
+
+        if(rentSecurity == null) {
+            Log.i(TAG, "rent security still null somehow");
+        }
         rentPayment = view.findViewById(R.id.rentPayment);
         rentUtilityCharge = view.findViewById(R.id.rentUtilityCharge);
         rentAvailableFrom = view.findViewById(R.id.rentAvailableFrom);
@@ -567,9 +567,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         return rent;
     }
 
-    private Boolean checkData() {
+    private boolean checkData() {
         Log.i(TAG, "in check data");
-        Boolean dataOkay = true;
+        boolean dataOkay = true;
         EditText[] allEditTexts = {rentAreaName,rentBedrooms, rentFullAddress, rentBathrooms, rentBalconies,
                 rentFloor, rentFloorSpace, rentPayment, rentUtilityCharge, rentDescription};
 

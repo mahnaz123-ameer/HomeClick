@@ -11,7 +11,7 @@ public class RentAdvertisement extends Advertisement implements Serializable {
     private Boolean securityGuard;
     private Date availableFrom;
 
-    private double latitude, longitude;
+
 
     public RentAdvertisement() {
         super();
@@ -72,20 +72,5 @@ public class RentAdvertisement extends Advertisement implements Serializable {
         this.availableFrom = availableFrom;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
 }
 

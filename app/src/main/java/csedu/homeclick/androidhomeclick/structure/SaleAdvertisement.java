@@ -6,8 +6,7 @@ public class SaleAdvertisement extends Advertisement implements Serializable {
     private String propertyCondition;
     private String description;
 
-    private double latitude;
-    private double longitude;
+
 
     public SaleAdvertisement(){
 
@@ -42,19 +41,4 @@ public class SaleAdvertisement extends Advertisement implements Serializable {
         this.description = description;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
 }
