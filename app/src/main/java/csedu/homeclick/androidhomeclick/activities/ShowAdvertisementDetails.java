@@ -185,16 +185,16 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
 
         String gas, elevator, generator, garage, security;
-        if(saleAd.getGasAvailability()) gas = getString( R.string.available );
+        if(saleAd.getGasAvailability()) gas = getString( R.string._available );
         else gas = getString(R.string.not_available);
 
-        if(saleAd.getElevator()) elevator = getString( R.string.available );
+        if(saleAd.getElevator()) elevator = getString( R.string._available );
         else elevator = getString( R.string.not_available );
 
-        if(saleAd.getGenerator()) generator = getString( R.string.available );
+        if(saleAd.getGenerator()) generator = getString( R.string._available );
         else generator = getString( R.string.not_available );
 
-        if(saleAd.getGarageSpace()) garage = getString( R.string.available );
+        if(saleAd.getGarageSpace()) garage = getString( R.string._available );
         else garage = getString( R.string.not_available );
 
         gasTV.setText(gas);
@@ -234,19 +234,19 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
 
         String gas, elevator, generator, garage, security;
-        if(rentAd.getGasAvailability()) gas = getString( R.string.available );
+        if(rentAd.getGasAvailability()) gas = getString( R.string._available );
         else gas = getString( R.string.not_available );
 
-        if(rentAd.getElevator()) elevator = getString( R.string.available );
+        if(rentAd.getElevator()) elevator = getString( R.string._available );
         else elevator = getString( R.string.not_available );
 
-        if(rentAd.getGenerator()) generator = getString( R.string.available );
+        if(rentAd.getGenerator()) generator = getString( R.string._available );
         else generator = getString( R.string.not_available );
 
-        if(rentAd.getGarageSpace()) garage = getString( R.string.available );
+        if(rentAd.getGarageSpace()) garage = getString( R.string._available );
         else garage = getString( R.string.not_available );
 
-        if(rentAd.getSecurityGuard()) security = getString( R.string.available );
+        if(rentAd.getSecurityGuard()) security = getString( R.string._available );
         else security = getString( R.string.not_available );
 
         gasTV.setText(gas);

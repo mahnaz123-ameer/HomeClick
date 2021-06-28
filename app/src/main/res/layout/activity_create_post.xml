@@ -30,13 +30,13 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_rent"
+            android:text="@string/rent"
             android:id="@+id/create_rent_post"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_sale"
+            android:text="@string/sale"
             android:id="@+id/create_sale_post"/>
 
     </com.google.android.material.tabs.TabLayout>

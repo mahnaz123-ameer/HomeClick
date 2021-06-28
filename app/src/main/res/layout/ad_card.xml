@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/icon_bedroom"
-                android:text="@string/__2"
+                android:text="@string/bedrooms"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -116,7 +116,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/icon_bathroom"
-                android:text="@string/_1"
+                android:text="@string/bathrooms"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -144,7 +144,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/icon_gas"
-                android:text="@string/available"
+                android:text="@string/_available"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -166,7 +166,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/icon_money"
-                android:text="@string/_18000_bdt"
+                android:text="@string/payment"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />

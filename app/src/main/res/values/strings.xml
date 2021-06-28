@@ -67,4 +67,26 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="map_view">Map View</string>
+    <string name="payment">Payment</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="family">Family</string>
+    <string name="student_or_working_person">Student or Working Person</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="security_guard">Security Guard</string>
+    <string name="per_month">Per Month</string>
+    <string name="outdoor_features">Outdoor Features</string>
+    <string name="indoor_features">Indoor Features</string>
+    <string name="available_from">Available From</string>
+    <string name="add_photos_to_post">Add Photos To Post</string>
+    <string name="post">Post</string>
+    <string name="previously_added_photos">Previously Added Photos</string>
+    <string name="property_condition">Property Condition</string>
+    <string name="new_property">New</string>
+    <string name="established">Established</string>
+    <string name="asking_amount">Asking Amount</string>
+    <string name="email_address">Email Address</string>
+    <string name="information_can_only_be_seen_by_members">Information can only be seen by members.</string>
+    <string name="personal_information">Personal Information</string>
 </resources>
