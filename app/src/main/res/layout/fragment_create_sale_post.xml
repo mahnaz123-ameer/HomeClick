@@ -565,6 +565,22 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sale location"
+                android:textColor="@color/black"
+                android:id="@+id/sale_location"/>
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sale_add_location"
+                android:textColor="@color/black"
+                android:text="add location"/>
+
 
             <Button
                 android:id="@+id/buttonSalePostAd"

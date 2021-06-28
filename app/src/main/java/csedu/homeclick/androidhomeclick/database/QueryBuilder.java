@@ -14,8 +14,8 @@ public class QueryBuilder {
     private Query filterQuery;
     private FilterCriteria filterCriteria;
 
-    private FirebaseFirestore firebaseFirestore;
-    private CollectionReference adCollectionReference;
+    private final FirebaseFirestore firebaseFirestore;
+    private final CollectionReference adCollectionReference;
 
     public QueryBuilder() {
         filterQuery = null;

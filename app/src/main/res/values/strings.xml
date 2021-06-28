@@ -55,4 +55,5 @@
     <string name="enter_number_of_bathrooms">Enter number of bathrooms</string>
     <string name="enter_number_of_bedrooms">Enter number of bedrooms</string>
     <string name="apply_filter">APPLY FILTER</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
