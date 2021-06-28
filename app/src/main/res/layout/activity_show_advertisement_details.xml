@@ -67,7 +67,7 @@
                         android:layout_marginStart="70dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/comfortaa_regular"
-                        android:text="@string/full_name"
+                        android:text="@string/_full_name"
                         android:textStyle="bold"
                         android:textColor="@color/darker_lavender"
                         android:textSize="15sp" />
@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="300dp"
                         android:layout_marginTop="15dp"
-                        android:text="@string/rent"
+                        android:text="@string/Rent"
                         android:fontFamily="@font/comfortaa_bold"
                         android:textColor="@color/black"
                         android:textSize="15sp"
@@ -849,7 +849,7 @@
                         android:layout_marginTop="40sp"
                         android:layout_marginBottom="10sp"
                         android:fontFamily="@font/comfortaa_regular"
-                        android:text="@string/full_name"
+                        android:text="@string/_full_name"
                         android:textColor="@color/darker_lavender"
                         android:textSize="13sp" />
 

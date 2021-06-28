@@ -524,7 +524,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="@string/_rent_rate"
+                android:text="@string/rent_rate"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 

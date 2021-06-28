@@ -80,4 +80,15 @@
     <string name="email_address">Email Address</string>
     <string name="information_can_only_be_seen_by_members">This information can only be seen by members.</string>
     <string name="personal_information">Personal Information</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="gas_availability">Gas Availability</string>
+    <string name="full_address">Full Address</string>
+    <string name="balconies">Balconies</string>
+    <string name="floor_space">Floor Space</string>
+    <string name="elevator">Elevator</string>
+    <string name="generator">Generator</string>
+    <string name="garage_space">Garage Space</string>
+    <string name="area_name">Area Name</string>
+    <string name="rent_rate">Rent Rate</string>
 </resources>
