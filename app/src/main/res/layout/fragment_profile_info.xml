@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#D5FFFFFF"
     android:orientation="vertical"
-    android:padding="20sp"
+    android:padding="20dp"
     tools:context=".activities.profile_fragments.ProfileInfoFragment">
 
 
@@ -16,10 +16,10 @@
 
 
         <ImageView
-            android:layout_width="70sp"
-            android:layout_height="70sp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/personal_info"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/circle"
             android:padding="10dp"
             tools:ignore="ContentDescription" />
@@ -37,8 +37,8 @@
             android:id="@+id/personal_info"
             android:fontFamily="@font/comfortaa_regular"
             android:textColor="@color/black"
-            android:layout_marginTop="30sp"
-            android:layout_marginStart="20sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
             android:textSize="17sp"
             android:textStyle="bold"/>
 
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_marginStart="20sp"
+            android:layout_marginStart="20dp"
             android:text="@string/information_can_only_be_seen_by_members"
             android:layout_below="@+id/personal_info"
             />
@@ -62,14 +62,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:background="@drawable/shape3"
         android:backgroundTint="@color/white">
 
         <ImageView
-            android:layout_width="55sp"
-            android:layout_height="55sp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:padding="10dp"
             android:src="@drawable/icon_profile"
             tools:ignore="ContentDescription" />
@@ -77,13 +77,13 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5sp">
+            android:layout_marginEnd="5dp">
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="320dp"
-                android:layout_height="55sp"
-                android:layout_marginStart="10sp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
                 android:text="@string/full_name"
                 android:textSize="15sp"
@@ -93,9 +93,9 @@
 
             <EditText
                 android:id="@+id/profile_name_edit"
-                android:layout_width="320sp"
-                android:layout_height="55sp"
-                android:layout_marginStart="10sp"
+                android:layout_width="320dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
                 android:enabled="false"
                 android:gravity="center"
                 android:text="@string/full_name"
@@ -103,7 +103,7 @@
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="gone"
-                tools:ignore="Autofill" />
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -111,24 +111,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:background="@drawable/shape3"
         android:backgroundTint="@color/white">
 
         <ImageView
-            android:layout_width="55sp"
-            android:layout_height="55sp"
-            android:padding="10sp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:padding="10dp"
             android:src="@drawable/icon_email"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/profile_email"
-            android:layout_width="320sp"
-            android:layout_height="55sp"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="5sp"
+            android:layout_width="320dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
             android:textSize="15sp"
             android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
@@ -139,14 +139,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:background="@drawable/shape3"
         android:backgroundTint="@color/white">
 
         <ImageView
-            android:layout_width="55sp"
-            android:layout_height="55sp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:padding="10dp"
             android:src="@drawable/icon_phone"
             tools:ignore="ContentDescription" />
@@ -154,13 +154,13 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5sp">
+            android:layout_marginEnd="5dp">
 
             <TextView
                 android:id="@+id/profile_phone"
-                android:layout_width="320sp"
-                android:layout_height="55sp"
-                android:layout_marginStart="10sp"
+                android:layout_width="320dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
                 android:gravity="center"
                 android:text="@string/phone_number"
                 android:textColor="@color/black"
@@ -170,9 +170,9 @@
 
             <EditText
                 android:id="@+id/profile_phone_edit"
-                android:layout_width="320sp"
-                android:layout_height="55sp"
-                android:layout_marginStart="10sp"
+                android:layout_width="320dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:enabled="false"
                 android:gravity="center"
@@ -181,7 +181,7 @@
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:visibility="gone"
-                tools:ignore="TextFields" />
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
 
         </RelativeLayout>
@@ -191,13 +191,13 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="260sp">
+        android:layout_marginStart="260dp">
 
         <ImageButton
             android:id="@+id/edit_info"
-            android:layout_width="60sp"
-            android:layout_height="60sp"
-            android:layout_marginTop="25sp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/circle"
             android:backgroundTint="@color/darker_lavender"
             android:clickable="true"
@@ -208,13 +208,13 @@
 
     <ImageButton
         android:id="@+id/save_info"
-        android:layout_width="60sp"
+        android:layout_width="60dp"
         android:layout_alignParentStart="true"
         android:layout_height="60dp"
         android:src="@drawable/icon_save"
         android:background="@drawable/circle"
         android:backgroundTint="@color/darker_lavender"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="20dp"
         android:visibility="gone"
         android:focusable="false"
         android:clickable="false"

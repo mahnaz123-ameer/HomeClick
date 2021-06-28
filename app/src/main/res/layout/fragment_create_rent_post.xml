@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#D5FFFFFF"
     tools:context=".activities.create_post.CreateRentPostFragment"
     android:padding="30dp">
@@ -13,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        tools:ignore="UselessParent">
 
 
 
@@ -47,7 +47,8 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/shape3"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
 
                         <TextView
@@ -69,7 +70,8 @@
                             android:background="@drawable/shape3"
                             android:inputType="textMultiLine"
                             android:padding="8dp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            tools:ignore="Autofill,LabelFor" />
 
         </LinearLayout>
 
@@ -160,7 +162,8 @@
                 android:background="@drawable/shape3"
                 android:inputType="number"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill,LabelFor" />
 
             <Button
                 android:layout_width="25dp"
@@ -179,11 +182,7 @@
         </LinearLayout>
 
 
-         <LinearLayout
-             android:layout_width="wrap_content"
-             android:layout_height="match_parent">
 
-         </LinearLayout>
 
 
         <LinearLayout
@@ -225,7 +224,8 @@
                 android:background="@drawable/shape3"
                 android:inputType="number"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill,LabelFor" />
 
             <Button
                 android:layout_width="25dp"
@@ -283,7 +283,8 @@
                 android:inputType="number"
                 android:textSize="13sp"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill,LabelFor" />
 
 
             <Button
@@ -330,7 +331,8 @@
                 android:inputType="number"
                 android:padding="8dp"
                 android:textSize="13sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill" />
 
 
             <TextView
@@ -358,7 +360,8 @@
                 android:inputType="number"
                 android:padding="8dp"
                 android:textSize="13sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill" />
 
         </RelativeLayout>
 
@@ -521,7 +524,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Rent Rate"
+                android:text="@string/_rent_rate"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -537,7 +540,8 @@
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textSize="13sp"
-                android:textColorHint="#807A7A" />
+                android:textColorHint="#807A7A"
+                tools:ignore="Autofill" />
 
 
 
@@ -560,7 +564,8 @@
                 android:inputType="number"
                 android:padding="8dp"
                 android:textSize="13sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:ignore="Autofill,LabelFor" />
 
 
         <LinearLayout
@@ -618,7 +623,8 @@
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
-                android:verticalScrollbarPosition="right" />
+                android:verticalScrollbarPosition="right"
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
         </LinearLayout>
 
