@@ -129,7 +129,7 @@
     <string name="two">2</string>
     <string name="_two">2</string>
     <string name="_2_">2</string>
-    <string name="Foor_no">Floor No</string>
+    <string name="Floor_no">Floor No</string>
     <string name="_5">5</string>
     <string name="_1400sqft">1400sqft</string>
     <string name="family">Family</string>
@@ -143,4 +143,13 @@
     <string name="_description">Description</string>
     <string name="personal_information">Personal Information</string>
     <string name="this_information_can_only_be_seen_by_members">This information can only be seen by members.</string>
+    <string name="__bathrooms">Bathrooms</string>
+    <string name="indoor_properties">Indoor Properties</string>
+    <string name="_enter_maximum_payment_amount">Enter Maximum Payment Amount</string>
+    <string name="__sub">-</string>
+    <string name="__bedrooms">Bedrooms</string>
+    <string name="__add">+</string>
+    <string name="_Sub">-</string>
+    <string name="_Add">+</string>
+    <string name="_rent_rate">Rent Rate</string>
 </resources>
