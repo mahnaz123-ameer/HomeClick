@@ -5,36 +5,36 @@
     android:layout_height="match_parent"
     tools:context=".activities.create_post.CreateSalePostFragment"
     android:background="#D5FFFFFF"
-    android:padding="30sp">
+    android:padding="30dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="20sp">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
             <TextView
-                android:layout_width="100sp"
-                android:layout_height="30sp"
-                android:layout_marginStart="15sp"
-                android:layout_marginTop="10sp"
-                android:text="Area Name"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/area_name"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15sp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleAreaName"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:textSize="13sp"
                     android:background="@drawable/shape3"
                     android:textColor="@color/black"/>
@@ -45,18 +45,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="15sp"
-                    android:layout_marginTop="10sp"
-                    android:text="Full Address"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/full_address"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="100sp"
-                    android:layout_marginLeft="15sp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleFullAddress"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:background="@drawable/shape3"
                     android:textColor="@color/black"
                     android:textSize="13sp"
@@ -65,31 +65,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13sp"
+                android:layout_marginTop="13dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Property Condition"
+                    android:text="@string/property_condition"
                     android:textColor="@color/darker_lavender"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
 
                 <RadioGroup
                     android:id="@+id/saleSituation"
-                    android:layout_width="250sp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginStart="10sp"
-                    android:scrollbarSize="13sp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:scrollbarSize="13dp">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
-                        android:text="New"
+                        android:text="@string/_new"
                         android:id="@+id/rbNew"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
-                        android:text="Established"
+                        android:text="@string/established"
                         android:id="@+id/rbEstablished"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
@@ -111,39 +111,38 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="15sp">
+                android:layout_marginTop="15dp">
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Bedrooms"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/bedrooms"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
                 <Button
                     android:id="@+id/decrease_bedrooms"
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:layout_marginLeft="42sp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="-"
+                    android:text="@string/_s"
                     android:textAlignment="center"
                     android:textSize="13sp" />
 
                 <EditText
-                    android:layout_width="60sp"
-                    android:layout_height="30sp"
-                    android:layout_marginLeft="15sp"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleBedrooms"
                     android:inputType="number"
-                    android:padding="8sp"
-                    android:layout_marginStart="15sp"
-                    android:layout_marginEnd="10sp"
-                    android:layout_marginTop="2sp"
+                    android:padding="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="2dp"
                     android:background="@drawable/shape3"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
@@ -153,12 +152,12 @@
 
 
                 <Button
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:text="+"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:text="@string/_a"
                     android:textAlignment="center"
                     android:textSize="13sp"
-                    android:layout_marginLeft="20sp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
                     android:id="@+id/increase_bedrooms"
@@ -168,47 +167,46 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10dp">
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Bathrooms"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/bathrooms"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
                 <Button
                     android:id="@+id/decrease_bathrooms"
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:layout_marginLeft="42sp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="-"
+                    android:text="@string/_s"
                     android:textSize="13sp" />
 
                 <EditText
-                    android:layout_width="60sp"
-                    android:layout_height="30sp"
-                    android:layout_marginLeft="15sp"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleBathrooms"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:background="@drawable/shape3"
-                    android:layout_marginStart="15sp"
-                    android:layout_marginEnd="10sp"
-                    android:layout_marginTop="2sp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="2dp"
                     android:textSize="13sp"
                     android:textColor="@color/black"/>
                 <Button
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:text="+"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:text="@string/_a"
                     android:textSize="13sp"
                     android:background="@drawable/circle"
-                    android:layout_marginLeft="20sp"
+                    android:layout_marginStart="10dp"
                     android:backgroundTint="@color/darker_lavender"
                     android:id="@+id/increase_bathrooms"
                     />
@@ -218,51 +216,50 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10dp">
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Balconies"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/balconies"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
                 <Button
                     android:id="@+id/decrease_balconies"
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:layout_marginLeft="42sp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="-"
+                    android:text="@string/_s"
                     android:textSize="13sp" />
 
 
                 <EditText
-                    android:layout_width="60sp"
-                    android:layout_height="30sp"
-                    android:layout_marginLeft="15sp"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleBalconies"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:background="@drawable/shape3"
-                    android:layout_marginStart="15sp"
-                    android:layout_marginEnd="10sp"
-                    android:layout_marginTop="2sp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="2dp"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
                 <Button
-                    android:layout_width="25sp"
-                    android:layout_height="25sp"
-                    android:text="+"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:text="@string/_a"
                     android:textSize="13sp"
                     android:background="@drawable/circle"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="5sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
                     android:backgroundTint="@color/darker_lavender"
                     android:id="@+id/increase_balconies"
                     />
@@ -274,24 +271,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10dp">
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15sp"
-                    android:text="Floor No "
+                    android:layout_marginStart="15dp"
+                    android:text="@string/floor_no"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:id="@+id/floor_no"/>
 
                 <EditText
-                    android:layout_width="120sp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15sp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleFloor"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:textSize="13sp"
                     android:background="@drawable/shape3"
                     android:textColor="@color/black"
@@ -299,28 +296,28 @@
 
                 <TextView
                     android:id="@+id/floorSpace"
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="46sp"
-                    android:layout_toRightOf="@id/floor_no"
-                    android:text="Floor Space"
+                    android:layout_marginStart="46dp"
+                    android:layout_toEndOf="@id/floor_no"
+                    android:text="@string/floor_space"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/saleFloorSpace"
-                    android:layout_width="120sp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/floor_no"
-                    android:layout_marginLeft="21sp"
+                    android:layout_marginStart="21dp"
                     android:textSize="13sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_toRightOf="@+id/saleFloor"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toEndOf="@+id/saleFloor"
                     android:background="@drawable/shape3"
-                    android:hint="Floor Space"
+                    android:hint="@string/floor_space"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:textColor="@color/black" />
 
 
@@ -331,10 +328,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Indoor Features"
+                android:text="@string/indoor_features"
                 android:textColor="@color/darker_lavender"
                 android:textSize="15sp"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="15dp"
                 android:textStyle="bold"/>
 
 
@@ -342,7 +339,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20sp">
+                android:layout_marginTop="20dp">
 
 
                 <CheckBox android:layout_height="wrap_content"
@@ -351,14 +348,14 @@
                     android:textSize="13sp"
                     android:id="@+id/saleGas"
                     android:buttonTint="@color/black"
-                    android:layout_marginLeft="10sp"
+                    android:layout_marginStart="10dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Gas Availability"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/gas_availability"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -370,14 +367,14 @@
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     android:textSize="13sp"
-                    android:layout_marginLeft="15sp"/>
+                    android:layout_marginStart="15dp"/>
 
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Elevator"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/elevator"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
@@ -388,9 +385,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Outdoor Features"
+                android:text="@string/outdoor_features"
                 android:textColor="@color/darker_lavender"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="15dp"
                 android:textSize="13sp"
                 android:textStyle="bold"/>
 
@@ -399,7 +396,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10dp">
 
 
 
@@ -409,14 +406,14 @@
                     android:buttonTint="@color/black"
                     android:textSize="13sp"
                     android:id="@+id/saleGenerator"
-                    android:layout_marginLeft="10sp"/>
+                    android:layout_marginStart="10dp"/>
 
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Generator"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/generator"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
@@ -427,7 +424,7 @@
                     android:id="@+id/saleSecurity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
+                    android:layout_marginStart="10dp"
                     android:buttonTint="@color/black"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
@@ -436,8 +433,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:text="Security Guard"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/security_guard"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -446,7 +443,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="69sp"
+                android:layout_height="69dp"
                 android:orientation="horizontal">
 
                 <CheckBox android:layout_height="wrap_content"
@@ -454,16 +451,16 @@
                     android:id="@+id/saleGarage"
                     android:textColor="@color/black"
                     android:textSize="13sp"
-                    android:layout_marginTop="10sp"
+                    android:layout_marginTop="10dp"
                     android:buttonTint="@color/black"
-                    android:layout_marginLeft="10sp"/>
+                    android:layout_marginStart="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:layout_marginTop="10sp"
-                    android:text="Garage Space"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/garage_space"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -477,38 +474,38 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15sp"
-                    android:text="Asking Amount"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/asking_amount"
                     android:textColor="@color/black"
                     android:textSize="13sp"/>
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15sp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/salePayment"
                     android:inputType="number"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:textSize="13sp"
                     android:background="@drawable/shape3"
                     android:textColor="@color/black"/>
 
 
                 <TextView
-                    android:layout_width="100sp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15sp"
-                    android:layout_marginTop="15sp"
-                    android:text="Description"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/description"
                     android:textColor="@color/darker_lavender"
                     android:textSize="13sp"/>
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="250sp"
-                    android:layout_marginLeft="15sp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="15dp"
                     android:id="@+id/saleDescription"
-                    android:padding="8sp"
+                    android:padding="8dp"
                     android:textSize="13sp"
                     android:background="@drawable/shape3"
                     android:textColor="@color/black"
@@ -521,22 +518,25 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/shape3"
                 android:backgroundTint="@color/darker_lavender"
-                android:padding="10sp"
-                android:layout_marginTop="20sp"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:layout_marginLeft="120sp"
-                android:text="Add photos to post" />
+                android:layout_marginStart="120dp"
+                android:text="@string/add_photos_to_post"
+                tools:ignore="ObsoleteLayoutParam" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/select_sale">
+                android:layout_below="@id/select_sale"
+                tools:ignore="ObsoleteLayoutParam">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/saleImageRecView"
                     android:layout_width="match_parent"
-                    android:layout_height="350sp"
-                    android:layout_marginTop="20sp"
+                    android:layout_height="350dp"
+
+                    android:layout_marginTop="20dp"
                     />
 
                 <TextView
@@ -544,21 +544,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/saleImageRecView"
-                    android:text="Previously Added Photos"
+                    android:text="@string/previously_added_photos"
                     android:textColor = "@color/black"
                     android:textSize="18sp"
-                    android:layout_marginTop="20sp"
-                    android:layout_marginBottom="20sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:visibility="gone"
                     android:layout_centerHorizontal="true"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/previouslyAddedSaleImageRecView"
+
                     android:layout_width="match_parent"
-                    android:layout_height="350sp"
+                    android:layout_height="350dp"
                     android:layout_below="@id/prevPhotoTextView"
                     android:visibility="gone"
-                    android:layout_marginTop="20sp"
+                    android:layout_marginTop="20dp"
                     />
 
             </RelativeLayout>
@@ -568,13 +569,13 @@
                 android:id="@+id/buttonSalePostAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="190sp"
-                android:layout_marginTop="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginStart="190dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/shape3"
                 android:backgroundTint="@color/darker_lavender"
-                android:padding="5sp"
-                android:text="Post" />
+                android:padding="5dp"
+                android:text="@string/post" />
 
         </LinearLayout>
     </ScrollView>

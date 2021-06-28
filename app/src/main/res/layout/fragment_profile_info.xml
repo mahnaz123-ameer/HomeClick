@@ -21,7 +21,8 @@
             android:src="@drawable/personal_info"
             android:layout_marginTop="20sp"
             android:background="@drawable/circle"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            tools:ignore="ContentDescription" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,13 +33,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Personal Information"
+            android:text="@string/personal_information"
             android:id="@+id/personal_info"
             android:fontFamily="@font/comfortaa_regular"
             android:textColor="@color/black"
             android:layout_marginTop="30sp"
-            android:layout_marginLeft="20sp"
-            android:textSize="17dp"
+            android:layout_marginStart="20sp"
+            android:textSize="17sp"
             android:textStyle="bold"/>
 
 
@@ -46,8 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_marginLeft="20sp"
-            android:text="This information can only be seen by members."
+            android:layout_marginStart="20sp"
+            android:text="@string/this_information_can_only_be_seen_by_members"
             android:layout_below="@+id/personal_info"
             />
         </RelativeLayout>
@@ -71,7 +72,7 @@
             android:layout_height="55sp"
             android:padding="10dp"
             android:src="@drawable/icon_profile"
-            />
+            tools:ignore="ContentDescription" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -101,7 +102,8 @@
                 android:textSize="15sp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:ignore="Autofill" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -119,7 +121,7 @@
             android:layout_height="55sp"
             android:padding="10sp"
             android:src="@drawable/icon_email"
-            />
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/profile_email"
@@ -146,7 +148,8 @@
             android:layout_width="55sp"
             android:layout_height="55sp"
             android:padding="10dp"
-            android:src="@drawable/icon_phone" />
+            android:src="@drawable/icon_phone"
+            tools:ignore="ContentDescription" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -173,10 +176,12 @@
                 android:textSize="15sp"
                 android:enabled="false"
                 android:gravity="center"
+                android:inputType="number"
                 android:text="@string/phone_number"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:ignore="TextFields" />
 
 
         </RelativeLayout>
@@ -198,7 +203,8 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/icon_edit"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/save_info"
@@ -211,7 +217,8 @@
         android:layout_marginTop="20sp"
         android:visibility="gone"
         android:focusable="false"
-        android:clickable="false"/>
+        android:clickable="false"
+        tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 
