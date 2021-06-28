@@ -63,6 +63,7 @@
                             android:id="@+id/rentFullAddress"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
+                            android:textAlignment="textStart"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/shape3"
@@ -95,14 +96,14 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginStart="10dp">
 
                 <RadioButton
                     android:id="@+id/rbFamily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/black"
-                    android:text="Family"
+                    android:text="@string/family"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -111,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/black"
-                    android:text="Student / Working person"
+                    android:text="@string/student_working_person"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -130,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Bedrooms"
+                android:text="@string/bedrooms"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:layout_marginTop="0dp"/>
@@ -139,11 +140,11 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginLeft="42dp"
-                android:textSize="15dp"
+                android:layout_marginStart="42dp"
+                android:textSize="15sp"
                 android:textAlignment="center"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="-"
+                android:text="@string/_s"
                 android:background="@drawable/circle"
                 android:id="@+id/decrease_bedrooms"
                 />
@@ -155,7 +156,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="2dp"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:background="@drawable/shape3"
                 android:inputType="number"
                 android:padding="8dp"
@@ -165,10 +166,10 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="0dp"
-                android:text="+"
-                android:layout_marginLeft="10dp"
+                android:text="@string/_a"
+                android:layout_marginStart="10dp"
                 android:textAlignment="center"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
                 android:id="@+id/increase_bedrooms"
@@ -197,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Bathrooms"
+                android:text="@string/bathrooms"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:layout_marginTop="5dp"/>
@@ -206,18 +207,18 @@
                 android:id="@+id/decrease_bathrooms"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="37dp"
+                android:layout_marginStart="37dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="-"
-                android:textSize="20dp" />
+                android:text="@string/_s"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/rentBathrooms"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
@@ -230,9 +231,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:text="+"
-                android:textSize="13dp"
-                android:layout_marginLeft="10dp"
+                android:text="@string/_a"
+                android:textSize="13sp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
                 android:id="@+id/increase_bathrooms"
@@ -261,12 +262,12 @@
                 android:id="@+id/decrease_balconies"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="-"
-                android:textSize="20dp" />
+                android:text="@string/_s"
+                android:textSize="20sp" />
 
 
 
@@ -280,7 +281,7 @@
                 android:background="@drawable/shape3"
                 android:layout_marginTop="8dp"
                 android:inputType="number"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:padding="8dp"
                 android:textColor="@color/black" />
 
@@ -289,9 +290,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:text="+"
-                android:textSize="13dp"
-                android:layout_marginLeft="10dp"
+                android:text="@string/_a"
+                android:textSize="13sp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
                 android:id="@+id/increase_balconies"
@@ -313,7 +314,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Floor No"
+                android:text="@string/floor_no"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -322,13 +323,13 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Floor"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/shape3"
-                android:hint="Floor No"
+                android:hint="@string/floor_no"
                 android:inputType="number"
                 android:padding="8dp"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:textColor="@color/black" />
 
 
@@ -337,10 +338,10 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginLeft="57dp"
+                android:layout_marginStart="57dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/Floor"
-                android:text="Floor Space"
+                android:layout_toEndOf="@id/Floor"
+                android:text="@string/floor_space"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -349,14 +350,14 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Floor"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/rentFloor"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/rentFloor"
                 android:background="@drawable/shape3"
-                android:hint="Floor Space"
+                android:hint="@string/floor_space"
                 android:inputType="number"
                 android:padding="8dp"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:textColor="@color/black" />
 
         </RelativeLayout>
@@ -366,7 +367,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Indoor Features"
+            android:text="@string/indoor_features"
             android:textColor="@color/darker_lavender"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
@@ -403,7 +404,7 @@
                 android:id="@+id/rentGenerator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:buttonTint="@color/black"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -413,7 +414,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Generator"
+                android:text="@string/generator"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:layout_marginTop="10dp"/>
@@ -427,7 +428,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Outdoor Features"
+            android:text="@string/outdoor_features"
             android:textColor="@color/darker_lavender"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
@@ -447,7 +448,7 @@
                 android:id="@+id/rentElevator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:buttonTint="@color/black"
                 android:textColor="@color/black"
@@ -459,7 +460,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Elevator"
+                android:text="@string/elevator"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -470,7 +471,7 @@
                 android:id="@+id/rentGarage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:buttonTint="@color/black"
                 android:textColor="@color/black"
@@ -481,7 +482,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Garage Space"
+                android:text="@string/garage_space"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -499,7 +500,7 @@
                 android:id="@+id/rentSecurity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:buttonTint="@color/black"
                 android:textColor="@color/black"
@@ -509,7 +510,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Security Guard"
+                android:text="@string/security_guard"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -528,15 +529,14 @@
                 android:id="@+id/rentPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/shape3"
-                android:hint="per month"
+                android:hint="@string/per_month"
                 android:inputType="number"
                 android:padding="8dp"
                 android:textColor="@color/black"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:textColorHint="#807A7A" />
 
 
@@ -559,7 +559,7 @@
                 android:background="@drawable/shape3"
                 android:inputType="number"
                 android:padding="8dp"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:textColor="@color/black" />
 
 
@@ -573,7 +573,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Available From"
+                android:text="@string/available_from"
                 android:textColor="@color/darker_lavender"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
@@ -587,7 +587,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/shape3"
                 android:backgroundTint="#454345"
-                android:clickable="true" />
+                android:focusable="true" />
 
         </LinearLayout>
 
@@ -602,7 +602,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="@color/darker_lavender"
                 android:textSize="15sp" />
 
@@ -610,11 +610,11 @@
                 android:id="@+id/rentDescription"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/shape3"
                 android:padding="8dp"
-                android:textSize="13dp"
+                android:textSize="13sp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
@@ -637,8 +637,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:textSize="15dp"
-                android:text="Add photos to post" />
+                android:textSize="15sp"
+                android:text="@string/add_photos_to_post" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -660,7 +660,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Previously Added Photos"
+                    android:text="@string/previously_added_photos"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:visibility="gone" />
@@ -708,8 +708,8 @@
                 android:background="@drawable/shape3"
                 android:padding="2dp"
                 android:layout_marginBottom="30dp"
-                android:textSize="15dp"
-                android:text="Post" />
+                android:textSize="15sp"
+                android:text="@string/post" />
 
 
 

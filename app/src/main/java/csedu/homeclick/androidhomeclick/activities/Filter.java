@@ -106,7 +106,9 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 filter_no_of_bedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
-                count_bedrooms--;
+                if(count_bedrooms!=0){
+                    count_bedrooms--;
+                }
                 filter_no_of_bedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.increase_bathrooms:
@@ -114,7 +116,9 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 filter_no_of_bathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
-                count_bathrooms--;
+                if(count_bathrooms!=0){
+                    count_bathrooms--;
+                }
                 filter_no_of_bathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             default:

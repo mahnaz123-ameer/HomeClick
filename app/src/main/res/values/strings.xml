@@ -24,8 +24,9 @@
     <string name="rent">Rent</string>
     <string name="sale">Sale</string>
 
-    <string name="available">Available</string>
-    <string name="not_available">Not available</string>
+    <string name="_available">Available</string>
+    <string name="not_available"><font color='#F44336'>Not available</font></string>
+
 
     <string name="floor">Floor</string>
     <string name="floor_space">Floor Space</string>

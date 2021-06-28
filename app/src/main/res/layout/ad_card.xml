@@ -10,7 +10,7 @@
     android:backgroundTint="@color/white"
     android:elevation="5dp"
     android:padding="30dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10sp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/icon_location"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/icon_location"
@@ -36,36 +36,36 @@
                 android:id="@+id/card_area_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_toRightOf="@id/icon_location"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/icon_location"
                 android:fontFamily="@font/comfortaa_regular"
-                android:text="Area Name"
+                android:text="@string/area_name"
                 android:textColor="@color/darker_lavender"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/card_full_address"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_area_name"
-                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/icon_location"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@id/icon_location"
                 android:fontFamily="@font/comfortaa_regular"
-                android:text="Full address"
+                android:text="@string/full_address"
                 android:textColor="@color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/card_ad_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="Sale"
+                android:layout_alignParentEnd="true"
+                android:text="@string/sale"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
@@ -79,7 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/top_box"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp">
 
             <ImageView
                 android:id="@+id/icon_bedroom"
@@ -91,9 +92,9 @@
                 android:id="@+id/card_bedroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/icon_bedroom"
-                android:text="2"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/icon_bedroom"
+                android:text="@string/__2"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -112,10 +113,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_bedroom"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:layout_toRightOf="@id/icon_bathroom"
-                android:text="1"
+                android:layout_toEndOf="@id/icon_bathroom"
+                android:text="@string/_1"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -128,7 +129,7 @@
             android:layout_below="@id/top_box"
             android:layout_marginTop="20dp"
             android:layout_marginStart="80dp"
-            android:layout_toRightOf="@id/left_box">
+            android:layout_toEndOf="@id/left_box">
 
             <ImageView
                 android:id="@+id/icon_gas"
@@ -140,9 +141,10 @@
                 android:id="@+id/card_gas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/icon_gas"
-                android:text="Available"
+                android:layout_toEndOf="@id/icon_gas"
+                android:text="@string/available"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -153,7 +155,8 @@
                 android:layout_height="30dp"
                 android:layout_below="@id/icon_gas"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/icon_money_mahnaz" />
+                android:src="@drawable/icon_money_mahnaz"
+                 />
 
             <TextView
                 android:id="@+id/card_payment"
@@ -162,8 +165,8 @@
                 android:layout_below="@id/card_gas"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_toRightOf="@id/icon_money"
-                android:text="18000 BDT"
+                android:layout_toEndOf="@id/icon_money"
+                android:text="@string/_18000_bdt"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
