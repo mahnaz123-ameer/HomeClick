@@ -1,12 +1,14 @@
 package csedu.homeclick.androidhomeclick.activities.create_post;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +39,7 @@ import java.util.List;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.AdFeed;
+import csedu.homeclick.androidhomeclick.activities.CreatePost;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
@@ -46,9 +49,9 @@ import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 
 
 public class CreateSalePostFragment extends Fragment implements View.OnClickListener, ImageRecyclerViewAdapter.OnPhotoClickListener {
-
-
-    public static final String TAG = "CreateSalePostFragment";
+    private static final String TAG = "CreateRentPostFragment";
+    private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
+    private static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.MapsActivity";
 
 
     private Boolean EDIT_MODE = false;
@@ -60,6 +63,8 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     private RadioGroup saleSituation;
     private RadioButton New,established;
     private Button postAd, selectPhotos;
+    private Button addSaleLocation;
+    private TextView saleLocation;
 
 
     private  Button increase_sale_bedrooms,decrease_sale_bedrooms;
@@ -86,8 +91,50 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     private UserService userService;
     private final AdvertisementService advertisementService = new AdvertisementService();
 
+    private double longitude, latitude;
+
 
     List<Uri> imageUri = new ArrayList<>();
+
+
+    final ActivityResultLauncher<String> mapLauncher
+            = registerForActivityResult(new ActivityResultContract<String, List<Double>>() {
+
+        @NonNull
+        @NotNull
+        @Override
+        public Intent createIntent(@NonNull @NotNull Context context, String input) {
+            Intent intent = new Intent();
+            intent.setClassName(PACKAGE_NAME,CLASS_NAME);
+            double latitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLatitude();
+            double longitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLongitude();
+            intent.putExtra("latitude", latitude);
+            intent.putExtra("longitude", longitude);
+            Log.i(TAG, "latitude = " + latitude + " longitude = " + longitude);
+            return intent;
+        }
+
+        @Override
+        public List<Double> parseResult(int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent intent) {
+            List<Double> list = new ArrayList<>();
+            assert intent != null;
+            if(intent.getExtras() != null) {
+                list.add((Double) intent.getExtras().get("latitude"));
+                list.add((Double) intent.getExtras().get("longitude"));
+            }
+            return list;
+        }
+    }, new ActivityResultCallback<List<Double>>() {
+        @Override
+        public void onActivityResult(List<Double> result) {
+            if(!result.isEmpty()) {
+                CreateSalePostFragment.this.latitude = result.get(0);
+                CreateSalePostFragment.this.longitude = result.get(1);
+                saleLocation.setText("latitude = " + result.get(0) + " longitude = "+ result.get(1));
+            }
+        }
+    });
+
     final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
         @Override
         public void onActivityResult(List<Uri> result) {
@@ -98,7 +145,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             CreateSalePostFragment.this.imageUri = new ArrayList<>(hashSet);
 
 
-            CreateSalePostFragment.this.imageRecVA.setOnPhotoClickListener(CreateSalePostFragment.this::onPhotoClick);
+            CreateSalePostFragment.this.imageRecVA.setOnPhotoClickListener(CreateSalePostFragment.this);
             CreateSalePostFragment.this.imageRecVA.setUrlArrayList(CreateSalePostFragment.this.imageUri);
             CreateSalePostFragment.this.imageRecVA.notifyDataSetChanged();
 
@@ -110,14 +157,6 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     }
 
 
-
-//    public static CreateSalePostFragment newInstance() {
-//        CreateSalePostFragment fragment = new CreateSalePostFragment();
-//        Bundle args = new Bundle();
-//
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -155,7 +194,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         decrease_sale_bathrooms.setOnClickListener(this);
         increase_sale_balconies.setOnClickListener(this);
         decrease_sale_balconies.setOnClickListener(this);
-
+        addSaleLocation.setOnClickListener(this);
     }
 
     private void setWidgets() {
@@ -244,6 +283,8 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         postAd = view.findViewById(R.id.buttonSalePostAd);
 
         selectPhotos = view.findViewById(R.id.select_sale);
+        saleLocation = view.findViewById(R.id.sale_location);
+        addSaleLocation = view.findViewById(R.id.sale_add_location);
 
 
         increase_sale_bedrooms = view.findViewById(R.id.increase_bedrooms);
@@ -252,6 +293,10 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         decrease_sale_bathrooms = view.findViewById(R.id.decrease_bathrooms);
         increase_sale_balconies = view.findViewById(R.id.increase_balconies);
         decrease_sale_balconies = view.findViewById(R.id.decrease_balconies);
+
+
+        this.latitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLatitude();
+        this.longitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLongitude();
     }
     @Override
     public void onClick(View v) {
@@ -297,6 +342,9 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                     count_sale_balconies--;
                 }
                 saleBalconies.setText(Integer.toString(count_sale_balconies));
+                break;
+            case R.id.sale_add_location:
+                mapLauncher.launch(CLASS_NAME);
                 break;
             default:
                 break;
@@ -500,6 +548,9 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
 
         sale.setAdvertiserUID(userService.getUserUID());
+        sale.setLatitude(CreateSalePostFragment.this.latitude);
+        sale.setLongitude(CreateSalePostFragment.this.longitude);
+
         return sale;
     }
     private Boolean checkData() {

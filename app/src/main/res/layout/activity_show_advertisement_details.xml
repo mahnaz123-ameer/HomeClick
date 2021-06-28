@@ -81,7 +81,7 @@
                         android:layout_marginTop="45dp"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/comfortaa_regular"
-                        android:text="@string/_full_address"
+                        android:text="@string/full_address"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         android:textStyle="normal"/>
@@ -210,7 +210,7 @@
                             android:gravity="center"
                             android:layout_toEndOf="@id/icon_bedroom"
                             android:fontFamily="@font/comfortaa_regular"
-                            android:text="@string/_two"
+                            android:text="@string/bedrooms"
                             android:background="@drawable/shape3"
                             android:padding="5dp"
                             android:textColor="@color/black"
@@ -236,7 +236,7 @@
                             android:background="@drawable/shape3"
                             android:fontFamily="@font/comfortaa_regular"
                             android:gravity="center"
-                            android:text="@string/__2"
+                            android:text="@string/bathrooms"
                             android:layout_marginStart="21dp"
                             android:layout_marginTop="13dp"
                             android:textColor="@color/black"
@@ -264,7 +264,7 @@
                             android:layout_marginStart="13dp"
                             android:padding="5dp"
                             android:layout_marginTop="13dp"
-                            android:text="@string/_2_"
+                            android:text="@string/balconies"
                             android:textColor="@color/black"
                             android:textSize="13sp" />
 
@@ -278,7 +278,7 @@
                         android:layout_marginTop="87dp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:layout_marginStart="15dp"
-                        android:text="@string/floor_no"
+                        android:text="@string/floor"
                         android:textColor="@color/darker_lavender"
                         android:textSize="12sp"
                         android:textStyle="bold"/>
@@ -294,7 +294,7 @@
                         android:background="@drawable/shape3"
                         android:fontFamily="@font/comfortaa_regular"
                         android:padding="5dp"
-                        android:text="@string/_5"
+                        android:text="@string/floor"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -321,7 +321,7 @@
                         android:background="@drawable/shape3"
                         android:fontFamily="@font/comfortaa_regular"
                         android:padding="5dp"
-                        android:text="@string/_1400sqft"
+                        android:text="@string/floor_space"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -433,7 +433,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
-                                    android:text="@string/available"
+                                    android:text="@string/_available"
                                     android:textColor="@color/black"
                                     android:textSize="13sp"
                                     android:textStyle="bold"/>
@@ -485,7 +485,7 @@
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
                                     android:layout_centerHorizontal="true"
-                                    android:text="@string/available"
+                                    android:text="@string/_available"
                                     android:textColor="@color/black"
                                     android:textSize="13sp"
                                     android:textStyle="bold"/>
@@ -539,7 +539,7 @@
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
                                     android:layout_centerHorizontal="true"
-                                    android:text="@string/available"
+                                    android:text="@string/_available"
                                     android:textColor="@color/black"
                                     android:textStyle="bold"
                                     android:textSize="13sp" />
@@ -596,7 +596,7 @@
                                     android:layout_centerHorizontal="true"
                                     android:fontFamily="@font/comfortaa_regular"
                                     android:gravity="center"
-                                    android:text="@string/available"
+                                    android:text="@string/_available"
                                     android:textColor="@color/black"
                                     android:textSize="13sp" android:textStyle="bold"
                                     />
@@ -694,7 +694,7 @@
                     android:layout_marginTop="13dp"
                     android:layout_toEndOf="@id/icon_money"
                     android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/_10000_bdt"
+                    android:text="@string/payment"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -720,7 +720,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/text_utility"
                     android:fontFamily="@font/comfortaa_regular"
-                    android:text="@string/_5000_bdt"
+                    android:text="@string/utility"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -749,7 +749,7 @@
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/comfortaa_regular"
                     android:padding="10dp"
-                    android:text="@string/_18_07_2021"
+                    android:text="@string/date"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 

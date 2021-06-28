@@ -47,8 +47,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+
             android:layout_marginStart="20dp"
-            android:text="@string/this_information_can_only_be_seen_by_members"
+            android:text="@string/information_can_only_be_seen_by_members"
+
             android:layout_below="@+id/personal_info"
             />
         </RelativeLayout>

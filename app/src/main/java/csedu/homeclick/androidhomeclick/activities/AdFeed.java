@@ -1,17 +1,24 @@
 package csedu.homeclick.androidhomeclick.activities;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,8 +38,11 @@ import csedu.homeclick.androidhomeclick.structure.Advertisement;
 import csedu.homeclick.androidhomeclick.structure.FilterCriteria;
 
 
-public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener {
-    public static final String TAG = "AdFeed";
+public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener ,
+                            View.OnClickListener{
+    private static final String TAG = "AdFeed";
+    private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
+    private static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.MapView";
 
 
     private final RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
@@ -61,6 +71,8 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
     private LinearProgressIndicator loadAds;
     private FilterCriteria receivedCriteria = null;
 
+    private FloatingActionButton mapView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +81,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         bindWidgets();
 
         adRecView.addOnScrollListener(onScrollListener);
+        mapView.setOnClickListener(this);
 
         if(getIntent().getData() != null) {
             userService.completeSignIn(getIntent(), getApplicationContext());
@@ -195,6 +208,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         userService = new UserService();
         adService = new AdvertisementService();
         adRecView = findViewById(R.id.adRecView);
+        mapView = findViewById(R.id.map_view);
         loadAds = findViewById(R.id.loading_ads);
         loadAds.setVisibility(View.GONE);
 
@@ -216,5 +230,16 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
 
         targetIntent.putExtra("Ad", clickedAdvert);
         startActivity(targetIntent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Advertisement[] toSend = new Advertisement[adArrayList.size()];
+        for(int adNo = 0; adNo < adArrayList.size(); adNo++) {
+            toSend[adNo] = adArrayList.get(adNo);
+        }
+        Intent intent = new Intent(getApplicationContext(), MapView.class);
+        intent.putExtra("adArrayList", toSend);
+        startActivity(intent);
     }
 }

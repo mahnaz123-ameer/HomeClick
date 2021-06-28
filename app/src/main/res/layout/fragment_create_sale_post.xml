@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
-                        android:text="@string/_new"
+                        android:text="@string/new_property"
                         android:id="@+id/rbNew"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
@@ -132,7 +132,7 @@
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="@string/_s"
+                    android:text="@string/minus"
                     android:textAlignment="center"
                     android:textSize="13sp" />
 
@@ -157,7 +157,7 @@
                 <Button
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:text="@string/_a"
+                    android:text="@string/plus"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     android:layout_marginStart="10dp"
@@ -188,7 +188,7 @@
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="@string/_s"
+                    android:text="@string/minus"
                     android:textSize="13sp" />
 
                 <EditText
@@ -207,7 +207,7 @@
                 <Button
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:text="@string/_a"
+                    android:text="@string/plus"
                     android:textSize="13sp"
                     android:background="@drawable/circle"
                     android:layout_marginStart="10dp"
@@ -239,7 +239,7 @@
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="@string/_s"
+                    android:text="@string/minus"
                     android:textSize="13sp" />
 
 
@@ -260,7 +260,7 @@
                 <Button
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:text="@string/_a"
+                    android:text="@string/plus"
                     android:textSize="13sp"
                     android:background="@drawable/circle"
                     android:layout_marginStart="10dp"
@@ -282,7 +282,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:text="@string/floor_no"
+                    android:text="@string/floor"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:id="@+id/floor_no"/>
@@ -571,6 +571,22 @@
                     />
 
             </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sale location"
+                android:textColor="@color/black"
+                android:id="@+id/sale_location"/>
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sale_add_location"
+                android:textColor="@color/black"
+                android:text="add location"/>
 
 
             <Button

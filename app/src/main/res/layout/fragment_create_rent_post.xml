@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/black"
-                    android:text="@string/student_working_person"
+                    android:text="@string/student_or_working_person"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
@@ -146,7 +146,7 @@
                 android:textSize="15sp"
                 android:textAlignment="center"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="@string/_s"
+                android:text="@string/minus"
                 android:background="@drawable/circle"
                 android:id="@+id/decrease_bedrooms"
                 />
@@ -169,7 +169,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/_a"
+                android:text="@string/plus"
                 android:layout_marginStart="10dp"
                 android:textAlignment="center"
                 android:textSize="13sp"
@@ -210,7 +210,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="@string/_s"
+                android:text="@string/minus"
                 android:textSize="20sp" />
 
             <EditText
@@ -231,7 +231,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/_a"
+                android:text="@string/plus"
                 android:textSize="13sp"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/circle"
@@ -266,7 +266,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/darker_lavender"
-                android:text="@string/_s"
+                android:text="@string/minus"
                 android:textSize="20sp" />
 
 
@@ -291,7 +291,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/_a"
+                android:text="@string/plus"
                 android:textSize="13sp"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/circle"
@@ -315,7 +315,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/floor_no"
+                android:text="@string/floor"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -327,7 +327,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/shape3"
-                android:hint="@string/floor_no"
+                android:hint="@string/floor"
                 android:inputType="number"
                 android:padding="8dp"
                 android:textSize="13sp"
@@ -673,7 +673,6 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/previouslyAddedImageRecView"
-
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:layout_below="@id/prevPhotoTextView"
@@ -686,6 +685,22 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="rent location"
+            android:textColor="@color/black"
+            android:id="@+id/rent_location"/>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rent_add_location"
+            android:textColor="@color/black"
+            android:text="add location"/>
 
 
 

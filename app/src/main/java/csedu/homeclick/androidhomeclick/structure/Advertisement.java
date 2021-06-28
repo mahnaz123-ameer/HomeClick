@@ -14,6 +14,7 @@ public class Advertisement extends Leaflet implements Serializable {
     private Boolean elevator;
     private Boolean generator;
     private Boolean garageSpace;
+    private double latitude, longitude;
 
     private int numberOfImages;
     private List<String> urlToImages = new ArrayList<>();
@@ -122,5 +123,21 @@ public class Advertisement extends Leaflet implements Serializable {
 
     public void setBookmarkedBy(List<String> bookmarkedBy) {
         this.bookmarkedBy = bookmarkedBy;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

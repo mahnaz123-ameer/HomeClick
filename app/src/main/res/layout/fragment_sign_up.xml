@@ -77,7 +77,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/phone_no"
+            android:hint="@string/phone_number"
             android:layout_below="@id/input_field_sign_up"
             app:hintTextColor="@color/black"
             android:textColorHint="@color/black"
