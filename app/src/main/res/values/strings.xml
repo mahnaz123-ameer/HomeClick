@@ -87,6 +87,8 @@
     <string name="established">Established</string>
     <string name="asking_amount">Asking Amount</string>
     <string name="email_address">Email Address</string>
-    <string name="information_can_only_be_seen_by_members">Information can only be seen by members.</string>
+
+    <string name="information_can_only_be_seen_by_members">This information can only be seen by members.</string>
     <string name="personal_information">Personal Information</string>
+
 </resources>
