@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -48,10 +51,14 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
             Log.i("adapter","something is wrong");
         }
         String gasString;
-        if(gasAvail) gasString = "Available";
-        else gasString = "Not Available";
+        if(gasAvail) {
+            holder.gasAvailability.setText(R.string._available);
+        }
+        else {
+            holder.gasAvailability.setText(R.string.not_available);
+        }
 
-        holder.gasAvailability.setText(gasString);
+
         String payAmount = String.format(Locale.getDefault(), "%d", advertisementArrayList.get(position).getPaymentAmount()) + " BDT";
         holder.paymentAmount.setText(payAmount);
     }
@@ -72,7 +79,8 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView areaName, fullAddress, bedroom, bathroom, gasAvailability, paymentAmount, adType;
+        private TextView areaName,  bedroom, bathroom, gasAvailability, paymentAmount, adType;
+        private TextView fullAddress;
         OnAdCardClickListener onAdCardClickListener;
 
 

@@ -75,8 +75,10 @@ public class CreatePost extends AppCompatActivity {
         } else {
             System.out.println("In here, permission granted, requesting location updates");
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            this.latitude = location.getLatitude();
-            this.longitude = location.getLongitude();
+            if(location != null) {
+                this.latitude = location.getLatitude();
+                this.longitude = location.getLongitude();
+            }
         }
     }
 
@@ -87,8 +89,12 @@ public class CreatePost extends AppCompatActivity {
         if(requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                this.latitude = location.getLatitude();
-                this.longitude = location.getLongitude();
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                if(location != null) {
+                    this.latitude = location.getLatitude();
+                    this.longitude = location.getLongitude();
+                }
+
 
             }
         }
@@ -112,6 +118,7 @@ public class CreatePost extends AppCompatActivity {
 
         if(received != null) {
             if (received.getAdType().equals("Sale")) {
+                Log.i(TAG, "in page index 1");
                 pageIndex = 1;
             }
         }
@@ -141,6 +148,7 @@ public class CreatePost extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(@NonNull String provider) {
+                Log.i(TAG, provider);
                 goToEnableProvider();
             }
 
@@ -152,6 +160,7 @@ public class CreatePost extends AppCompatActivity {
     }
 
     private void goToEnableProvider() {
+        Log.i(TAG, "in go to enable provider");
         if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
             alertDialog.setTitle("Enable Location");

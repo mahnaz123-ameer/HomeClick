@@ -49,6 +49,7 @@
             <TextView
                 android:id="@+id/card_full_address"
                 android:layout_width="250dp"
+                android:maxLines="2"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_area_name"
                 android:layout_marginStart="14dp"

@@ -127,15 +127,15 @@
 
         <TextView
             android:id="@+id/profile_email"
-            android:layout_width="320dp"
+            android:layout_width="306dp"
             android:layout_height="55dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
-            android:textSize="15sp"
             android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="@string/email"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout

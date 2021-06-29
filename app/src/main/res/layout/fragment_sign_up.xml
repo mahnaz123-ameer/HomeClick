@@ -136,7 +136,6 @@
             android:layout_below="@+id/policies"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shape3"
             android:backgroundTint="@color/darker_lavender"
             android:fontFamily="@font/comfortaa_regular"
             android:text="@string/send_link_in_mail"

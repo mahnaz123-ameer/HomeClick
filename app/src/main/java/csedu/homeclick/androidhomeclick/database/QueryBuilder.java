@@ -51,7 +51,7 @@ public class QueryBuilder {
             }
         }
 
-        if(filterCriteria.getNumberOfBedrooms() != -1) {
+        if(filterCriteria.getNumberOfBedrooms() >= 0) {
             int bedrooms = filterCriteria.getNumberOfBedrooms();
 
             if(filterQuery == null) {
@@ -61,7 +61,7 @@ public class QueryBuilder {
             }
         }
 
-        if(filterCriteria.getNumberOfBathrooms() != -1) {
+        if(filterCriteria.getNumberOfBathrooms() >= 0) {
             int bathrooms = filterCriteria.getNumberOfBathrooms();
 
             if(filterQuery == null) {
@@ -71,7 +71,7 @@ public class QueryBuilder {
             }
         }
 
-        if(filterCriteria.getPaymentAmount() != -1) {
+        if(filterCriteria.getPaymentAmount() > 0) {
             int paymentAmount = filterCriteria.getPaymentAmount();
 
             if(filterQuery == null) {

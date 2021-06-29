@@ -76,13 +76,29 @@
     <string name="previously_added_photos">Previously Added Photos</string>
     <string name="property_condition">Property Condition</string>
     <string name="new_property">New</string>
+    <string name="payment">Payment</string>
+    <string name="elevator">Elevator</string>
+    <string name="generator">Generator</string>
+    <string name="garage_space">Garage Space</string>
+    <string name="family">Family</string>
+    <string name="rent_rate">Rent Rate</string>
+
+    <string name="gas_availability">Gas Availability</string>
+    <string name="area_name">Area Name</string>
+    <string name="full_address">Full Address</string>
+    <string name="full_name">Full Name</string>
     <string name="established">Established</string>
     <string name="asking_amount">Asking Amount</string>
     <string name="email_address">Email Address</string>
     <string name="_description">Description</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="balconies">Balconies</string>
     <string name="this_information_can_only_be_seen_by_members">This information can only be seen by members.</string>
 
     <string name="information_can_only_be_seen_by_members">Information can only be seen by members.</string>
     <string name="personal_information">Personal Information</string>
+    <string name="add_location">Add Location</string>
+    <string name="location">Location</string>
 
 </resources>

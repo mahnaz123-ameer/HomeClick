@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -79,10 +80,10 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     }
 
     private void setClickListeners() {
-        edit.setOnClickListener(this::onClick);
-        delete.setOnClickListener(this::onClick);
-        bookmark.setOnClickListener(this::onClick);
-        callCard.setOnClickListener(this::onClick);
+        edit.setOnClickListener(this);
+        delete.setOnClickListener(this);
+        bookmark.setOnClickListener(this);
+        callCard.setOnClickListener(this);
         adImagesVA.setOnPhotoClickListener(this);
         bookmarked.setOnClickListener(this);
     }
@@ -256,12 +257,15 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         securityTV.setText(security);
 
         floorTV.setText(Integer.toString(rentAd.getFloor()));
+        Log.i(TAG, "floor =" + Integer.toString(rentAd.getFloor()));
         floorSpaceTV.setText(rentAd.getFloorSpace() + " SQFT");
 
         paymentTV.setText(rentAd.getPaymentAmount() + " BDT");
         utilityTV.setText(rentAd.getUtilityCharge()+ " BDT");
 
-        moveInTV.setText(rentAd.getAvailableFrom().toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy");
+        String moveInDate = simpleDateFormat.format(rentAd.getAvailableFrom());
+        moveInTV.setText(moveInDate);
         tenantTypeTV.setText(rentAd.getTenantType());
 
         advertNameTV.setText(advertiser.getName());
@@ -533,6 +537,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         } else {
             total = saleAd.getNumberOfImages();
         }
-        Toast.makeText(this, "Image " + position + 1 + " out of " + total, Toast.LENGTH_SHORT).show();
+        int photoNum = position + 1;
+        Toast.makeText(this, "Image " + photoNum + " out of " + total, Toast.LENGTH_SHORT).show();
     }
 }
