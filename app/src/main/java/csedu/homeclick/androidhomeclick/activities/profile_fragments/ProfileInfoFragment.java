@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.activities.profile_fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.UserInterface;
@@ -60,13 +60,10 @@ public class ProfileInfoFragment extends Fragment implements View.OnClickListene
     }
 
     private void setInformation() {
-        userService.findUserInfo(new UserInterface.OnUserInfoListener<User>() {
-            @Override
-            public void OnUserInfoFound(User data) {
-                profile_name.setText(data.getName());
-                profile_email.setText(data.getEmailAddress());
-                profile_phone.setText(data.getPhoneNumber());
-            }
+        userService.findUserInfo(data -> {
+            profile_name.setText(data.getName());
+            profile_email.setText(data.getEmailAddress());
+            profile_phone.setText(data.getPhoneNumber());
         }, userService.getUserUID());
     }
 
@@ -94,6 +91,7 @@ public class ProfileInfoFragment extends Fragment implements View.OnClickListene
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

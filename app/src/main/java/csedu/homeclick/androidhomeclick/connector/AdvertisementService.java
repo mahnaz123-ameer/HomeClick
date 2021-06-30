@@ -36,9 +36,6 @@ public class AdvertisementService {
         adDealer.pushAdIntoDatabase(advert, onAdPostSuccessListener);
     }
 
-//    public void addAdvertisement(AdInterface.OnAdPostSuccessListener<Advertisement> onAdPostSuccessListener, AdInterface.OnPhotoUploadProgressListener<List<Uri>> onPhotoUploadProgressListener, Advertisement advertisement, List<Uri> toUpload, List<String> fileExtensions) {
-//        adDealer.getAdIdAndUploadPhotos(onAdPostSuccessListener, onPhotoUploadProgressListener, advertisement, toUpload, fileExtensions);
-//    }
 
     public void fetchAdvertisements(AdInterface.OnAdsFetchedListener<List<Advertisement>> onAdsFetchedListener) {
         adDealer.getAdsFromDatabase(onAdsFetchedListener);

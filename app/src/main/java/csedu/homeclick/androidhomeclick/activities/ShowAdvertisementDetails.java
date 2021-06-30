@@ -32,9 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
-import csedu.homeclick.androidhomeclick.connector.UserInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.recyclerviewadapters.ImageRecyclerViewAdapter;
@@ -45,11 +43,8 @@ import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener,
-        AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener,
         ImageRecyclerViewAdapter.OnPhotoClickListener, View.OnLongClickListener{
     public static final String TAG = "ShowAdDetails";
-    public static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
-    public static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.PinAdOnMap";
 
     private RelativeLayout relativeLayout;
 
@@ -58,8 +53,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     private RentAdvertisement rentAd;
     private SaleAdvertisement saleAd;
-    final RentAdvertisement[] finalRentAd = new RentAdvertisement[1];
-    final SaleAdvertisement[] finalSaleAd = new SaleAdvertisement[1];
+
     private final User advertiser = new User();
 
 
@@ -78,43 +72,6 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     private ImageRecyclerViewAdapter adImagesVA;
     private RecyclerView imageRecView;
-
-//    final ActivityResultLauncher<String> mapLauncher
-//            = registerForActivityResult(new ActivityResultContract<String, Void>() {
-//
-//
-//        @NonNull
-//        @NotNull
-//        @Override
-//        public Intent createIntent(@NonNull @NotNull Context context, String input) {
-//            Intent intent = new Intent();
-//            intent.setClassName(PACKAGE_NAME,CLASS_NAME);
-//            double latitude, longitude;
-//            if(rentAd != null) {
-//                latitude = rentAd.getLatitude();
-//                longitude = rentAd.getLongitude();
-//            } else {
-//                latitude = saleAd.getLatitude();
-//                longitude = saleAd.getLongitude();
-//            }
-//
-//            intent.putExtra("latitude", latitude);
-//            intent.putExtra("longitude", longitude);
-//
-//            return intent;
-//        }
-//
-//        @Override
-//        public Void parseResult(int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent intent) {
-//            return null;
-//        }
-//    }, new ActivityResultCallback<Void>() {
-//
-//        @Override
-//        public void onActivityResult(Void result) {
-//
-//        }
-//    });
 
 
 
@@ -378,13 +335,13 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     private void updateInfo(final RentAdvertisement advert) {
         Log.i(TAG, "in update info, para: rent ad");
         rentAd = advert;
-        userService.findUserInfo(this, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
+        userService.findUserInfo(this::updateUserInfo, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
     }
 
     private void updateInfo(final SaleAdvertisement advert) {
         Log.i(TAG, "in update info, para: sale ad");
         saleAd = advert;
-        userService.findUserInfo(this, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
+        userService.findUserInfo(this::updateUserInfo, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
     }
 
     private void bindWidgets() {
@@ -454,9 +411,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
 
         if(received.getAdType().equals("Rent")) {
-            adService.getRentAd(this, received.getAdvertisementID());
+            adService.getRentAd(this::updateInfo, received.getAdvertisementID());
         } else {
-            adService.getSaleAd(this, received.getAdvertisementID());
+            adService.getSaleAd(this::updateInfo, received.getAdvertisementID());
         }
 
 
@@ -582,16 +539,13 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         if(userService.isSignedIn()) {
             bookmarkList.remove(userService.getUserUID());
             received.setBookmarkedBy(bookmarkList);
-            adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
-                @Override
-                public void OnAdEdited(Boolean edited, String error) {
-                    Toast.makeText(ShowAdvertisementDetails.this, "Removed from bookmarks", Toast.LENGTH_SHORT).show();
-                    bookmark.setEnabled(true);
-                    bookmark.setVisibility(View.VISIBLE);
+            adService.editAd(received.getAdvertisementID(), received, (edited, error) -> {
+                Toast.makeText(ShowAdvertisementDetails.this, "Removed from bookmarks", Toast.LENGTH_SHORT).show();
+                bookmark.setEnabled(true);
+                bookmark.setVisibility(View.VISIBLE);
 
-                    bookmarked.setEnabled(false);
-                    bookmarked.setVisibility(View.GONE);
-                }
+                bookmarked.setEnabled(false);
+                bookmarked.setVisibility(View.GONE);
             });
         }
     }
@@ -602,19 +556,16 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
         bookmarkList.add(userService.getUserUID());
         received.setBookmarkedBy(bookmarkList);
-        adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
-            @Override
-            public void OnAdEdited(Boolean edited, String error) {
-                if(edited) {
-                    Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
-                    bookmarked.setEnabled(true);
-                    bookmarked.setVisibility(View.VISIBLE);
+        adService.editAd(received.getAdvertisementID(), received, (edited, error) -> {
+            if(edited) {
+                Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
+                bookmarked.setEnabled(true);
+                bookmarked.setVisibility(View.VISIBLE);
 
-                    bookmark.setEnabled(false);
-                    bookmark.setVisibility(View.GONE);
-                } else {
-                    Log.i(TAG, error);
-                }
+                bookmark.setEnabled(false);
+                bookmark.setVisibility(View.GONE);
+            } else {
+                Log.i(TAG, error);
             }
         });
     }
@@ -625,21 +576,17 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         final String adId = received.getAdvertisementID();
         final int totalToDelete = received.getNumberOfImages();
         final int[] alreadyDeleted = new int[1];
-        alreadyDeleted[0] = 0;
         adService.deletePhotoFolder(adId, totalToDelete, (deleted, error) -> {
             startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
             if(deleted) {
                 alreadyDeleted[0]++;
                 Log.i(TAG, "number of the photo deleted = " + error);
                 if(alreadyDeleted[0] == totalToDelete) {
-                    adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
-                        @Override
-                        public void OnAdDeleted(Boolean deleted, String error) {
-                            if (deleted) {
-                                Log.i(TAG, "Ad " + adId + " deleted successfully");
-                            } else {
-                                Log.i(TAG, error);
-                            }
+                    adService.deleteAd(adId, (deleted1, error1) -> {
+                        if (deleted1) {
+                            Log.i(TAG, "Ad " + adId + " deleted successfully");
+                        } else {
+                            Log.i(TAG, error1);
                         }
                     });
                 }
@@ -649,20 +596,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         });
     }
 
-    @Override
-    public void OnParticularAdFetched(Object advert) {
-        Log.i(TAG, "in on particular ad fetched");
-        Advertisement received = (Advertisement) advert;
-        if(received.getAdType().equals("Rent")) {
-            updateInfo((RentAdvertisement)received);
 
-        } else {
-            updateInfo((SaleAdvertisement)received);
-        }
-    }
 
-    @Override
-    public void OnUserInfoFound(Object data) {
+    public void updateUserInfo(User data) {
         Log.i(TAG, "in on user info found");
         User data1 = (User) data;
         advertiser.setName(data1.getName());

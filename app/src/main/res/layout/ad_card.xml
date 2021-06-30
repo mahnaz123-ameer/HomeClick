@@ -40,7 +40,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/icon_location"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:text="@string/area_name"
                 android:textColor="@color/darker_lavender"
                 android:textSize="15sp"
@@ -56,7 +56,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/icon_location"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:text="@string/full_address"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -68,7 +68,7 @@
                 android:layout_alignParentEnd="true"
                 android:text="@string/Sale"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/icon_bedroom"
                 android:text="@string/bedrooms"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -118,7 +118,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/icon_bathroom"
                 android:text="@string/bathrooms"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -146,7 +146,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/icon_gas"
                 android:text="@string/_available"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -168,7 +168,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/icon_money"
                 android:text="@string/payment"
-                android:fontFamily="@font/comfort_regular"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 

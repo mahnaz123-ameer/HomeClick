@@ -146,6 +146,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             return list;
         }
     }, new ActivityResultCallback<List<Double>>() {
+        @SuppressLint("SetTextI18n")
         @Override
         public void onActivityResult(List<Double> result) {
             if(!result.isEmpty()) {

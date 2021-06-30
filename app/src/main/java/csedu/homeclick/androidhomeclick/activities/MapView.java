@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -48,8 +49,8 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
     private GoogleMap mMap;
     private ActivityMapViewBinding binding;
 
-    private List<Advertisement> adListForMarker = new ArrayList<>();
-    private List<AdMarker> adMarkerPair = new ArrayList<>();
+    private final List<Advertisement> adListForMarker = new ArrayList<>();
+    private final List<AdMarker> adMarkerPair = new ArrayList<>();
     private CardView adCard;
     private TextView bedroom, bathroom, gas, payment, fullAdd, areaName, adType;
     private Advertisement clickedAd;
@@ -104,7 +105,7 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
 
     private void setMarkers() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
         } else {
             LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -145,8 +146,11 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                     && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         setMarkers();
+                    } else {
+                        Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

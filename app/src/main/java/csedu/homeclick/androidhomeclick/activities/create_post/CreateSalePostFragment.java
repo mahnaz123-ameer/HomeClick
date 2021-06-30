@@ -142,21 +142,18 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         }
     });
 
-    final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), new ActivityResultCallback<List<Uri>>() {
-        @Override
-        public void onActivityResult(List<Uri> result) {
-            CreateSalePostFragment.this.imageUri.addAll(result);
+    final ActivityResultLauncher<String> imageSelectorLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), result -> {
+        CreateSalePostFragment.this.imageUri.addAll(result);
 
-            //making sure a photo hasn't been added twice to the list
-            LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateSalePostFragment.this.imageUri);
-            CreateSalePostFragment.this.imageUri = new ArrayList<>(hashSet);
+        //making sure a photo hasn't been added twice to the list
+        LinkedHashSet<Uri> hashSet = new LinkedHashSet<>(CreateSalePostFragment.this.imageUri);
+        CreateSalePostFragment.this.imageUri = new ArrayList<>(hashSet);
 
 
-            CreateSalePostFragment.this.imageRecVA.setOnPhotoClickListener(CreateSalePostFragment.this);
-            CreateSalePostFragment.this.imageRecVA.setUrlArrayList(CreateSalePostFragment.this.imageUri);
-            CreateSalePostFragment.this.imageRecVA.notifyDataSetChanged();
+        CreateSalePostFragment.this.imageRecVA.setOnPhotoClickListener(CreateSalePostFragment.this);
+        CreateSalePostFragment.this.imageRecVA.setUrlArrayList(CreateSalePostFragment.this.imageUri);
+        CreateSalePostFragment.this.imageRecVA.notifyDataSetChanged();
 
-        }
     });
 
     public CreateSalePostFragment() {
@@ -212,12 +209,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         prevPhotoRecVA.setContext(this.getContext());
         prevPhotoRecVA.setUrlArrayList(saleAd.getUrlToImages());
         prevPhotoRecVA.notifyDataSetChanged();
-        prevPhotoRecVA.setOnPhotoClickListener(new ImageRecyclerViewAdapter.OnPhotoClickListener() {
-            @Override
-            public void onPhotoClick(int position) {
-                CreateSalePostFragment.this.prevPhotoAdapterPosition = position;
-            }
-        });
+        prevPhotoRecVA.setOnPhotoClickListener(position -> CreateSalePostFragment.this.prevPhotoAdapterPosition = position);
 
         registerForContextMenu(prevPhotoRecView);
 
@@ -402,16 +394,13 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                 fileExtensions = getFileExtensions(imageUri);
                 processUploads(fileExtensions, imageUri);
             } else {
-                advertisementService.editAd(saleAd.getAdvertisementID(), saleAd, new AdInterface.OnAdEditListener<Boolean>() {
-                    @Override
-                    public void OnAdEdited(Boolean edited, String error) {
-                        if(edited) {
-                            Log.i(TAG, "edited successfully");
-                            CreateSalePostFragment.this.postAd.setEnabled(true);
-                            startActivity(new Intent(CreateSalePostFragment.this.requireContext().getApplicationContext(), AdFeed.class));
-                        } else {
-                            Log.i(TAG, error);
-                        }
+                advertisementService.editAd(saleAd.getAdvertisementID(), saleAd, (edited, error) -> {
+                    if(edited) {
+                        Log.i(TAG, "edited successfully");
+                        CreateSalePostFragment.this.postAd.setEnabled(true);
+                        startActivity(new Intent(CreateSalePostFragment.this.requireContext().getApplicationContext(), AdFeed.class));
+                    } else {
+                        Log.i(TAG, error);
                     }
                 });
             }
@@ -446,15 +435,12 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                         toEdit.setUrlToImages( finalUrls );
                         toEdit.setNumberOfImages( finalUrls.size() );
 
-                        advertisementService.editAd(adId, toEdit, new AdInterface.OnAdEditListener<Boolean>() {
-                            @Override
-                            public void OnAdEdited(Boolean edited, String error) {
-                                if(!edited) {
-                                    Log.i(TAG, error);
-                                } else {
-                                    Log.i(TAG, "Ad edited successfully");
-                                    startActivity(new Intent(CreateSalePostFragment.this.requireContext().getApplicationContext(), AdFeed.class));
-                                }
+                        advertisementService.editAd(adId, toEdit, (edited, error) -> {
+                            if(!edited) {
+                                Log.i(TAG, error);
+                            } else {
+                                Log.i(TAG, "Ad edited successfully");
+                                startActivity(new Intent(CreateSalePostFragment.this.requireContext().getApplicationContext(), AdFeed.class));
                             }
                         });
                     }
@@ -484,35 +470,32 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
     private void processUploads(final List<String> fileExtensions, final List<Uri> uriList, final SaleAdvertisement saleAd) {
         Log.i(TAG, "in process uploads");
-        advertisementService.getAdId(new AdInterface.OnAdIdListener<Advertisement>() {
-            @Override
-            public void onAdIdObtained(String adId) {
-                saleAd.setAdvertisementID(adId);
-                final int[] uploadCount = new int[1];
+        advertisementService.getAdId(adId -> {
+            saleAd.setAdvertisementID(adId);
+            final int[] uploadCount = new int[1];
 
-                final List<String> downloadLinks = new ArrayList<>();
+            final List<String> downloadLinks = new ArrayList<>();
 
-                for(int imageCount = 0; imageCount < uriList.size(); imageCount++) {
-                    final int total = uriList.size();
-                    advertisementService.uploadPhoto(uriList.get(imageCount), fileExtensions.get(imageCount), adId, new AdInterface.OnPhotoUploadListener<String>() {
-                        @Override
-                        public void ongoingProgress(int percentage) {
+            for(int imageCount = 0; imageCount < uriList.size(); imageCount++) {
+                final int total = uriList.size();
+                advertisementService.uploadPhoto(uriList.get(imageCount), fileExtensions.get(imageCount), adId, new AdInterface.OnPhotoUploadListener<String>() {
+                    @Override
+                    public void ongoingProgress(int percentage) {
 
+                    }
+
+                    @Override
+                    public void onCompleteNotify(String downloadUrl) {
+                        uploadCount[0]++;
+                        downloadLinks.add(downloadUrl);
+                        if(uploadCount[0] == total) {
+                            saleAd.setUrlToImages(downloadLinks);
+                            CreateSalePostFragment.this.completeAdPost(saleAd);
                         }
-
-                        @Override
-                        public void onCompleteNotify(String downloadUrl) {
-                            uploadCount[0]++;
-                            downloadLinks.add(downloadUrl);
-                            if(uploadCount[0] == total) {
-                                saleAd.setUrlToImages(downloadLinks);
-                                CreateSalePostFragment.this.completeAdPost(saleAd);
-                            }
-                        }
-                    });
-                }
-
+                    }
+                });
             }
+
         });
     }
 

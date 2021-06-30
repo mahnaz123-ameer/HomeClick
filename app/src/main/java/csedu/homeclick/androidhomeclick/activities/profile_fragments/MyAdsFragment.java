@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.ShowAdvertisementDetails;
-import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.recyclerviewadapters.AdvertisementRecyclerViewAdapter;
@@ -64,15 +64,12 @@ public class MyAdsFragment extends Fragment implements AdvertisementRecyclerView
 
     private void getMyAds() {
 
-        adService.fetchMyAds(new AdInterface.OnPersonalAdsFetchedListener<List<Advertisement>>() {
-            @Override
-            public void OnPersonalAdsFetched(List<Advertisement> ads) {
-                adArrayList = ads;
+        adService.fetchMyAds(ads -> {
+            adArrayList = ads;
 
-                adRecViewAdapter.setAdvertisementArrayList(adArrayList);
-                adRecViewAdapter.setAdCardListener(MyAdsFragment.this::onAdClick);
-                adRecViewAdapter.notifyDataSetChanged();
-            }
+            adRecViewAdapter.setAdvertisementArrayList(adArrayList);
+            adRecViewAdapter.setAdCardListener(MyAdsFragment.this);
+            adRecViewAdapter.notifyDataSetChanged();
         });
 
         myAdsRecView.setAdapter(adRecViewAdapter);
@@ -84,7 +81,7 @@ public class MyAdsFragment extends Fragment implements AdvertisementRecyclerView
         final Advertisement clickedAdvert = adArrayList.get(position);
         String adID = clickedAdvert.getAdvertisementID();
 
-        Intent targetIntent = new Intent(this.getContext().getApplicationContext(), ShowAdvertisementDetails.class);
+        Intent targetIntent = new Intent(this.requireContext().getApplicationContext(), ShowAdvertisementDetails.class);
 
         targetIntent.putExtra("Ad", clickedAdvert);
         startActivity(targetIntent);

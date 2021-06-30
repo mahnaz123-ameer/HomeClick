@@ -50,7 +50,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/darker_lavender"
-        android:fontFamily="@font/comfort_regular"
+        android:fontFamily="@font/comfortaa_regular"
         android:gravity="center"
         android:text="@string/send_link_in_mail"
         android:textColor="@color/white" />
