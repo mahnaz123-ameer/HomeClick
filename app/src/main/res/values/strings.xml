@@ -17,12 +17,13 @@
     <string name="terms">I agree to the terms and conditions</string>
     <string name="not_signed_in">Not signed in?</string>
     <string name="do_following">Just do the following</string>
-    <string name="full_name">Full Name</string>
+
+    <string name="_full_name">Full Name</string>
     <string name="email">Email Address</string>
     <string name="phone_number">Phone Number</string>
 
-    <string name="rent">Rent</string>
-    <string name="sale">Sale</string>
+    <string name="Rent">Rent</string>
+    <string name="Sale">Sale</string>
 
     <string name="_available">Available</string>
     <string name="not_available"><font color='#F44336'>Not available</font></string>
@@ -32,21 +33,12 @@
     <string name="floor_space">Floor Space</string>
     <string name="facilities">Facilities</string>
     <string name="gas">Gas</string>
-    <string name="elevator">Elevator</string>
-    <string name="generator">Generator</string>
-    <string name="garage_space">Garage Space</string>
     <string name="security">Security Guard</string>
     <string name="tenant_type">Tenant Type</string>
     <string name="utility">Utility Charge</string>
     <string name="monetary_dealings">Monetary Dealings</string>
     <string name="move_in">Ready To Move In From</string>
     <string name="post_by">Post By</string>
-    <string name="area_name">Area Name</string>
-    <string name="full_address">Full Address</string>
-    <string name="gas_availability">Gas Availability</string>
-    <string name="bedrooms">Bedrooms</string>
-    <string name="bathrooms">Bathrooms</string>
-    <string name="balconies">Balconies</string>
     <string name="rent_out_my_place">Rent Out My Place</string>
     <string name="sell_my_place">Sell My Place</string>
     <string name="remove">Remove</string>
@@ -67,10 +59,10 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="map_view">Map View</string>
-    <string name="payment">Payment</string>
+
     <string name="description">Description</string>
     <string name="date">Date</string>
-    <string name="family">Family</string>
+
     <string name="student_or_working_person">Student or Working Person</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
@@ -84,11 +76,29 @@
     <string name="previously_added_photos">Previously Added Photos</string>
     <string name="property_condition">Property Condition</string>
     <string name="new_property">New</string>
+    <string name="payment">Payment</string>
+    <string name="elevator">Elevator</string>
+    <string name="generator">Generator</string>
+    <string name="garage_space">Garage Space</string>
+    <string name="family">Family</string>
+    <string name="rent_rate">Rent Rate</string>
+
+    <string name="gas_availability">Gas Availability</string>
+    <string name="area_name">Area Name</string>
+    <string name="full_address">Full Address</string>
+    <string name="full_name">Full Name</string>
     <string name="established">Established</string>
     <string name="asking_amount">Asking Amount</string>
     <string name="email_address">Email Address</string>
+    <string name="_description">Description</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="balconies">Balconies</string>
+    <string name="this_information_can_only_be_seen_by_members">This information can only be seen by members.</string>
 
-    <string name="information_can_only_be_seen_by_members">This information can only be seen by members.</string>
+    <string name="information_can_only_be_seen_by_members">Information can only be seen by members.</string>
     <string name="personal_information">Personal Information</string>
+    <string name="add_location">Add Location</string>
+    <string name="location">Location</string>
 
 </resources>

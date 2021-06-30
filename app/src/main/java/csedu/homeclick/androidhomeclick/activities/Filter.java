@@ -75,6 +75,8 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
 
         filter_no_of_bedrooms = findViewById(R.id.filter_num_of_bedrooms);
         filter_no_of_bathrooms = findViewById(R.id.filter_num_of_bathrooms);
+        count_bathrooms = 0;
+        count_bedrooms = 0;
 
 
         filterCriteria = new FilterCriteria();
@@ -103,23 +105,31 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.increase_bedrooms:
                 count_bedrooms++;
-                filter_no_of_bedrooms.setText(Integer.toString(count_bedrooms));
+                decrease_bedrooms.setEnabled(true);
+                filter_no_of_bedrooms.setText(String.format("%d", count_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
-                if(count_bedrooms!=0){
+                if(count_bedrooms > 0) {
                     count_bedrooms--;
+                    filter_no_of_bedrooms.setText(String.format("%d", count_bedrooms));
+                } else {
+                    decrease_bedrooms.setEnabled(false);
+                    filter_no_of_bedrooms.setText("");
                 }
-                filter_no_of_bedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.increase_bathrooms:
+                decrease_bathrooms.setEnabled(true);
                 count_bathrooms++;
-                filter_no_of_bathrooms.setText(Integer.toString(count_bathrooms));
+                filter_no_of_bathrooms.setText(String.format("%d", count_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
-                if(count_bathrooms!=0){
+                if(count_bathrooms > 0) {
                     count_bathrooms--;
+                    filter_no_of_bathrooms.setText(String.format("%d", count_bathrooms));
+                } else {
+                    decrease_bathrooms.setEnabled(false);
+                    filter_no_of_bathrooms.setText("");
                 }
-                filter_no_of_bathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             default:
                 break;

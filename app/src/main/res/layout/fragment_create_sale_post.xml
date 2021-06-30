@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.create_post.CreateSalePostFragment"
     android:background="#D5FFFFFF"
-    android:padding="30dp">
+    android:padding="30dp"
+    tools:context=".activities.create_post.CreateSalePostFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+
         tools:ignore="UselessParent">
 
 
@@ -30,39 +29,38 @@
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:id="@+id/saleAreaName"
-                    android:padding="8dp"
-                    android:textSize="13sp"
-                    android:background="@drawable/shape3"
-                    android:textColor="@color/black"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+            <EditText
+                android:id="@+id/saleAreaName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/shape3"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/full_address"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/full_address"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="15dp"
-                    android:id="@+id/saleFullAddress"
-                    android:padding="8dp"
-                    android:background="@drawable/shape3"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+            <EditText
+                android:id="@+id/saleFullAddress"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/shape3"
+                android:gravity="start"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,32 +75,32 @@
                     android:text="@string/property_condition"
                     android:textColor="@color/darker_lavender"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/saleSituation"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:scrollbarSize="13dp">
 
                     <RadioButton
+                        android:id="@+id/rbNew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
                         android:text="@string/new_property"
-                        android:id="@+id/rbNew"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
                     <RadioButton
 
+                        android:id="@+id/rbEstablished"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
                         android:text="@string/established"
-                        android:id="@+id/rbEstablished"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
@@ -114,8 +112,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="100dp"
@@ -123,12 +121,13 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/bedrooms"
                     android:textColor="@color/black"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <Button
                     android:id="@+id/decrease_bedrooms"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:enabled="false"
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
@@ -137,42 +136,39 @@
                     android:textSize="13sp" />
 
                 <EditText
+                    android:id="@+id/saleBedrooms"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:id="@+id/saleBedrooms"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape3"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/shape3"
+                    android:enabled="false"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
 
 
-
-
-
                 <Button
+                    android:id="@+id/increase_bedrooms"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:text="@string/plus"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:id="@+id/increase_bedrooms"
-                    />
+                    android:text="@string/plus"
+                    android:textAlignment="center"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="100dp"
@@ -180,7 +176,8 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/bathrooms"
                     android:textColor="@color/black"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
+
                 <Button
                     android:id="@+id/decrease_bathrooms"
                     android:layout_width="25dp"
@@ -189,31 +186,33 @@
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
                     android:text="@string/minus"
+                    android:enabled="false"
                     android:textSize="13sp" />
 
                 <EditText
+                    android:id="@+id/saleBathrooms"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:id="@+id/saleBathrooms"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape3"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:background="@drawable/shape3"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="2dp"
-                    android:textSize="13sp"
+                    android:enabled="false"
                     android:textColor="@color/black"
+                    android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
+
                 <Button
+                    android:id="@+id/increase_bathrooms"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:text="@string/plus"
-                    android:textSize="13sp"
-                    android:background="@drawable/circle"
                     android:layout_marginStart="10dp"
+                    android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:id="@+id/increase_bathrooms"
-                    />
+                    android:text="@string/plus"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -221,8 +220,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="100dp"
@@ -230,7 +229,7 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/balconies"
                     android:textColor="@color/black"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <Button
                     android:id="@+id/decrease_balconies"
@@ -240,34 +239,34 @@
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
                     android:text="@string/minus"
+                    android:enabled="false"
                     android:textSize="13sp" />
 
 
                 <EditText
+                    android:id="@+id/saleBalconies"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:id="@+id/saleBalconies"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape3"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:background="@drawable/shape3"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="2dp"
+                    android:enabled="false"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
 
                 <Button
+                    android:id="@+id/increase_balconies"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:text="@string/plus"
-                    android:textSize="13sp"
-                    android:background="@drawable/circle"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:id="@+id/increase_balconies"
-                    />
+                    android:text="@string/plus"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -275,29 +274,29 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/floor_no"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:text="@string/floor"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:id="@+id/floor_no"/>
+                    android:textSize="13sp" />
 
                 <EditText
+                    android:id="@+id/saleFloor"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/floor_no"
                     android:layout_marginStart="15dp"
-                    android:id="@+id/saleFloor"
+                    android:background="@drawable/shape3"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:textSize="13sp"
-                    android:background="@drawable/shape3"
                     android:textColor="@color/black"
-                    android:layout_below="@+id/floor_no"
+                    android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
 
                 <TextView
@@ -317,7 +316,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/floor_no"
                     android:layout_marginStart="21dp"
-                    android:textSize="13sp"
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@+id/saleFloor"
                     android:background="@drawable/shape3"
@@ -325,6 +323,7 @@
                     android:inputType="number"
                     android:padding="8dp"
                     android:textColor="@color/black"
+                    android:textSize="13sp"
                     tools:ignore="Autofill" />
 
 
@@ -335,55 +334,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="15dp"
                 android:text="@string/indoor_features"
                 android:textColor="@color/darker_lavender"
                 android:textSize="15sp"
-                android:layout_marginTop="15dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
 
-                <CheckBox android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
+                <CheckBox
                     android:id="@+id/saleGas"
-                    android:buttonTint="@color/black"
-                    android:layout_marginStart="10dp"
-                    />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:buttonTint="@color/black"
                     android:text="@string/gas_availability"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
 
-
-                <CheckBox android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                <CheckBox
                     android:id="@+id/saleElevator"
-                    android:textColor="@color/black"
-                    android:buttonTint="@color/black"
-                    android:textSize="13sp"
-                    android:layout_marginStart="15dp"/>
-
-
-                <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
+                    android:buttonTint="@color/black"
                     android:text="@string/elevator"
                     android:textColor="@color/black"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
+
 
             </LinearLayout>
 
@@ -392,39 +377,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="15dp"
                 android:text="@string/outdoor_features"
                 android:textColor="@color/darker_lavender"
-                android:layout_marginTop="15dp"
                 android:textSize="13sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
 
-
-                <CheckBox android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:buttonTint="@color/black"
-                    android:textSize="13sp"
+                <CheckBox
                     android:id="@+id/saleGenerator"
-                    android:layout_marginStart="10dp"/>
-
-
-                <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:buttonTint="@color/black"
                     android:text="@string/generator"
                     android:textColor="@color/black"
-                    android:textSize="13sp"/>
-
-
+                    android:textSize="13sp" />
 
 
                 <CheckBox
@@ -433,17 +408,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:buttonTint="@color/black"
+                    android:text="@string/security"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/security_guard"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -453,83 +421,74 @@
                 android:layout_height="69dp"
                 android:orientation="horizontal">
 
-                <CheckBox android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                <CheckBox
                     android:id="@+id/saleGarage"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:layout_marginTop="10dp"
-                    android:buttonTint="@color/black"
-                    android:layout_marginStart="10dp"/>
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:buttonTint="@color/black"
                     android:text="@string/garage_space"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
 
-
-
-
             </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:text="@string/asking_amount"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/asking_amount"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:id="@+id/salePayment"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:textSize="13sp"
-                    android:background="@drawable/shape3"
-                    android:textColor="@color/black"
-                    tools:ignore="Autofill,LabelFor" />
+            <EditText
+                android:id="@+id/salePayment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/shape3"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                tools:ignore="Autofill,LabelFor" />
 
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/description"
-                    android:textColor="@color/darker_lavender"
-                    android:textSize="13sp"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/description"
+                android:textColor="@color/darker_lavender"
+                android:textSize="13sp" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="15dp"
-                    android:id="@+id/saleDescription"
-                    android:padding="8dp"
-                    android:textSize="13sp"
-                    android:background="@drawable/shape3"
-                    android:textColor="@color/black"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+            <EditText
+                android:id="@+id/saleDescription"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/shape3"
+                android:gravity="start"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
             <Button
                 android:id="@+id/select_sale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/shape3"
                 android:backgroundTint="@color/darker_lavender"
-                android:padding="10dp"
-                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:layout_marginStart="120dp"
+                android:padding="10dp"
                 android:text="@string/add_photos_to_post"
                 tools:ignore="ObsoleteLayoutParam" />
 
@@ -544,21 +503,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
 
-                    android:layout_marginTop="20dp"
-                    />
+                    android:layout_marginTop="20dp" />
 
                 <TextView
                     android:id="@+id/prevPhotoTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/saleImageRecView"
-                    android:text="@string/previously_added_photos"
-                    android:textColor = "@color/black"
-                    android:textSize="18sp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:visibility="gone"
-                    android:layout_centerHorizontal="true"/>
+                    android:text="@string/previously_added_photos"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/previouslyAddedSaleImageRecView"
@@ -566,27 +524,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:layout_below="@id/prevPhotoTextView"
-                    android:visibility="gone"
                     android:layout_marginTop="20dp"
-                    />
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:id="@+id/sale_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="sale location"
-                android:textColor="@color/black"
-                android:id="@+id/sale_location"/>
+                android:layout_marginTop="10dp"
+                android:text="@string/location"
+                android:textColor="@color/black" />
 
             <Button
-                android:layout_marginTop="10dp"
+                android:id="@+id/sale_add_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sale_add_location"
-                android:textColor="@color/black"
-                android:text="add location"/>
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/darker_lavender"
+                android:text="@string/add_location"
+                android:textColor="@color/white" />
 
 
             <Button
@@ -605,3 +563,7 @@
     </ScrollView>
 
 </FrameLayout>
+
+
+    <!--    android:layout_marginTop="10dp"-->
+    <!--    android:layout_marginBottom="20dp"-->

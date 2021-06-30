@@ -1,24 +1,27 @@
 package csedu.homeclick.androidhomeclick.activities.sign_in_fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import csedu.homeclick.androidhomeclick.R;
+import csedu.homeclick.androidhomeclick.connector.UserAuthInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 
 public class SignUpFragment extends Fragment implements View.OnClickListener{
+    private static final String TAG = "SignUpFragment";
     private TextInputEditText name, email, phoneNumber;
     private CheckBox age, agreement;
     private Button sendLink;
@@ -65,9 +68,24 @@ public class SignUpFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        sendLink.setEnabled(false);
+        final View view = v;
         if(checkData()) {
             User user = getUser();
-            userService.signInNewUser(user, v.getContext().getApplicationContext());
+            userService.signInNewUser(user, view.getContext().getApplicationContext(), new UserAuthInterface.SendLinkToUserListener<User>() {
+                @Override
+                public void OnSendLinkSuccessful(String toastMessage) {
+                    sendLink.setEnabled(true);
+                    Toast.makeText(view.getContext().getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void OnSendLinkFailed(String error) {
+                    sendLink.setEnabled(true);
+                    Log.i(TAG, error);
+                    Toast.makeText(view.getContext().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

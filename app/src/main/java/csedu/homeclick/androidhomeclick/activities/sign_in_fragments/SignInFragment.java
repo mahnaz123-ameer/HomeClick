@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import csedu.homeclick.androidhomeclick.R;
+import csedu.homeclick.androidhomeclick.connector.UserAuthInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.structure.User;
 
@@ -56,9 +57,23 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        sendLink.setEnabled(false);
+        final View view = v;
         if(checkData()) {
             String email = editEmail.getText().toString().trim();
-            userService.signIn(email, v.getContext().getApplicationContext());
+            userService.signIn(email, view.getContext().getApplicationContext(), new UserAuthInterface.SendLinkToUserListener<String>() {
+                @Override
+                public void OnSendLinkSuccessful(String toastMessage) {
+                    sendLink.setEnabled(true);
+                    Toast.makeText(view.getContext().getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void OnSendLinkFailed(String error) {
+                    sendLink.setEnabled(true);
+                    Toast.makeText(view.getContext().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
@@ -73,8 +88,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
             allOkay = false;
         }
         return allOkay;
-
-
 
     }
 }

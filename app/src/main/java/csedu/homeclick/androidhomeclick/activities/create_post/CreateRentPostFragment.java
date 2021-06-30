@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.activities.create_post;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -116,6 +117,13 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             intent.setClassName(PACKAGE_NAME,CLASS_NAME);
             double latitude = ( (CreatePost)(CreateRentPostFragment.this.requireActivity()) ).getLatitude();
             double longitude = ( (CreatePost)(CreateRentPostFragment.this.requireActivity()) ).getLongitude();
+            if(EDIT_MODE) {
+                RentAdvertisement received = (RentAdvertisement) requireActivity().getIntent().getExtras().get("Ad");
+                latitude = received.getLatitude();
+                longitude = received.getLongitude();
+            }
+
+
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
             Log.i(TAG, "latitude = " + latitude + " longitude = " + longitude);
@@ -125,10 +133,15 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         @Override
         public List<Double> parseResult(int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent intent) {
             List<Double> list = new ArrayList<>();
-            assert intent != null;
-            if(intent.getExtras() != null) {
-                list.add((Double) intent.getExtras().get("latitude"));
-                list.add((Double) intent.getExtras().get("longitude"));
+            try{
+                if(intent == null) return list;
+                else if(intent.getExtras() != null) {
+                    list.add((Double) intent.getExtras().get("latitude"));
+                    list.add((Double) intent.getExtras().get("longitude"));
+                }
+            }
+            catch (Exception e) {
+                Log.i(TAG, e.getMessage());
             }
             return list;
         }
@@ -136,7 +149,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         @Override
         public void onActivityResult(List<Double> result) {
             if(!result.isEmpty()) {
-                rentLocation.setText("latitude = " + result.get(0) + " longitude = "+ result.get(1));
+                rentLocation.setText("Latitude = " + result.get(0) + "\nLongitude = "+ result.get(1));
                 CreateRentPostFragment.this.latitude = result.get(0);
                 CreateRentPostFragment.this.longitude = result.get(1);
             }
@@ -211,6 +224,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         decrease_balconies.setOnClickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     private void setWidgets() {
         prevPhotoRecView.setVisibility(View.VISIBLE);
         prevPhoto.setVisibility(View.VISIBLE);
@@ -237,6 +251,10 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         rentUtilityCharge.setText(Integer.toString(rentAd.getUtilityCharge()));
 
         rentDescription.setText(rentAd.getDescription());
+        String rentCoOrdinates = "Latitude = " + rentAd.getLatitude() + "\nLongitude = " + rentAd.getLongitude();
+        this.latitude = rentAd.getLatitude();
+        this.longitude = rentAd.getLongitude();
+        rentLocation.setText(rentCoOrdinates);
         if( rentAd.getTenantType().equals("Family") ) {
             family.setChecked(true);
         } else {
@@ -317,6 +335,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
 
 
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -336,31 +355,52 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
             case R.id.increase_bedrooms:
                 count_bedrooms++;
+                decrease_bedrooms.setEnabled(true);
                 rentBedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
-                if(count_bedrooms !=0){
+                if(count_bedrooms > 0) {
                     count_bedrooms--;
+                    if(count_bedrooms == 0) {
+                        decrease_bedrooms.setEnabled(false);
+                    }
+                } else {
+                    count_bedrooms = 0;
+                    decrease_bedrooms.setEnabled(false);
                 }
                 rentBedrooms.setText(Integer.toString(count_bedrooms));
                 break;
             case R.id.increase_bathrooms:
                 count_bathrooms++;
+                decrease_bathrooms.setEnabled(true);
                 rentBathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
-                if(count_bathrooms != 0){
+                if(count_bathrooms > 0){
                     count_bathrooms--;
+                    if(count_bathrooms == 0) {
+                        decrease_bathrooms.setEnabled(false);
+                    }
+                } else {
+                    count_bathrooms = 0;
+                    decrease_bathrooms.setEnabled(false);
                 }
                 rentBathrooms.setText(Integer.toString(count_bathrooms));
                 break;
             case R.id.increase_balconies:
                 count_balconies++;
+                decrease_balconies.setEnabled(true);
                 rentBalconies.setText(Integer.toString(count_balconies));
                 break;
             case R.id.decrease_balconies:
-                if(count_balconies!=0){
+                if(count_balconies > 0){
                     count_balconies--;
+                    if(count_balconies == 0) {
+                        decrease_balconies.setEnabled(false);
+                    }
+                } else {
+                    count_balconies = 0;
+                    decrease_balconies.setEnabled(false);
                 }
                 rentBalconies.setText(Integer.toString(count_balconies));
                 break;
@@ -386,6 +426,8 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
             adWithNewInfo.setAdvertiserUID(rentAd.getAdvertiserUID());
             adWithNewInfo.setUrlToImages(rentAd.getUrlToImages());
             adWithNewInfo.setNumberOfImages(rentAd.getUrlToImages().size());
+            adWithNewInfo.setLatitude(latitude);
+            adWithNewInfo.setLongitude(longitude);
             rentAd = adWithNewInfo;
 
             if(!imageUri.isEmpty()) {
@@ -629,27 +671,26 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         setAdapterPosition(position);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
-        switch ( item.getItemId() ) {
-            case R.id.remove_photo:
-                if(prevPhotoAdapterPosition == -1) {
-                    Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition());
-                    imageUri.remove(getAdapterPosition());
-                    imageRecVA.setUrlArrayList(imageUri);
-                    imageRecVA.notifyDataSetChanged();
-                } else {
-                    Log.i(TAG, "prev photo adapter postition = "+ prevPhotoAdapterPosition);
-                    rentAd.getUrlToImages().remove(prevPhotoAdapterPosition);
-                    rentAd.setNumberOfImages(rentAd.getNumberOfImages() - 1);
-                    prevPhotoRecVA.setUrlArrayList(rentAd.getUrlToImages());
-                    prevPhotoRecVA.notifyDataSetChanged();
-                    prevPhotoAdapterPosition = -1;
-                }
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+        if (item.getItemId() == R.id.remove_photo) {
+            if (prevPhotoAdapterPosition == -1) {
+                Log.i(TAG, "nwe photo adapter position = " + getAdapterPosition());
+                imageUri.remove(getAdapterPosition());
+                imageRecVA.setUrlArrayList(imageUri);
+                imageRecVA.notifyDataSetChanged();
+            } else {
+                Log.i(TAG, "prev photo adapter position = " + prevPhotoAdapterPosition);
+                rentAd.getUrlToImages().remove(prevPhotoAdapterPosition);
+                rentAd.setNumberOfImages(rentAd.getNumberOfImages() - 1);
+                prevPhotoRecVA.setUrlArrayList(rentAd.getUrlToImages());
+                prevPhotoRecVA.notifyDataSetChanged();
+                prevPhotoAdapterPosition = -1;
+            }
+            return true;
         }
+        return super.onContextItemSelected(item);
     }
 
     public int getAdapterPosition() {

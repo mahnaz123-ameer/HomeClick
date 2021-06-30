@@ -3,10 +3,14 @@ package csedu.homeclick.androidhomeclick.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,9 +22,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,8 +44,12 @@ import csedu.homeclick.androidhomeclick.structure.RentAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
-public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener, AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener, ImageRecyclerViewAdapter.OnPhotoClickListener {
+public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener,
+        AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener,
+        ImageRecyclerViewAdapter.OnPhotoClickListener, View.OnLongClickListener{
     public static final String TAG = "ShowAdDetails";
+
+    private CoordinatorLayout coordinatorLayout;
 
     private UserService userService;
     private AdvertisementService adService;
@@ -79,12 +90,13 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     }
 
     private void setClickListeners() {
-        edit.setOnClickListener(this::onClick);
-        delete.setOnClickListener(this::onClick);
-        bookmark.setOnClickListener(this::onClick);
-        callCard.setOnClickListener(this::onClick);
+        edit.setOnClickListener(this);
+        delete.setOnClickListener(this);
+        bookmark.setOnClickListener(this);
+        callCard.setOnClickListener(this);
         adImagesVA.setOnPhotoClickListener(this);
         bookmarked.setOnClickListener(this);
+        fullAddressTV.setOnLongClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -167,6 +179,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         return false;
     }
 
+    @SuppressLint("SetTextI18n")
     private void setSaleAdDetails() {
         Log.i(TAG, "in set sale ad details");
 
@@ -213,6 +226,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         description.setText(description.getText());
     }
 
+    @SuppressLint("SetTextI18n")
     private void setRentAdDetails() {
         Log.i(TAG, "in set rent ad details");
 
@@ -256,12 +270,15 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         securityTV.setText(security);
 
         floorTV.setText(Integer.toString(rentAd.getFloor()));
+        Log.i(TAG, "floor =" + Integer.toString(rentAd.getFloor()));
         floorSpaceTV.setText(rentAd.getFloorSpace() + " SQFT");
 
         paymentTV.setText(rentAd.getPaymentAmount() + " BDT");
         utilityTV.setText(rentAd.getUtilityCharge()+ " BDT");
 
-        moveInTV.setText(rentAd.getAvailableFrom().toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy");
+        String moveInDate = simpleDateFormat.format(rentAd.getAvailableFrom());
+        moveInTV.setText(moveInDate);
         tenantTypeTV.setText(rentAd.getTenantType());
 
         advertNameTV.setText(advertiser.getName());
@@ -283,6 +300,8 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     private void bindWidgets() {
         Log.i(TAG, "in bind widgets");
+        coordinatorLayout = findViewById(R.id.show_ad_layout);
+
         //top and bottom bars
         BottomNavBarHandler.setInstance(findViewById(R.id.show_ad_bottom_nav_bar), R.id.home);
         BottomNavBarHandler.handle(this);
@@ -352,6 +371,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         Log.i(TAG, "in on click");
@@ -406,17 +426,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
             confirmDeletion
                     .setMessage("Are you sure you want to delete this post?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            proceedToDeletePost();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //do nothing
-                        }
+                    .setPositiveButton("Yes", (dialog, which) -> proceedToDeletePost())
+                    .setNegativeButton("No", (dialog, which) -> {
+                        //do nothing
                     });
 
             AlertDialog confirmDeletionAlert = confirmDeletion.create();
@@ -476,28 +488,25 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         final int totalToDelete = received.getNumberOfImages();
         final int[] alreadyDeleted = new int[1];
         alreadyDeleted[0] = 0;
-        adService.deletePhotoFolder(adId, totalToDelete, new AdInterface.OnPhotoFolderDeletedListener<Boolean>() {
-            @Override
-            public void OnPhotoFolderDeleted(Boolean deleted, String error) {
-                startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
-                if(deleted) {
-                    alreadyDeleted[0]++;
-                    Log.i(TAG, "number of the photo deleted = " + error);
-                    if(alreadyDeleted[0] == totalToDelete) {
-                        adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
-                            @Override
-                            public void OnAdDeleted(Boolean deleted, String error) {
-                                if (deleted) {
-                                    Log.i(TAG, "Ad " + adId + " deleted successfully");
-                                } else {
-                                    Log.i(TAG, error);
-                                }
+        adService.deletePhotoFolder(adId, totalToDelete, (deleted, error) -> {
+            startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
+            if(deleted) {
+                alreadyDeleted[0]++;
+                Log.i(TAG, "number of the photo deleted = " + error);
+                if(alreadyDeleted[0] == totalToDelete) {
+                    adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
+                        @Override
+                        public void OnAdDeleted(Boolean deleted, String error) {
+                            if (deleted) {
+                                Log.i(TAG, "Ad " + adId + " deleted successfully");
+                            } else {
+                                Log.i(TAG, error);
                             }
-                        });
-                    }
-                } else {
-                    Toast.makeText(ShowAdvertisementDetails.this.getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
+            } else {
+                Toast.makeText(ShowAdvertisementDetails.this.getApplicationContext(), error, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -533,6 +542,27 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         } else {
             total = saleAd.getNumberOfImages();
         }
-        Toast.makeText(this, "Image " + position + 1 + " out of " + total, Toast.LENGTH_SHORT).show();
+        int photoNum = position + 1;
+        Toast.makeText(this, "Image " + photoNum + " out of " + total, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v.getId() == R.id.home_full_address) {
+            final ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            String fullAddress;
+            if (rentAd != null) {
+                fullAddress = rentAd.getFullAddress();
+            } else {
+                fullAddress = saleAd.getFullAddress();
+            }
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Copy address to clipboard?", BaseTransientBottomBar.LENGTH_SHORT)
+                    .setAction("Copy", v1 -> {
+                        ClipData clip = ClipData.newPlainText("Full Address", fullAddress);
+                        clipboard.setPrimaryClip(clip);
+                    });
+            snackbar.show();
+        }
+        return false;
     }
 }

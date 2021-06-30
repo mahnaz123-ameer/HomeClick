@@ -9,10 +9,11 @@ import csedu.homeclick.androidhomeclick.structure.User;
 
 public class UserService {
     private UserInterface userDB;
+    private UserAuthInterface userAuth;
 
     public UserService() {
-        UserAuth.setInstance();
         userDB = FirestoreDealer.getInstance();
+        userAuth = UserAuth.getInstance();
     }
 
     public Boolean isSignedIn() {
@@ -23,12 +24,12 @@ public class UserService {
         UserAuth.signOut(context);
     }
 
-    public void signInNewUser(User user, Context context) {
-        UserAuth.sendSignInLink(user, context);
+    public void signInNewUser(User user, Context context, UserAuthInterface.SendLinkToUserListener<User> sendLinkToUserListener) {
+        userAuth.signInNewUser(user, context, sendLinkToUserListener);
     }
 
-    public void signIn(String emailAddress, Context context) {
-        UserAuth.sendSignInLink(emailAddress, context);
+    public void signIn(String emailAddress, Context context, UserAuthInterface.SendLinkToUserListener<String> sendLinkToUserListener) {
+        userAuth.signInOldUser(emailAddress, context, sendLinkToUserListener);
     }
 
     public void completeSignIn(Intent intent, Context context) {

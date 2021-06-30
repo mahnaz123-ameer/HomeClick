@@ -100,7 +100,7 @@ public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecycle
             super(itemView);
             this.imageView = itemView.findViewById(R.id.ad_photos);
             this.onPhotoClickListener = onPhotoClickListener;
-            itemView.setOnLongClickListener(this::onLongClick);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override

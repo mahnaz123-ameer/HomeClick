@@ -49,6 +49,7 @@
             <TextView
                 android:id="@+id/card_full_address"
                 android:layout_width="250dp"
+                android:maxLines="2"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_area_name"
                 android:layout_marginStart="14dp"
@@ -65,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="@string/sale"
+                android:text="@string/Sale"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:textColor="@color/black"

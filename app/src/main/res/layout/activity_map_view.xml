@@ -15,5 +15,15 @@
     <include layout="@layout/bottom_nav_bar"
         android:id="@+id/map_view_bottom_nav_bar"/>
 
+    <include layout="@layout/ad_card"
+        android:id="@+id/map_view_card_details"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="80dp"
+        android:visibility="gone" />
+
 
 </RelativeLayout>

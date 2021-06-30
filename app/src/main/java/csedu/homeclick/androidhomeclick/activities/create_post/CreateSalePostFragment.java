@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.activities.create_post;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.AdFeed;
@@ -49,7 +51,7 @@ import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 
 
 public class CreateSalePostFragment extends Fragment implements View.OnClickListener, ImageRecyclerViewAdapter.OnPhotoClickListener {
-    private static final String TAG = "CreateRentPostFragment";
+    private static final String TAG = "CreateSalePostFragment";
     private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
     private static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.MapsActivity";
 
@@ -93,9 +95,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
     private double longitude, latitude;
 
-
     List<Uri> imageUri = new ArrayList<>();
-
 
     final ActivityResultLauncher<String> mapLauncher
             = registerForActivityResult(new ActivityResultContract<String, List<Double>>() {
@@ -108,6 +108,12 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             intent.setClassName(PACKAGE_NAME,CLASS_NAME);
             double latitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLatitude();
             double longitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLongitude();
+            if(EDIT_MODE) {
+                SaleAdvertisement received = (SaleAdvertisement) requireActivity().getIntent().getExtras().get("Ad");
+                latitude = received.getLatitude();
+                longitude = received.getLongitude();
+            }
+
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
             Log.i(TAG, "latitude = " + latitude + " longitude = " + longitude);
@@ -117,7 +123,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         @Override
         public List<Double> parseResult(int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent intent) {
             List<Double> list = new ArrayList<>();
-            assert intent != null;
+            if(intent == null) return list;
             if(intent.getExtras() != null) {
                 list.add((Double) intent.getExtras().get("latitude"));
                 list.add((Double) intent.getExtras().get("longitude"));
@@ -125,12 +131,13 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             return list;
         }
     }, new ActivityResultCallback<List<Double>>() {
+        @SuppressLint("SetTextI18n")
         @Override
         public void onActivityResult(List<Double> result) {
             if(!result.isEmpty()) {
                 CreateSalePostFragment.this.latitude = result.get(0);
                 CreateSalePostFragment.this.longitude = result.get(1);
-                saleLocation.setText("latitude = " + result.get(0) + " longitude = "+ result.get(1));
+                saleLocation.setText("Latitude = " + result.get(0) + "\nLongitude = "+ result.get(1));
             }
         }
     });
@@ -169,8 +176,8 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_create_sale_post, container, false);
         bindWidgets(view);
 
-        if( getActivity().getIntent().getExtras() != null) {
-            Advertisement received = (Advertisement) getActivity().getIntent().getExtras().get("Ad");
+        if( requireActivity().getIntent().getExtras() != null) {
+            Advertisement received = (Advertisement) requireActivity().getIntent().getExtras().get("Ad");
             if(received.getAdType().equals("Sale")) {
                 saleAd = (SaleAdvertisement) received;
                 EDIT_MODE = true;
@@ -197,6 +204,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         addSaleLocation.setOnClickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     private void setWidgets() {
         prevPhotoRecView.setVisibility(View.VISIBLE);
         prevPhoto.setVisibility(View.VISIBLE);
@@ -227,8 +235,13 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
         salePayment.setText(Integer.toString( saleAd.getPaymentAmount() ));
 
-
         saleDescription.setText(saleAd.getDescription());
+
+        String saleCoOrdinates = "Latitude = " + saleAd.getLatitude() + "\nLongitude = " + saleAd.getLongitude();
+        this.latitude = saleAd.getLatitude();
+        this.longitude = saleAd.getLongitude();
+        saleLocation.setText(saleCoOrdinates);
+
         if( saleAd.getPropertyCondition().equals("New") ) {
             New.setChecked(true);
         } else {
@@ -298,6 +311,8 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         this.latitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLatitude();
         this.longitude = ( (CreatePost)(CreateSalePostFragment.this.requireActivity()) ).getLongitude();
     }
+
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     public void onClick(View v) {
 
@@ -306,40 +321,55 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                 imageSelectorLauncher.launch("image/*");
                 break;
 
-            case R.id.buttonSalePostAd:PostAd:
-            Toast.makeText(getContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
+            case R.id.buttonSalePostAd:
+                Toast.makeText(requireContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
                 if(EDIT_MODE) {
                     editPost(v);
                 } else {
                     createPost(v);
                 }
             case R.id.increase_bedrooms:
+                decrease_sale_bedrooms.setEnabled(true);
                 count_sale_bedrooms++;
                 saleBedrooms.setText(Integer.toString(count_sale_bedrooms));
                 break;
             case R.id.decrease_bedrooms:
-                if(count_sale_bedrooms!=0){
+                if(count_sale_bedrooms > 0) {
                     count_sale_bedrooms--;
+                    if(count_sale_bedrooms == 0) decrease_sale_bedrooms.setEnabled(false);
+                } else {
+                    decrease_sale_bedrooms.setEnabled(false);
+                    count_sale_bedrooms = 0;
                 }
                 saleBedrooms.setText(Integer.toString(count_sale_bedrooms));
                 break;
             case R.id.increase_bathrooms:
-                    count_sale_bathrooms++;
+                count_sale_bathrooms++;
+                decrease_sale_bathrooms.setEnabled(true);
                 saleBathrooms.setText(Integer.toString(count_sale_bathrooms));
                 break;
             case R.id.decrease_bathrooms:
-                if(count_sale_bathrooms !=0){
+                if(count_sale_bathrooms > 0){
                     count_sale_bathrooms--;
+                    if(count_sale_bathrooms == 0) decrease_sale_bathrooms.setEnabled(false);
+                } else {
+                    decrease_sale_bathrooms.setEnabled(false);
+                    count_sale_bathrooms = 0;
                 }
                 saleBathrooms.setText(Integer.toString(count_sale_bathrooms));
                 break;
             case R.id.increase_balconies:
                 count_sale_balconies++;
+                decrease_sale_balconies.setEnabled(true);
                 saleBalconies.setText(Integer.toString(count_sale_balconies));
                 break;
             case R.id.decrease_balconies:
-                if(count_sale_balconies!=0){
+                if(count_sale_balconies > 0){
                     count_sale_balconies--;
+                    if(count_sale_balconies == 0) decrease_sale_balconies.setEnabled(false);
+                } else {
+                    decrease_sale_balconies.setEnabled(false);
+                    count_sale_balconies = 0;
                 }
                 saleBalconies.setText(Integer.toString(count_sale_balconies));
                 break;
@@ -364,6 +394,8 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             adWithNewInfo.setAdvertiserUID(saleAd.getAdvertiserUID());
             adWithNewInfo.setUrlToImages(saleAd.getUrlToImages());
             adWithNewInfo.setNumberOfImages(saleAd.getUrlToImages().size());
+            adWithNewInfo.setLatitude(latitude);
+            adWithNewInfo.setLongitude(longitude);
             saleAd = adWithNewInfo;
 
             if(!imageUri.isEmpty()) {
@@ -393,7 +425,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         final SaleAdvertisement toEdit = saleAd;
         final List<String> downloadLinks = new ArrayList<>();
         final int[] uploadCount = new int[1];
-        uploadCount[0] = 0;
+
         for(int imageCount = 0; imageCount < imageUri.size(); imageCount++) {
             final int total = imageUri.size();
             advertisementService.uploadPhoto(imageUri.get(imageCount), fileExtensions.get(imageCount), adId, new AdInterface.OnPhotoUploadListener<String>() {
@@ -419,7 +451,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                                     Log.i(TAG, error);
                                 } else {
                                     Log.i(TAG, "Ad edited successfully");
-                                    startActivity(new Intent(CreateSalePostFragment.this.getContext().getApplicationContext(), AdFeed.class));
+                                    startActivity(new Intent(CreateSalePostFragment.this.requireContext().getApplicationContext(), AdFeed.class));
                                 }
                             }
                         });
@@ -455,7 +487,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             public void onAdIdObtained(String adId) {
                 saleAd.setAdvertisementID(adId);
                 final int[] uploadCount = new int[1];
-                uploadCount[0] = 0;
+
                 final List<String> downloadLinks = new ArrayList<>();
 
                 for(int imageCount = 0; imageCount < uriList.size(); imageCount++) {
@@ -481,20 +513,21 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             }
         });
     }
+
     void completeAdPost(final SaleAdvertisement saleAd) {
         advertisementService.completeAdPost(saleAd, new AdInterface.OnAdPostSuccessListener<Boolean>() {
             @Override
             public void OnAdPostSuccessful(Boolean data) {
-                Toast.makeText(getContext().getApplicationContext(), "Ad posted successfully.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext().getApplicationContext(), "Ad posted successfully.", Toast.LENGTH_SHORT).show();
                 CreateSalePostFragment.this.postAd.setEnabled(true);
-                CreateSalePostFragment.this.startActivity(new Intent(getContext().getApplicationContext(), AdFeed.class));
+                CreateSalePostFragment.this.startActivity(new Intent(requireContext().getApplicationContext(), AdFeed.class));
             }
 
             @Override
             public void OnAdPostFailed(String error) {
-                Toast.makeText(getContext().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
                 CreateSalePostFragment.this.postAd.setEnabled(true);
-                CreateSalePostFragment.this.startActivity(new Intent(getContext().getApplicationContext(), AdFeed.class));
+                CreateSalePostFragment.this.startActivity(new Intent(requireContext().getApplicationContext(), AdFeed.class));
             }
         });
     }
@@ -502,7 +535,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
     private List<String> getFileExtensions(List<Uri> listUri) {
         List<String> extensions = new ArrayList<>();
-        ContentResolver cr = this.getActivity().getContentResolver();
+        ContentResolver cr = this.requireActivity().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
 
         for(Uri uri: listUri) {
@@ -546,7 +579,6 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                 garageAvail,  imageUri.size(),situation, saleDesc, securityAvail);
 
 
-
         sale.setAdvertiserUID(userService.getUserUID());
         sale.setLatitude(CreateSalePostFragment.this.latitude);
         sale.setLongitude(CreateSalePostFragment.this.longitude);
@@ -555,7 +587,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     }
     private Boolean checkData() {
         Log.i(TAG, "in check data");
-        Boolean dataOkay = true;
+        boolean dataOkay = true;
         EditText[] allEditTexts = {saleAreaName, saleFullAddress, saleBedrooms, saleBathrooms, saleBalconies,
                 saleFloor, saleFloorSpace,salePayment, saleDescription};
 
@@ -569,18 +601,18 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         int picked = saleSituation.getCheckedRadioButtonId();
 
         if(picked != R.id.rbNew && picked != R.id.rbEstablished) {
-            Toast.makeText(this.getContext().getApplicationContext(), "You must pick situation of your property.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.requireContext().getApplicationContext(), "You must pick situation of your property.", Toast.LENGTH_SHORT).show();
             dataOkay = false;
         }
 
         if(this.imageUri.isEmpty() && !EDIT_MODE) {
             dataOkay = false;
-            Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.requireContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
         }
 
         if(EDIT_MODE && this.imageUri.isEmpty() && saleAd.getUrlToImages().isEmpty()) {
             dataOkay = false;
-            Toast.makeText(this.getContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.requireContext().getApplicationContext(), "You must add photos to your post.", Toast.LENGTH_SHORT).show();
         }
 
         return dataOkay;
@@ -590,7 +622,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
     public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        getActivity().getMenuInflater().inflate(R.menu.remove_photo_2, menu);
+        requireActivity().getMenuInflater().inflate(R.menu.remove_photo_2, menu);
     }
 
     @Override
@@ -598,27 +630,26 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         setAdapterPosition(position);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
-        switch ( item.getItemId() ) {
-            case R.id.remove_photo_2:
-                if(prevPhotoAdapterPosition == -1) {
-                    Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition() + "image uri size = " + imageUri.size());
-                    imageUri.remove(getAdapterPosition());
-                    imageRecVA.setUrlArrayList(imageUri);
-                    imageRecVA.notifyDataSetChanged();
-                } else {
-                    Log.i(TAG, "prev photo adapter postition = "+ prevPhotoAdapterPosition);
-                    saleAd.getUrlToImages().remove(prevPhotoAdapterPosition);
-                    saleAd.setNumberOfImages(saleAd.getNumberOfImages() - 1);
-                    prevPhotoRecVA.setUrlArrayList(saleAd.getUrlToImages());
-                    prevPhotoRecVA.notifyDataSetChanged();
-                    prevPhotoAdapterPosition = -1;
-                }
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+        if (item.getItemId() == R.id.remove_photo_2) {
+            if (prevPhotoAdapterPosition == -1) {
+                Log.i(TAG, "nwe photo adapter postition = " + getAdapterPosition() + "image uri size = " + imageUri.size());
+                imageUri.remove(getAdapterPosition());
+                imageRecVA.setUrlArrayList(imageUri);
+                imageRecVA.notifyDataSetChanged();
+            } else {
+                Log.i(TAG, "prev photo adapter postition = " + prevPhotoAdapterPosition);
+                saleAd.getUrlToImages().remove(prevPhotoAdapterPosition);
+                saleAd.setNumberOfImages(saleAd.getNumberOfImages() - 1);
+                prevPhotoRecVA.setUrlArrayList(saleAd.getUrlToImages());
+                prevPhotoRecVA.notifyDataSetChanged();
+                prevPhotoAdapterPosition = -1;
+            }
+            return true;
         }
+        return super.onContextItemSelected(item);
     }
 
     public int getAdapterPosition() {
