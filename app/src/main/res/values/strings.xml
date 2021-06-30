@@ -25,7 +25,7 @@
     <string name="Rent">Rent</string>
     <string name="Sale">Sale</string>
 
-    <string name="_available">Available</string>
+    <string name="_available"><font color="#0000">Available</font></string>
     <string name="not_available"><font color='#F44336'>Not available</font></string>
 
 
@@ -100,5 +100,6 @@
     <string name="personal_information">Personal Information</string>
     <string name="add_location">Add Location</string>
     <string name="location">Location</string>
+    <string name="go_back">Go Back</string>
 
 </resources>

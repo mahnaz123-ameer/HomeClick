@@ -407,6 +407,8 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                     public void OnAdEdited(Boolean edited, String error) {
                         if(edited) {
                             Log.i(TAG, "edited successfully");
+                            CreateSalePostFragment.this.postAd.setEnabled(true);
+                            startActivity(new Intent(CreateSalePostFragment.this.requireContext().getApplicationContext(), AdFeed.class));
                         } else {
                             Log.i(TAG, error);
                         }

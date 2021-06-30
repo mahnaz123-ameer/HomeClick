@@ -19,7 +19,8 @@
         android:roundIcon="@drawable/home_click"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.MapView"></activity>
+        <activity android:name=".activities.PinAdOnMap"></activity>
+        <activity android:name=".activities.MapView" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

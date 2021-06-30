@@ -52,8 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+        if(mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
 
 
 
@@ -88,7 +89,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             selfMarker = new MarkerOptions().position(selfLatLng).draggable(true).title("Me");
             mMap.addMarker(selfMarker);
             mMap.getUiSettings().setMapToolbarEnabled(true);
-            mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(selfLatLng));

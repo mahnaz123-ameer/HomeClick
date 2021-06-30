@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,18 +8,10 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.ActionCodeSettings;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.SignInMethodQueryResult;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -75,7 +68,7 @@ public class UserAuth implements UserAuthInterface {
     public static String getCurrentUserUID() {
         setInstance();
         if (isSignedIn()) {
-            return firebaseAuth.getCurrentUser().getUid();
+            return Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
         }
         return null;
     }
@@ -91,23 +84,15 @@ public class UserAuth implements UserAuthInterface {
 
             if (!email.isEmpty()) {
                 firebaseAuth.signInWithEmailLink(email, emailLink)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                Toast.makeText(context, "Successfully signed in.", Toast.LENGTH_SHORT).show();
+                        .addOnSuccessListener(authResult -> {
+                            Toast.makeText(context, "Successfully signed in.", Toast.LENGTH_SHORT).show();
 
-                                Boolean newUser = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getBoolean("newUser", false);
-                                if (newUser) {
-                                    addUserToDatabase(context);
-                                }
+                            boolean newUser = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getBoolean("newUser", false);
+                            if (newUser) {
+                                addUserToDatabase(context);
                             }
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull @NotNull Exception e) {
-                                Toast.makeText(context, "Link has expired or already been used.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(context, "Link has expired or already been used.", Toast.LENGTH_SHORT).show());
 
             }
         }
@@ -118,12 +103,13 @@ public class UserAuth implements UserAuthInterface {
         String email = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("emailForSignIn", "");
         String name = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("nameForSignUp", "");
         String phoneNumber = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).getString("phoneNumberForSignUp", "");
-        User newUserAdd = new User(name, email, phoneNumber, firebaseAuth.getCurrentUser().getUid());
+        User newUserAdd = new User(name, email, phoneNumber, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
         FirestoreDealer.getInstance().addUser(newUserAdd);
 
         clearSharedPreferences(context);
     }
 
+    @SuppressLint("ApplySharedPref")
     private static void clearSharedPreferences(final Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
         sharedPreferences.edit().clear().commit();
@@ -145,41 +131,30 @@ public class UserAuth implements UserAuthInterface {
             setInstance();
 
             firebaseAuth.fetchSignInMethodsForEmail(user.getEmailAddress())
-                    .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                            //TODO: Check later
-                            if(task.isSuccessful()) {
-                                Log.i("sign in method size", "" + Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size());
+                    .addOnCompleteListener(task -> {
 
-                                if (task.getResult().getSignInMethods().size() != 0) {
-                                    sendLinkToUserListener.OnSendLinkFailed("User already exists. Sign in instead.");
-                                } else {
-                                    firebaseAuth.sendSignInLinkToEmail(user.getEmailAddress(), UserAuth.getActionCodeSettings())
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Log.i("email link", "link sent to email");
-                                                    SharedPreferences sharedPreferences = context.getSharedPreferences(UserAuth.PACKAGE_NAME, Context.MODE_PRIVATE);
-                                                    sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
-                                                    sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
-                                                    sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
-                                                    sharedPreferences.edit().putBoolean("newUser", true).apply();
-                                                    sendLinkToUserListener.OnSendLinkSuccessful("Sign in link sent to email. Use it to sign in.");
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull @NotNull Exception e) {
-                                                    sendLinkToUserListener.OnSendLinkFailed("Could not send link. Please try again.");
-                                                }
-                                            });
-                                }
+                        if(task.isSuccessful()) {
+                            Log.i("sign in method size", "" + Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size());
+
+                            if (Objects.requireNonNull(task.getResult().getSignInMethods()).size() != 0) {
+                                sendLinkToUserListener.OnSendLinkFailed("User already exists. Sign in instead.");
                             } else {
-                                sendLinkToUserListener.OnSendLinkFailed(Objects.requireNonNull(task.getException()).getMessage());
+                                firebaseAuth.sendSignInLinkToEmail(user.getEmailAddress(), UserAuth.getActionCodeSettings())
+                                        .addOnSuccessListener(unused -> {
+                                            Log.i("email link", "link sent to email");
+                                            SharedPreferences sharedPreferences = context.getSharedPreferences(UserAuth.PACKAGE_NAME, Context.MODE_PRIVATE);
+                                            sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
+                                            sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
+                                            sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
+                                            sharedPreferences.edit().putBoolean("newUser", true).apply();
+                                            sendLinkToUserListener.OnSendLinkSuccessful("Sign in link sent to email. Use it to sign in.");
+                                        })
+                                        .addOnFailureListener(e -> sendLinkToUserListener.OnSendLinkFailed("Could not send link. Please try again."));
                             }
-
+                        } else {
+                            sendLinkToUserListener.OnSendLinkFailed(Objects.requireNonNull(task.getException()).getMessage());
                         }
+
                     });
 
     }
@@ -190,158 +165,26 @@ public class UserAuth implements UserAuthInterface {
             setInstance();
 
             firebaseAuth.fetchSignInMethodsForEmail(emailAddress)
-                    .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                            //TODO: Check later
-                            Log.i("sign in method size", "" + Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size());
-                            if (task.getResult().getSignInMethods().size() != 0) {
-                                firebaseAuth.sendSignInLinkToEmail(emailAddress, UserAuth.getActionCodeSettings())
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Log.i("email link", "link sent to email");
-                                                SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-                                                sharedPreferences.edit().putString("emailForSignIn", emailAddress).apply();
-                                                sharedPreferences.edit().putBoolean("newUser", false).apply();
-                                                sendLinkToUserListener.OnSendLinkSuccessful("Sign in link sent to email.");
-                                            }
-                                        });
-                            } else {
-                                sendLinkToUserListener.OnSendLinkFailed("New user please sign up first.");
-                                Log.i("fail", "couldn't fetch anything");
-                            }
+                    .addOnCompleteListener(task -> {
 
+                        Log.i("sign in method size", "" + Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size());
+                        if (Objects.requireNonNull(task.getResult().getSignInMethods()).size() != 0) {
+                            firebaseAuth.sendSignInLinkToEmail(emailAddress, UserAuth.getActionCodeSettings())
+                                    .addOnSuccessListener(unused -> {
+                                        Log.i("email link", "link sent to email");
+                                        SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+                                        sharedPreferences.edit().putString("emailForSignIn", emailAddress).apply();
+                                        sharedPreferences.edit().putBoolean("newUser", false).apply();
+                                        sendLinkToUserListener.OnSendLinkSuccessful("Sign in link sent to email.");
+                                    });
+                        } else {
+                            sendLinkToUserListener.OnSendLinkFailed("New user please sign up first.");
+                            Log.i("fail", "couldn't fetch anything");
                         }
+
                     });
 
 
     }
 }
-
-
-/*
- * shared preferences = emailForSignIn
- * newUser boolean
- * phoneNumberForSignUp
- * nameForSignUp
- *
- *
- *
- * */
-
-//        firebaseAuth.sendSignInLinkToEmail(user.getEmailAddress(), actionCodeSettings)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Log.i("email link", "link sent to email");
-//                        SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-//                        sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
-//                        sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
-//                        sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
-//                        sharedPreferences.edit().putBoolean("newUser", true).apply();
-//                        String signInUrl = actionCodeSettings.getUrl();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull @NotNull Exception e) {
-//                        Toast.makeText(context, "Could not send link. Please try again.", Toast.LENGTH_SHORT).show();
-//                        Log.i("signinlink", "sign in link send failure");
-//                    }
-//                });
-
-//
-//    public static void sendSignInLink(final String email, final Context context) {
-//        setInstance();
-//
-//        firebaseAuth.fetchSignInMethodsForEmail(email)
-//                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-//
-//                        Log.i("sign in method size", "" + task.getResult().getSignInMethods().size());
-//                        if (task.getResult().getSignInMethods().size() != 0) {
-//                            firebaseAuth.sendSignInLinkToEmail(email, UserAuth.getActionCodeSettings())
-//                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                        @Override
-//                                        public void onSuccess(Void unused) {
-//                                            Log.i("email link", "link sent to email");
-//                                            Toast.makeText(context, "Sign in link sent to email.", Toast.LENGTH_SHORT).show();
-//                                            SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-//                                            sharedPreferences.edit().putString("emailForSignIn", email).apply();
-//                                            sharedPreferences.edit().putBoolean("newUser", false).apply();
-//                                        }
-//                                    });
-//                        } else {
-//                            Toast.makeText(context, "New user please sign up first.", Toast.LENGTH_SHORT).show();
-//                            Log.i("fail", "couldn't fetch anything");
-//                        }
-//
-//                    }
-//                });
-//
-//    }
-//
-//    public static void sendSignInLink(final User user, final Context context) {
-//        setInstance();
-//
-//
-//        firebaseAuth.fetchSignInMethodsForEmail(user.getEmailAddress())
-//                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-//
-//                        Log.i("sign in method size", "" + task.getResult().getSignInMethods().size());
-//                        if (task.getResult().getSignInMethods().size() != 0) {
-//                            Toast.makeText(context, "User already exists. Sign in instead.", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            firebaseAuth.sendSignInLinkToEmail(user.getEmailAddress(), UserAuth.getActionCodeSettings())
-//                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                        @Override
-//                                        public void onSuccess(Void unused) {
-//                                            Log.i("email link", "link sent to email");
-//                                            Toast.makeText(context, "Sign in link sent to email. Use it to sign in.", Toast.LENGTH_SHORT).show();
-//                                            SharedPreferences sharedPreferences = context.getSharedPreferences(UserAuth.PACKAGE_NAME, Context.MODE_PRIVATE);
-//                                            sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
-//                                            sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
-//                                            sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
-//                                            sharedPreferences.edit().putBoolean("newUser", true).apply();
-//                                        }
-//                                    })
-//                                    .addOnFailureListener(new OnFailureListener() {
-//                                        @Override
-//                                        public void onFailure(@NonNull @NotNull Exception e) {
-//                                            Toast.makeText(context, "Could not send link. Please try again.", Toast.LENGTH_SHORT).show();
-//                                            Log.i("signinlink", "sign in link send failure");
-//                                        }
-//                                    });
-//                        }
-//
-//                    }
-//                });
-//
-//        firebaseAuth.sendSignInLinkToEmail(user.getEmailAddress(), actionCodeSettings)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Log.i("email link", "link sent to email");
-//                        SharedPreferences sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-//                        sharedPreferences.edit().putString("emailForSignIn", user.getEmailAddress()).apply();
-//                        sharedPreferences.edit().putString("nameForSignUp", user.getName()).apply();
-//                        sharedPreferences.edit().putString("phoneNumberForSignUp", user.getPhoneNumber()).apply();
-//                        sharedPreferences.edit().putBoolean("newUser", true).apply();
-//                        String signInUrl = actionCodeSettings.getUrl();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull @NotNull Exception e) {
-//                        Toast.makeText(context, "Could not send link. Please try again.", Toast.LENGTH_SHORT).show();
-//                        Log.i("signinlink", "sign in link send failure");
-//                    }
-//                });
-//    }
-
-
 

@@ -1,5 +1,10 @@
 package csedu.homeclick.androidhomeclick.activities;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -8,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -19,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +33,16 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import csedu.homeclick.androidhomeclick.R;
+import csedu.homeclick.androidhomeclick.activities.create_post.CreateRentPostFragment;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserInterface;
@@ -48,6 +59,8 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener,
         ImageRecyclerViewAdapter.OnPhotoClickListener, View.OnLongClickListener{
     public static final String TAG = "ShowAdDetails";
+    public static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
+    public static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.PinAdOnMap";
 
     private CoordinatorLayout coordinatorLayout;
 
@@ -70,11 +83,49 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     private CardView callCard;
 
     private ImageButton edit, delete, bookmark, bookmarked;
+    private ImageView locationPin;
 
-    private  ExpandableTextView description;
+    private ExpandableTextView description;
 
     private ImageRecyclerViewAdapter adImagesVA;
     private RecyclerView imageRecView;
+
+//    final ActivityResultLauncher<String> mapLauncher
+//            = registerForActivityResult(new ActivityResultContract<String, Void>() {
+//
+//
+//        @NonNull
+//        @NotNull
+//        @Override
+//        public Intent createIntent(@NonNull @NotNull Context context, String input) {
+//            Intent intent = new Intent();
+//            intent.setClassName(PACKAGE_NAME,CLASS_NAME);
+//            double latitude, longitude;
+//            if(rentAd != null) {
+//                latitude = rentAd.getLatitude();
+//                longitude = rentAd.getLongitude();
+//            } else {
+//                latitude = saleAd.getLatitude();
+//                longitude = saleAd.getLongitude();
+//            }
+//
+//            intent.putExtra("latitude", latitude);
+//            intent.putExtra("longitude", longitude);
+//
+//            return intent;
+//        }
+//
+//        @Override
+//        public Void parseResult(int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent intent) {
+//            return null;
+//        }
+//    }, new ActivityResultCallback<Void>() {
+//
+//        @Override
+//        public void onActivityResult(Void result) {
+//
+//        }
+//    });
 
 
 
@@ -97,6 +148,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         adImagesVA.setOnPhotoClickListener(this);
         bookmarked.setOnClickListener(this);
         fullAddressTV.setOnLongClickListener(this);
+        locationPin.setOnClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -197,23 +249,34 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
 
 
-        String gas, elevator, generator, garage, security;
-        if(saleAd.getGasAvailability()) gas = getString( R.string._available );
-        else gas = getString(R.string.not_available);
+        if(saleAd.getGasAvailability()) {
+            gasTV.setText(R.string._available);
+        }
+        else {
+            gasTV.setText(R.string.not_available);
+        }
 
-        if(saleAd.getElevator()) elevator = getString( R.string._available );
-        else elevator = getString( R.string.not_available );
+        if(saleAd.getElevator()) {
+            elevatorTV.setText(R.string._available);
+        }
+        else {
+            elevatorTV.setText(R.string.not_available);
+        }
 
-        if(saleAd.getGenerator()) generator = getString( R.string._available );
-        else generator = getString( R.string.not_available );
+        if(saleAd.getGenerator()) {
+            generatorTV.setText(R.string._available);
+        }
+        else {
+            generatorTV.setText(R.string.not_available);
+        }
 
-        if(saleAd.getGarageSpace()) garage = getString( R.string._available );
-        else garage = getString( R.string.not_available );
+        if(saleAd.getGarageSpace()) {
+            garageTV.setText(R.string._available);
+        }
+        else {
+            garageTV.setText(R.string.not_available);
+        }
 
-        gasTV.setText(gas);
-        elevatorTV.setText(elevator);
-        generatorTV.setText(generator);
-        garageTV.setText(garage);
 
         floorTV.setText(Integer.toString(saleAd.getFloor()));
         floorSpaceTV.setText(saleAd.getFloorSpace() + " SQFT");
@@ -246,37 +309,52 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         balconyTV.setText(Integer.toString(rentAd.getNumberOfBalconies()));
 
 
+        if(rentAd.getGasAvailability()) {
+            gasTV.setText(R.string._available);
+        }
+        else {
+            gasTV.setText(R.string.not_available);
+        }
 
-        String gas, elevator, generator, garage, security;
-        if(rentAd.getGasAvailability()) gas = getString( R.string._available );
-        else gas = getString( R.string.not_available );
+        if(rentAd.getElevator()) {
+            elevatorTV.setText(R.string._available);
+        }
+        else {
+            elevatorTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getElevator()) elevator = getString( R.string._available );
-        else elevator = getString( R.string.not_available );
+        if(rentAd.getGenerator()) {
+            generatorTV.setText(R.string._available);
+        }
+        else {
+            generatorTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getGenerator()) generator = getString( R.string._available );
-        else generator = getString( R.string.not_available );
+        if(rentAd.getGarageSpace()) {
+            garageTV.setText(R.string._available);
+        }
+        else {
+            garageTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getGarageSpace()) garage = getString( R.string._available );
-        else garage = getString( R.string.not_available );
+        if(rentAd.getSecurityGuard()) {
+            securityTV.setVisibility(View.VISIBLE);
+            securityTV.setText(R.string._available);
+        }
+        else {
+            securityTV.setVisibility(View.VISIBLE);
+            securityTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getSecurityGuard()) security = getString( R.string._available );
-        else security = getString( R.string.not_available );
-
-        gasTV.setText(gas);
-        elevatorTV.setText(elevator);
-        generatorTV.setText(generator);
-        garageTV.setText(garage);
-        securityTV.setText(security);
 
         floorTV.setText(Integer.toString(rentAd.getFloor()));
-        Log.i(TAG, "floor =" + Integer.toString(rentAd.getFloor()));
+        Log.i(TAG, "floor =" + rentAd.getFloor());
         floorSpaceTV.setText(rentAd.getFloorSpace() + " SQFT");
 
         paymentTV.setText(rentAd.getPaymentAmount() + " BDT");
         utilityTV.setText(rentAd.getUtilityCharge()+ " BDT");
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy");
         String moveInDate = simpleDateFormat.format(rentAd.getAvailableFrom());
         moveInTV.setText(moveInDate);
         tenantTypeTV.setText(rentAd.getTenantType());
@@ -329,6 +407,8 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         tenantTypeTV = findViewById(R.id.home_tenant_type);
         utilityTV = findViewById(R.id.home_utility);
         moveInTV = findViewById(R.id.move_in_date);
+
+        locationPin = findViewById(R.id.map_icon);
 
         advertNameTV = findViewById(R.id.advertiser_name);
         callCard = findViewById(R.id.call_card);
@@ -395,12 +475,10 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
             case R.id.bookmark_ad:
                 addToBookmarks();
-
                 break;
 
             case R.id.remove_ad:
                 removeFromBookmarks();
-
                 break;
 
             case R.id.call_card:
@@ -413,8 +491,57 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                     startActivity(intent);
                 break;
 
+            case R.id.map_icon:
+                launchInMap();
+                break;
+
             default:
                 break;
+        }
+    }
+
+    private void launchInMap() {
+        AlertDialog.Builder openMaps = new AlertDialog.Builder(this);
+
+        openMaps
+                .setMessage("Open in Google Maps?")
+                .setPositiveButton("Yes", (dialog, which) -> openInMaps())
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    //do nothing
+                });
+
+        AlertDialog openMapsAlert = openMaps.create();
+        openMapsAlert.show();
+    }
+
+    private void openInMaps() {
+        double lat, lon;
+        if(rentAd != null) {
+            lat = rentAd.getLatitude();
+            lon = rentAd.getLongitude();
+        } else {
+            lat = saleAd.getLatitude();
+            lon = saleAd.getLongitude();
+        }
+        String uri = "http://maps.google.com/maps?daddr=" + lat + "," + lon + " (" + "Location of the house" + ")";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps");
+
+        try
+        {
+            startActivity(intent);
+        }
+        catch(ActivityNotFoundException ex)
+        {
+            try
+            {
+                Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(unrestrictedIntent);
+            }
+            catch(ActivityNotFoundException innerEx)
+            {
+                Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
