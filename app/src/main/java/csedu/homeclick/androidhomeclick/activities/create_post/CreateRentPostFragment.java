@@ -149,7 +149,7 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         @Override
         public void onActivityResult(List<Double> result) {
             if(!result.isEmpty()) {
-                rentLocation.setText("latitude = " + result.get(0) + " longitude = "+ result.get(1));
+                rentLocation.setText("Latitude = " + result.get(0) + "\nLongitude = "+ result.get(1));
                 CreateRentPostFragment.this.latitude = result.get(0);
                 CreateRentPostFragment.this.longitude = result.get(1);
             }

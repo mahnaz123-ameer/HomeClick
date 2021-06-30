@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D5FFFFFF"
+    android:id="@+id/show_ad_layout"
     tools:context=".activities.ShowAdvertisementDetails">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <!--    Rent-->
 
 
@@ -83,12 +87,14 @@
                         android:textAlignment="textStart"
                         android:layout_marginStart="70dp"
                         android:layout_marginTop="45dp"
+                        android:clickable="true"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/full_address"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        android:textStyle="normal"/>
+                        android:textStyle="normal"
+                        android:focusable="true" />
 
 
 
@@ -132,6 +138,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:padding="10dp"
+                            android:layout_marginBottom="10dp"
                             android:src="@drawable/icon_bookmark"
                             android:backgroundTint="@color/darker_lavender"
                             android:background="@drawable/shape3"
@@ -851,13 +858,21 @@
                         android:id="@+id/advertiser_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15sp"
-                        android:layout_marginTop="40sp"
-                        android:layout_marginBottom="10sp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/_full_name"
                         android:textColor="@color/darker_lavender"
                         android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/advertiser_phone_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/phone_number"/>
 
                     <ImageView
                         android:layout_width="40sp"
@@ -878,4 +893,6 @@
 
     </ScrollView>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

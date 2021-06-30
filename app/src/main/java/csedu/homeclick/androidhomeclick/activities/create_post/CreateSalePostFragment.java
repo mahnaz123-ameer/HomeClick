@@ -137,7 +137,7 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
             if(!result.isEmpty()) {
                 CreateSalePostFragment.this.latitude = result.get(0);
                 CreateSalePostFragment.this.longitude = result.get(1);
-                saleLocation.setText("latitude = " + result.get(0) + "\nlongitude = "+ result.get(1));
+                saleLocation.setText("Latitude = " + result.get(0) + "\nLongitude = "+ result.get(1));
             }
         }
     });
