@@ -203,6 +203,10 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
 
     @SuppressLint("SetTextI18n")
     private void setWidgets() {
+        decrease_sale_bedrooms.setEnabled(true);
+        decrease_sale_bathrooms.setEnabled(true);
+        decrease_sale_balconies.setEnabled(true);
+
         prevPhotoRecView.setVisibility(View.VISIBLE);
         prevPhoto.setVisibility(View.VISIBLE);
 
@@ -218,6 +222,11 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
         saleBedrooms.setText(Integer.toString(saleAd.getNumberOfBedrooms()));
         saleBathrooms.setText(Integer.toString(saleAd.getNumberOfBathrooms()));
         saleBalconies.setText(Integer.toString(saleAd.getNumberOfBalconies()));
+
+        count_sale_bedrooms = saleAd.getNumberOfBedrooms();
+        count_sale_bathrooms = saleAd.getNumberOfBathrooms();
+        count_sale_balconies = saleAd.getNumberOfBalconies();
+
         saleFloor.setText(Integer.toString(saleAd.getFloor()));
         saleFloorSpace.setText(Integer.toString( saleAd.getFloorSpace()));
         saleGas.setChecked(saleAd.getGasAvailability());
