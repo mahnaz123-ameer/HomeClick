@@ -1,14 +1,8 @@
 package csedu.homeclick.androidhomeclick.activities;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +11,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +19,7 @@ import android.view.View;
 
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,16 +27,11 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.activities.create_post.CreateRentPostFragment;
 import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserInterface;
@@ -62,7 +51,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     public static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
     public static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.PinAdOnMap";
 
-    private CoordinatorLayout coordinatorLayout;
+    private RelativeLayout relativeLayout;
 
     private UserService userService;
     private AdvertisementService adService;
@@ -234,6 +223,23 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     @SuppressLint("SetTextI18n")
     private void setSaleAdDetails() {
         Log.i(TAG, "in set sale ad details");
+        TextView utility = findViewById(R.id.text_utility);
+        CardView securityCard = findViewById(R.id.card_security);
+        securityCard.setVisibility(View.VISIBLE);
+
+        //Payment textview
+        TextView pay = findViewById(R.id.text_money);
+        pay.setText(getString(R.string.asking_amount));
+
+        //setting property condition
+        utilityTV.setText(saleAd.getPropertyCondition());
+        utility.setText("Property Condition");
+        utility.setTextColor(getColor( R.color.black ));
+
+        //getting rid of date
+        TextView dateTitle = findViewById(R.id.text_date);
+        dateTitle.setVisibility(View.GONE);
+        moveInTV.setVisibility(View.GONE);
 
         adImagesVA.setUrlArrayList(saleAd.getUrlToImages());
         adImagesVA.notifyDataSetChanged();
@@ -292,6 +298,11 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     @SuppressLint("SetTextI18n")
     private void setRentAdDetails() {
         Log.i(TAG, "in set rent ad details");
+
+        TextView tenantLabel = findViewById(R.id.text_tenant_type);
+        tenantLabel.setVisibility(View.VISIBLE);
+        tenantTypeTV.setText(rentAd.getTenantType());
+        tenantTypeTV.setVisibility(View.VISIBLE);
 
         adImagesVA.setUrlArrayList(rentAd.getUrlToImages());
         adImagesVA.notifyDataSetChanged();
@@ -378,7 +389,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
     private void bindWidgets() {
         Log.i(TAG, "in bind widgets");
-        coordinatorLayout = findViewById(R.id.show_ad_layout);
+        relativeLayout = findViewById(R.id.show_ad_layout);
 
         //top and bottom bars
         BottomNavBarHandler.setInstance(findViewById(R.id.show_ad_bottom_nav_bar), R.id.home);
@@ -683,7 +694,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
             } else {
                 fullAddress = saleAd.getFullAddress();
             }
-            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Copy address to clipboard?", BaseTransientBottomBar.LENGTH_SHORT)
+            Snackbar snackbar = Snackbar.make(relativeLayout, "Copy address to clipboard?", BaseTransientBottomBar.LENGTH_SHORT)
                     .setAction("Copy", v1 -> {
                         ClipData clip = ClipData.newPlainText("Full Address", fullAddress);
                         clipboard.setPrimaryClip(clip);

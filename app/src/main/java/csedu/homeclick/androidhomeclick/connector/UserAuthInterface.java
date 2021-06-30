@@ -13,6 +13,4 @@ public interface UserAuthInterface {
     }
 
     void signInOldUser(String emailAddress, Context context, SendLinkToUserListener<String> sendLinkToUserListener);
-
-
 }

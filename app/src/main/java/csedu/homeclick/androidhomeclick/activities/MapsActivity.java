@@ -66,6 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void setSelfLocation() {
         double latitude = (double) getIntent().getExtras().get("latitude");
         double longitude = (double) getIntent().getExtras().get("longitude");
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.selfLocation = new Location("gps");
         this.selfLocation.setLatitude(latitude);
         this.selfLocation.setLongitude(longitude);

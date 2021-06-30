@@ -1,5 +1,6 @@
 package csedu.homeclick.androidhomeclick.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Objects;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
@@ -89,6 +92,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @SuppressLint({"NonConstantResourceId", "DefaultLocale"})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -136,6 +140,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void createFilterCriteria() {
         int checkedId = adType.getCheckedRadioButtonId();
 
@@ -148,7 +153,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
 
-        if (!paymentAmount.getText().toString().isEmpty()) {
+        if (!Objects.requireNonNull(paymentAmount.getText()).toString().isEmpty()) {
             int amount = Integer.parseInt(paymentAmount.getText().toString());
             filterCriteria.setPaymentAmount(amount);
         }
@@ -168,8 +173,8 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    private Boolean noneSelected() {
-        Boolean noneSelect = true;
+    private boolean noneSelected() {
+        boolean noneSelect = true;
         EditText[] editTexts = {paymentAmount, filter_no_of_bedrooms, filter_no_of_bathrooms};
         for (EditText t : editTexts) {
             if (!t.getText().toString().isEmpty()) {

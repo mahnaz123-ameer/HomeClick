@@ -1,19 +1,16 @@
 package csedu.homeclick.androidhomeclick.activities;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -41,8 +38,6 @@ import csedu.homeclick.androidhomeclick.structure.FilterCriteria;
 public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerViewAdapter.OnAdCardClickListener ,
                             View.OnClickListener{
     private static final String TAG = "AdFeed";
-    private static final String PACKAGE_NAME = "csedu.homeclick.androidhomeclick";
-    private static final String CLASS_NAME = "csedu.homeclick.androidhomeclick.activities.MapView";
 
 
     private final RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
@@ -129,7 +124,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
         int prevSize = adArrayList.size();
         adService.fetchFilteredAds(new AdInterface.OnAdsFetchedListener<List<Advertisement>>() {
             @Override
-            public void OnAdsFetchedListener(List<Advertisement> ads) {
+            public void OnAdsFetchedSuccessfully(List<Advertisement> ads) {
                 if(!ads.isEmpty())
                     adArrayList.addAll(ads);
 
@@ -151,7 +146,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
             }
 
             @Override
-            public void OnAdFetchingFailedListener(String error) {
+            public void OnAdFetchingFailed(String error) {
                 Log.i(TAG, error);
             }
         }, receivedCriteria);
@@ -175,7 +170,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
 
         adService.fetchAdvertisements(new AdInterface.OnAdsFetchedListener<List<Advertisement>>() {
             @Override
-            public void OnAdsFetchedListener(List<Advertisement> ads) {
+            public void OnAdsFetchedSuccessfully(List<Advertisement> ads) {
                 if(!ads.isEmpty())
                     adArrayList.addAll(ads);
 
@@ -197,7 +192,7 @@ public class AdFeed extends AppCompatActivity implements AdvertisementRecyclerVi
             }
 
             @Override
-            public void OnAdFetchingFailedListener(String error) {
+            public void OnAdFetchingFailed(String error) {
                 Log.i(TAG, error);
             }
         } );

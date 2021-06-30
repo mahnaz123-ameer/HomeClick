@@ -154,9 +154,9 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                             }
                         }
 
-                        onAdsFetchedListener.OnAdsFetchedListener(adList);
+                        onAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
                     })
-                    .addOnFailureListener(e -> onAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage()));
+                    .addOnFailureListener(e -> onAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
         } else {
             getTenAds = db.collection(AD_TABLE)
                     .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).startAfter(lastLoadedAdSnapshot).limit(10)
@@ -178,9 +178,9 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                             }
                         }
 
-                        onAdsFetchedListener.OnAdsFetchedListener(adList);
+                        onAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
                     })
-                    .addOnFailureListener(e -> onAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage()));
+                    .addOnFailureListener(e -> onAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
 
         }
     }
@@ -206,9 +206,9 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                             }
                         }
 
-                        onFilteredAdsFetchedListener.OnAdsFetchedListener(adList);
+                        onFilteredAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
                     })
-                    .addOnFailureListener(e -> onFilteredAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage()));
+                    .addOnFailureListener(e -> onFilteredAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
         } else {
             getTenAds = filterQuery.orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).limit(10).startAfter(lastLoadedAdSnapshot).get();
 
@@ -228,9 +228,9 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                             }
                         }
 
-                        onFilteredAdsFetchedListener.OnAdsFetchedListener(adList);
+                        onFilteredAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
                     })
-                    .addOnFailureListener(e -> onFilteredAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage()));
+                    .addOnFailureListener(e -> onFilteredAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
 
         }
     }

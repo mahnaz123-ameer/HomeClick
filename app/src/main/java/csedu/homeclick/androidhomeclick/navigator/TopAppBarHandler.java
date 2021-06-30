@@ -72,15 +72,15 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
                     activity.startActivity(targetIntent);
                 } else {
                     Intent targetIntent = new Intent(activity.getApplicationContext(), UserSignIn.class);
-                    Toast.makeText(activity.getApplicationContext(), "sign in button click", Toast.LENGTH_SHORT).show();
+
                     activity.startActivity(targetIntent);
                 }
                 break;
             case R.id.about_app:
-                Toast.makeText(activity.getApplicationContext(), "Tapped about app", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.filter:
-                Toast.makeText(activity.getApplicationContext(), "sign out button click", Toast.LENGTH_SHORT).show();
+
                 Intent targetIntent1 = new Intent(activity.getApplicationContext(), Filter.class);
                 activity.startActivity(targetIntent1);
 
