@@ -132,7 +132,4 @@ public class Leaflet implements Serializable {
     }
 
 
-//    public HashMap<String, Object> getLeafletHashMap() {
-//        Has
-//    }
 }

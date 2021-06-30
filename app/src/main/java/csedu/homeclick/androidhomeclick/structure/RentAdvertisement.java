@@ -17,10 +17,6 @@ public class RentAdvertisement extends Advertisement implements Serializable {
         super();
     }
 
-    //user shoho
-
-
-    //user chara
     public RentAdvertisement(String areaName, String fullAddress, String adType, int numberOfBedrooms, int numberOfBathrooms,
                              Boolean gasAvailability, int paymentAmount, int numberOfBalconies, int floor, int floorSpace,
                              Boolean elevator, Boolean generator, Boolean garageSpace, int numberOfImages, String tenantType, int utilityCharge, String description, Boolean securityGuard, Date availableFrom) {
