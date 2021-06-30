@@ -14,7 +14,9 @@ import androidx.appcompat.widget.Toolbar;
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.AdFeed;
 import csedu.homeclick.androidhomeclick.activities.CreatePost;
+import csedu.homeclick.androidhomeclick.activities.Data_Policy;
 import csedu.homeclick.androidhomeclick.activities.Filter;
+import csedu.homeclick.androidhomeclick.activities.Terms_Of_Use;
 import csedu.homeclick.androidhomeclick.activities.UserSignIn;
 //import csedu.homeclick.androidhomeclick.activities.create_post.AddPhotos;
 import csedu.homeclick.androidhomeclick.connector.UserService;
@@ -25,7 +27,6 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
     private View filter;
     private Activity activity;
     private UserService userService;
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if(UserAuth.isSignedIn()) {
@@ -79,6 +80,19 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
             case R.id.about_app:
                 Toast.makeText(activity.getApplicationContext(), "Tapped about app", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.subitem1:
+                Toast.makeText(activity.getApplicationContext(), "Tapped about Data Policy", Toast.LENGTH_SHORT).show();
+                Intent targetIntent = new Intent(activity.getApplicationContext(), Data_Policy.class);
+                activity.startActivity(targetIntent);
+                break;
+
+            case R.id.subitem2:
+                Toast.makeText(activity.getApplicationContext(), "Tapped about Terms Of Use", Toast.LENGTH_SHORT).show();
+                Intent targetIntent3 = new Intent(activity.getApplicationContext(), Terms_Of_Use.class);
+                activity.startActivity(targetIntent3);
+                break;
+
             case R.id.filter:
                 Toast.makeText(activity.getApplicationContext(), "sign out button click", Toast.LENGTH_SHORT).show();
                 Intent targetIntent1 = new Intent(activity.getApplicationContext(), Filter.class);
