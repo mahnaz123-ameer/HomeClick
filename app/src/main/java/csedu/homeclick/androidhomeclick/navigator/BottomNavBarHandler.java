@@ -79,7 +79,11 @@ public class BottomNavBarHandler {
                     break;
                 case R.id.account:
                     Log.i(TAG, "account reselected");
-                    activity.startActivity(new Intent(activity.getApplicationContext(), Profile.class));
+                    if(userService.isSignedIn()) {
+                        activity.startActivity(new Intent(activity.getApplicationContext(), Profile.class));
+                    } else {
+                        activity.startActivity(new Intent(activity.getApplicationContext(), UserSignIn.class));
+                    }
                     break;
                 default:
                     break;
