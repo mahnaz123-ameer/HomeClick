@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Objects;
+
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.UserAuthInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
@@ -90,18 +92,18 @@ public class SignUpFragment extends Fragment implements View.OnClickListener{
     }
 
     private User getUser() {
-        String emailStr = email.getText().toString().trim();
-        String nameStr = name.getText().toString().trim();
-        String phoneNum = phoneNumber.getText().toString().trim();
+        String emailStr = Objects.requireNonNull(email.getText()).toString().trim();
+        String nameStr = Objects.requireNonNull(name.getText()).toString().trim();
+        String phoneNum = Objects.requireNonNull(phoneNumber.getText()).toString().trim();
         User newUser = new User(nameStr, emailStr, phoneNum);
         return newUser;
     }
 
     private Boolean checkData() {
         Boolean allOkay = true;
-        String emailStr = email.getText().toString().trim();
-        String nameStr = name.getText().toString().trim();
-        String phoneNum = phoneNumber.getText().toString().trim();
+        String emailStr = Objects.requireNonNull(email.getText()).toString().trim();
+        String nameStr = Objects.requireNonNull(name.getText()).toString().trim();
+        String phoneNum = Objects.requireNonNull(phoneNumber.getText()).toString().trim();
 
         if(!Patterns.EMAIL_ADDRESS.matcher(emailStr).matches()) {
             email.setError("Enter valid email");

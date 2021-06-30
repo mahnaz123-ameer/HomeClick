@@ -93,8 +93,8 @@ public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecycle
     *
     * */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
-        private ImageView imageView;
-        private OnPhotoClickListener onPhotoClickListener;
+        private final ImageView imageView;
+        private final OnPhotoClickListener onPhotoClickListener;
 
         public ViewHolder(@NonNull @NotNull View itemView, OnPhotoClickListener onPhotoClickListener) {
             super(itemView);

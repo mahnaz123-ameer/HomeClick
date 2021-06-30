@@ -6,18 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Objects;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.connector.UserAuthInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
-import csedu.homeclick.androidhomeclick.structure.User;
 
 
 public class SignInFragment extends Fragment implements View.OnClickListener {
@@ -60,7 +59,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
         sendLink.setEnabled(false);
         final View view = v;
         if(checkData()) {
-            String email = editEmail.getText().toString().trim();
+            String email = Objects.requireNonNull(editEmail.getText()).toString().trim();
             userService.signIn(email, view.getContext().getApplicationContext(), new UserAuthInterface.SendLinkToUserListener<String>() {
                 @Override
                 public void OnSendLinkSuccessful(String toastMessage) {
@@ -80,7 +79,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
 
     private Boolean checkData() {
         Boolean allOkay = true;
-        String  email = editEmail.getText().toString().trim();
+        String  email = Objects.requireNonNull(editEmail.getText()).toString().trim();
 
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {

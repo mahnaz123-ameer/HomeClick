@@ -52,8 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+        if(mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
 
 
 
@@ -65,6 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void setSelfLocation() {
         double latitude = (double) getIntent().getExtras().get("latitude");
         double longitude = (double) getIntent().getExtras().get("longitude");
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.selfLocation = new Location("gps");
         this.selfLocation.setLatitude(latitude);
         this.selfLocation.setLongitude(longitude);
@@ -83,12 +86,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void setInitialMarker() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
+            requestPermissions(new String[] {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
         } else {
             selfMarker = new MarkerOptions().position(selfLatLng).draggable(true).title("Me");
             mMap.addMarker(selfMarker);
             mMap.getUiSettings().setMapToolbarEnabled(true);
-            mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(selfLatLng));

@@ -5,27 +5,16 @@ import android.net.Uri;
 import android.util.Log;
 
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import org.jetbrains.annotations.NotNull;
 
 
 import java.util.ArrayList;
@@ -68,53 +57,37 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     public void addUser(User userMap) {
         if(UserAuth.isSignedIn()) {
             db.collection(USER_TABLE).document(Objects.requireNonNull(UserAuth.getCurrentUserUID())).set(userMap)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Log.i("add user", "successful");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            Log.i("add user", "failed");
-                        }
-                    });
+                    .addOnSuccessListener(unused -> Log.i("add user", "successful"))
+                    .addOnFailureListener(e -> Log.i("add user", "failed"));
         }
     }
 
     @Override
     public void findUserInfo(OnUserInfoListener<User> onUserInfoListener, String UID) {
         DocumentReference docRef = db.collection(USER_TABLE).document(UID);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()) {
-                    try {
-                        onUserInfoListener.OnUserInfoFound(task.getResult().toObject(User.class));
-                    } catch(Exception e) {
-                        Log.i(TAG, e.getMessage());
-                    }
-                } else {
-                    if(task.getException() != null)
-                        Log.i(TAG,  task.getException().getMessage());
+        docRef.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                try {
+                    onUserInfoListener.OnUserInfoFound(Objects.requireNonNull(task.getResult()).toObject(User.class));
+                } catch(Exception e) {
+                    Log.i(TAG, e.getMessage());
                 }
-
+            } else {
+                if(task.getException() != null)
+                    Log.i(TAG,  task.getException().getMessage());
             }
+
         });
     }
 
     @Override
     public void updateUserInfo(OnUserInfoUpdateListener<User> onUserInfoUpdateListener, User updatedUser) {
         DocumentReference docRef = db.collection(USER_TABLE).document(updatedUser.getUID());
-        docRef.set(updatedUser).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()) {
-                    onUserInfoUpdateListener.OnUserInfoUpdated();
-                } else {
-                    onUserInfoUpdateListener.OnUserInfoUpdateFailed();
-                }
+        docRef.set(updatedUser).addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                onUserInfoUpdateListener.OnUserInfoUpdated();
+            } else {
+                onUserInfoUpdateListener.OnUserInfoUpdateFailed();
             }
         });
     }
@@ -126,19 +99,11 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         map.put("UserUID", UserAuth.getCurrentUserUID());
 
         db.collection("AdID").add(map)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        String adID = documentReference.getId();
-                        onAdIdListener.onAdIdObtained(adID);
-                    }
+                .addOnSuccessListener(documentReference -> {
+                    String adID = documentReference.getId();
+                    onAdIdListener.onAdIdObtained(adID);
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        Log.i(TAG, e.getMessage());
-                    }
-                });
+                .addOnFailureListener(e -> Log.i(TAG, e.getMessage()));
     }
 
     @Override
@@ -153,42 +118,18 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         StorageReference ref = storage.getReference(UPLOADS_FOLDER).child(pathId).child(fileName);
 
         ref.putFile(uri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                onPhotoUploadListener.onCompleteNotify(uri.toString());
-                            }
-                        });
-
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull @NotNull UploadTask.TaskSnapshot snapshot) {
-                        double percent = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                        onPhotoUploadListener.ongoingProgress((int) percent);
-                    }
+                .addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().addOnSuccessListener(uri1 -> onPhotoUploadListener.onCompleteNotify(uri1.toString())))
+                .addOnProgressListener(snapshot -> {
+                    double percent = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                    onPhotoUploadListener.ongoingProgress((int) percent);
                 });
     }
 
     @Override
     public void pushAdIntoDatabase(final Advertisement advert, final OnAdPostSuccessListener<Boolean> onAdPostSuccessListener) {
         db.collection(AD_TABLE).document(advert.getAdvertisementID()).set(advert)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        onAdPostSuccessListener.OnAdPostSuccessful(true);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        onAdPostSuccessListener.OnAdPostFailed(e.getMessage());
-                    }
-                });
+                .addOnSuccessListener(unused -> onAdPostSuccessListener.OnAdPostSuccessful(true))
+                .addOnFailureListener(e -> onAdPostSuccessListener.OnAdPostFailed(e.getMessage()));
     }
 
     @Override
@@ -200,62 +141,46 @@ public class FirestoreDealer implements AdInterface, UserInterface {
                     .get();
 
             getTenAds
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    List<Advertisement> adList = new ArrayList<>();
-                    int total = queryDocumentSnapshots.size();
-                    int count = 0;
-                    for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                        count++;
-                        adList.add(singleAd.toObject(Advertisement.class));
-                        if(count == total) {
-                            FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
-                            Log.i(TAG, "snapshot change detected, size = " + count);
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        List<Advertisement> adList = new ArrayList<>();
+                        int total = queryDocumentSnapshots.size();
+                        int count = 0;
+                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                            count++;
+                            adList.add(singleAd.toObject(Advertisement.class));
+                            if(count == total) {
+                                FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
+                                Log.i(TAG, "snapshot change detected, size = " + count);
+                            }
                         }
-                    }
 
-                    onAdsFetchedListener.OnAdsFetchedListener(adList);
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            onAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
-                        }
-                    });
+                        onAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
+                    })
+                    .addOnFailureListener(e -> onAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
         } else {
             getTenAds = db.collection(AD_TABLE)
                     .orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).startAfter(lastLoadedAdSnapshot).limit(10)
                     .get();
 
             getTenAds
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    List<Advertisement> adList = new ArrayList<>();
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        List<Advertisement> adList = new ArrayList<>();
 
-                    int total = queryDocumentSnapshots.size();
-                    int count = 0;
+                        int total = queryDocumentSnapshots.size();
+                        int count = 0;
 
-                    for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                        count++;
-                        adList.add(singleAd.toObject(Advertisement.class));
-                        if(count == total) {
-                            Log.i(TAG, "snapshot change detected, size = " + count);
-                            FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
+                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                            count++;
+                            adList.add(singleAd.toObject(Advertisement.class));
+                            if(count == total) {
+                                Log.i(TAG, "snapshot change detected, size = " + count);
+                                FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
+                            }
                         }
-                    }
 
-                    onAdsFetchedListener.OnAdsFetchedListener(adList);
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            onAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
-                        }
-                    });
+                        onAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
+                    })
+                    .addOnFailureListener(e -> onAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
 
         }
     }
@@ -268,60 +193,44 @@ public class FirestoreDealer implements AdInterface, UserInterface {
             getTenAds = filterQuery.orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).limit(10).get();
 
             getTenAds
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            List<Advertisement> adList = new ArrayList<>();
-                            int total = queryDocumentSnapshots.size();
-                            int count = 0;
-                            for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                                count++;
-                                adList.add(singleAd.toObject(Advertisement.class));
-                                if(count == total) {
-                                    FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
-                                    Log.i(TAG, "snapshot change detected, size = " + count);
-                                }
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        List<Advertisement> adList = new ArrayList<>();
+                        int total = queryDocumentSnapshots.size();
+                        int count = 0;
+                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                            count++;
+                            adList.add(singleAd.toObject(Advertisement.class));
+                            if(count == total) {
+                                FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
+                                Log.i(TAG, "snapshot change detected, size = " + count);
                             }
+                        }
 
-                            onFilteredAdsFetchedListener.OnAdsFetchedListener(adList);
-                        }
+                        onFilteredAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            onFilteredAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
-                        }
-                    });
+                    .addOnFailureListener(e -> onFilteredAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
         } else {
             getTenAds = filterQuery.orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).limit(10).startAfter(lastLoadedAdSnapshot).get();
 
             getTenAds
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            List<Advertisement> adList = new ArrayList<>();
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        List<Advertisement> adList = new ArrayList<>();
 
-                            int total = queryDocumentSnapshots.size();
-                            int count = 0;
+                        int total = queryDocumentSnapshots.size();
+                        int count = 0;
 
-                            for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                                count++;
-                                adList.add(singleAd.toObject(Advertisement.class));
-                                if(count == total) {
-                                    Log.i(TAG, "snapshot change detected, size = " + count);
-                                    FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
-                                }
+                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                            count++;
+                            adList.add(singleAd.toObject(Advertisement.class));
+                            if(count == total) {
+                                Log.i(TAG, "snapshot change detected, size = " + count);
+                                FirestoreDealer.this.setLastFetchedQuerySnapshot(singleAd);
                             }
+                        }
 
-                            onFilteredAdsFetchedListener.OnAdsFetchedListener(adList);
-                        }
+                        onFilteredAdsFetchedListener.OnAdsFetchedSuccessfully(adList);
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            onFilteredAdsFetchedListener.OnAdFetchingFailedListener(e.getMessage());
-                        }
-                    });
+                    .addOnFailureListener(e -> onFilteredAdsFetchedListener.OnAdFetchingFailed(e.getMessage()));
 
         }
     }
@@ -331,35 +240,24 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         Task<QuerySnapshot> fetchingPersonalAds = db.collection(AD_TABLE).orderBy(SERVER_ENTRY_TIME, Query.Direction.DESCENDING).whereEqualTo("advertiserUID", UserUID).get();
 
         fetchingPersonalAds
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<Advertisement> adList = new ArrayList<>();
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Advertisement> adList = new ArrayList<>();
 
-                        for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
-                            adList.add(singleAd.toObject(Advertisement.class));
-                        }
-
-                        onPersonalAdsFetchedListener.OnPersonalAdsFetched(adList);
+                    for(QueryDocumentSnapshot singleAd: queryDocumentSnapshots) {
+                        adList.add(singleAd.toObject(Advertisement.class));
                     }
+
+                    onPersonalAdsFetchedListener.OnPersonalAdsFetched(adList);
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        Log.i(TAG, e.getMessage());
-                    }
-                });
+                .addOnFailureListener(e -> Log.i(TAG, e.getMessage()));
     }
 
     @Override
     public void getThisRentAd(final OnParticularAdFetchedListener<RentAdvertisement> onParticularAdFetchedListener, String advertID) {
         db.collection(AD_TABLE).document(advertID).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()) {
-                            onParticularAdFetchedListener.OnParticularAdFetched(task.getResult().toObject(RentAdvertisement.class));
-                        }
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        onParticularAdFetchedListener.OnParticularAdFetched(Objects.requireNonNull(task.getResult()).toObject(RentAdvertisement.class));
                     }
                 });
     }
@@ -367,12 +265,9 @@ public class FirestoreDealer implements AdInterface, UserInterface {
     @Override
     public void getThisSaleAd(OnParticularAdFetchedListener<SaleAdvertisement> onParticularAdFetchedListener, String advertID) {
         db.collection(AD_TABLE).document(advertID).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()) {
-                            onParticularAdFetchedListener.OnParticularAdFetched(task.getResult().toObject(SaleAdvertisement.class));
-                        }
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        onParticularAdFetchedListener.OnParticularAdFetched(Objects.requireNonNull(task.getResult()).toObject(SaleAdvertisement.class));
                     }
                 });
     }
@@ -382,37 +277,19 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference ref = firebaseStorage.getReference(UPLOADS_FOLDER).child(folderName);
         Log.i(TAG, "folderName = " + folderName);
-//        final List<StorageReference> listToDelete = new ArrayList<>();
+
         ref.listAll()
-                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-            @Override
-            public void onSuccess(ListResult listResult) {
-                final int[] count = new int[1];
-                count[0] = -1;
-                for( StorageReference item: listResult.getItems() ) {
-                    count[0]++;
-                    item.delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    onPhotoFolderDeletedListener.OnPhotoFolderDeleted(true, Integer.toString( count[0] ));
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull @NotNull Exception e) {
-                                    onPhotoFolderDeletedListener.OnPhotoFolderDeleted(false, e.getMessage() );
-                                }
-                            });
-                }
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        onPhotoFolderDeletedListener.OnPhotoFolderDeleted(false, e.getMessage());
+                .addOnSuccessListener(listResult -> {
+                    final int[] count = new int[1];
+                    count[0] = -1;
+                    for( StorageReference item: listResult.getItems() ) {
+                        count[0]++;
+                        item.delete()
+                                .addOnSuccessListener(unused -> onPhotoFolderDeletedListener.OnPhotoFolderDeleted(true, Integer.toString( count[0] )))
+                                .addOnFailureListener(e -> onPhotoFolderDeletedListener.OnPhotoFolderDeleted(false, e.getMessage() ));
                     }
-                });
+                })
+                .addOnFailureListener(e -> onPhotoFolderDeletedListener.OnPhotoFolderDeleted(false, e.getMessage()));
     }
 
     @Override
@@ -420,31 +297,10 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         DocumentReference docRef = db.collection(AD_TABLE).document(id);
         final DocumentReference adIdRef = db.collection("AdID").document(id);
         docRef.delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        adIdRef.delete()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        onAdDeletedListener.OnAdDeleted(true, "");
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull @NotNull Exception e) {
-                                        onAdDeletedListener.OnAdDeleted(false, e.getMessage());
-                                    }
-                                });
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        onAdDeletedListener.OnAdDeleted(false, e.getMessage());
-                    }
-                });
+                .addOnSuccessListener(unused -> adIdRef.delete()
+                        .addOnSuccessListener(unused1 -> onAdDeletedListener.OnAdDeleted(true, ""))
+                        .addOnFailureListener(e -> onAdDeletedListener.OnAdDeleted(false, e.getMessage())))
+                .addOnFailureListener(e -> onAdDeletedListener.OnAdDeleted(false, e.getMessage()));
     }
 
     @Override
@@ -452,18 +308,8 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         DocumentReference docRef = db.collection(AD_TABLE).document(id);
 
         docRef.set(advertisement)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        onAdEditListener.OnAdEdited(true, "");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        onAdEditListener.OnAdEdited(false, e.getMessage());
-                    }
-                });
+                .addOnSuccessListener(unused -> onAdEditListener.OnAdEdited(true, ""))
+                .addOnFailureListener(e -> onAdEditListener.OnAdEdited(false, e.getMessage()));
     }
 
     @Override
@@ -472,24 +318,16 @@ public class FirestoreDealer implements AdInterface, UserInterface {
         Query fetchingBookmarkedAds = adCollectionRef.whereArrayContains("bookmarkedBy", id);
 
         fetchingBookmarkedAds.get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<Advertisement> bookmarkList = new ArrayList<>();
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Advertisement> bookmarkList = new ArrayList<>();
 
-                        for(QueryDocumentSnapshot snap: queryDocumentSnapshots) {
-                            bookmarkList.add(snap.toObject(Advertisement.class));
-                        }
-
-                        onBookmarkedAdsFetchListener.OnBookmarkedAdsFetched(bookmarkList, null);
+                    for(QueryDocumentSnapshot snap: queryDocumentSnapshots) {
+                        bookmarkList.add(snap.toObject(Advertisement.class));
                     }
+
+                    onBookmarkedAdsFetchListener.OnBookmarkedAdsFetched(bookmarkList, null);
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        onBookmarkedAdsFetchListener.OnBookmarkedAdsFetched(null, e.getMessage());
-                    }
-                });
+                .addOnFailureListener(e -> onBookmarkedAdsFetchListener.OnBookmarkedAdsFetched(null, e.getMessage()));
     }
 
 }

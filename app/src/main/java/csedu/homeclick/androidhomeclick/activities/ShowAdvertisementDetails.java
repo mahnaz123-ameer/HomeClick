@@ -3,15 +3,14 @@ package csedu.homeclick.androidhomeclick.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +18,8 @@ import android.util.Log;
 import android.view.View;
 
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,9 @@ import com.ms.square.android.expandabletextview.ExpandableTextView;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 import csedu.homeclick.androidhomeclick.R;
-import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
-import csedu.homeclick.androidhomeclick.connector.UserInterface;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.navigator.BottomNavBarHandler;
 import csedu.homeclick.androidhomeclick.recyclerviewadapters.ImageRecyclerViewAdapter;
@@ -45,19 +43,17 @@ import csedu.homeclick.androidhomeclick.structure.SaleAdvertisement;
 import csedu.homeclick.androidhomeclick.structure.User;
 
 public class ShowAdvertisementDetails extends AppCompatActivity implements Serializable, View.OnClickListener,
-        AdInterface.OnParticularAdFetchedListener, UserInterface.OnUserInfoListener,
         ImageRecyclerViewAdapter.OnPhotoClickListener, View.OnLongClickListener{
     public static final String TAG = "ShowAdDetails";
 
-    private CoordinatorLayout coordinatorLayout;
+    private RelativeLayout relativeLayout;
 
     private UserService userService;
     private AdvertisementService adService;
 
     private RentAdvertisement rentAd;
     private SaleAdvertisement saleAd;
-    final RentAdvertisement[] finalRentAd = new RentAdvertisement[1];
-    final SaleAdvertisement[] finalSaleAd = new SaleAdvertisement[1];
+
     private final User advertiser = new User();
 
 
@@ -70,8 +66,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     private CardView callCard;
 
     private ImageButton edit, delete, bookmark, bookmarked;
+    private ImageView locationPin;
 
-    private  ExpandableTextView description;
+    private ExpandableTextView description;
 
     private ImageRecyclerViewAdapter adImagesVA;
     private RecyclerView imageRecView;
@@ -97,6 +94,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         adImagesVA.setOnPhotoClickListener(this);
         bookmarked.setOnClickListener(this);
         fullAddressTV.setOnLongClickListener(this);
+        locationPin.setOnClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -182,6 +180,23 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     @SuppressLint("SetTextI18n")
     private void setSaleAdDetails() {
         Log.i(TAG, "in set sale ad details");
+        TextView utility = findViewById(R.id.text_utility);
+        CardView securityCard = findViewById(R.id.card_security);
+        securityCard.setVisibility(View.VISIBLE);
+
+        //Payment textview
+        TextView pay = findViewById(R.id.text_money);
+        pay.setText(getString(R.string.asking_amount));
+
+        //setting property condition
+        utilityTV.setText(saleAd.getPropertyCondition());
+        utility.setText("Property Condition");
+        utility.setTextColor(getColor( R.color.black ));
+
+        //getting rid of date
+        TextView dateTitle = findViewById(R.id.text_date);
+        dateTitle.setVisibility(View.GONE);
+        moveInTV.setVisibility(View.GONE);
 
         adImagesVA.setUrlArrayList(saleAd.getUrlToImages());
         adImagesVA.notifyDataSetChanged();
@@ -197,23 +212,34 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
 
 
-        String gas, elevator, generator, garage, security;
-        if(saleAd.getGasAvailability()) gas = getString( R.string._available );
-        else gas = getString(R.string.not_available);
+        if(saleAd.getGasAvailability()) {
+            gasTV.setText(R.string._available);
+        }
+        else {
+            gasTV.setText(R.string.not_available);
+        }
 
-        if(saleAd.getElevator()) elevator = getString( R.string._available );
-        else elevator = getString( R.string.not_available );
+        if(saleAd.getElevator()) {
+            elevatorTV.setText(R.string._available);
+        }
+        else {
+            elevatorTV.setText(R.string.not_available);
+        }
 
-        if(saleAd.getGenerator()) generator = getString( R.string._available );
-        else generator = getString( R.string.not_available );
+        if(saleAd.getGenerator()) {
+            generatorTV.setText(R.string._available);
+        }
+        else {
+            generatorTV.setText(R.string.not_available);
+        }
 
-        if(saleAd.getGarageSpace()) garage = getString( R.string._available );
-        else garage = getString( R.string.not_available );
+        if(saleAd.getGarageSpace()) {
+            garageTV.setText(R.string._available);
+        }
+        else {
+            garageTV.setText(R.string.not_available);
+        }
 
-        gasTV.setText(gas);
-        elevatorTV.setText(elevator);
-        generatorTV.setText(generator);
-        garageTV.setText(garage);
 
         floorTV.setText(Integer.toString(saleAd.getFloor()));
         floorSpaceTV.setText(saleAd.getFloorSpace() + " SQFT");
@@ -229,6 +255,11 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     @SuppressLint("SetTextI18n")
     private void setRentAdDetails() {
         Log.i(TAG, "in set rent ad details");
+
+        TextView tenantLabel = findViewById(R.id.text_tenant_type);
+        tenantLabel.setVisibility(View.VISIBLE);
+        tenantTypeTV.setText(rentAd.getTenantType());
+        tenantTypeTV.setVisibility(View.VISIBLE);
 
         adImagesVA.setUrlArrayList(rentAd.getUrlToImages());
         adImagesVA.notifyDataSetChanged();
@@ -246,37 +277,52 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         balconyTV.setText(Integer.toString(rentAd.getNumberOfBalconies()));
 
 
+        if(rentAd.getGasAvailability()) {
+            gasTV.setText(R.string._available);
+        }
+        else {
+            gasTV.setText(R.string.not_available);
+        }
 
-        String gas, elevator, generator, garage, security;
-        if(rentAd.getGasAvailability()) gas = getString( R.string._available );
-        else gas = getString( R.string.not_available );
+        if(rentAd.getElevator()) {
+            elevatorTV.setText(R.string._available);
+        }
+        else {
+            elevatorTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getElevator()) elevator = getString( R.string._available );
-        else elevator = getString( R.string.not_available );
+        if(rentAd.getGenerator()) {
+            generatorTV.setText(R.string._available);
+        }
+        else {
+            generatorTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getGenerator()) generator = getString( R.string._available );
-        else generator = getString( R.string.not_available );
+        if(rentAd.getGarageSpace()) {
+            garageTV.setText(R.string._available);
+        }
+        else {
+            garageTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getGarageSpace()) garage = getString( R.string._available );
-        else garage = getString( R.string.not_available );
+        if(rentAd.getSecurityGuard()) {
+            securityTV.setVisibility(View.VISIBLE);
+            securityTV.setText(R.string._available);
+        }
+        else {
+            securityTV.setVisibility(View.VISIBLE);
+            securityTV.setText(R.string.not_available);
+        }
 
-        if(rentAd.getSecurityGuard()) security = getString( R.string._available );
-        else security = getString( R.string.not_available );
-
-        gasTV.setText(gas);
-        elevatorTV.setText(elevator);
-        generatorTV.setText(generator);
-        garageTV.setText(garage);
-        securityTV.setText(security);
 
         floorTV.setText(Integer.toString(rentAd.getFloor()));
-        Log.i(TAG, "floor =" + Integer.toString(rentAd.getFloor()));
+        Log.i(TAG, "floor =" + rentAd.getFloor());
         floorSpaceTV.setText(rentAd.getFloorSpace() + " SQFT");
 
         paymentTV.setText(rentAd.getPaymentAmount() + " BDT");
         utilityTV.setText(rentAd.getUtilityCharge()+ " BDT");
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy");
         String moveInDate = simpleDateFormat.format(rentAd.getAvailableFrom());
         moveInTV.setText(moveInDate);
         tenantTypeTV.setText(rentAd.getTenantType());
@@ -289,18 +335,18 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
     private void updateInfo(final RentAdvertisement advert) {
         Log.i(TAG, "in update info, para: rent ad");
         rentAd = advert;
-        userService.findUserInfo(this, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
+        userService.findUserInfo(this::updateUserInfo, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
     }
 
     private void updateInfo(final SaleAdvertisement advert) {
         Log.i(TAG, "in update info, para: sale ad");
         saleAd = advert;
-        userService.findUserInfo(this, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
+        userService.findUserInfo(this::updateUserInfo, ((Advertisement) getIntent().getExtras().get("Ad")).getAdvertiserUID());
     }
 
     private void bindWidgets() {
         Log.i(TAG, "in bind widgets");
-        coordinatorLayout = findViewById(R.id.show_ad_layout);
+        relativeLayout = findViewById(R.id.show_ad_layout);
 
         //top and bottom bars
         BottomNavBarHandler.setInstance(findViewById(R.id.show_ad_bottom_nav_bar), R.id.home);
@@ -329,6 +375,8 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         tenantTypeTV = findViewById(R.id.home_tenant_type);
         utilityTV = findViewById(R.id.home_utility);
         moveInTV = findViewById(R.id.move_in_date);
+
+        locationPin = findViewById(R.id.map_icon);
 
         advertNameTV = findViewById(R.id.advertiser_name);
         callCard = findViewById(R.id.call_card);
@@ -363,9 +411,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
 
         if(received.getAdType().equals("Rent")) {
-            adService.getRentAd(this, received.getAdvertisementID());
+            adService.getRentAd(this::updateInfo, received.getAdvertisementID());
         } else {
-            adService.getSaleAd(this, received.getAdvertisementID());
+            adService.getSaleAd(this::updateInfo, received.getAdvertisementID());
         }
 
 
@@ -395,12 +443,10 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
             case R.id.bookmark_ad:
                 addToBookmarks();
-
                 break;
 
             case R.id.remove_ad:
                 removeFromBookmarks();
-
                 break;
 
             case R.id.call_card:
@@ -413,8 +459,57 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
                     startActivity(intent);
                 break;
 
+            case R.id.map_icon:
+                launchInMap();
+                break;
+
             default:
                 break;
+        }
+    }
+
+    private void launchInMap() {
+        AlertDialog.Builder openMaps = new AlertDialog.Builder(this);
+
+        openMaps
+                .setMessage("Open in Google Maps?")
+                .setPositiveButton("Yes", (dialog, which) -> openInMaps())
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    //do nothing
+                });
+
+        AlertDialog openMapsAlert = openMaps.create();
+        openMapsAlert.show();
+    }
+
+    private void openInMaps() {
+        double lat, lon;
+        if(rentAd != null) {
+            lat = rentAd.getLatitude();
+            lon = rentAd.getLongitude();
+        } else {
+            lat = saleAd.getLatitude();
+            lon = saleAd.getLongitude();
+        }
+        String uri = "http://maps.google.com/maps?daddr=" + lat + "," + lon + " (" + "Location of the house" + ")";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps");
+
+        try
+        {
+            startActivity(intent);
+        }
+        catch(ActivityNotFoundException ex)
+        {
+            try
+            {
+                Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(unrestrictedIntent);
+            }
+            catch(ActivityNotFoundException innerEx)
+            {
+                Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -444,16 +539,13 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         if(userService.isSignedIn()) {
             bookmarkList.remove(userService.getUserUID());
             received.setBookmarkedBy(bookmarkList);
-            adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
-                @Override
-                public void OnAdEdited(Boolean edited, String error) {
-                    Toast.makeText(ShowAdvertisementDetails.this, "Removed from bookmarks", Toast.LENGTH_SHORT).show();
-                    bookmark.setEnabled(true);
-                    bookmark.setVisibility(View.VISIBLE);
+            adService.editAd(received.getAdvertisementID(), received, (edited, error) -> {
+                Toast.makeText(ShowAdvertisementDetails.this, "Removed from bookmarks", Toast.LENGTH_SHORT).show();
+                bookmark.setEnabled(true);
+                bookmark.setVisibility(View.VISIBLE);
 
-                    bookmarked.setEnabled(false);
-                    bookmarked.setVisibility(View.GONE);
-                }
+                bookmarked.setEnabled(false);
+                bookmarked.setVisibility(View.GONE);
             });
         }
     }
@@ -464,19 +556,16 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
 
         bookmarkList.add(userService.getUserUID());
         received.setBookmarkedBy(bookmarkList);
-        adService.editAd(received.getAdvertisementID(), received, new AdInterface.OnAdEditListener<Boolean>() {
-            @Override
-            public void OnAdEdited(Boolean edited, String error) {
-                if(edited) {
-                    Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
-                    bookmarked.setEnabled(true);
-                    bookmarked.setVisibility(View.VISIBLE);
+        adService.editAd(received.getAdvertisementID(), received, (edited, error) -> {
+            if(edited) {
+                Toast.makeText(ShowAdvertisementDetails.this, "Added to bookmarks", Toast.LENGTH_SHORT).show();
+                bookmarked.setEnabled(true);
+                bookmarked.setVisibility(View.VISIBLE);
 
-                    bookmark.setEnabled(false);
-                    bookmark.setVisibility(View.GONE);
-                } else {
-                    Log.i(TAG, error);
-                }
+                bookmark.setEnabled(false);
+                bookmark.setVisibility(View.GONE);
+            } else {
+                Log.i(TAG, error);
             }
         });
     }
@@ -487,21 +576,17 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         final String adId = received.getAdvertisementID();
         final int totalToDelete = received.getNumberOfImages();
         final int[] alreadyDeleted = new int[1];
-        alreadyDeleted[0] = 0;
         adService.deletePhotoFolder(adId, totalToDelete, (deleted, error) -> {
             startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
             if(deleted) {
                 alreadyDeleted[0]++;
                 Log.i(TAG, "number of the photo deleted = " + error);
                 if(alreadyDeleted[0] == totalToDelete) {
-                    adService.deleteAd(adId, new AdInterface.OnAdDeletedListener<Boolean>() {
-                        @Override
-                        public void OnAdDeleted(Boolean deleted, String error) {
-                            if (deleted) {
-                                Log.i(TAG, "Ad " + adId + " deleted successfully");
-                            } else {
-                                Log.i(TAG, error);
-                            }
+                    adService.deleteAd(adId, (deleted1, error1) -> {
+                        if (deleted1) {
+                            Log.i(TAG, "Ad " + adId + " deleted successfully");
+                        } else {
+                            Log.i(TAG, error1);
                         }
                     });
                 }
@@ -511,20 +596,9 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         });
     }
 
-    @Override
-    public void OnParticularAdFetched(Object advert) {
-        Log.i(TAG, "in on particular ad fetched");
-        Advertisement received = (Advertisement) advert;
-        if(received.getAdType().equals("Rent")) {
-            updateInfo((RentAdvertisement)received);
 
-        } else {
-            updateInfo((SaleAdvertisement)received);
-        }
-    }
 
-    @Override
-    public void OnUserInfoFound(Object data) {
+    public void updateUserInfo(User data) {
         Log.i(TAG, "in on user info found");
         User data1 = (User) data;
         advertiser.setName(data1.getName());
@@ -556,7 +630,7 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
             } else {
                 fullAddress = saleAd.getFullAddress();
             }
-            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Copy address to clipboard?", BaseTransientBottomBar.LENGTH_SHORT)
+            Snackbar snackbar = Snackbar.make(relativeLayout, "Copy address to clipboard?", BaseTransientBottomBar.LENGTH_SHORT)
                     .setAction("Copy", v1 -> {
                         ClipData clip = ClipData.newPlainText("Full Address", fullAddress);
                         clipboard.setPrimaryClip(clip);

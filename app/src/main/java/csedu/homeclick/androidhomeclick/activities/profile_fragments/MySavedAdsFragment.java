@@ -16,7 +16,6 @@ import java.util.List;
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.ShowAdvertisementDetails;
-import csedu.homeclick.androidhomeclick.connector.AdInterface;
 import csedu.homeclick.androidhomeclick.connector.AdvertisementService;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.recyclerviewadapters.AdvertisementRecyclerViewAdapter;
@@ -53,15 +52,12 @@ public class MySavedAdsFragment extends Fragment implements AdvertisementRecycle
     }
 
     private void getMyBookmarkedAds() {
-        adService.fetchBookmarkedAds(new AdInterface.OnBookmarkedAdsFetchListener<List<Advertisement>>() {
-            @Override
-            public void OnBookmarkedAdsFetched(List<Advertisement> ads, String error) {
-                adArrayList = ads;
+        adService.fetchBookmarkedAds((ads, error) -> {
+            adArrayList = ads;
 
-                adRecViewAdapter.setAdvertisementArrayList(adArrayList);
-                adRecViewAdapter.setAdCardListener(MySavedAdsFragment.this::onAdClick);
-                adRecViewAdapter.notifyDataSetChanged();
-            }
+            adRecViewAdapter.setAdvertisementArrayList(adArrayList);
+            adRecViewAdapter.setAdCardListener(MySavedAdsFragment.this);
+            adRecViewAdapter.notifyDataSetChanged();
         });
 
         myBookmarkedAdsRecView.setAdapter(adRecViewAdapter);
@@ -80,7 +76,7 @@ public class MySavedAdsFragment extends Fragment implements AdvertisementRecycle
         final Advertisement clickedAdvert = adArrayList.get(position);
         String adID = clickedAdvert.getAdvertisementID();
 
-        Intent targetIntent = new Intent(this.getContext().getApplicationContext(), ShowAdvertisementDetails.class);
+        Intent targetIntent = new Intent(requireContext().getApplicationContext(), ShowAdvertisementDetails.class);
 
         targetIntent.putExtra("Ad", clickedAdvert);
         startActivity(targetIntent);

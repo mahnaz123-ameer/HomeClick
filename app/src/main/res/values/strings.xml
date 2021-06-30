@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">HomeClick</string>
 
 
@@ -25,7 +25,7 @@
     <string name="Rent">Rent</string>
     <string name="Sale">Sale</string>
 
-    <string name="_available">Available</string>
+    <string name="_available"><font color="#0000">Available</font></string>
     <string name="not_available"><font color='#F44336'>Not available</font></string>
 
 
@@ -109,7 +109,7 @@
     <string name="_5">5</string>
     <string name="_1400sqt">1400 sqt</string>
     <string name="available">Available</string>
-    <string name="_10000_bdt">1000 BDT</string>
+    <string name="_10000_bdt" tools:ignore="ExtraTranslation">1000 BDT</string>
     <string name="_5000_bdt">5000 BDT</string>
     <string name="_18_07_2021">18/07/2021</string>
     <string name="_1300_sqt">1300 SQT</string>
@@ -204,6 +204,7 @@
 
     </string>
 
+    <string name="go_back">Go Back</string>
 
     <string name="data_policy">
 

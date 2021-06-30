@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,10 +15,11 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.DragEvent;
+
 import android.view.View;
-import android.widget.PopupMenu;
+
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,8 +31,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.security.Provider;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import csedu.homeclick.androidhomeclick.R;
@@ -46,8 +49,8 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
     private GoogleMap mMap;
     private ActivityMapViewBinding binding;
 
-    private List<Advertisement> adListForMarker = new ArrayList<>();
-    private List<AdMarker> adMarkerPair = new ArrayList<>();
+    private final List<Advertisement> adListForMarker = new ArrayList<>();
+    private final List<AdMarker> adMarkerPair = new ArrayList<>();
     private CardView adCard;
     private TextView bedroom, bathroom, gas, payment, fullAdd, areaName, adType;
     private Advertisement clickedAd;
@@ -62,17 +65,15 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+        if(mapFragment != null)
+            mapFragment.getMapAsync(this);
     }
 
     private void extractExtras() {
         Bundle extras = getIntent().getExtras();
         Advertisement[] arrayAd = (Advertisement[]) extras.get("adArrayList");
 
-        for (int a = 0; a < arrayAd.length; a++) {
-            this.adListForMarker.add(arrayAd[a]);
-        }
+        this.adListForMarker.addAll(Arrays.asList(arrayAd));
 
         Log.i(TAG, "" + arrayAd.length);
 
@@ -104,12 +105,13 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
 
     private void setMarkers() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
         } else {
             LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if(location != null) {
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             }
 
@@ -126,7 +128,7 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
                 LatLng current = new LatLng(ad.getLatitude(), ad.getLongitude());
 
                 int title = markerCount + 1;
-                adMarkerPair.add(new AdMarker(new MarkerOptions().position(current).title(""+title), ad));
+                adMarkerPair.add(new AdMarker(new MarkerOptions().position(current).title("" + title), ad));
 
                 Log.i(TAG, "count:" + markerCount + " " + adMarkerPair.get(markerCount).getMarker().getPosition().latitude );
 
@@ -144,14 +146,18 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                     && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         setMarkers();
+                    } else {
+                        Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public boolean onMarkerClick(@NonNull @NotNull Marker marker) {
         int position;
@@ -201,7 +207,7 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
     }
 
 
-    private class AdMarker {
+    private static class AdMarker {
         MarkerOptions marker;
         Advertisement ad;
 
@@ -214,10 +220,6 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
             return marker;
         }
 
-        public void setMarker(MarkerOptions marker) {
-            this.marker = marker;
-        }
-
         public Advertisement getAd() {
             return ad;
         }
@@ -226,8 +228,5 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
             this.ad = ad;
         }
 
-        public void setClickListener(Marker m) {
-
-        }
     }
 }

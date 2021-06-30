@@ -1,7 +1,6 @@
 package csedu.homeclick.androidhomeclick.structure;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class User implements Serializable {
     private String Name;
@@ -57,14 +56,5 @@ public class User implements Serializable {
     public void setUID(String UID) {
         this.UID = UID;
     }
-
-//    public HashMap<String, Object> getUserHashMap() {
-//        HashMap<String, Object> userMap = new HashMap<>();
-//        userMap.put("Name", getName());
-//        userMap.put("EmailAddress", getEmailAddress());
-//        userMap.put("PhoneNumber", getPhoneNumber());
-//        userMap.put("UID", getUID());
-//        return userMap;
-//    }
 
 }

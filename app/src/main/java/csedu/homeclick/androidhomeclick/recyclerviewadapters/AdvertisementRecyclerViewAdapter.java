@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ms.square.android.expandabletextview.ExpandableTextView;
+
 
 import org.jetbrains.annotations.NotNull;
 
@@ -50,7 +50,7 @@ public class AdvertisementRecyclerViewAdapter extends RecyclerView.Adapter<Adver
         if(advertisementArrayList.get(position).getGasAvailability() == null) {
             Log.i("adapter","something is wrong");
         }
-        String gasString;
+
         if(gasAvail) {
             holder.gasAvailability.setText(R.string._available);
         }

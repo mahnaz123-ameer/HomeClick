@@ -1,32 +1,28 @@
 package csedu.homeclick.androidhomeclick.navigator;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 
 import csedu.homeclick.androidhomeclick.R;
 import csedu.homeclick.androidhomeclick.activities.AdFeed;
-import csedu.homeclick.androidhomeclick.activities.CreatePost;
 import csedu.homeclick.androidhomeclick.activities.Data_Policy;
 import csedu.homeclick.androidhomeclick.activities.Filter;
 import csedu.homeclick.androidhomeclick.activities.Terms_Of_Use;
 import csedu.homeclick.androidhomeclick.activities.UserSignIn;
-//import csedu.homeclick.androidhomeclick.activities.create_post.AddPhotos;
 import csedu.homeclick.androidhomeclick.connector.UserService;
 import csedu.homeclick.androidhomeclick.database.UserAuth;
 
 public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemClickListener{
     private Toolbar toolbar;
-    private View filter;
     private Activity activity;
-    private UserService userService;
+    private final UserService userService;
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if(UserAuth.isSignedIn()) {
@@ -49,9 +45,7 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
     }
 
     public static TopAppBarHandler getInstance(Toolbar toolbar, Activity activity) {
-        TopAppBarHandler topAppBarHandler = new TopAppBarHandler(toolbar, activity);
-
-        return topAppBarHandler;
+        return new TopAppBarHandler(toolbar, activity);
     }
 
 
@@ -60,6 +54,7 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
         toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         UserAuth.setInstance();
@@ -73,28 +68,26 @@ public class TopAppBarHandler extends Activity implements MenuItem.OnMenuItemCli
                     activity.startActivity(targetIntent);
                 } else {
                     Intent targetIntent = new Intent(activity.getApplicationContext(), UserSignIn.class);
-                    Toast.makeText(activity.getApplicationContext(), "sign in button click", Toast.LENGTH_SHORT).show();
+
                     activity.startActivity(targetIntent);
                 }
                 break;
             case R.id.about_app:
-                Toast.makeText(activity.getApplicationContext(), "Tapped about app", Toast.LENGTH_SHORT).show();
+
                 break;
 
             case R.id.subitem1:
-                Toast.makeText(activity.getApplicationContext(), "Tapped about Data Policy", Toast.LENGTH_SHORT).show();
                 Intent targetIntent = new Intent(activity.getApplicationContext(), Data_Policy.class);
                 activity.startActivity(targetIntent);
                 break;
 
             case R.id.subitem2:
-                Toast.makeText(activity.getApplicationContext(), "Tapped about Terms Of Use", Toast.LENGTH_SHORT).show();
                 Intent targetIntent3 = new Intent(activity.getApplicationContext(), Terms_Of_Use.class);
                 activity.startActivity(targetIntent3);
                 break;
 
             case R.id.filter:
-                Toast.makeText(activity.getApplicationContext(), "sign out button click", Toast.LENGTH_SHORT).show();
+
                 Intent targetIntent1 = new Intent(activity.getApplicationContext(), Filter.class);
                 activity.startActivity(targetIntent1);
 

@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:fontFamily="@font/comfort_bold"
+            android:fontFamily="@font/comfortaa_bold"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
