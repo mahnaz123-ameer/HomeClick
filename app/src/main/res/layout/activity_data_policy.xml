@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".activities.create_post.CreateRentPostFragment">
+
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:id="@+id/Terms_Of_Use"
+            android:layout_height="50dp"
+            app:title="@string/terms_of_use"
+            android:background="@color/black"
+            >
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/icon_home_click"
+                    android:layout_width="31dp"
+                    android:layout_height="29dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="60dp"
+                    android:src="@drawable/icon_homeclick"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/comfort_regular"
+                    android:text="@string/home_click"
+                    android:textColor="#C4000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Start"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/comfort_regular"
+                android:text="@string/terms_of_use"
+                android:textColor="#C4000000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Start"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/comfort_regular"
+                android:text="@string/welcome"
+                android:textColor="#C4000000"
+                android:textSize="13sp"
+                tools:ignore="ObsoleteLayoutParam" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Start"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/comfort_regular"
+                android:text="@string/Terms_of_use"
+                android:textColor="#C4000000"
+                android:textSize="13sp"
+                tools:ignore="ObsoleteLayoutParam" />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -100,5 +100,109 @@
     <string name="personal_information">Personal Information</string>
     <string name="add_location">Add Location</string>
     <string name="location">Location</string>
+    <string name="_full_address">Full Address</string>
+    <string name="rent">Rent</string>
+    <string name="_two">2</string>
+    <string name="__2">2</string>
+    <string name="_2_">2</string>
+    <string name="floor_no">Floor No</string>
+    <string name="_5">5</string>
+    <string name="_1400sqt">1400 sqt</string>
+    <string name="available">Available</string>
+    <string name="_10000_bdt">1000 BDT</string>
+    <string name="_5000_bdt">5000 BDT</string>
+    <string name="_18_07_2021">18/07/2021</string>
+    <string name="_1300_sqt">1300 SQT</string>
+    <string name="home_click">Home Click</string>
+    <string name="terms_of_use">Terms Of Use
+
+
+    </string>
+
+
+    <string name="welcome">
+
+        Welcome to HomeClick!
+    </string>
+
+    <string name="Terms_of_use">
+        These Terms of Use(or "Terms") govern your use of HomeClick, except where
+        we expressly state that separate terms(and not these) apply, and provide
+        information about the HomeClick service(the “Service”), outlined below.
+        When you create an HomeClick account or use HomeClick, you agree to
+        these terms.
+        \n\n
+        <b>The HomeClick Service</b>
+        \n\n We agree to provide you with
+        the HomeClick Service.The Service includes
+        all of the HomeClick products, features,applications,services,technologies
+        and software that we provide to advance HomeClick\'s mission:
+    </string>
+    <string name="ToLet"><b>
+       To Let &#160;:</b>\nThe Landlord agrees to let to the Tenant and the Tenant agrees to take a tenancy of
+        the house.Neither the property nor any part  of the Property will be used at any time
+        during the term of this agreement by Tenant for the purpose of business,profession
+        or trade of any kind, or for the purpose other than Tenant\'s;only or principal private
+        single-family residence.
+        \n\n
+        <b>Sell &#160;:
+        \n
+        </b>The Landlord sell house to the Tenant.Furthermore things you have to solve by yourself
+        by contacting each other.
+        \n\n<b>
+        Tenant Improvements &#160;:\n
+        </b>The Tenant will obtain written information before doing any of the following  &#160;: &#160; \n
+        - &#160;Applying Adhesive materials,or inserting nails or hooks in walls or ceilings other than
+        two small picture hook per wall.\n
+        - &#160; Painting,redecorating or in anyway significantly altering the appearance of The Property
+
+
+    </string>
+
+
+    <string name="policy">
+        <b>Your Commitments</b>\n
+        In return for our commitment to provide the Service, we require you to make the below commitments to us.\n\n
+        <b>Who Can Use HomeClick.</b>\nWe want our Service to be open and inclusive as possible, but we also want it to be
+        safe,&#160; secure,&#160;and in accordance with the law. So, we need you to commit to a few restrictions in order to be part of the HomeClick community.\n\n
+        &#8226;  &#160;You must be at least 18 years old or the minimum legal age in your country to use HomeClick.\n
+        &#8226;  &#160;You must not be prohibited from receiving any aspect of our Service under applicable laws or engaging in payments
+        related Services if you are on an applicable denied party listing.\n\n
+
+        <b>How You Can\'t Use HomeClick.</b>\nProviding a safe and open Service for a broad community requires that we all do our part.\n\n
+        &#8226;  &#160;<b>You can\'t impersonate others or provide inaccurate information.</b>\n
+         You don\'t have to disclose your identity on HomeClick, but you must provide us with accurate and
+         up to date information (including registration information), which may include providing personal data.
+         Also, you may not impersonate someone or something you are not, and you can\'t create an account for someone else
+         unless you have their express permission.\n
+         &#8226;  &#160;You can\'t do anything unlawful, misleading, or fraudulent or for an illegal or unauthorized purpose.
+         &#8226;  &#160;You can\'t violate (or help or encourage others to violate) these Terms or our policies,
+        including in particular the HomeClick Community Guidelines.\n\n
+
+       &#8226;  &#160;<b>You can’t sell, license, or purchase any account or data obtained from us or our Service.</b>\n
+        This includes attempts to buy, sell, or transfer any aspect of your account (including your username);
+        solicit, collect, or use login credentials or badges of other users; or request or
+        collect HomeClick usernames, passwords, or misappropriate access tokens.\n\n
+        &#8226;  &#160;<b>You can\'t post someone else’s private or confidential information without permission
+        or do anything that violates someone else\'s rights, including intellectual property rights
+        (e.g., copyright infringement, trademark infringement, counterfeit, or pirated goods).</b>\n
+        You may use someone else\'s works under exceptions or limitations to copyright and related rights under applicable law.\n
+        You represent you own or have obtained all necessary rights to the content you post or share. Learn more,
+        including how to report content that
+        you think infringes your intellectual property rights, here.\n
+         &#8226;  &#160;You can\’t modify, translate, create derivative works of, or reverse engineer our products or their components.\n
+         &#8226;  &#160;You can\'t use a domain name or URL in your username without our prior written consent.\n\n
+
+
+        <b>Updating These Terms</b>\n
+         We may change our Service and policies, and we may need to make changes to these Terms so that they accurately
+         reflect our Service and policies. Unless otherwise required by law, we will notify you (for example, through our Service)
+        before we make changes to these Terms and give you an opportunity to review them before they go into effect.
+        Then, if you continue to use the Service, you will be bound by the updated Terms. If you do not want to agree
+        to these or any updated Terms, you can delete your account, here.
+
+
+    </string>
+
 
 </resources>

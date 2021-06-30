@@ -34,7 +34,7 @@
             android:text="@string/not_signed_in"
             android:textColor="@color/black"
             android:textSize="17sp"
-            android:fontFamily="@font/comfortaa_bold" />
+            android:fontFamily="@font/comfort_bold" />
 
 
         <TextView
@@ -47,7 +47,7 @@
             android:text="@string/do_following"
             android:textColor="@color/black"
             android:textSize="17sp"
-            android:fontFamily="@font/comfortaa_bold" />
+            android:fontFamily="@font/comfort_bold" />
 
 
     </RelativeLayout>
