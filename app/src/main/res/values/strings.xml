@@ -206,4 +206,30 @@
 
     <string name="go_back">Go Back</string>
 
+    <string name="data_policy">
+
+        <font size = "13">This policy describes the information we process to support HomeClick features.</font>\n\n<b><font size = "15"> What kinds of information do we collect? </font> </b>\n To provide the HomeClick Products, we must process information about you.
+        The types of information we collect depend on how you use our Products.Information and content you provide. We collect the content,
+        communications and other information you provide when you use our Products, including when you sign up for an account,
+        create or share content or communicate with others. This can include information in or about the content you provide (like metadata),
+        such as the location of a post or the date a file was created.Our systems automatically process content and communications you
+        and others provide to analyze context.\n\n<b><font size = "15">Device Information</font></b>\nWe collect information from and about
+        the computers, phones, connected TVs and other
+        web-connected devices you use that integrate with our Products, and we combine this information
+        across different devices you use. For example, we use information collected about your use of our Products on your phone
+        to better personalize the content (including ads) or features you see when you use our Products on another device,
+        such as your laptop or tablet, or to measure whether you took an action in response to an ad we showed you on your phone
+        on a different device.\n\n<b><font size = "15">Promote Safety, integrity and security</font></b>\n
+        Password Less  SignIn/SignUp\n\n<b><font size = "15">Communicate with you.</font></b> \nWe use the information we have to send you marketing communications,
+        communicate with you about our Products,and let you know about our policies and terms. We also use your information
+        to respond to you when you contact us.\n\n<b><font size = "15">How can I manage or delete information about me?</font></b>\n
+      We provide you with the ability to access, rectify, port and erase your data.
+      We store data until it is no longer necessary to provide our services or until your account is deleted -
+        whichever comes first. This is a case-by-case determination that depends on things like the nature of the data,
+        why it is collected and processed, and relevant legal or operational retention needs.\n\n<b><font size = "15">How will we notify you of changes to this policy?</font></b>\n We\'ll notify you before we make changes to this policy
+        and give you the opportunity to review the revised policy before you choose to continue using our Products.
+
+    </string>
+
+
 </resources>
