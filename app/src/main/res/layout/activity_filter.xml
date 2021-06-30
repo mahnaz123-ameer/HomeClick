@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaa_regular"
+                android:fontFamily="@font/comfort_regular"
                 android:text="@string/choose_ad_type"
                 android:textColor="@color/darker_lavender"
                 android:textStyle="bold"/>
@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
-                        android:fontFamily="@font/comfortaa_regular"
+                        android:fontFamily="@font/comfort_regular"
                         android:text="@string/Rent"
                         android:textColor="@color/black" />
 
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
-                        android:fontFamily="@font/comfortaa_regular"
+                        android:fontFamily="@font/comfort_regular"
                         android:text="@string/Sale"
                         android:textColor="@color/black" />
 
@@ -80,7 +80,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
-                        android:fontFamily="@font/comfortaa_regular"
+                        android:fontFamily="@font/comfort_regular"
                         android:text="@string/any"
                         android:textColor="@color/black" />
 
@@ -220,7 +220,7 @@
                 android:layout_marginTop="20dp"
                 android:textColor="@color/darker_lavender"
                 android:id="@+id/indoor_features"
-                android:fontFamily="@font/comfortaa_regular"
+                android:fontFamily="@font/comfort_regular"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
 
@@ -231,7 +231,7 @@
                 android:layout_below="@id/indoor_features"
                 android:layout_marginTop="20dp"
                 android:buttonTint="@color/black"
-                android:fontFamily="@font/comfortaa_regular"
+                android:fontFamily="@font/comfort_regular"
                 android:text="@string/gas_availability"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -257,7 +257,7 @@
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:id="@+id/filter_max_pay_amount"
-                    android:fontFamily="@font/comfortaa_regular"
+                    android:fontFamily="@font/comfort_regular"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:background="@drawable/shape3"
