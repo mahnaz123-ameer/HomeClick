@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -80,6 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NotNull GoogleMap googleMap) {
         mMap = googleMap;
+        Toast.makeText(this, "Click and drag the marker to your house's location", Toast.LENGTH_SHORT).show();
         setInitialMarker();
 
     }
