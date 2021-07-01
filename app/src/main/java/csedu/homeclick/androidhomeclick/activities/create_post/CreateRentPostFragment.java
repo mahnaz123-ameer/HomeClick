@@ -227,6 +227,9 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
 
     @SuppressLint("SetTextI18n")
     private void setWidgets() {
+        decrease_bedrooms.setEnabled(true);
+        decrease_bathrooms.setEnabled(true);
+        decrease_balconies.setEnabled(true);
         prevPhotoRecView.setVisibility(View.VISIBLE);
         prevPhoto.setVisibility(View.VISIBLE);
 
@@ -241,6 +244,12 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
         rentBedrooms.setText(Integer.toString( rentAd.getNumberOfBedrooms() ));
         rentBathrooms.setText(Integer.toString(rentAd.getNumberOfBathrooms()));
         rentBalconies.setText(Integer.toString(rentAd.getNumberOfBalconies()));
+
+        count_bedrooms = rentAd.getNumberOfBedrooms();
+        count_bathrooms = rentAd.getNumberOfBathrooms();
+        count_balconies = rentAd.getNumberOfBalconies();
+
+
         rentFloor.setText(Integer.toString( rentAd.getFloor() ));
         rentFloorSpace.setText(Integer.toString( rentAd.getFloorSpace() ));
         rentGas.setChecked(rentAd.getGasAvailability());

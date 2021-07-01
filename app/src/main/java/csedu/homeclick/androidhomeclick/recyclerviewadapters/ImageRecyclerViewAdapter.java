@@ -72,7 +72,7 @@ public class ImageRecyclerViewAdapter extends  RecyclerView.Adapter<ImageRecycle
             Log.i(TAG, "in on bind view holder, glide not working?");
             Log.i(TAG, imageURL.get(position).toString());
             RequestOptions options = new RequestOptions()
-                    .centerCrop()
+                    .fitCenter()
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
             Glide.with(context).load(imageURL.get(position)).apply(options).into(holder.imageView);

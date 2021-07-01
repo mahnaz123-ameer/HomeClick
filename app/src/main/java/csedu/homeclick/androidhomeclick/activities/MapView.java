@@ -55,6 +55,8 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
     private TextView bedroom, bathroom, gas, payment, fullAdd, areaName, adType;
     private Advertisement clickedAd;
 
+    private Boolean firstClick;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,8 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
     }
 
     private void bindWidgets() {
+        firstClick = true;
+
         bedroom = findViewById(R.id.card_bedroom);
         bathroom = findViewById(R.id.card_bathroom);
         gas = findViewById(R.id.card_gas);
@@ -160,6 +164,11 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback,
     @SuppressLint("SetTextI18n")
     @Override
     public boolean onMarkerClick(@NonNull @NotNull Marker marker) {
+        if(firstClick) {
+            Toast.makeText(this, "Long click to view more information", Toast.LENGTH_SHORT).show();
+            firstClick = false;
+        }
+
         int position;
         String replacedId = marker.getId().replace("m", "0");
         position = Integer.parseInt(replacedId);
