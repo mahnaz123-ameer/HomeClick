@@ -354,7 +354,6 @@ public class CreateRentPostFragment extends Fragment implements View.OnClickList
                 break;
 
             case R.id.buttonRentPostAd:
-                Toast.makeText(requireContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
                 if(EDIT_MODE) {
                     editPost(v);
                 } else {

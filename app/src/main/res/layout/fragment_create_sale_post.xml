@@ -127,10 +127,10 @@
                     android:id="@+id/decrease_bedrooms"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:enabled="false"
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
+                    android:enabled="false"
                     android:text="@string/minus"
                     android:textAlignment="center"
                     android:textSize="13sp" />
@@ -143,9 +143,9 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape3"
+                    android:enabled="false"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:enabled="false"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
@@ -185,8 +185,8 @@
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="@string/minus"
                     android:enabled="false"
+                    android:text="@string/minus"
                     android:textSize="13sp" />
 
                 <EditText
@@ -197,9 +197,9 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape3"
+                    android:enabled="false"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:enabled="false"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
@@ -238,8 +238,8 @@
                     android:layout_marginStart="32dp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/darker_lavender"
-                    android:text="@string/minus"
                     android:enabled="false"
+                    android:text="@string/minus"
                     android:textSize="13sp" />
 
 
@@ -251,9 +251,9 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape3"
+                    android:enabled="false"
                     android:inputType="number"
                     android:padding="8dp"
-                    android:enabled="false"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     tools:ignore="Autofill,LabelFor" />
@@ -513,8 +513,9 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/comfortaa_regular"
                     android:text="@string/previously_added_photos"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darker_lavender"
                     android:textSize="18sp"
                     android:visibility="gone" />
 

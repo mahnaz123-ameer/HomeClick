@@ -323,7 +323,6 @@ public class CreateSalePostFragment extends Fragment implements View.OnClickList
                 break;
 
             case R.id.buttonSalePostAd:
-                Toast.makeText(requireContext().getApplicationContext(), "post ad clicked", Toast.LENGTH_SHORT).show();
                 if(EDIT_MODE) {
                     editPost(v);
                 } else {

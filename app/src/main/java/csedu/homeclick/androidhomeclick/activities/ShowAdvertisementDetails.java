@@ -570,31 +570,6 @@ public class ShowAdvertisementDetails extends AppCompatActivity implements Seria
         });
     }
 
-//    private void proceedToDeletePost() {
-//        final Advertisement received = (Advertisement) getIntent().getExtras().get("Ad");
-//
-//        final String adId = received.getAdvertisementID();
-//        final int totalToDelete = received.getNumberOfImages();
-//        final int[] alreadyDeleted = new int[1];
-//        adService.deletePhotoFolder(adId, totalToDelete, (deleted, error) -> {
-//            startActivity(new Intent(ShowAdvertisementDetails.this.getApplicationContext(), AdFeed.class));
-//            if(deleted) {
-//                alreadyDeleted[0]++;
-//                Log.i(TAG, "number of the photo deleted = " + error);
-//                if(alreadyDeleted[0] == totalToDelete) {
-//                    adService.deleteAd(adId, (deleted1, error1) -> {
-//                        if (deleted1) {
-//                            Log.i(TAG, "Ad " + adId + " deleted successfully");
-//                        } else {
-//                            Log.i(TAG, error1);
-//                        }
-//                    });
-//                }
-//            } else {
-//                Toast.makeText(ShowAdvertisementDetails.this.getApplicationContext(), error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
     private void proceedToDeletePost() {
         Log.i(TAG, "in proceed to delete post");
