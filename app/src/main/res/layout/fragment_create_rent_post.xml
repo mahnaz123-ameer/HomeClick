@@ -608,8 +608,9 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/comfortaa_regular"
                         android:text="@string/previously_added_photos"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darker_lavender"
                         android:textSize="18sp"
                         android:visibility="gone" />
 
